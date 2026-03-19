@@ -3,6 +3,7 @@ import '@/styles/globals.css'
 import Header from '@/components/ui/Header'
 import Footer from '@/components/ui/Footer'
 import BottomNav from '@/components/ui/BottomNav'
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -42,6 +43,7 @@ export default function RootLayout({
         </main>
         <Footer />
         <BottomNav />
+        <GoogleAnalytics gaId="G-MQSCXRFH76" />
       </body>
     </html>
   )

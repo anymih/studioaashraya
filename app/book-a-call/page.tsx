@@ -13,7 +13,14 @@ export default function BookACallPage() {
       body: formData,
       headers: { Accept: 'application/json' },
     })
-    if (res.ok) setSubmitted(true)
+    if (res.ok) {
+      // @ts-ignore
+      window.gtag?.('event', 'booking_form_submitted', {
+        event_category: 'Lead',
+        event_label: 'Book a Call Form',
+      })
+      setSubmitted(true)
+    }
   }
 
   return (

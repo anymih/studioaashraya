@@ -1,3 +1,5 @@
+"use client"
+
 import Image from 'next/image'
 import Link from 'next/link'
 import ProjectCard from '@/components/ui/ProjectCard'
@@ -96,7 +98,13 @@ export default function HomePage() {
           </p>
 
           <div style={{display: 'flex', gap: '12px', flexWrap: 'wrap'}}>
-            <a href="/book-a-call" style={{
+            <a href="/book-a-call" onClick={() => {
+              // @ts-ignore
+              window.gtag?.('event', 'cta_click', {
+                event_category: 'Engagement',
+                event_label: 'Hero CTA — Book a Call',
+              })
+            }} style={{
               backgroundColor: '#184A45',
               color: '#ffffff',
               borderRadius: '9999px',
