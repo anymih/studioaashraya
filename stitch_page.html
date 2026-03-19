@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Studio Aashraya | Premium Architecture Studio</title>
+<!-- Fonts: Inter and Cormorant Garamond -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              DEFAULT: '#18491d', // Custom color from theme
+              light: '#f1f5f1',
+              cream: '#FAF4EC' // Requested background color
+            }
+          },
+          fontFamily: {
+            serif: ['Cormorant Garamond', 'serif'],
+            sans: ['Inter', 'sans-serif'],
+          },
+          borderRadius: {
+            'full': '9999px', // ROUND_FULL as per theme
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="typography">
+    h1, h2, h3, .font-serif-italic {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+    }
+    .font-serif-reg {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: normal;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #FAF4EC;
+    }
+  </style>
+<style data-purpose="layout-adjustments">.glass-card {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(8px)
+    }
+.hero-bg {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url(https://lh3.googleusercontent.com/aida-public/AB6AXuAO7AQyPwpS_hXBeUXsj2D9fGYON8uTjXTFBXRgv5ylHQGUNgEPyqy6zd_z3ZCVJPMgh4GFZ5RCnBuWv0Hqh23lIphUVwaEMdYrbtVrr_ZeWcGClnyvGArxU0EKzJ7aDbt2coPQBZF9mHOkAoJacWHZWWjEODyIl5HgmfAVX_DO6ohOqrZBoXwComumtw0JkTGomoW2XKzxUH9J6L5tI5gJ928lTZabrxbozz2mef6_FBrkGn_MSjwg-PiDwVHwAtE04qYeN_bRWEU);
+    background-size: cover;
+    background-position: center
+    }</style>
+</head>
+<body class="text-slate-900 overflow-x-hidden">
+<!-- BEGIN: Navigation -->
+<header class="fixed top-0 left-0 w-full z-50 bg-brand-cream/80 backdrop-blur-md border-b border-brand/10">
+<nav class="container mx-auto px-6 py-4 flex items-center justify-between">
+<!-- Logo Area -->
+<div class="flex items-center" data-purpose="logo">
+<span class="text-2xl tracking-tight text-brand">
+          studio <span class="font-bold">aashraya</span>
+</span>
+</div>
+<!-- Desktop Links -->
+<div class="hidden md:flex items-center space-x-10 text-sm font-medium">
+<a class="hover:text-brand transition-colors" href="#">Projects</a>
+<a class="hover:text-brand transition-colors" href="#">Process</a>
+<a class="hover:text-brand transition-colors" href="#">Calculator</a>
+<a class="hover:text-brand transition-colors" href="#">About</a>
+</div>
+<!-- CTA Button -->
+<div>
+<a class="bg-brand text-white px-8 py-2.5 rounded-full text-sm font-medium hover:bg-opacity-90 transition-all shadow-md" href="#">
+          Book a Call
+        </a>
+</div>
+</nav>
+</header>
+<!-- END: Navigation -->
+<main class="pt-20">
+<!-- BEGIN: Hero Section -->
+<section class="relative h-[85vh] w-full flex items-center justify-center px-6 overflow-hidden">
+<!-- Hero Background Image -->
+<div class="absolute inset-0 hero-bg"></div>
+<!-- Overlay Content Card -->
+<div class="relative z-10 max-w-4xl w-full glass-card p-10 md:p-16 rounded-3xl text-center shadow-2xl" data-purpose="hero-content">
+<h1 class="text-5xl md:text-7xl mb-6 text-brand">Cooler, smarter homes for Bihar</h1>
+<p class="text-lg md:text-xl text-slate-700 mb-10 max-w-2xl mx-auto leading-relaxed">
+          Designing climate-responsive architecture that blends vernacular wisdom with modern efficiency.
+        </p>
+<div class="flex flex-col md:flex-row items-center justify-center gap-4">
+<button class="bg-brand text-white px-8 py-4 rounded-full font-medium w-full md:w-auto shadow-lg hover:translate-y-[-2px] transition-transform">
+            Book a Free Clarity Call
+          </button>
+<button class="border-2 border-brand text-brand px-8 py-4 rounded-full font-medium w-full md:w-auto hover:bg-brand hover:text-white transition-all">
+            Explore Projects
+          </button>
+</div>
+</div>
+</section>
+<!-- END: Hero Section -->
+<!-- BEGIN: Trust Badges -->
+<section class="bg-brand text-white py-12">
+<div class="container mx-auto px-6">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-white/20">
+<div class="py-4 md:py-0 flex flex-col items-center">
+<span class="text-xl font-serif-reg uppercase tracking-widest">IIT Alumnus</span>
+<p class="text-xs opacity-70 mt-1">Rigorous Engineering Standards</p>
+</div>
+<div class="py-4 md:py-0 flex flex-col items-center">
+<span class="text-xl font-serif-reg uppercase tracking-widest">Vernacular Materials</span>
+<p class="text-xs opacity-70 mt-1">Earth, Stone &amp; Lime Traditions</p>
+</div>
+<div class="py-4 md:py-0 flex flex-col items-center">
+<span class="text-xl font-serif-reg uppercase tracking-widest">Energy Efficient</span>
+<p class="text-xs opacity-70 mt-1">Passive Design Principles</p>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Trust Badges -->
+<!-- BEGIN: Project Showcase -->
+<section class="py-24 container mx-auto px-6">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16">
+<div>
+<h2 class="text-4xl md:text-5xl text-brand mb-4">Featured Works</h2>
+<p class="text-slate-600 max-w-md">Creating sanctuaries that breathe with the environment.</p>
+</div>
+<a class="text-brand font-medium border-b-2 border-brand mb-2" href="#">View Portfolio</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8" data-purpose="projects-grid">
+<!-- Card 1 -->
+<div class="group cursor-pointer">
+<div class="overflow-hidden rounded-2xl mb-6 aspect-[4/5]">
+<img alt="The Clay House" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXOHBd4zZre_qUtPesxNd_DvuJ3YokhJhYp_1TNSIyD8gdL8GeQ8YcjWjQqhjhPWOPuuyNp7sn9BqVhp9W5Osc1opPGPg-a9m5FV1wXG37qsr6rH9RrcJZc1UWxfWLbfj4n1Qq1_612DOU4QLP7CqiGZqVraqmbH7_gbyXb_TszVQNH7yTLK1R67uMvWj1rrnls518L4xyET4uG1fmrkS0fFUvBD8mvrYFopX0wEZFI6btnWE0wvQIlTzWaa-u7WGOZm2wbUXpuhc"/>
+</div>
+<h3 class="text-2xl text-brand mb-2">The Clay House</h3>
+<p class="text-slate-500 text-sm uppercase tracking-wider">Patna, Bihar</p>
+</div>
+<!-- Card 2 -->
+<div class="group cursor-pointer">
+<div class="overflow-hidden rounded-2xl mb-6 aspect-[4/5]">
+<img alt="Veranda Villa" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASHymHejKtx_Aj0MB3Vby2QxY_5qNx2ki292uIjkeYZZP7AUVBcw9A9GzZDAOXizOSrMOoIhBAZnhgb7sIjbd1fklhBCP-p1-DBwYk6M-4527swfJTNEIDSzUtH4ztyg-nQANvEHU0Bv5sI_Hyj3HjuZR0ag5qtcDViJfYohykXdXnpjyUNtxHjKEecPY8s59Dgw7WH_--EMDjHwH6PQ5HSU755lIhjpd3E0Q3_Ko5L1n9MjdnU27ufWExIOzkl3stMEqfqr8b-2o"/>
+</div>
+<h3 class="text-2xl text-brand mb-2">Veranda Villa</h3>
+<p class="text-slate-500 text-sm uppercase tracking-wider">Muzaffarpur</p>
+</div>
+<!-- Card 3 -->
+<div class="group cursor-pointer">
+<div class="overflow-hidden rounded-2xl mb-6 aspect-[4/5]">
+<img alt="Aashraya Farmstead" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4QSCfdtJ9Kk8N0h8CpjfBUB8dc2V6oaBLFT5JUDcioFHnAnk1cpjWQCIvgLpv5VMDbbsSA8J7zGlvBErmxrWD79jbaWW82f4xCs9pBClJ8dUHvkNeg3eSkcnzf7_2m9heZsAjO0G1YJVPAAS2Fo9hPgUkRtm46NsS_bAMTmfHO17Ew-y9MRUDQXZMFsKNsowL7OwmQH23QoWSz5l8qr4_m8x9NvhlqK3-wLlqDNDdbIpE-MFHTja9PbX7hYjz2KevhM1A0dAqVLA"/>
+</div>
+<h3 class="text-2xl text-brand mb-2">Aashraya Farmstead</h3>
+<p class="text-slate-500 text-sm uppercase tracking-wider">Gaya District</p>
+</div>
+</div>
+</section>
+<!-- END: Project Showcase -->
+<!-- BEGIN: How We Work -->
+<section class="py-24 bg-brand/5">
+<div class="container mx-auto px-6">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+<!-- Left Image -->
+<div class="relative">
+<div class="rounded-3xl overflow-hidden shadow-2xl">
+<img alt="Architectural drawing" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAdbV4_m1K40zhwn8ZJhuZa3TcSTZxImESK4xhBL__zoSLDh65Bpg7qcP9djyK0Dt8Hm2iPUFOH1wFtQIdGjm0sxm_MoVbCWOiGiJ57zotleK2tHeEC6E5GsgwWVxWqbx3qmrhLlOoBr6tNQEGjv4n9ZPq9SaesifRvdr07XiBPSFnm5SG2DcmyLHQWaA21Dhz8CS8JmBg6CyuVHNkUoMYjB6b-TpTX4Hz5nhBFtS_gcueK4-s0llPpHzxx5JWgeTH6lzla9m-vL8"/>
+</div>
+<!-- Design element -->
+<div class="absolute -bottom-6 -right-6 w-32 h-32 bg-brand/10 rounded-full -z-10"></div>
+</div>
+<!-- Right Content: Process -->
+<div>
+<h2 class="text-4xl md:text-5xl text-brand mb-12">How We Work</h2>
+<div class="space-y-10" data-purpose="process-steps">
+<div class="flex gap-6">
+<span class="text-brand font-serif italic text-3xl">01</span>
+<div>
+<h4 class="text-2xl font-serif-reg text-brand mb-2">The Clarity Call</h4>
+<p class="text-slate-600 leading-relaxed">Understanding your vision, lifestyle requirements, and site potential.</p>
+</div>
+</div>
+<div class="flex gap-6">
+<span class="text-brand font-serif italic text-3xl">02</span>
+<div>
+<h4 class="text-2xl font-serif-reg text-brand mb-2">Passive Design Strategy</h4>
+<p class="text-slate-600 leading-relaxed">Analyzing sun paths and wind flows to naturally cool your space.</p>
+</div>
+</div>
+<div class="flex gap-6">
+<span class="text-brand font-serif italic text-3xl">03</span>
+<div>
+<h4 class="text-2xl font-serif-reg text-brand mb-2">Material Selection</h4>
+<p class="text-slate-600 leading-relaxed">Curating local materials that age beautifully and reduce carbon footprint.</p>
+</div>
+</div>
+<div class="flex gap-6">
+<span class="text-brand font-serif italic text-3xl">04</span>
+<div>
+<h4 class="text-2xl font-serif-reg text-brand mb-2">Execution &amp; Handover</h4>
+<p class="text-slate-600 leading-relaxed">Overseeing construction to ensure every detail matches the architectural intent.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: How We Work -->
+<!-- BEGIN: Calculator Section -->
+<section class="py-24 container mx-auto px-6">
+<div class="text-center mb-16">
+<h2 class="text-4xl text-brand mb-4">Start Planning</h2>
+<p class="text-slate-600">Free tools to help you take the first step towards your dream home.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8" data-purpose="calculators">
+<!-- Calc Card 1 -->
+<div class="bg-white p-10 rounded-[40px] shadow-sm border border-brand/10 hover:shadow-xl transition-all group">
+<div class="w-16 h-16 bg-brand/5 rounded-2xl flex items-center justify-center mb-8 text-brand">
+<svg class="w-8 h-8" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<h3 class="text-3xl text-brand mb-4 font-serif-reg">Estimate Construction Cost</h3>
+<p class="text-slate-600 mb-8">Get a rough estimate based on your square footage and finish preferences in Bihar.</p>
+<button class="bg-brand text-white px-8 py-3 rounded-full font-medium group-hover:px-10 transition-all">Launch Tool →</button>
+</div>
+<!-- Calc Card 2 -->
+<div class="bg-white p-10 rounded-[40px] shadow-sm border border-brand/10 hover:shadow-xl transition-all group">
+<div class="w-16 h-16 bg-brand/5 rounded-2xl flex items-center justify-center mb-8 text-brand">
+<svg class="w-8 h-8" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<h3 class="text-3xl text-brand mb-4 font-serif-reg">Check Plot FAR</h3>
+<p class="text-slate-600 mb-8">Calculate the Floor Area Ratio and permissible built-up area for your specific city plot.</p>
+<button class="bg-brand text-white px-8 py-3 rounded-full font-medium group-hover:px-10 transition-all">Check Now →</button>
+</div>
+</div>
+</section>
+<!-- END: Calculator Section -->
+</main>
+<!-- BEGIN: Footer -->
+<footer class="bg-brand text-white pt-20 pb-10">
+<div class="container mx-auto px-6">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
+<!-- Studio Info -->
+<div class="md:col-span-2">
+<span class="text-3xl tracking-tight mb-6 block">
+            studio <span class="font-bold">aashraya</span>
+</span>
+<p class="text-white/70 max-w-sm leading-relaxed mb-8">
+            Pioneering sustainable architecture in Bihar. We design spaces that honor tradition while embracing the future.
+          </p>
+<div class="flex gap-4">
+<!-- Social Icons (Placeholder SVG) -->
+<a class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-brand transition-all" href="#">
+<svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg>
+</a>
+<a class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-brand transition-all" href="#">
+<svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"></path></svg>
+</a>
+</div>
+</div>
+<!-- Links Column 1 -->
+<div>
+<h5 class="text-sm font-bold uppercase tracking-widest mb-6 text-white/50">Studio</h5>
+<ul class="space-y-4 text-white/80">
+<li><a class="hover:text-white transition-colors" href="#">Our Story</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Philosophy</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Awards</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Contact</a></li>
+</ul>
+</div>
+<!-- Links Column 2 -->
+<div>
+<h5 class="text-sm font-bold uppercase tracking-widest mb-6 text-white/50">Services</h5>
+<ul class="space-y-4 text-white/80">
+<li><a class="hover:text-white transition-colors" href="#">Architecture</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Interior Design</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Landscape</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Consultation</a></li>
+</ul>
+</div>
+</div>
+<!-- Copyright -->
+<div class="border-t border-white/10 pt-10 flex flex-col md:flex-row justify-between items-center text-sm text-white/50">
+<p>© 2024 Studio Aashraya. All rights reserved.</p>
+<div class="flex gap-8 mt-4 md:mt-0">
+<a class="hover:text-white" href="#">Privacy Policy</a>
+<a class="hover:text-white" href="#">Terms of Service</a>
+</div>
+</div>
+</div>
+</footer>
+<!-- END: Footer -->
+</body></html>
