@@ -13,7 +13,6 @@ const navItems = [
 
 export default function BottomNav() {
   const pathname = usePathname()
-  console.log('BottomNav pathname:', pathname)
 
   const isActive = (href: string) => {
     if (href === '/') return pathname === '/'

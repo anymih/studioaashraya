@@ -299,7 +299,7 @@ export default function BookACallPage() {
             </button>
             <p style={{ textAlign: 'center', fontSize: '13px', color: '#888', marginTop: '12px' }}>
               Or message directly on{' '}
-              <a href='https://wa.me/919473031016' target='_blank' style={{ color: '#184A45', fontWeight: 600 }}>
+              <a href='https://wa.me/919473031016' target='_blank' rel='noopener noreferrer' style={{ color: '#184A45', fontWeight: 600 }}>
                 WhatsApp
               </a>
             </p>
