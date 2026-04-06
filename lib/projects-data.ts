@@ -24,7 +24,7 @@ export const projects: Project[] = [
     area: '2,400 sq ft',
     year: '2024',
     status: 'Completed',
-    heroImage: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDXOHBd4zZre_qUtPesxNd_DvuJ3YokhJhYp_1TNSIyD8gdL8GeQ8YcjWjQqhjhPWOPuuyNp7sn9BqVhp9W5Osc1opPGPg-a9m5FV1wXG37qsr6rH9RrcJZc1UWxfWLbfj4n1Qq1_612DOU4QLP7CqiGZqVraqmbH7_gbyXb_TszVQNH7yTLK1R67uMvWj1rrnls518L4xyET4uG1fmrkS0fFUvBD8mvrYFopX0wEZFI6btnWE0wvQIlTzWaa-u7WGOZm2wbUXpuhc',
+    heroImage: '/images/hero.webp',
     galleryImages: [
       '/images/projects/the-clay-house/gallery-1.jpg',
       '/images/projects/the-clay-house/gallery-2.jpg',
@@ -56,7 +56,7 @@ export const projects: Project[] = [
     area: '3,200 sq ft',
     year: '2024',
     status: 'Completed',
-    heroImage: 'https://lh3.googleusercontent.com/aida-public/AB6AXuASHymHejKtx_Aj0MB3Vby2QxY_5qNx2ki292uIjkeYZZP7AUVBcw9A9GzZDAOXizOSrMOoIhBAZnhgb7sIjbd1fklhBCP-p1-DBwYk6M-4527swfJTNEIDSzUtH4ztyg-nQANvEHU0Bv5sI_Hyj3HjuZR0ag5qtcDViJfYohykXdXnpjyUNtxHjKEecPY8s59Dgw7WH_--EMDjHwH6PQ5HSU755lIhjpd3E0Q3_Ko5L1n9MjdnU27ufWExIOzkl3stMEqfqr8b-2o',
+    heroImage: '/images/hero.webp',
     galleryImages: [
       '/images/projects/the-veranda-villa/gallery-1.jpg',
       '/images/projects/the-veranda-villa/gallery-2.jpg',
@@ -88,7 +88,7 @@ export const projects: Project[] = [
     area: '4,800 sq ft',
     year: '2025',
     status: 'In Progress',
-    heroImage: 'https://lh3.googleusercontent.com/aida-public/AB6AXuA4QSCfdtJ9Kk8N0h8CpjfBUB8dc2V6oaBLFT5JUDcioFHnAnk1cpjWQCIvgLpv5VMDbbsSA8J7zGlvBErmxrWD79jbaWW82f4xCs9pBClJ8dUHvkNeg3eSkcnzf7_2m9heZsAjO0G1YJVPAAS2Fo9hPgUkRtm46NsS_bAMTmfHO17Ew-y9MRUDQXZMFsKNsowL7OwmQH23QoWSz5l8qr4_m8x9NvhlqK3-wLlqDNDdbIpE-MFHTja9PbX7hYjz2KevhM1A0dAqVLA',
+    heroImage: '/images/hero.webp',
     galleryImages: [
       '/images/projects/aashraya-farmstead/gallery-1.jpg',
       '/images/projects/aashraya-farmstead/gallery-2.jpg',
@@ -120,7 +120,7 @@ export const projects: Project[] = [
     area: '6,500 sq ft',
     year: '2024',
     status: 'Completed',
-    heroImage: '/images/projects/vidya-learning-center/hero.jpg',
+    heroImage: '/images/hero.webp',
     galleryImages: [
       '/images/projects/vidya-learning-center/gallery-1.jpg',
       '/images/projects/vidya-learning-center/gallery-2.jpg',
@@ -152,7 +152,7 @@ export const projects: Project[] = [
     area: '5,200 sq ft',
     year: '2025',
     status: 'In Progress',
-    heroImage: '/images/projects/heritage-library-bhagalpur/hero.jpg',
+    heroImage: '/images/hero.webp',
     galleryImages: [
       '/images/projects/heritage-library-bhagalpur/gallery-1.jpg',
       '/images/projects/heritage-library-bhagalpur/gallery-2.jpg',
@@ -184,7 +184,7 @@ export const projects: Project[] = [
     area: '1,800 sq ft',
     year: '2025',
     status: 'Concept',
-    heroImage: '/images/projects/zero-carbon-pavilion/hero.jpg',
+    heroImage: '/images/hero.webp',
     galleryImages: [
       '/images/projects/zero-carbon-pavilion/gallery-1.jpg',
       '/images/projects/zero-carbon-pavilion/gallery-2.jpg',
