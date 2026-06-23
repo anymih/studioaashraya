@@ -49,7 +49,7 @@ export default function NotFound() {
         lineHeight: 1.7,
         margin: '0 0 32px 0',
       }}>
-        The page you're looking for doesn't exist or may have moved.
+        The page you&apos;re looking for doesn&apos;t exist or may have moved.
       </p>
       <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', justifyContent: 'center' }}>
         <Link href="/" style={{
