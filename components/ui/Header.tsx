@@ -25,9 +25,12 @@ export default function Header() {
     <header className="sticky top-0 z-40 bg-bg border-b border-border">
       <div className="max-w-7xl mx-auto px-4 flex items-center justify-between h-16">
         {/* Logo */}
-        <Link href="/" className="font-heading text-2xl md:text-3xl text-primary tracking-wide">
-          <span className="font-normal">studio </span>
-          <span className="font-bold">aashraya</span>
+        <Link href="/" className="flex items-center gap-2.5">
+          <img 
+            src="/assets/2.png" 
+            alt="Studio Aashraya Logo" 
+            className="h-9 w-auto object-contain"
+          />
         </Link>
 
         {/* Desktop nav */}

@@ -15,6 +15,7 @@
   /* Typography */
   --font-heading: 'Cormorant Garamond', serif;
   --font-body:    'Inter', sans-serif;
+  --font-mono:    'Space Mono', monospace;
 
   /* Font sizes */
   --text-h1:    4.5rem;

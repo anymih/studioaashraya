@@ -19,15 +19,13 @@ export default function Footer() {
 
         {/* Column 1 — Brand */}
         <div style={{display: 'flex', flexDirection: 'column', gap: '16px', paddingRight: '48px'}}>
-          <p style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            fontSize: '24px',
-            fontWeight: 400,
-            color: '#ffffff',
-            margin: 0,
-          }}>
-            Studio Aashraya
-          </p>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <img 
+              src="/assets/1.png" 
+              alt="Studio Aashraya" 
+              style={{ height: '36px', width: 'auto', objectFit: 'contain' }}
+            />
+          </div>
           <p style={{
             fontFamily: "'Inter', sans-serif",
             fontSize: '14px',
