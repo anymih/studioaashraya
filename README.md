@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Studio Aashraya
+
+Studio Aashraya is an IITian-led architecture studio based in Patna, Bihar, specializing in climate-responsive, vernacular home design for Bihar's next-generation families.
+
+## Brand Vision
+
+"Cooler, smarter homes for Bihar."
+
+Studio Aashraya designs homes that stay cooler, use local materials, and respect both budget and culture. From the first sketch to construction cost clarity, we help homeowners and NRIs turn confusing "architect near me" searches into a calm, end-to-end design partnership.
+
+## Tech Stack
+
+- **Framework:** [Next.js 15](https://nextjs.org/) (App Router)
+- **Library:** [React 19](https://react.dev/)
+- **Language:** [TypeScript](https://www.typescriptlang.org/)
+- **Styling:** [Tailwind CSS 4](https://tailwindcss.com/)
+- **Icons:** [Lucide React](https://lucide.dev/)
+- **Analytics:** [Google Analytics 4 (GA4)](https://marketingplatform.google.com/about/analytics/) via `@next/third-parties`
+- **SEO:** Structured data (JSON-LD schema) for LocalBusiness, FAQ, CreativeWork, and Breadcrumbs.
+
+## Key Features
+
+- **Climate-Smart Design:** Passive cooling strategies, cross-ventilation, and sun path analysis integrated into architectural designs.
+- **Construction Cost Estimator:** A tool for homeowners to estimate construction costs in various cities in Bihar (Patna, Gaya, Muzaffarpur, etc.).
+- **FAR & Built-up Area Checker:** A calculator to help users understand how much they can build on their plots based on local norms.
+- **Project Portfolio:** Showcasing real projects like "The Clay House" and "The Veranda Villa" with detailed case studies.
+- **SEO & Analytics:** Optimized for local search with comprehensive meta tags and conversion tracking.
 
 ## Getting Started
 
-First, run the development server:
+First, install the dependencies:
+
+```bash
+npm install
+```
+
+Then, run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `app/`: Next.js App Router pages and layouts.
+  - `about/`: About page detailing the founder's story and approach.
+  - `book-a-call/`: Lead capture form for consultations.
+  - `calculators/`: Construction cost and FAR calculators.
+  - `projects/`: Portfolio listing and detail pages.
+- `components/`: Reusable UI components.
+- `lib/`: Shared utilities, constants, and data (analytics, projects, etc.).
+- `public/`: Static assets (images, favicon).
+- `styles/`: Global styles and Tailwind configuration.
 
-## Learn More
+## SEO & Positioning
 
-To learn more about Next.js, take a look at the following resources:
+The project follows a strict positioning strategy:
+- **Primary:** IITian-led (background credibility signal).
+- **Brand Identity:** Climate-responsive + vernacular design for Bihar.
+- **Target:** Modern Bihar families, homeowners, and NRIs.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Detailed SEO schema and brand directives can be found in `POSITIONING.md` and `antigravity_schema_seo_prompt_v2.md`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Analytics
 
-## Deploy on Vercel
+Conversion events are tracked using GA4, including:
+- Lead form submissions (`generate_lead`).
+- CTA clicks.
+- Calculator completions.
+- Project views.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Tracking logic is centralized in `lib/analytics.ts`.

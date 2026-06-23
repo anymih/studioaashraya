@@ -125,7 +125,7 @@ export default function BookACallPage() {
               lineHeight: 1.75,
               margin: 0,
             }}>
-              You don't need drawings, perfect ideas, or technical knowledge. Bring your plot details, goals, and questions.
+              You don&apos;t need drawings, perfect ideas, or technical knowledge. Bring your plot details, goals, and questions.
             </p>
           </div>
 

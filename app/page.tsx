@@ -187,7 +187,7 @@ export default function HomePage() {
           </p>
 
           <div style={{display: 'flex', gap: '12px', flexWrap: 'wrap'}}>
-            <a href="/book-a-call" onClick={() => trackCTAClick('hero_book_call', 'hero')} style={{
+            <Link href="/book-a-call" onClick={() => trackCTAClick('hero_book_call', 'hero')} style={{
               backgroundColor: '#184A45',
               color: '#ffffff',
               borderRadius: '9999px',
@@ -200,8 +200,8 @@ export default function HomePage() {
               whiteSpace: 'nowrap',
             }}>
               Book a Free Clarity Call
-            </a>
-            <a href="/projects" onClick={() => trackCTAClick('hero_explore_projects', 'hero')} style={{
+            </Link>
+            <Link href="/projects" onClick={() => trackCTAClick('hero_explore_projects', 'hero')} style={{
               backgroundColor: 'transparent',
               color: '#184A45',
               border: '1.5px solid #184A45',
@@ -215,7 +215,7 @@ export default function HomePage() {
               whiteSpace: 'nowrap',
             }}>
               Explore Projects
-            </a>
+            </Link>
           </div>
 
         </div>
@@ -231,11 +231,11 @@ export default function HomePage() {
              style={{color: '#666666', fontFamily: "'Inter', sans-serif"}}>
             Creating sanctuaries that breathe with the environment.
           </p>
-          <a href="/projects"
+          <Link href="/projects"
              className="text-sm font-medium whitespace-nowrap flex-shrink-0 underline underline-offset-4"
              style={{color: '#184A45', fontFamily: "'Inter', sans-serif"}}>
             View Portfolio →
-          </a>
+          </Link>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
           {featured.map((project) => (
@@ -498,7 +498,7 @@ export default function HomePage() {
             margin: '0 0 40px 0',
             maxWidth: '600px',
           }}>
-            We are not a listing page or a directory. Studio Aashraya is a named, practicing <a href="/about" style={{color: '#184A45', fontWeight: 500, textDecoration: 'underline', textUnderlineOffset: '3px'}}>architecture firm in Patna</a> with real projects and real outcomes.
+            We are not a listing page or a directory. Studio Aashraya is a named, practicing <Link href="/about" style={{color: '#184A45', fontWeight: 500, textDecoration: 'underline', textUnderlineOffset: '3px'}}>architecture firm in Patna</Link> with real projects and real outcomes.
           </p>
           <div style={{
             display: 'grid',
@@ -508,7 +508,7 @@ export default function HomePage() {
             {[
               { num: '01', title: 'Named, IIT-Educated Architect', desc: 'Every project is personally led by the founder — not outsourced to anonymous freelancers.' },
               { num: '02', title: 'Real Projects, Real Outcomes', desc: 'Browse completed homes with photos, locations, and measurable design outcomes.' },
-              { num: '03', title: 'Practical, Budget-Conscious', desc: 'We design within Bihar\'s real construction costs and local material availability.' },
+              { num: '03', title: 'Practical, Budget-Conscious', desc: 'We design within Bihar&apos;s real construction costs and local material availability.' },
               { num: '04', title: 'Climate-Responsive by Default', desc: 'Passive cooling, cross-ventilation, and sun path analysis built into every design.' },
             ].map((item) => (
               <div key={item.num} style={{
@@ -635,7 +635,7 @@ export default function HomePage() {
                   lineHeight: 1.7,
                   margin: 0,
                   fontStyle: 'italic',
-                }}>"{review.text}"</p>
+                }}>&quot;{review.text}&quot;</p>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginTop: 'auto' }}>
                   <div style={{
                     width: '36px',
@@ -871,14 +871,14 @@ export default function HomePage() {
               </h2>
               <p className="text-base leading-relaxed w-full"
                  style={{fontFamily: "'Inter', sans-serif", color: '#555555'}}>
-                Let's discuss how to design a home that's cooler, sustainable, and truly yours.
+                Let&apos;s discuss how to design a home that&apos;s cooler, sustainable, and truly yours.
               </p>
-              <a href="/book-a-call"
+              <Link href="/book-a-call"
                  onClick={() => trackCTAClick('homepage_bottom_book_call', 'homepage')}
                  className="mt-2 px-7 py-3.5 rounded-full text-white text-sm font-medium"
                  style={{backgroundColor: '#184A45', fontFamily: "'Inter', sans-serif"}}>
                 Book Your Clarity Call
-              </a>
+              </Link>
             </div>
 
           </div>

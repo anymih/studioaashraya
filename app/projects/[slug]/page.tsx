@@ -262,9 +262,9 @@ export default function ProjectDetailPage() {
             width: '100%',
             whiteSpace: 'normal',
           }}>
-            Let's discuss how to bring this kind of design thinking to your plot in Bihar.
+            Let&apos;s discuss how to bring this kind of design thinking to your plot in Bihar.
           </p>
-          <a href="/book-a-call" onClick={() => trackCTAClick('project_bottom_book_call', 'project_detail')} style={{
+          <Link href="/book-a-call" onClick={() => trackCTAClick('project_bottom_book_call', 'project_detail')} style={{
             marginTop: '8px',
             backgroundColor: '#ffffff',
             color: '#184A45',
@@ -278,7 +278,7 @@ export default function ProjectDetailPage() {
             whiteSpace: 'nowrap',
           }}>
             Book a Clarity Call
-          </a>
+          </Link>
         </div>
       </section>
     </>

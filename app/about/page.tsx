@@ -25,7 +25,7 @@ export default function AboutPage() {
             lineHeight: 1.2,
             margin: '0 0 20px 0',
           }}>
-            Design Thinking Rooted in Bihar's Climate and Culture
+            Design Thinking Rooted in Bihar&apos;s Climate and Culture
           </h1>
           <p style={{
             fontFamily: "'Inter', sans-serif",
@@ -134,7 +134,7 @@ export default function AboutPage() {
                 lineHeight: 1.65,
                 margin: 0,
               }}>
-                "People in Bihar deserve homes designed with the same intelligence and care found in the best cities in the world — without losing their cultural identity or financial practicality."
+                &quot;People in Bihar deserve homes designed with the same intelligence and care found in the best cities in the world — without losing their cultural identity or financial practicality.&quot;
               </p>
             </div>
             {[
