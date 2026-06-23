@@ -19,11 +19,16 @@ export default function Footer() {
 
         {/* Column 1 — Brand */}
         <div style={{display: 'flex', flexDirection: 'column', gap: '16px', paddingRight: '48px'}}>
-          <div style={{ display: 'flex', alignItems: 'center' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
             <img 
-              src="/assets/logo.svg" 
+              src="/assets/logo image.svg" 
+              alt="Studio Aashraya Logo Mark" 
+              style={{ height: '36px', width: 'auto', objectFit: 'contain', filter: 'invert(1) brightness(1.5)' }}
+            />
+            <img 
+              src="/assets/logo text.svg" 
               alt="Studio Aashraya" 
-              style={{ height: '38px', width: 'auto', objectFit: 'contain', filter: 'invert(1) brightness(1.5)' }}
+              style={{ height: '32px', width: 'auto', objectFit: 'contain', filter: 'invert(1) brightness(1.5)', marginTop: '2px' }}
             />
           </div>
           <p style={{

@@ -25,11 +25,16 @@ export default function Header() {
     <header className="sticky top-0 z-40 bg-bg border-b border-border">
       <div className="max-w-7xl mx-auto px-4 flex items-center justify-between h-16">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2.5">
+        <Link href="/" className="flex items-center gap-3">
           <img 
-            src="/assets/logo.svg" 
-            alt="Studio Aashraya Logo" 
+            src="/assets/logo image.svg" 
+            alt="Studio Aashraya Logo Mark" 
             className="h-10 w-auto object-contain"
+          />
+          <img 
+            src="/assets/logo text.svg" 
+            alt="Studio Aashraya" 
+            className="h-9 w-auto object-contain mt-0.5"
           />
         </Link>
 
