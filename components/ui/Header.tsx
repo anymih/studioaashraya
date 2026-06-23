@@ -27,9 +27,9 @@ export default function Header() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2.5">
           <img 
-            src="/assets/2.png" 
+            src="/assets/logo.svg" 
             alt="Studio Aashraya Logo" 
-            className="h-9 w-auto object-contain"
+            className="h-10 w-auto object-contain"
           />
         </Link>
 

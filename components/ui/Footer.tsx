@@ -21,9 +21,9 @@ export default function Footer() {
         <div style={{display: 'flex', flexDirection: 'column', gap: '16px', paddingRight: '48px'}}>
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <img 
-              src="/assets/1.png" 
+              src="/assets/logo.svg" 
               alt="Studio Aashraya" 
-              style={{ height: '36px', width: 'auto', objectFit: 'contain' }}
+              style={{ height: '38px', width: 'auto', objectFit: 'contain', filter: 'invert(1) brightness(1.5)' }}
             />
           </div>
           <p style={{
