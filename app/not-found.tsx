@@ -1,6 +1,14 @@
+'use client'
+
+import { useEffect } from 'react'
 import Link from 'next/link'
+import { track404 } from '@/lib/analytics'
 
 export default function NotFound() {
+  useEffect(() => {
+    track404(window.location.pathname)
+  }, [])
+
   return (
     <main style={{
       width: '100%',

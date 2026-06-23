@@ -13,12 +13,12 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: 'Architect in Patna, Bihar | House & Home Design — Studio Aashraya',
-  description: 'Looking for an architect in Patna? Studio Aashraya designs residential homes, 3D house plans, and sustainable buildings across Bihar. Free 30-min consultation. Call now.',
+  description: 'Studio Aashraya is an architect in Patna designing custom homes, 3D house plans, and sustainable residential spaces across Bihar. Book a free consultation.',
   keywords: ['architect Patna', 'architect in Patna', 'residential architect Bihar', 'house design Patna', 'home design Bihar', 'architecture firm Patna', '3D house design Bihar', 'best architect Patna', 'ghar ka design Patna', 'building design Bihar', 'architecture services Patna'],
   authors: [{ name: 'Anumeh Prakhar, Studio Aashraya' }],
   openGraph: {
     title: 'Architect in Patna, Bihar | House & Home Design — Studio Aashraya',
-    description: 'Looking for an architect in Patna? Studio Aashraya designs residential homes, 3D house plans, and sustainable buildings across Bihar. Free 30-min consultation. Call now.',
+    description: 'Studio Aashraya is an architect in Patna designing custom homes, 3D house plans, and sustainable residential spaces across Bihar. Book a free consultation.',
     url: 'https://studioaashraya.site',
     siteName: 'Studio Aashraya',
     locale: 'en_IN',
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Architect in Patna, Bihar | House & Home Design — Studio Aashraya',
-    description: 'Looking for an architect in Patna? Studio Aashraya designs residential homes, 3D house plans, and sustainable buildings across Bihar. Free 30-min consultation. Call now.',
+    description: 'Studio Aashraya is an architect in Patna designing custom homes, 3D house plans, and sustainable residential spaces across Bihar. Book a free consultation.',
     images: ['https://studioaashraya.site/assets/og-social-card.jpg'],
     site: '@studioaashraya',
   },

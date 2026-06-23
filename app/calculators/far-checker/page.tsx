@@ -6,6 +6,32 @@ import { trackCalculatorComplete, trackCTAClick } from '@/lib/analytics'
 import { Ruler } from 'lucide-react'
 import { FAR_PRESETS } from '@/lib/calculator-constants'
 
+const FAR_FAQ_DATA = [
+  { q: 'What is FAR and why does it matter?', a: 'Floor Area Ratio (FAR) determines the total built-up area allowed on your plot. For example, a FAR of 2.0 on a 1,000 sq ft plot means you can build up to 2,000 sq ft across all floors. Knowing your FAR prevents legal issues and helps plan your home design.' },
+  { q: 'What is the FAR limit in Patna?', a: 'FAR in Patna varies by zone and road width. Typical residential plots on wider roads get FAR of 2.0–2.5, while narrow-lane plots may be limited to 1.5. Municipal rules also set ground coverage limits (usually 50–60%).' },
+  { q: 'Can I build a basement? Does it count in FAR?', a: 'Basements are generally allowed in Patna under certain conditions. Depending on local building bylaws, basements used for parking or utilities may be partially or fully exempt from FAR calculations.' },
+  { q: 'How do I maximize buildable area on a small plot?', a: 'Work with an architect to optimize floor plan efficiency, use stilt parking to free ground coverage, design vertically where FAR allows multiple floors, and eliminate wasted corridor space. An architect in Patna familiar with local norms can help significantly.' },
+]
+
+function FarFAQ() {
+  const [openIdx, setOpenIdx] = useState<number | null>(null)
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
+      {FAR_FAQ_DATA.map((faq, i) => (
+        <div key={i} style={{ borderBottom: '1px solid #E2D8CA' }}>
+          <button onClick={() => setOpenIdx(openIdx === i ? null : i)} style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px 0', border: 'none', backgroundColor: 'transparent', cursor: 'pointer', textAlign: 'left', gap: '12px' }}>
+            <span style={{ fontFamily: "'Inter', sans-serif", fontSize: '14px', fontWeight: 500, color: '#184A45', lineHeight: 1.5 }}>{faq.q}</span>
+            <span style={{ fontSize: '18px', color: '#184A45', flexShrink: 0, transition: 'transform 0.2s ease', transform: openIdx === i ? 'rotate(45deg)' : 'rotate(0deg)' }}>+</span>
+          </button>
+          <div style={{ maxHeight: openIdx === i ? '300px' : '0', overflow: 'hidden', transition: 'max-height 0.3s ease' }}>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: '13px', color: '#666666', lineHeight: 1.7, margin: '0 0 16px 0' }}>{faq.a}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
 const roadOptions = [
   { key: 'narrow', label: 'Narrow lane (< 9 ft road)', detail: 'FAR 1.5, Coverage 50%' },
   { key: 'standard', label: 'Standard road (9–18 ft)', detail: 'FAR 2.0, Coverage 60%' },
@@ -184,6 +210,28 @@ export default function FARCheckerPage() {
             Book a Call
           </Button>
         </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="px-4 pb-16">
+        <div className="max-w-[480px] mx-auto">
+          <h2 className="font-heading text-2xl text-primary mb-6">
+            FAR & Plot Planning FAQs
+          </h2>
+          <FarFAQ />
+        </div>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: FAR_FAQ_DATA.map(faq => ({
+              '@type': 'Question',
+              name: faq.q,
+              acceptedAnswer: { '@type': 'Answer', text: faq.a },
+            })),
+          }) }}
+        />
       </section>
     </>
   )

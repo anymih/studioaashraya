@@ -1,20 +1,20 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Plot FAR Calculator Patna | How Much Can I Build? — Studio Aashraya Bihar',
-  description: 'Check how much you can build on your plot in Patna or Bihar. Free FAR calculator based on local norms. Enter plot size and get your maximum built-up area instantly.',
+  title: 'Plot FAR Calculator Patna | Built-up Area Checker — Studio Aashraya',
+  description: 'Check how much you can build on your plot in Patna using our free FAR calculator and built-up area checker.',
   keywords: ['FAR calculator Patna', 'plot FAR Bihar', 'kitna ghar ban sakta hai Patna', 'how much can I build on my plot Bihar', 'floor area ratio Patna', 'built-up area calculator Bihar', 'plot coverage Patna', 'construction limit Bihar plot'],
   openGraph: {
-    title: 'Plot FAR Calculator Patna | How Much Can I Build? — Studio Aashraya Bihar',
-    description: 'Check how much you can build on your plot in Patna or Bihar. Free FAR calculator based on local norms. Enter plot size and get your maximum built-up area instantly.',
+    title: 'Plot FAR Calculator Patna | Built-up Area Checker — Studio Aashraya',
+    description: 'Check how much you can build on your plot in Patna using our free FAR calculator and built-up area checker.',
     url: 'https://studioaashraya.site/calculators/far-checker',
     type: 'website',
     images: [{ url: 'https://studioaashraya.site/assets/og-social-card.jpg', width: 1200, height: 630, alt: 'Plot FAR and built-up area calculator for Patna Bihar by Studio Aashraya' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Plot FAR Calculator Patna | How Much Can I Build? — Studio Aashraya Bihar',
-    description: 'Check how much you can build on your plot in Patna or Bihar. Free FAR calculator based on local norms.',
+    title: 'Plot FAR Calculator Patna | Built-up Area Checker — Studio Aashraya',
+    description: 'Check how much you can build on your plot in Patna using our free FAR calculator and built-up area checker.',
     images: ['https://studioaashraya.site/assets/og-social-card.jpg'],
     site: '@studioaashraya',
   },

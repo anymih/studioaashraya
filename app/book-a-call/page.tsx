@@ -3,6 +3,70 @@
 import { useState } from 'react'
 import { trackBookingFormSubmit, trackWhatsAppClick } from '@/lib/analytics'
 
+const BOOKING_FAQ = [
+  { q: 'How much does an architect charge in Patna?', a: 'Fees vary by project scope. At Studio Aashraya, residential design packages typically start from ₹5–8 per sq ft. Book a free consultation to get a transparent quote for your specific project.' },
+  { q: 'What happens during the first consultation?', a: 'We discuss your plot details, family needs, budget realism, possible design directions, and next steps. No drawings or technical knowledge needed from your side.' },
+  { q: 'Do I need to have my plot finalized before calling?', a: 'Not necessarily. We can help you evaluate plot potential, FAR limits, and orientation before you finalize your purchase.' },
+  { q: 'How long does a house design project take?', a: 'A first concept with floor plans and 3D views is typically ready within 2–3 weeks after the initial consultation. Full project timelines depend on scope and approvals.' },
+  { q: 'Do you provide construction supervision in Bihar?', a: 'Yes. We offer on-site supervision and construction guidance across Patna and Bihar to ensure quality matches the design intent.' },
+]
+
+function BookingFAQ() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null)
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
+      {BOOKING_FAQ.map((faq, i) => (
+        <div key={i} style={{ borderBottom: '1px solid #E2D8CA' }}>
+          <button
+            onClick={() => setOpenIndex(openIndex === i ? null : i)}
+            style={{
+              width: '100%',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              padding: '20px 0',
+              border: 'none',
+              backgroundColor: 'transparent',
+              cursor: 'pointer',
+              textAlign: 'left',
+              gap: '16px',
+            }}
+          >
+            <span style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: '15px',
+              fontWeight: 500,
+              color: '#184A45',
+              lineHeight: 1.5,
+            }}>{faq.q}</span>
+            <span style={{
+              fontSize: '20px',
+              color: '#184A45',
+              flexShrink: 0,
+              transition: 'transform 0.2s ease',
+              transform: openIndex === i ? 'rotate(45deg)' : 'rotate(0deg)',
+            }}>+</span>
+          </button>
+          <div style={{
+            maxHeight: openIndex === i ? '300px' : '0',
+            overflow: 'hidden',
+            transition: 'max-height 0.3s ease',
+          }}>
+            <p style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: '14px',
+              color: '#666666',
+              lineHeight: 1.7,
+              margin: '0 0 20px 0',
+              paddingRight: '40px',
+            }}>{faq.a}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
 export default function BookACallPage() {
   const [submitted, setSubmitted] = useState(false)
 
@@ -307,6 +371,35 @@ export default function BookACallPage() {
           </form>
         )}
       </div>
+
+      {/* FAQ Section */}
+      <div style={{
+        maxWidth: '960px',
+        margin: '80px auto 0',
+      }}>
+        <h2 style={{
+          fontFamily: "'Cormorant Garamond', serif",
+          fontSize: '2rem',
+          fontWeight: 600,
+          color: '#184A45',
+          margin: '0 0 32px 0',
+        }}>
+          Questions Before Booking?
+        </h2>
+        <BookingFAQ />
+      </div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: BOOKING_FAQ.map(faq => ({
+            '@type': 'Question',
+            name: faq.q,
+            acceptedAnswer: { '@type': 'Answer', text: faq.a },
+          })),
+        }) }}
+      />
     </main>
   )
 }

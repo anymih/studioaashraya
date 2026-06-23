@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { Leaf, Droplets, Sun } from 'lucide-react'
 
@@ -48,20 +49,18 @@ export default function ProjectCard({
         overflow: 'hidden',
       }}
     >
-      {/* Image */}
+      {/* Image — uses Next.js Image for automatic lazy loading, WebP conversion, and responsive sizing */}
       <div className="relative w-full overflow-hidden" style={{ height: '200px' }}>
-        <div
-          className="w-full h-full bg-primary/10 group-hover:scale-105 transition-transform duration-300"
-          style={{ 
-            backgroundImage: `url(${image})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            display: 'block'
-          }}
+        <Image
+          src={image}
+          alt={`${title} — ${tag.toLowerCase()} architecture project in ${location} by Studio Aashraya`}
+          fill
+          sizes="(max-width: 768px) 100vw, 33vw"
+          className="object-cover group-hover:scale-105 transition-transform duration-300"
         />
         {/* Tag badge */}
         <span
-          className={`absolute top-3 left-3 px-3 py-1 rounded-pill text-xs font-medium ${tagColors[tag]}`}
+          className={`absolute top-3 left-3 px-3 py-1 rounded-pill text-xs font-medium ${tagColors[tag]} z-10`}
         >
           {tag}
         </span>

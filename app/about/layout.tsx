@@ -1,20 +1,20 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'About Us | Architecture Firm in Patna, Bihar — Studio Aashraya',
-  description: 'Studio Aashraya is a Patna-based architecture firm. We design custom homes, residential buildings, and sustainable structures across Bihar. Meet our architect and see how we work.',
+  title: 'About Studio Aashraya | Architecture Firm in Patna, Bihar',
+  description: 'Meet the architect behind Studio Aashraya and learn how the firm designs better homes in Patna and Bihar through climate-conscious, practical residential design.',
   keywords: ['architecture firm Patna', 'architect Bihar', 'residential architect Patna', 'home design firm Bihar', 'best architecture studio Patna', 'sustainable home design Bihar', 'house architect near Patna', 'architecture design company Bihar'],
   openGraph: {
-    title: 'About Us | Architecture Firm in Patna, Bihar — Studio Aashraya',
-    description: 'Studio Aashraya is a Patna-based architecture firm. We design custom homes, residential buildings, and sustainable structures across Bihar. Meet our architect and see how we work.',
+    title: 'About Studio Aashraya | Architecture Firm in Patna, Bihar',
+    description: 'Meet the architect behind Studio Aashraya and learn how the firm designs better homes in Patna and Bihar through climate-conscious, practical residential design.',
     url: 'https://studioaashraya.site/about',
     type: 'profile',
     images: [{ url: 'https://studioaashraya.site/assets/og-about.jpg', width: 1200, height: 630, alt: 'Studio Aashraya architecture firm Patna Bihar — meet our architect' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'About Us | Architecture Firm in Patna, Bihar — Studio Aashraya',
-    description: 'Studio Aashraya is a Patna-based architecture firm. We design custom homes, residential buildings, and sustainable structures across Bihar.',
+    title: 'About Studio Aashraya | Architecture Firm in Patna, Bihar',
+    description: 'Meet the architect behind Studio Aashraya and learn how the firm designs better homes in Patna and Bihar through climate-conscious, practical residential design.',
     images: ['https://studioaashraya.site/assets/og-about.jpg'],
     site: '@studioaashraya',
   },

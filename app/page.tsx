@@ -1,10 +1,98 @@
 "use client"
 
+import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import ProjectCard from '@/components/ui/ProjectCard'
 import { projects } from '@/lib/projects-data'
 import { trackCTAClick } from '@/lib/analytics'
+
+const FAQ_DATA = [
+  { q: 'How much does an architect charge in Patna?', a: 'Fees depend on project scope. At Studio Aashraya, residential design packages in Patna typically start from ₹5–8 per sq ft for design drawings. We offer a free initial consultation to discuss your specific requirements and provide a transparent quote.' },
+  { q: 'What is included in a house design package?', a: 'A full package includes site analysis, concept design, 2D floor plans, 3D elevations, structural coordination, electrical and plumbing layouts, and construction guidance. We tailor deliverables based on your project needs.' },
+  { q: 'Do you design 2D and 3D house plans?', a: 'Yes. Every project includes detailed 2D floor plans for construction and realistic 3D elevation views so you can visualize your home before building begins.' },
+  { q: 'Can you help with construction guidance in Bihar?', a: 'Absolutely. We provide on-site supervision and construction guidance across Patna and Bihar to ensure the built outcome matches the design intent, including material selection and contractor coordination.' },
+  { q: 'Do you work on small plots and duplex homes?', a: 'Yes — small and compact plots are a specialty. We design space-efficient duplexes, independent homes, and multi-storey residential buildings optimized for typical Patna plot sizes.' },
+  { q: 'How long does a first concept take?', a: 'After the initial consultation and site visit, a first concept with floor plans and 3D views is typically ready within 2–3 weeks, depending on project complexity.' },
+  { q: 'Do you provide climate-conscious home design?', a: 'Yes. Every Studio Aashraya design incorporates passive cooling, cross-ventilation, sun path analysis, and locally sourced materials — reducing energy costs and improving comfort in Bihar\'s climate.' },
+  { q: 'Can I book a consultation before finalizing my plot layout?', a: 'Yes, and we recommend it. A pre-purchase consultation can help you evaluate plot potential, FAR limits, orientation, and design feasibility before you commit.' },
+]
+
+const TESTIMONIALS_DATA = [
+  {
+    name: 'Samir Singh',
+    rating: 5,
+    text: 'The firm has an excellent sense of design and aesthetics while keeping functionality in mind.',
+  },
+  {
+    name: 'Amit Vikram Ojha',
+    rating: 5,
+    text: 'Great team — Anumeh is equal to great work.',
+    badge: 'Local Guide',
+  },
+  {
+    name: 'Amit Kumar',
+    rating: 5,
+    text: 'मुझे Studio Aashraya Patna के साथ काम करना एक बेहतरीन अनुभव रहा। Anumeh और उनकी टीम ने मेरे विचारों को ध्यान से सुना और समझा, फिर उन्हें एक अद्भुत डिजाइन में बदल दिया। मैं पूरी तरह संतुष्ट हूँ और निश्चित रूप से उन्हें recommend करूंगा।',
+    badge: 'Local Guide',
+  },
+]
+
+function HomepageFAQ() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null)
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
+      {FAQ_DATA.map((faq, i) => (
+        <div key={i} style={{ borderBottom: '1px solid #E2D8CA' }}>
+          <button
+            onClick={() => setOpenIndex(openIndex === i ? null : i)}
+            style={{
+              width: '100%',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              padding: '20px 0',
+              border: 'none',
+              backgroundColor: 'transparent',
+              cursor: 'pointer',
+              textAlign: 'left',
+              gap: '16px',
+            }}
+          >
+            <span style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: '15px',
+              fontWeight: 500,
+              color: '#184A45',
+              lineHeight: 1.5,
+            }}>{faq.q}</span>
+            <span style={{
+              fontSize: '20px',
+              color: '#184A45',
+              flexShrink: 0,
+              transition: 'transform 0.2s ease',
+              transform: openIndex === i ? 'rotate(45deg)' : 'rotate(0deg)',
+            }}>+</span>
+          </button>
+          <div style={{
+            maxHeight: openIndex === i ? '300px' : '0',
+            overflow: 'hidden',
+            transition: 'max-height 0.3s ease',
+          }}>
+            <p style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: '14px',
+              color: '#666666',
+              lineHeight: 1.7,
+              margin: '0 0 20px 0',
+              paddingRight: '40px',
+            }}>{faq.a}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
 
 export default function HomePage() {
   const featured = projects.slice(0, 3)
@@ -211,7 +299,400 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ========== PLAN BEFORE YOU BUILD ========== */}
+      {/* ========== SERVICES IN PATNA ========== */}
+      <section className="py-20 w-full" style={{backgroundColor: '#ffffff'}}>
+        <div style={CONTAINER}>
+          <h2 style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontSize: '2.5rem',
+            fontWeight: 600,
+            color: '#184A45',
+            margin: '0 0 12px 0',
+            lineHeight: 1.2,
+          }}>
+            Architectural Services in Patna
+          </h2>
+          <p style={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: '15px',
+            color: '#666666',
+            lineHeight: 1.7,
+            margin: '0 0 40px 0',
+            maxWidth: '600px',
+          }}>
+            From first concept to construction guidance — everything a homeowner in Bihar needs to build with confidence.
+          </p>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+            gap: '24px',
+          }}>
+            {[
+              { icon: '🏠', title: 'Custom House Design', desc: 'Homes designed around your family\'s lifestyle, plot, and Bihar\'s climate.' },
+              { icon: '📐', title: '2D Floor Plans', desc: 'Detailed, build-ready floor plans optimized for your plot dimensions.' },
+              { icon: '🏗️', title: '3D Elevation Design', desc: 'Realistic 3D views so you can see your home before construction begins.' },
+              { icon: '🏡', title: 'Residential Architecture', desc: 'Full architectural service for independent houses, duplexes, and villas.' },
+              { icon: '🌿', title: 'Sustainable Home Design', desc: 'Climate-responsive design using passive cooling, natural light, and local materials.' },
+              { icon: '🧱', title: 'Construction Guidance', desc: 'On-site support and supervision to ensure quality matches the design intent.' },
+              { icon: '📏', title: 'Plot Planning', desc: 'Site analysis, setback optimization, and FAR-compliant layout design.' },
+              { icon: '💬', title: 'Design Consultation', desc: 'A free clarity call to discuss your goals, budget, and design direction.' },
+            ].map((service) => (
+              <div key={service.title} style={{
+                backgroundColor: '#FAF4EC',
+                borderRadius: '16px',
+                padding: '28px 24px',
+                border: '1px solid #E2D8CA',
+              }}>
+                <span style={{ fontSize: '28px', display: 'block', marginBottom: '12px' }}>{service.icon}</span>
+                <h3 style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontSize: '1.25rem',
+                  fontWeight: 600,
+                  color: '#184A45',
+                  margin: '0 0 8px 0',
+                }}>{service.title}</h3>
+                <p style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: '13px',
+                  color: '#666666',
+                  lineHeight: 1.65,
+                  margin: 0,
+                }}>{service.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ========== WHAT WE DESIGN ========== */}
+      <section className="py-20 w-full" style={{backgroundColor: '#FAF4EC'}}>
+        <div style={CONTAINER}>
+          <h2 style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontSize: '2.5rem',
+            fontWeight: 600,
+            color: '#184A45',
+            margin: '0 0 12px 0',
+            lineHeight: 1.2,
+          }}>
+            What We Design
+          </h2>
+          <p style={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: '15px',
+            color: '#666666',
+            lineHeight: 1.7,
+            margin: '0 0 40px 0',
+            maxWidth: '560px',
+          }}>
+            Every home is different. Here are the building types we specialize in across Patna and Bihar.
+          </p>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+            gap: '16px',
+          }}>
+            {[
+              'Duplex Homes',
+              'Independent Villas',
+              'Compact Plot Homes',
+              'Rental Buildings',
+              'Multi-Storey Residential',
+              'Climate-Conscious Homes',
+            ].map((type) => (
+              <div key={type} style={{
+                backgroundColor: '#ffffff',
+                borderRadius: '12px',
+                padding: '20px 24px',
+                border: '1px solid #E2D8CA',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '12px',
+              }}>
+                <span style={{
+                  width: '8px',
+                  height: '8px',
+                  borderRadius: '50%',
+                  backgroundColor: '#184A45',
+                  flexShrink: 0,
+                }} />
+                <span style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: '14px',
+                  fontWeight: 500,
+                  color: '#184A45',
+                }}>{type}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ========== AREAS WE SERVE ========== */}
+      <section className="py-20 w-full" style={{backgroundColor: '#ffffff'}}>
+        <div style={CONTAINER}>
+          <h2 style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontSize: '2.5rem',
+            fontWeight: 600,
+            color: '#184A45',
+            margin: '0 0 12px 0',
+            lineHeight: 1.2,
+          }}>
+            Areas We Serve
+          </h2>
+          <p style={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: '15px',
+            color: '#666666',
+            lineHeight: 1.7,
+            margin: '0 0 32px 0',
+            maxWidth: '560px',
+          }}>
+            Based in Rajiv Nagar, Patna — we design homes across the city and throughout Bihar.
+          </p>
+          <div style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: '12px',
+          }}>
+            {[
+              'Patna', 'Rajiv Nagar', 'Kankarbagh', 'Bailey Road', 'Danapur',
+              'Saguna More', 'Patliputra Colony', 'Bihta', 'Patna City', 'Boring Road',
+              'Greater Bihar',
+            ].map((area) => (
+              <span key={area} style={{
+                fontFamily: "'Inter', sans-serif",
+                fontSize: '13px',
+                fontWeight: 500,
+                color: '#184A45',
+                backgroundColor: '#FAF4EC',
+                border: '1px solid #E2D8CA',
+                borderRadius: '9999px',
+                padding: '8px 20px',
+                whiteSpace: 'nowrap',
+              }}>{area}</span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ========== TRUST / WHY STUDIO AASHRAYA ========== */}
+      <section className="py-20 w-full" style={{backgroundColor: '#FAF4EC'}}>
+        <div style={CONTAINER}>
+          <h2 style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontSize: '2.5rem',
+            fontWeight: 600,
+            color: '#184A45',
+            margin: '0 0 12px 0',
+            lineHeight: 1.2,
+          }}>
+            Why Homeowners Choose Studio Aashraya
+          </h2>
+          <p style={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: '15px',
+            color: '#666666',
+            lineHeight: 1.7,
+            margin: '0 0 40px 0',
+            maxWidth: '600px',
+          }}>
+            We are not a listing page or a directory. Studio Aashraya is a named, practicing <a href="/about" style={{color: '#184A45', fontWeight: 500, textDecoration: 'underline', textUnderlineOffset: '3px'}}>architecture firm in Patna</a> with real projects and real outcomes.
+          </p>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+            gap: '24px',
+          }}>
+            {[
+              { num: '01', title: 'Named, IIT-Educated Architect', desc: 'Every project is personally led by the founder — not outsourced to anonymous freelancers.' },
+              { num: '02', title: 'Real Projects, Real Outcomes', desc: 'Browse completed homes with photos, locations, and measurable design outcomes.' },
+              { num: '03', title: 'Practical, Budget-Conscious', desc: 'We design within Bihar\'s real construction costs and local material availability.' },
+              { num: '04', title: 'Climate-Responsive by Default', desc: 'Passive cooling, cross-ventilation, and sun path analysis built into every design.' },
+            ].map((item) => (
+              <div key={item.num} style={{
+                backgroundColor: '#ffffff',
+                borderRadius: '16px',
+                padding: '28px 24px',
+                border: '1px solid #E2D8CA',
+              }}>
+                <span style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontSize: '2rem',
+                  fontWeight: 300,
+                  fontStyle: 'italic',
+                  color: 'rgba(24,74,69,0.25)',
+                  display: 'block',
+                  marginBottom: '12px',
+                }}>{item.num}</span>
+                <h3 style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontSize: '1.3rem',
+                  fontWeight: 600,
+                  color: '#184A45',
+                  margin: '0 0 8px 0',
+                }}>{item.title}</h3>
+                <p style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: '13px',
+                  color: '#666666',
+                  lineHeight: 1.65,
+                  margin: 0,
+                }}>{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ========== FAQ SECTION ========== */}
+      <section className="py-20 w-full" style={{backgroundColor: '#ffffff'}}>
+        <div style={CONTAINER}>
+          <h2 style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontSize: '2.5rem',
+            fontWeight: 600,
+            color: '#184A45',
+            margin: '0 0 12px 0',
+            lineHeight: 1.2,
+          }}>
+            Frequently Asked Questions
+          </h2>
+          <p style={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: '15px',
+            color: '#666666',
+            lineHeight: 1.7,
+            margin: '0 0 40px 0',
+            maxWidth: '560px',
+          }}>
+            Common questions homeowners in Patna ask before hiring an architect.
+          </p>
+          <HomepageFAQ />
+        </div>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: FAQ_DATA.map(faq => ({
+              '@type': 'Question',
+              name: faq.q,
+              acceptedAnswer: { '@type': 'Answer', text: faq.a },
+            })),
+          }) }}
+        />
+      </section>
+
+      {/* ========== TESTIMONIALS ========== */}
+      <section className="py-20 w-full" style={{backgroundColor: '#FAF4EC'}}>
+        <div style={CONTAINER}>
+          <h2 style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontSize: '2.5rem',
+            fontWeight: 600,
+            color: '#184A45',
+            margin: '0 0 12px 0',
+            lineHeight: 1.2,
+          }}>
+            What Our Clients Say
+          </h2>
+          <p style={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: '15px',
+            color: '#666666',
+            lineHeight: 1.7,
+            margin: '0 0 40px 0',
+            maxWidth: '560px',
+          }}>
+            Real reviews from homeowners who worked with Studio Aashraya in Patna.
+          </p>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: '24px',
+          }}>
+            {TESTIMONIALS_DATA.map((review) => (
+              <div key={review.name} style={{
+                backgroundColor: '#ffffff',
+                borderRadius: '16px',
+                padding: '32px 28px',
+                border: '1px solid #E2D8CA',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '16px',
+              }}>
+                <div style={{ display: 'flex', gap: '2px' }}>
+                  {Array.from({ length: review.rating }).map((_, i) => (
+                    <span key={i} style={{ color: '#F4B400', fontSize: '18px' }}>★</span>
+                  ))}
+                </div>
+                <p style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: '14px',
+                  color: '#444444',
+                  lineHeight: 1.7,
+                  margin: 0,
+                  fontStyle: 'italic',
+                }}>"{review.text}"</p>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginTop: 'auto' }}>
+                  <div style={{
+                    width: '36px',
+                    height: '36px',
+                    borderRadius: '50%',
+                    backgroundColor: '#184A45',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: '#ffffff',
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: '14px',
+                    fontWeight: 600,
+                    flexShrink: 0,
+                  }}>{review.name.charAt(0)}</div>
+                  <div>
+                    <p style={{
+                      fontFamily: "'Inter', sans-serif",
+                      fontSize: '13px',
+                      fontWeight: 600,
+                      color: '#184A45',
+                      margin: 0,
+                    }}>{review.name}</p>
+                    <p style={{
+                      fontFamily: "'Inter', sans-serif",
+                      fontSize: '11px',
+                      color: '#999999',
+                      margin: 0,
+                    }}>{'badge' in review ? `${review.badge} · Google Review` : 'Google Review'}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'LocalBusiness',
+            name: 'Studio Aashraya',
+            aggregateRating: {
+              '@type': 'AggregateRating',
+              ratingValue: '5.0',
+              reviewCount: '3',
+              bestRating: '5',
+            },
+            review: TESTIMONIALS_DATA.map(r => ({
+              '@type': 'Review',
+              author: { '@type': 'Person', name: r.name },
+              reviewRating: { '@type': 'Rating', ratingValue: String(r.rating), bestRating: '5' },
+              reviewBody: r.text,
+            })),
+          }) }}
+        />
+      </section>
+
       <section style={{
         width: '100%',
         backgroundColor: '#FAF4EC',
