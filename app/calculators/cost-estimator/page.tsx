@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Button from '@/components/ui/Button'
+import { trackCalculatorComplete, trackCTAClick } from '@/lib/analytics'
 import { Calculator, Info } from 'lucide-react'
 import { COST_RATES, TIMELINE, QUALITY_DESCRIPTIONS, formatLakhs } from '@/lib/calculator-constants'
 
@@ -35,6 +36,14 @@ export default function CostEstimatorPage() {
       perSqFtMax: rates[1],
       timeline: TIMELINE[quality],
     })
+
+    trackCalculatorComplete('cost_estimator', {
+      built_up_area: sqft,
+      quality_level: quality,
+      city: city,
+      result_min: min,
+      result_max: max,
+    })
   }
 
   return (
@@ -42,7 +51,7 @@ export default function CostEstimatorPage() {
       {/* Page header */}
       <section className="pt-10 pb-6 px-4 text-center">
         <h1 className="font-heading text-[var(--text-h1-m)] md:text-[var(--text-h1)] mb-3">
-          Estimate Your Construction Cost
+          Construction Cost Estimator for Bihar
         </h1>
         <p className="text-muted font-body max-w-xl mx-auto">
           Get Bihar-specific construction cost estimates based on current market rates in your city.
@@ -169,6 +178,7 @@ export default function CostEstimatorPage() {
           </p>
           <Button
             href="/book-a-call"
+            onClick={() => trackCTAClick('discuss_cost_estimate', 'calculator_result')}
             variant="secondary"
             className="!border-white !text-white hover:!bg-white hover:!text-primary"
           >

@@ -1,11 +1,12 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useParams } from 'next/navigation'
 import { projects } from '@/lib/projects-data'
 import Button from '@/components/ui/Button'
 import { MapPin, Ruler, Calendar, CheckCircle, Leaf, Droplets, Sun } from 'lucide-react'
 import Link from 'next/link'
+import { trackProjectView, trackCTAClick } from '@/lib/analytics'
 
 const metricIcons = {
   leaf: Leaf,
@@ -17,6 +18,16 @@ export default function ProjectDetailPage() {
   const params = useParams()
   const project = projects.find((p) => p.slug === params.slug)
   const [mainImage, setMainImage] = useState(0)
+
+  useEffect(() => {
+    if (project) {
+      trackProjectView({
+        projectSlug: project.slug,
+        projectName: project.title,
+        projectType: project.type,
+      })
+    }
+  }, [project])
 
   if (!project) {
     return (
@@ -39,8 +50,54 @@ export default function ProjectDetailPage() {
     Concept: 'bg-accent text-white',
   }
 
+  // Build per-project JSON-LD: Breadcrumb (Block 4) + CreativeWork (Block 5)
+  const projectCity = project.location.split(',')[0].trim()
+  const projectSchema = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://studioaashraya.site' },
+          { '@type': 'ListItem', position: 2, name: 'Projects', item: 'https://studioaashraya.site/projects' },
+          { '@type': 'ListItem', position: 3, name: project.title, item: `https://studioaashraya.site/projects/${project.slug}` },
+        ],
+      },
+      {
+        '@type': 'CreativeWork',
+        '@id': `https://studioaashraya.site/projects/${project.slug}#project`,
+        name: project.title,
+        description: project.story.problem + ' ' + project.story.approach,
+        creator: { '@id': 'https://studioaashraya.site/#founder' },
+        locationCreated: {
+          '@type': 'Place',
+          name: project.location,
+          address: {
+            '@type': 'PostalAddress',
+            addressLocality: projectCity,
+            addressRegion: 'Bihar',
+            addressCountry: 'IN',
+          },
+        },
+        image: `https://studioaashraya.site${project.heroImage}`,
+        dateCreated: project.year,
+        keywords: `${project.type} ${projectCity}, house design ${projectCity}, residential architecture Bihar, custom home design ${projectCity}, 3D home design Bihar, architecture project Patna, home construction Bihar`,
+        about: {
+          '@type': 'Thing',
+          name: 'Sustainable Architecture, Passive Cooling, Vernacular Design',
+        },
+      },
+    ],
+  }
+
   return (
     <>
+      {/* Per-project JSON-LD: Breadcrumb + CreativeWork */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(projectSchema) }}
+      />
+
       {/* Hero image */}
       <section className="relative w-full aspect-[16/9] max-h-[500px] overflow-hidden">
         <div
@@ -88,7 +145,7 @@ export default function ProjectDetailPage() {
 
             {/* Passive Strategies */}
             <div className="mb-8">
-              <h3 className="font-heading text-lg mb-3">Passive Strategies</h3>
+              <h2 className="font-heading text-lg mb-3">Passive Strategies</h2>
               <ul className="space-y-2">
                 {project.passiveStrategies.map((strategy, i) => (
                   <li key={i} className="flex items-start gap-2 text-sm font-body text-muted leading-relaxed">
@@ -101,7 +158,7 @@ export default function ProjectDetailPage() {
 
             {/* Materials */}
             <div>
-              <h3 className="font-heading text-lg mb-3">Materials</h3>
+              <h2 className="font-heading text-lg mb-3">Materials</h2>
               <div className="flex flex-wrap gap-2">
                 {project.materials.map((material) => (
                   <span
@@ -130,6 +187,7 @@ export default function ProjectDetailPage() {
                 <button
                   key={i}
                   onClick={() => setMainImage(i)}
+                  aria-label={`View gallery image ${i + 1} of ${project.title}`}
                   className={`rounded-card overflow-hidden aspect-[4/3] bg-primary/5 border-2 transition-all cursor-pointer ${
                     mainImage === i ? 'border-primary' : 'border-transparent hover:border-border'
                   }`}
@@ -206,7 +264,7 @@ export default function ProjectDetailPage() {
           }}>
             Let's discuss how to bring this kind of design thinking to your plot in Bihar.
           </p>
-          <a href="/book-a-call" style={{
+          <a href="/book-a-call" onClick={() => trackCTAClick('project_bottom_book_call', 'project_detail')} style={{
             marginTop: '8px',
             backgroundColor: '#ffffff',
             color: '#184A45',

@@ -20,7 +20,7 @@ export default function ProjectsPage() {
       {/* Page header */}
       <section className="pt-10 pb-6 px-4 text-center">
         <h1 className="font-heading text-[var(--text-h1-m)] md:text-[var(--text-h1)] mb-3">
-          Our Work
+          Our Work: Climate-Smart Architecture in Bihar
         </h1>
         <p style={{
           fontFamily: "'Inter', sans-serif",

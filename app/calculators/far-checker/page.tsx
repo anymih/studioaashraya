@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Button from '@/components/ui/Button'
+import { trackCalculatorComplete, trackCTAClick } from '@/lib/analytics'
 import { Ruler } from 'lucide-react'
 import { FAR_PRESETS } from '@/lib/calculator-constants'
 
@@ -38,6 +39,13 @@ export default function FARCheckerPage() {
       far: preset.far,
       coverage: preset.coverage,
     })
+
+    trackCalculatorComplete('far_checker', {
+      plot_area: sqft,
+      plot_type: roadType,
+      permissible_built_up: maxBuiltUp,
+      ground_coverage: maxGroundCoverage,
+    })
   }
 
   return (
@@ -45,7 +53,7 @@ export default function FARCheckerPage() {
       {/* Page header */}
       <section className="pt-10 pb-6 px-4 text-center">
         <h1 className="font-heading text-[var(--text-h1-m)] md:text-[var(--text-h1)] mb-3">
-          How Much Can You Build?
+          FAR &amp; Built-up Area Checker for Patna
         </h1>
         <p className="text-muted font-body max-w-xl mx-auto">
           FAR (Floor Area Ratio) determines how much total built-up area you can construct on your plot.
@@ -169,6 +177,7 @@ export default function FARCheckerPage() {
           </p>
           <Button
             href="/book-a-call"
+            onClick={() => trackCTAClick('discuss_far_results', 'calculator_result')}
             variant="secondary"
             className="!border-white !text-white hover:!bg-white hover:!text-primary"
           >

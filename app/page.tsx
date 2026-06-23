@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import ProjectCard from '@/components/ui/ProjectCard'
 import { projects } from '@/lib/projects-data'
+import { trackCTAClick } from '@/lib/analytics'
 
 export default function HomePage() {
   const featured = projects.slice(0, 3)
@@ -34,7 +35,7 @@ export default function HomePage() {
         {/* Background image */}
         <img
           src="/images/hero.webp"
-          alt=""
+          alt="IIT-trained architect Studio Aashraya — sustainable home design Bihar"
           style={{
             position: 'absolute',
             inset: 0,
@@ -98,13 +99,7 @@ export default function HomePage() {
           </p>
 
           <div style={{display: 'flex', gap: '12px', flexWrap: 'wrap'}}>
-            <a href="/book-a-call" onClick={() => {
-              // @ts-ignore
-              window.gtag?.('event', 'cta_click', {
-                event_category: 'Engagement',
-                event_label: 'Hero CTA — Book a Call',
-              })
-            }} style={{
+            <a href="/book-a-call" onClick={() => trackCTAClick('hero_book_call', 'hero')} style={{
               backgroundColor: '#184A45',
               color: '#ffffff',
               borderRadius: '9999px',
@@ -118,7 +113,7 @@ export default function HomePage() {
             }}>
               Book a Free Clarity Call
             </a>
-            <a href="/projects" style={{
+            <a href="/projects" onClick={() => trackCTAClick('hero_explore_projects', 'hero')} style={{
               backgroundColor: 'transparent',
               color: '#184A45',
               border: '1.5px solid #184A45',
@@ -398,6 +393,7 @@ export default function HomePage() {
                 Let's discuss how to design a home that's cooler, sustainable, and truly yours.
               </p>
               <a href="/book-a-call"
+                 onClick={() => trackCTAClick('homepage_bottom_book_call', 'homepage')}
                  className="mt-2 px-7 py-3.5 rounded-full text-white text-sm font-medium"
                  style={{backgroundColor: '#184A45', fontFamily: "'Inter', sans-serif"}}>
                 Book Your Clarity Call

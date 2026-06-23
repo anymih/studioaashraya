@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { trackBookingFormSubmit, trackWhatsAppClick } from '@/lib/analytics'
 
 export default function BookACallPage() {
   const [submitted, setSubmitted] = useState(false)
@@ -14,10 +15,10 @@ export default function BookACallPage() {
       headers: { Accept: 'application/json' },
     })
     if (res.ok) {
-      // @ts-ignore
-      window.gtag?.('event', 'booking_form_submitted', {
-        event_category: 'Lead',
-        event_label: 'Book a Call Form',
+      trackBookingFormSubmit({
+        projectType: (formData.get('projectType') || 'unknown') as string,
+        city: (formData.get('city') || 'unknown') as string,
+        budgetRange: (formData.get('budget') || 'unknown') as string,
       })
       setSubmitted(true)
     }
@@ -51,7 +52,7 @@ export default function BookACallPage() {
               lineHeight: 1.15,
               margin: '0 0 16px 0',
             }}>
-              Let's Talk About Your Project
+              Book Your Free Design Clarity Call
             </h1>
             <p style={{
               fontFamily: "'Inter', sans-serif",
@@ -148,7 +149,7 @@ export default function BookACallPage() {
             </p>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} style={{
+          <form onSubmit={handleSubmit} data-form="book-call" style={{
             backgroundColor: '#ffffff',
             borderRadius: '20px',
             padding: '40px',
@@ -299,7 +300,7 @@ export default function BookACallPage() {
             </button>
             <p style={{ textAlign: 'center', fontSize: '13px', color: '#888', marginTop: '12px' }}>
               Or message directly on{' '}
-              <a href='https://wa.me/919473031016' target='_blank' rel='noopener noreferrer' style={{ color: '#184A45', fontWeight: 600 }}>
+              <a href='https://wa.me/919473031016' onClick={trackWhatsAppClick} target='_blank' rel='noopener noreferrer' style={{ color: '#184A45', fontWeight: 600 }}>
                 WhatsApp
               </a>
             </p>
