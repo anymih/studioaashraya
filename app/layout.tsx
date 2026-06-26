@@ -16,6 +16,21 @@ export const metadata: Metadata = {
   description: 'Studio Aashraya is an architect in Patna designing custom homes, 3D house plans, and sustainable residential spaces across Bihar. Book a free consultation.',
   keywords: ['architect Patna', 'architect in Patna', 'residential architect Bihar', 'house design Patna', 'home design Bihar', 'architecture firm Patna', '3D house design Bihar', 'best architect Patna', 'ghar ka design Patna', 'building design Bihar', 'architecture services Patna'],
   authors: [{ name: 'Anumeh Prakhar, Studio Aashraya' }],
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: '32x32', type: 'image/x-icon' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+    other: [
+      { url: '/android-chrome-192x192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/android-chrome-512x512.png', sizes: '512x512', type: 'image/png' },
+    ],
+  },
+  manifest: '/site.webmanifest',
   openGraph: {
     title: 'Architect in Patna, Bihar | House & Home Design — Studio Aashraya',
     description: 'Studio Aashraya is an architect in Patna designing custom homes, 3D house plans, and sustainable residential spaces across Bihar. Book a free consultation.',
