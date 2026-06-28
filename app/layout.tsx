@@ -76,7 +76,7 @@ const globalSchema = {
       url: 'https://studioaashraya.site',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://studioaashraya.site/assets/logo.png',
+        url: 'https://studioaashraya.site/assets/logo%20image.svg',
         width: 200,
         height: 60,
       },
@@ -151,7 +151,7 @@ const globalSchema = {
       '@id': 'https://studioaashraya.site/#organization',
       name: 'Studio Aashraya',
       url: 'https://studioaashraya.site',
-      logo: 'https://studioaashraya.site/assets/logo.png',
+      logo: 'https://studioaashraya.site/assets/logo%20image.svg',
       contactPoint: {
         '@type': 'ContactPoint',
         telephone: '+919473031016',
