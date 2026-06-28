@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: 'https://studioaashraya.site/assets/og-far-checker.jpg',
+        url: 'https://studioaashraya.site/assets/og-social-card.jpg',
         width: 1200,
         height: 630,
         alt: 'Plot FAR and built-up area calculator for Patna Bihar by Studio Aashraya',
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     title: 'Plot FAR & Built-up Area Calculator for Patna, Bihar | Studio Aashraya',
     description:
       'Calculate FAR and permissible built-up area for your plot in Patna and Bihar according to building bylaws.',
-    images: ['https://studioaashraya.site/assets/og-far-checker.jpg'],
+    images: ['https://studioaashraya.site/assets/og-social-card.jpg'],
     site: '@studioaashraya',
   },
   alternates: {

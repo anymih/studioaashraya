@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: 'https://studioaashraya.site/assets/og-book-call.jpg',
+        url: 'https://studioaashraya.site/assets/og-social-card.jpg',
         width: 1200,
         height: 630,
         alt: 'Book an architecture clarity call with Studio Aashraya in Patna Bihar',
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     title: 'Book a Free Architecture Clarity Call | Studio Aashraya',
     description:
       'Talk to an IIT-trained architect about your project in Patna or Bihar.',
-    images: ['https://studioaashraya.site/assets/og-book-call.jpg'],
+    images: ['https://studioaashraya.site/assets/og-social-card.jpg'],
     site: '@studioaashraya',
   },
   alternates: {

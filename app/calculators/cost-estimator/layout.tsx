@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: 'https://studioaashraya.site/assets/og-cost-estimator.jpg',
+        url: 'https://studioaashraya.site/assets/og-social-card.jpg',
         width: 1200,
         height: 630,
         alt: 'House construction cost estimator for Patna Bihar',
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     title: 'House Construction Cost Estimator for Bihar and Patna',
     description:
       'Estimate your house construction budget in Bihar.',
-    images: ['https://studioaashraya.site/assets/og-cost-estimator.jpg'],
+    images: ['https://studioaashraya.site/assets/og-social-card.jpg'],
     site: '@studioaashraya',
   },
   alternates: {
