@@ -1,24 +1,40 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'House Construction Cost Calculator Patna Bihar | Studio Aashraya',
-  description: 'Estimate house construction cost in Patna and Bihar using our free calculator. Get quick budget guidance for your plot and home plan.',
-  keywords: ['house construction cost Patna', 'ghar banane ka kharcha Bihar', 'construction cost calculator Bihar', 'home building cost Patna', 'cost of building a house Bihar', 'construction estimate Patna', 'ghar ka budget calculator Bihar', 'building cost per sq ft Patna'],
+  title: 'House Construction Cost Estimator for Bihar and Patna | Studio Aashraya',
+  description:
+    "Estimate house construction cost for your plot in Patna and Bihar with Studio Aashraya's cost estimator tool.",
+  keywords: [
+    'construction cost estimator Bihar',
+    'house cost calculator Patna',
+    'ghar banane ka kharcha Bihar',
+  ],
   openGraph: {
-    title: 'House Construction Cost Calculator Patna Bihar | Studio Aashraya',
-    description: 'Estimate house construction cost in Patna and Bihar using our free calculator. Get quick budget guidance for your plot and home plan.',
+    title: 'House Construction Cost Estimator for Bihar and Patna | Studio Aashraya',
+    description:
+      "Quickly estimate construction cost for your home in Bihar using Studio Aashraya's calculator.",
     url: 'https://studioaashraya.site/calculators/cost-estimator',
     type: 'website',
-    images: [{ url: 'https://studioaashraya.site/assets/og-social-card.jpg', width: 1200, height: 630, alt: 'Free house construction cost calculator for Patna Bihar by Studio Aashraya' }],
+    images: [
+      {
+        url: 'https://studioaashraya.site/assets/og-cost-estimator.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'House construction cost estimator for Patna Bihar',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'House Construction Cost Calculator Patna Bihar | Studio Aashraya',
-    description: 'Estimate house construction cost in Patna and Bihar using our free calculator. Get quick budget guidance for your plot and home plan.',
-    images: ['https://studioaashraya.site/assets/og-social-card.jpg'],
+    title: 'House Construction Cost Estimator for Bihar and Patna',
+    description:
+      'Estimate your house construction budget in Bihar.',
+    images: ['https://studioaashraya.site/assets/og-cost-estimator.jpg'],
     site: '@studioaashraya',
   },
-  alternates: { canonical: 'https://studioaashraya.site/calculators/cost-estimator' },
+  alternates: {
+    canonical: 'https://studioaashraya.site/calculators/cost-estimator',
+  },
 }
 
 const costEstimatorSchema = {

@@ -1,24 +1,40 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Hire an Architect in Patna | Free Consultation — Studio Aashraya Bihar',
-  description: 'Planning a home in Patna or Bihar? Book a free consultation with Studio Aashraya to discuss your plot, budget, layout, and design goals.',
-  keywords: ['hire architect Patna', 'book architect Bihar', 'free architect consultation Patna', 'architect consultation Bihar', 'residential architect near me Patna', 'architecture firm consultation Bihar', 'book a call architect', 'home design consultation Patna'],
+  title: 'Book a Free Architecture Clarity Call | Studio Aashraya Patna, Bihar',
+  description:
+    'Schedule a free 30-minute clarity call with Studio Aashraya to discuss your home or building project in Patna, Bihar, or Delhi NCR.',
+  keywords: [
+    'book architect consultation Patna',
+    'architecture clarity call Bihar',
+    'free architect call Patna',
+  ],
   openGraph: {
-    title: 'Hire an Architect in Patna | Free Consultation — Studio Aashraya Bihar',
-    description: 'Planning a home in Patna or Bihar? Book a free consultation with Studio Aashraya to discuss your plot, budget, layout, and design goals.',
+    title: 'Book a Free Architecture Clarity Call | Studio Aashraya',
+    description:
+      'Schedule a free architecture clarity call for your home or building project in Bihar.',
     url: 'https://studioaashraya.site/book-a-call',
     type: 'website',
-    images: [{ url: 'https://studioaashraya.site/assets/og-social-card.jpg', width: 1200, height: 630, alt: 'Hire an architect in Patna Bihar — free consultation with Studio Aashraya' }],
+    images: [
+      {
+        url: 'https://studioaashraya.site/assets/og-book-call.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Book an architecture clarity call with Studio Aashraya in Patna Bihar',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Hire an Architect in Patna | Free Consultation — Studio Aashraya Bihar',
-    description: 'Ready to build or design your home in Patna or Bihar? Book a free 30-minute call with our architect.',
-    images: ['https://studioaashraya.site/assets/og-social-card.jpg'],
+    title: 'Book a Free Architecture Clarity Call | Studio Aashraya',
+    description:
+      'Talk to an IIT-trained architect about your project in Patna or Bihar.',
+    images: ['https://studioaashraya.site/assets/og-book-call.jpg'],
     site: '@studioaashraya',
   },
-  alternates: { canonical: 'https://studioaashraya.site/book-a-call' },
+  alternates: {
+    canonical: 'https://studioaashraya.site/book-a-call',
+  },
 }
 
 const bookCallSchema = {

@@ -1,6 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /admin
-Disallow: /api
-Disallow: /_next/
-Sitemap: https://studioaashraya.site/sitemap.xml

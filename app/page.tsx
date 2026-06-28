@@ -121,14 +121,13 @@ export default function HomePage() {
       }}>
 
         {/* Background image */}
-        <img
+        <Image
           src="/images/hero.webp"
           alt="IIT-trained architect Studio Aashraya — sustainable home design Bihar"
+          priority
+          fill
+          sizes="100vw"
           style={{
-            position: 'absolute',
-            inset: 0,
-            width: '100%',
-            height: '100%',
             objectFit: 'cover',
             backgroundColor: 'transparent',
             objectPosition: 'center',

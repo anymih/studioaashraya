@@ -205,6 +205,20 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
           rel="stylesheet"
         />
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+              body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+              }
+            `,
+          }}
+        />
+        <link
+          rel="preload"
+          as="image"
+          href="/images/hero.webp"
+        />
 
         {/* Geo & Author meta */}
         <meta name="author" content="Anumeh Prakhar, Studio Aashraya" />
