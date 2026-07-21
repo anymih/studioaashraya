@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { useParams } from 'next/navigation'
+import Image from 'next/image'
 import { projects } from '@/lib/projects-data'
 import Button from '@/components/ui/Button'
 import { MapPin, Ruler, Calendar, CheckCircle, Leaf, Droplets, Sun } from 'lucide-react'
@@ -222,25 +223,38 @@ export default function ProjectDetailPage() {
       </section>
 
       {/* Interactive Site Feasibility Section */}
-      <section className="max-w-[680px] mx-auto px-4 pb-12">
-        <div className="bg-[#FAF4EC] border border-[#E2D8CA] rounded-2xl p-6 md:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-          <div>
-            <span className="text-[11px] font-semibold uppercase tracking-wider text-[#184A45] block mb-1 font-body">
-              Planning Tools
-            </span>
-            <h3 className="font-heading text-2xl text-[#184A45] mb-2">
-              Site Feasibility Calculator
-            </h3>
-            <p className="text-sm font-body text-muted leading-relaxed">
-              Draw the site, review planning constraints, and assess development potential before design moves forward.
-            </p>
+      <section className="max-w-4xl mx-auto px-4 pb-12">
+        <div className="bg-[#FAF4EC] border border-[#E2D8CA] rounded-3xl p-6 md:p-8">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+            <div className="md:col-span-4 overflow-hidden rounded-2xl aspect-[4/3] relative border border-[#E2D8CA]/80">
+              <Image
+                src="/images/site-feasibility.png"
+                alt="Site Feasibility Calculator — Architects reviewing plot boundaries"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 33vw"
+              />
+            </div>
+            <div className="md:col-span-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div>
+                <span className="text-[11px] font-semibold uppercase tracking-wider text-[#184A45] block mb-1 font-body">
+                  Planning Tools
+                </span>
+                <h3 className="font-heading text-2xl text-[#184A45] mb-2">
+                  Site Feasibility Calculator
+                </h3>
+                <p className="text-sm font-body text-[#555555] leading-relaxed max-w-xl">
+                  Test plot boundaries, setbacks, road edges, and development potential before design begins. Evaluate plot feasibility in one interactive tool.
+                </p>
+              </div>
+              <Link
+                href="/calculators/site-feasibility"
+                className="bg-[#184A45] text-white text-sm font-medium px-6 py-3 rounded-full hover:bg-[#184A45]/90 transition-colors shrink-0 font-body shadow-sm"
+              >
+                Open Tool &rarr;
+              </Link>
+            </div>
           </div>
-          <Link
-            href="/calculators/site-feasibility"
-            className="bg-[#184A45] text-white text-sm font-medium px-6 py-3 rounded-full hover:bg-[#184A45]/90 transition-colors shrink-0 font-body"
-          >
-            Try the Calculator &rarr;
-          </Link>
         </div>
       </section>
 

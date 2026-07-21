@@ -255,47 +255,41 @@ export default function HomePage() {
       </div>
     </section>
 
-      {/* SECTION — Site Feasibility Calculator Feature Entry */}
-      <section className="py-16 w-full" style={{ backgroundColor: '#FAF4EC' }}>
+      {/* SECTION — Site Feasibility Calculator Editorial Feature Card */}
+      <section className="py-20 w-full" style={{ backgroundColor: '#FAF4EC' }}>
         <div style={CONTAINER}>
-          <div className="bg-white rounded-3xl p-8 md:p-12 border border-[#E2D8CA] shadow-sm flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
-            <div className="max-w-2xl min-w-0">
-              <span className="inline-block text-xs font-semibold uppercase tracking-wider text-[#184A45] bg-[#184A45]/10 px-3 py-1 rounded-full mb-3 font-body">
-                Planning Tool
-              </span>
-              <h2 className="text-3xl md:text-4xl font-heading text-[#184A45] mb-3">
-                Site Feasibility Calculator
-              </h2>
-              <p className="font-body text-[#555555] text-base leading-relaxed mb-6">
-                Test plot boundaries, setbacks, road edges, and development potential in one workflow.
-              </p>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-[#E2D8CA]/60 text-xs font-body text-[#666666]">
-                <div className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#184A45] shrink-0" />
-                  <span>Plot Boundaries</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#184A45] shrink-0" />
-                  <span>Building Setbacks</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#184A45] shrink-0" />
-                  <span>Abutting Road Widths</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#184A45] shrink-0" />
-                  <span>FAR &amp; Floor Potential</span>
-                </div>
+          <div className="bg-white rounded-3xl p-8 lg:p-12 border border-[#E2D8CA] shadow-sm">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+              {/* Feature Image Column */}
+              <div className="lg:col-span-6 overflow-hidden rounded-2xl border border-[#E2D8CA]/80 relative aspect-[4/3] bg-[#FAF4EC]/60">
+                <Image
+                  src="/images/site-feasibility.png"
+                  alt="Site Feasibility Calculator — Architects reviewing plot boundaries and building setbacks"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
               </div>
-            </div>
-            <div className="flex-shrink-0 w-full lg:w-auto">
-              <Link
-                href="/calculators/site-feasibility"
-                onClick={() => trackCTAClick('home_site_feasibility_tool', 'homepage')}
-                className="inline-flex items-center justify-center w-full lg:w-auto bg-[#184A45] text-white text-sm font-medium px-7 py-3.5 rounded-full hover:bg-[#184A45]/90 transition-colors font-body shadow-sm"
-              >
-                Open Site Feasibility Tool &rarr;
-              </Link>
+
+              {/* Editorial Copy Column */}
+              <div className="lg:col-span-6 flex flex-col items-start justify-center">
+                <span className="inline-block text-xs font-semibold uppercase tracking-wider text-[#184A45] bg-[#184A45]/10 px-3 py-1 rounded-full mb-3 font-body">
+                  Planning Tool
+                </span>
+                <h2 className="text-3xl lg:text-4xl font-heading text-[#184A45] mb-4 leading-tight">
+                  Site Feasibility Calculator
+                </h2>
+                <p className="font-body text-[#555555] text-base leading-relaxed mb-6">
+                  Test plot boundaries, setbacks, road edges, and development potential before design begins. Evaluate plot feasibility and municipal regulations in one interactive tool.
+                </p>
+                <Link
+                  href="/calculators/site-feasibility"
+                  onClick={() => trackCTAClick('home_site_feasibility_tool', 'homepage')}
+                  className="inline-flex items-center justify-center bg-[#184A45] text-white text-sm font-medium px-7 py-3.5 rounded-full hover:bg-[#184A45]/90 transition-colors font-body shadow-sm"
+                >
+                  Open Site Feasibility Tool &rarr;
+                </Link>
+              </div>
             </div>
           </div>
         </div>
