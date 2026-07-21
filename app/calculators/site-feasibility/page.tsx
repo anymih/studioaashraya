@@ -242,14 +242,14 @@ export default function SiteFeasibilityPage() {
   const allTestsPassed = unitTestResults.length > 0 && unitTestResults.every(r => r.passed);
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-6xl">
+    <div className="container mx-auto px-4 py-8 max-w-6xl font-sans">
       {/* Page Header */}
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-neutral-800">
+        <h1 className="text-2xl md:text-3xl font-bold text-neutral-800 tracking-tight">
           Site Feasibility Calculator
         </h1>
-        <p className="text-neutral-600 text-sm mt-1">
-          Phase 1: Plot drawing, geometry, road widths, setbacks, and Patna residential FAR calculator.
+        <p className="text-neutral-600 text-sm mt-1.5 max-w-3xl leading-relaxed">
+          Evaluate plot boundaries, building setbacks, road width constraints, and development potential with our interactive site feasibility calculator. Designed for plot feasibility analysis and municipal bye-law evaluation before design moves forward.
         </p>
       </div>
 

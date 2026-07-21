@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 export default function Footer() {
   return (
     <footer style={{
@@ -82,29 +84,61 @@ export default function Footer() {
           </p>
         </div>
 
-        {/* Column 3 — Follow */}
-        <div style={{display: 'flex', flexDirection: 'column', gap: '16px'}}>
-          <p style={{
-            fontFamily: "'Inter', sans-serif",
-            fontSize: '11px',
-            fontWeight: 600,
-            letterSpacing: '0.12em',
-            color: 'rgba(255,255,255,0.40)',
-            textTransform: 'uppercase',
-            margin: 0,
-          }}>
-            Follow
-          </p>
-          {['Instagram', 'LinkedIn', 'Pinterest'].map(platform => (
-            <a key={platform} href="#" style={{
+        {/* Column 3 — Planning Tools & Follow */}
+        <div style={{display: 'flex', flexDirection: 'column', gap: '20px'}}>
+          <div style={{display: 'flex', flexDirection: 'column', gap: '12px'}}>
+            <p style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: '11px',
+              fontWeight: 600,
+              letterSpacing: '0.12em',
+              color: 'rgba(255,255,255,0.40)',
+              textTransform: 'uppercase',
+              margin: 0,
+            }}>
+              Planning Tools
+            </p>
+            <Link href="/calculators/site-feasibility" style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: '14px',
+              color: 'rgba(255,255,255,0.85)',
+              textDecoration: 'none',
+              fontWeight: 500,
+            }}>
+              Site Feasibility Calculator
+            </Link>
+            <Link href="/calculators/cost-estimator" style={{
               fontFamily: "'Inter', sans-serif",
               fontSize: '14px',
               color: 'rgba(255,255,255,0.75)',
               textDecoration: 'none',
             }}>
-              {platform}
-            </a>
-          ))}
+              Cost Estimator
+            </Link>
+          </div>
+          <div style={{display: 'flex', flexDirection: 'column', gap: '12px'}}>
+            <p style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: '11px',
+              fontWeight: 600,
+              letterSpacing: '0.12em',
+              color: 'rgba(255,255,255,0.40)',
+              textTransform: 'uppercase',
+              margin: 0,
+            }}>
+              Follow
+            </p>
+            {['Instagram', 'LinkedIn', 'Pinterest'].map(platform => (
+              <a key={platform} href="#" style={{
+                fontFamily: "'Inter', sans-serif",
+                fontSize: '14px',
+                color: 'rgba(255,255,255,0.75)',
+                textDecoration: 'none',
+              }}>
+                {platform}
+              </a>
+            ))}
+          </div>
         </div>
 
       </div>
