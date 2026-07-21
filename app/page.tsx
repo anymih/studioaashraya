@@ -255,40 +255,145 @@ export default function HomePage() {
       </div>
     </section>
 
-      {/* SECTION — Site Feasibility Calculator Editorial Feature Card */}
+      {/* ========== SITE FEASIBILITY LANDING SECTION ========== */}
       <section className="py-20 w-full" style={{ backgroundColor: '#FAF4EC' }}>
         <div style={CONTAINER}>
-          <div className="bg-white rounded-3xl p-8 lg:p-12 border border-[#E2D8CA] shadow-sm">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-              {/* Feature Image Column */}
-              <div className="lg:col-span-6 overflow-hidden rounded-2xl border border-[#E2D8CA]/80 relative aspect-[4/3] bg-[#FAF4EC]/60">
+          <div className="bg-white rounded-3xl border border-[#E2D8CA] shadow-sm overflow-hidden">
+            <div className="grid grid-cols-1 lg:grid-cols-2">
+
+              {/* Left — Architectural Photo */}
+              <div className="relative min-h-[320px] lg:min-h-[480px]">
                 <Image
-                  src="/images/site-feasibility.png"
-                  alt="Site Feasibility Calculator — Architects reviewing plot boundaries and building setbacks"
+                  src="/images/site-planning.png"
+                  alt="Architect's site planning desk with plot boundary drawings, scale ruler, and building elevation sketches"
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                 />
               </div>
 
-              {/* Editorial Copy Column */}
-              <div className="lg:col-span-6 flex flex-col items-start justify-center">
-                <span className="inline-block text-xs font-semibold uppercase tracking-wider text-[#184A45] bg-[#184A45]/10 px-3 py-1 rounded-full mb-3 font-body">
+              {/* Right — Copy Column */}
+              <div className="p-8 lg:p-12 flex flex-col justify-center">
+
+                {/* Eyebrow */}
+                <span style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: '11px',
+                  fontWeight: 600,
+                  letterSpacing: '0.12em',
+                  textTransform: 'uppercase',
+                  color: '#184A45',
+                  backgroundColor: 'rgba(24, 74, 69, 0.08)',
+                  padding: '4px 12px',
+                  borderRadius: '9999px',
+                  display: 'inline-block',
+                  marginBottom: '16px',
+                  alignSelf: 'flex-start',
+                }}>
                   Planning Tool
                 </span>
-                <h2 className="text-3xl lg:text-4xl font-heading text-[#184A45] mb-4 leading-tight">
+
+                {/* Heading */}
+                <h2 style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontSize: '2.25rem',
+                  fontWeight: 600,
+                  color: '#184A45',
+                  lineHeight: 1.15,
+                  margin: '0 0 16px 0',
+                }}>
                   Site Feasibility Calculator
                 </h2>
-                <p className="font-body text-[#555555] text-base leading-relaxed mb-6">
-                  Test plot boundaries, setbacks, road edges, and development potential before design begins. Evaluate plot feasibility and municipal regulations in one interactive tool.
+
+                {/* Paragraph */}
+                <p style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: '15px',
+                  color: '#555555',
+                  lineHeight: 1.7,
+                  margin: '0 0 24px 0',
+                }}>
+                  Test plot feasibility, setbacks, road width, and development potential before design begins. Compare site plans, check building bye-laws, and review practical buildability in one simple tool.
                 </p>
+
+                {/* Keyword Chips */}
+                <div style={{
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  gap: '8px',
+                  marginBottom: '28px',
+                }}>
+                  {[
+                    'Site Feasibility Calculator',
+                    'Plot Feasibility',
+                    'Setback Calculator',
+                    'Building Bye-Laws',
+                    'Road Width Planning',
+                    'Development Potential',
+                  ].map((chip) => (
+                    <span key={chip} style={{
+                      fontFamily: "'Inter', sans-serif",
+                      fontSize: '12px',
+                      color: '#184A45',
+                      backgroundColor: '#FAF4EC',
+                      border: '1px solid #E2D8CA',
+                      borderRadius: '9999px',
+                      padding: '5px 14px',
+                      fontWeight: 500,
+                    }}>
+                      {chip}
+                    </span>
+                  ))}
+                </div>
+
+                {/* CTA */}
                 <Link
                   href="/calculators/site-feasibility"
-                  onClick={() => trackCTAClick('home_site_feasibility_tool', 'homepage')}
-                  className="inline-flex items-center justify-center bg-[#184A45] text-white text-sm font-medium px-7 py-3.5 rounded-full hover:bg-[#184A45]/90 transition-colors font-body shadow-sm"
+                  onClick={() => trackCTAClick('home_site_feasibility_landing', 'homepage')}
+                  style={{
+                    backgroundColor: '#184A45',
+                    color: '#ffffff',
+                    borderRadius: '9999px',
+                    padding: '14px 28px',
+                    fontSize: '14px',
+                    fontFamily: "'Inter', sans-serif",
+                    fontWeight: 500,
+                    textDecoration: 'none',
+                    display: 'inline-block',
+                    whiteSpace: 'nowrap',
+                    alignSelf: 'flex-start',
+                    marginBottom: '24px',
+                  }}
                 >
-                  Open Site Feasibility Tool &rarr;
+                  Open Site Feasibility Tool →
                 </Link>
+
+                {/* Related Links */}
+                <div style={{
+                  borderTop: '1px solid #E2D8CA',
+                  paddingTop: '20px',
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  gap: '20px',
+                }}>
+                  {[
+                    { label: 'Read about setbacks', href: '/calculators/site-feasibility' },
+                    { label: 'Understand site planning', href: '/calculators/site-feasibility' },
+                    { label: 'Explore building bye-laws', href: '/calculators/site-feasibility' },
+                  ].map((link) => (
+                    <Link key={link.label} href={link.href} style={{
+                      fontFamily: "'Inter', sans-serif",
+                      fontSize: '13px',
+                      color: '#184A45',
+                      textDecoration: 'underline',
+                      textUnderlineOffset: '3px',
+                      fontWeight: 500,
+                    }}>
+                      {link.label}
+                    </Link>
+                  ))}
+                </div>
+
               </div>
             </div>
           </div>
