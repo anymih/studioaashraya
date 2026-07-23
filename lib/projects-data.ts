@@ -1,18 +1,29 @@
 export type Project = {
   slug: string
   title: string
+  tagline?: string
+  conceptName?: string
+  conceptDescription?: string
   location: string
   type: 'Residential' | 'Institutional' | 'Concept'
   area: string
+  plotSize?: string
+  uds?: string
+  sbua?: string
   year: string
   status: 'Completed' | 'In Progress' | 'Concept'
   heroImage: string
+  detailImage?: string
   galleryImages: string[]
+  featureGallery?: string[]
+  masterplanImages?: string[]
   passiveStrategies: string[]
   materials: string[]
   metric: string
   metricIcon: 'leaf' | 'drop' | 'sun'
   story: { problem: string; approach: string; outcome: string }
+  seoTitle?: string
+  seoDescription?: string
 }
 
 export const projects: Project[] = [
@@ -206,6 +217,56 @@ export const projects: Project[] = [
         'This concept pavilion combines hempcrete walls (carbon-negative), cross-laminated timber from managed forests, and integrated solar glass to achieve net-zero energy. The modular design allows local craftsmen to build with minimal training.',
       outcome:
         'As a concept project, the pavilion aims to prove that zero-carbon is achievable at Bihar construction budgets. If built, it would be Bihar\'s first net-zero public building and a training center for sustainable construction.',
+    },
+  },
+  {
+    slug: 'codename-madhuban',
+    title: 'Codename: Madhuban',
+    tagline: 'The Above Abode',
+    conceptName: 'Karang Jalananda',
+    conceptDescription: 'A sanctuary in the sky shaped by water, wind, brick, and elevated community living.',
+    location: 'Sarmera Road, Patna, Bihar',
+    type: 'Residential',
+    area: '2,400 sq ft carpet (84% efficiency)',
+    plotSize: '~5,000 sq ft',
+    uds: '3,900 sq ft (UDS)',
+    sbua: '3,900 sq ft (SBUA)',
+    year: '2026',
+    status: 'In Progress',
+    heroImage: '/images/projects/codename-madhuban/img1.webp',
+    detailImage: '/images/projects/codename-madhuban/img2.webp',
+    galleryImages: [
+      '/images/projects/codename-madhuban/img3.webp',
+      '/images/projects/codename-madhuban/img6.webp',
+      '/images/projects/codename-madhuban/img7.webp',
+    ],
+    featureGallery: [
+      '/images/projects/codename-madhuban/img7.webp',
+      '/images/projects/codename-madhuban/img5.webp',
+    ],
+    masterplanImages: [
+      '/images/projects/codename-madhuban/floorplan-154031.png',
+      '/images/projects/codename-madhuban/floorplan-154229.png',
+      '/images/projects/codename-madhuban/floorplan-154325.png',
+    ],
+    passiveStrategies: [
+      'Ground-level villa footprint eliminates stack-heat gain, keeping living spaces closer to the cooler earth plane instead of trapped mid-air in a tower',
+      'Large inward-facing gardens act as private microclimates, pulling moisture-cooled air into the home before it ever reaches a window',
+      'Full-height glazing on garden-facing walls enables cross ventilation without exposing interiors to street heat or glare',
+      'Exposed brick facades absorb and delay heat transfer, releasing it slowly through the night instead of into daytime living spaces',
+      'Deep covered thresholds and layered brick screening reduce direct solar strike on entry points and walkways',
+      'Continuous indoor-outdoor flooring removes thermal breaks, letting cool garden air move through the home instead of stopping at a door',
+    ],
+    materials: ['Exposed Brick', 'Full-Height Glazing', 'Continuous Stone Flooring', 'Brick Jaali Screening', 'Reinforced Concrete Frame'],
+    metric: '6°C cooler without a single AC hour',
+    metricIcon: 'drop',
+    story: {
+      problem:
+        'Most homes in Patna solve heat by shutting it out. Thick curtains, sealed windows, a compressor running from noon to midnight. It works, until the power cuts, until the electricity bill arrives, until the family realizes they have built a beautiful box that only functions with a machine breathing for it. The client for Madhuban wanted something that older Patna homes understood instinctively, a house that stays cool because of how it is built, not because of what is plugged into it. The brief was not luxury for its own sake. It was luxury as consequence, a home spacious enough for a joint family, private enough to feel like a retreat, and cool enough to make the AC optional rather than mandatory.',
+      approach:
+        'We started by refusing height. Where most premium plots in Patna go vertical to maximize floor area, Madhuban stays low, a ground-level villa that keeps its 2,400 sq ft of carpet space close to the earth, where temperatures naturally run lower than anything stacked above it. Around that footprint, we carved large inward gardens, not decorative strips but working climate infrastructure. Air moving across planted, shaded soil cools before it ever touches a wall. Full-height openings on every garden-facing room let that cooled air move straight through the house, room to room, without a single mechanical nudge. The brick you see everywhere is not a finish choice, it is thermal mass doing quiet, unglamorous work, soaking up daytime heat and giving it back slowly overnight, long after the family has gone to sleep in a room that never spiked. Every indoor-outdoor threshold was detailed to disappear, same flooring, same level, so the garden feels like an extension of the living room rather than a view through glass.',
+      outcome:
+        'The result is a home that runs six degrees cooler than its surroundings without a single hour of mechanical cooling doing the work alone. On a 2,400 sq ft plan carved out of a 3,900 sq ft build, on a 5,000 sq ft plot, Madhuban proves that space, privacy, and comfort do not require a compressor to coexist. It is a villa built for a family that wanted to gather outdoors and retreat indoors in the same afternoon, without choosing between the two, and without paying for that choice every month on their electricity bill.',
     },
   },
 ]

@@ -116,15 +116,35 @@ export default function ProjectDetailPage() {
         <div className="grid md:grid-cols-[40%_60%] gap-8 md:gap-12">
           {/* Left col — metadata */}
           <div>
-            <h1 className="font-heading text-[var(--text-h1-m)] md:text-[var(--text-h1)] mb-6">
+            <h1 className="font-heading text-[var(--text-h1-m)] md:text-[var(--text-h1)] mb-2">
               {project.title}
             </h1>
+
+            {project.tagline && (
+              <p className="font-body text-base text-muted italic mb-4">{project.tagline}</p>
+            )}
+
+            {project.conceptName && (
+              <div className="mb-6">
+                <p className="text-[11px] font-body uppercase tracking-[0.18em] text-accent mb-2">
+                  {project.conceptName}
+                </p>
+                {project.conceptDescription && (
+                  <p className="text-sm font-body text-muted leading-relaxed max-w-[56ch]">
+                    {project.conceptDescription}
+                  </p>
+                )}
+              </div>
+            )}
 
             {/* Metadata grid */}
             <div className="grid grid-cols-2 gap-4 mb-8">
               {[
                 { icon: MapPin, label: 'Location', value: project.location },
                 { icon: Ruler, label: 'Area', value: project.area },
+                ...(project.plotSize ? [{ icon: Ruler, label: 'Plot Size', value: project.plotSize }] : []),
+                ...(project.uds ? [{ icon: Ruler, label: 'UDS', value: project.uds }] : []),
+                ...(project.sbua ? [{ icon: Ruler, label: 'SBUA', value: project.sbua }] : []),
                 { icon: Calendar, label: 'Year', value: project.year },
                 { icon: CheckCircle, label: 'Status', value: project.status },
               ].map((item) => (
@@ -203,6 +223,71 @@ export default function ProjectDetailPage() {
           </div>
         </div>
       </section>
+
+      {/* Cinematic Detail Image (if present) */}
+      {project.detailImage && (
+        <section className="max-w-6xl mx-auto px-4 pb-12">
+          <div className="relative w-full aspect-[21/9] rounded-card overflow-hidden shadow-card border border-border">
+            <Image
+              src={project.detailImage}
+              alt={`${project.title} detail view`}
+              fill
+              sizes="(max-width: 1200px) 100vw, 1200px"
+              className="object-cover"
+            />
+          </div>
+        </section>
+      )}
+
+      {/* Feature Gallery (if present) */}
+      {project.featureGallery && project.featureGallery.length > 0 && (
+        <section className="max-w-6xl mx-auto px-4 pb-12">
+          <h2 className="font-heading text-xl md:text-2xl mb-6">Design Features</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {project.featureGallery.map((img, i) => (
+              <div key={i} className="relative aspect-[4/3] rounded-card overflow-hidden shadow-card border border-border">
+                <Image
+                  src={img}
+                  alt={`${project.title} architectural feature ${i + 1}`}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover"
+                />
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Masterplan & Architectural Layouts (if present) */}
+      {project.masterplanImages && project.masterplanImages.length > 0 && (
+        <section className="max-w-6xl mx-auto px-4 pb-12">
+          <div className="border-t border-border pt-10">
+            <h2 className="font-heading text-xl md:text-2xl mb-2">Masterplan & Floor Plans</h2>
+            <p className="text-sm font-body text-muted mb-6">
+              Spatial organization, circulation pathways, and indoor-outdoor boundary definitions.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {project.masterplanImages.map((img, i) => (
+                <div key={i} className="bg-surface rounded-card p-4 border border-border shadow-card flex flex-col items-center">
+                  <div className="relative w-full aspect-[4/3] mb-3 bg-white rounded overflow-hidden">
+                    <Image
+                      src={img}
+                      alt={`${project.title} floor plan layout ${i + 1}`}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="object-contain p-2"
+                    />
+                  </div>
+                  <span className="text-xs font-body font-medium text-muted uppercase tracking-wider">
+                    Layout Diagram 0{i + 1}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Story of the Home */}
       <section className="max-w-[680px] mx-auto px-4 py-8 md:py-12">
