@@ -1,405 +1,409 @@
 'use client'
 
-import { useState } from 'react'
-import { trackBookingFormSubmit, trackWhatsAppClick } from '@/lib/analytics'
+import React, { useState, useEffect, Suspense } from 'react'
+import { useSearchParams } from 'next/navigation'
+import { siteConfig } from '@/lib/site'
+import { Breadcrumb } from '@/components/ui/Breadcrumb'
+import { Eyebrow } from '@/components/ui/Eyebrow'
+import { Faq } from '@/components/ui/Faq'
+import {
+  trackBookingFormSubmit,
+  trackFormPageView,
+  trackPhoneClick,
+  trackWhatsAppClick,
+} from '@/lib/analytics'
+import { homeFaqs, generateFaqSchema } from '@/lib/faq-data'
+import { Phone, MessageSquare, Mail, MapPin, CheckCircle2, ArrowRight } from 'lucide-react'
 
-const BOOKING_FAQ = [
-  { q: 'How much does an architect charge in Patna?', a: 'Fees vary by project scope. At Studio Aashraya, residential design packages typically start from ₹5–8 per sq ft. Book a free consultation to get a transparent quote for your specific project.' },
-  { q: 'What happens during the first consultation?', a: 'We discuss your plot details, family needs, budget realism, possible design directions, and next steps. No drawings or technical knowledge needed from your side.' },
-  { q: 'Do I need to have my plot finalized before calling?', a: 'Not necessarily. We can help you evaluate plot potential, FAR limits, and orientation before you finalize your purchase.' },
-  { q: 'How long does a house design project take?', a: 'A first concept with floor plans and 3D views is typically ready within 2–3 weeks after the initial consultation. Full project timelines depend on scope and approvals.' },
-  { q: 'Do you provide construction supervision in Bihar?', a: 'Yes. We offer on-site supervision and construction guidance across Patna and Bihar to ensure quality matches the design intent.' },
-]
+function BookCallContent() {
+  const searchParams = useSearchParams()
+  const src = searchParams.get('src') || 'direct'
+  const preselectedType = searchParams.get('type') || ''
 
-function BookingFAQ() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null)
+  const [submitted, setSubmitted] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    trackFormPageView(src)
+  }, [src])
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setLoading(true)
+    setError(null)
+
+    const formData = new FormData(e.currentTarget)
+    try {
+      const res = await fetch('https://formspree.io/f/mpqyberw', {
+        method: 'POST',
+        body: formData,
+        headers: { Accept: 'application/json' },
+      })
+
+      if (res.ok) {
+        trackBookingFormSubmit({
+          projectType: (formData.get('projectType') || 'unknown') as string,
+          city: (formData.get('city') || 'unknown') as string,
+          budgetRange: (formData.get('budget') || 'unknown') as string,
+          src,
+        })
+        setSubmitted(true)
+      } else {
+        setError('Submission failed. Please check your network or call us directly.')
+      }
+    } catch {
+      setError('A network error occurred. Please call or WhatsApp us directly.')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const breadcrumbItems = [
+    { label: 'Home', href: '/' },
+    { label: 'Free Plot Check', href: '/book-a-call' },
+  ]
+
+  // Book FAQs per Section 11: FAQ items 1, 3, 4 from Section 2.14
+  const bookFaqs = [
+    homeFaqs[0], // What is a free plot check?
+    homeFaqs[2], // What does on time, or 10% back mean?
+    homeFaqs[3], // What does the 15-year warranty cover?
+  ]
+
+  const faqSchema = generateFaqSchema(bookFaqs)
+
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
-      {BOOKING_FAQ.map((faq, i) => (
-        <div key={i} style={{ borderBottom: '1px solid #E2D8CA' }}>
-          <button
-            onClick={() => setOpenIndex(openIndex === i ? null : i)}
-            style={{
-              width: '100%',
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              padding: '20px 0',
-              border: 'none',
-              backgroundColor: 'transparent',
-              cursor: 'pointer',
-              textAlign: 'left',
-              gap: '16px',
-            }}
-          >
-            <span style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: '15px',
-              fontWeight: 500,
-              color: '#184A45',
-              lineHeight: 1.5,
-            }}>{faq.q}</span>
-            <span style={{
-              fontSize: '20px',
-              color: '#184A45',
-              flexShrink: 0,
-              transition: 'transform 0.2s ease',
-              transform: openIndex === i ? 'rotate(45deg)' : 'rotate(0deg)',
-            }}>+</span>
-          </button>
-          <div style={{
-            maxHeight: openIndex === i ? '300px' : '0',
-            overflow: 'hidden',
-            transition: 'max-height 0.3s ease',
-          }}>
-            <p style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: '14px',
-              color: '#666666',
-              lineHeight: 1.7,
-              margin: '0 0 20px 0',
-              paddingRight: '40px',
-            }}>{faq.a}</p>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+
+      <article className="min-h-screen bg-[var(--bg)] text-[var(--ink)]">
+        <div className="max-w-6xl mx-auto px-4 md:px-6 pt-8 pb-16">
+          <Breadcrumb items={breadcrumbItems} className="mb-6" />
+
+          {/* Page Heading & Promise Strip */}
+          <div className="max-w-3xl mb-8">
+            <Eyebrow text="Free Plot Check & Consultation" className="mb-2" />
+            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold uppercase tracking-tight leading-[0.92] mb-4">
+              Send us your plot.
+            </h1>
+            <p className="font-sans text-lg text-[var(--muted)] leading-relaxed mb-6">
+              We reply in writing within 2 working days with what the plot allows: setbacks, coverage, FAR and the main risks.
+            </p>
+
+            {/* Promise Strip */}
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="font-mono text-xs uppercase px-2.5 py-1 bg-[var(--surface)] border border-[var(--line)] text-[var(--ink)] font-semibold">
+                On time, or 10% back
+              </span>
+              <span className="font-mono text-xs uppercase px-2.5 py-1 bg-[var(--surface)] border border-[var(--line)] text-[var(--ink)] font-semibold">
+                15-year warranty
+              </span>
+              <span className="font-mono text-xs uppercase px-2.5 py-1 bg-[var(--surface)] border border-[var(--line)] text-[var(--ink)] font-semibold">
+                IIT-led · COA-registered
+              </span>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+            {/* LEFT COLUMN: What to send, What happens next, Contact card */}
+            <div className="lg:col-span-5 space-y-8">
+              {/* What to send */}
+              <div className="p-6 border border-[var(--line)] bg-[var(--surface)]">
+                <span className="font-mono text-xs uppercase tracking-wider text-[var(--accent)] font-semibold block mb-3">
+                  Reading List
+                </span>
+                <h2 className="font-display text-2xl font-bold uppercase mb-4">
+                  What to send
+                </h2>
+                <ul className="space-y-2.5 font-sans text-sm text-[var(--muted)]">
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 mt-2 bg-[var(--accent)] shrink-0" />
+                    <span>Plot location and dimensions (or plot number / sector).</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 mt-2 bg-[var(--accent)] shrink-0" />
+                    <span>Sale deed or layout plan, if you have it.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 mt-2 bg-[var(--accent)] shrink-0" />
+                    <span>A rough budget range and number of floors.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 mt-2 bg-[var(--accent)] shrink-0" />
+                    <span>When you want to move in.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 mt-2 bg-[var(--accent)] shrink-0" />
+                    <span>Whether you will be in India during construction.</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* What happens next */}
+              <div className="p-6 border border-[var(--line)] bg-[var(--wash)]">
+                <span className="font-mono text-xs uppercase tracking-wider text-[var(--muted)] font-semibold block mb-3">
+                  Process
+                </span>
+                <h3 className="font-display text-xl font-bold uppercase mb-4">
+                  What happens next
+                </h3>
+                <ol className="space-y-3 font-sans text-sm text-[var(--ink)] list-none p-0">
+                  <li className="flex items-start gap-3">
+                    <span className="font-mono text-xs font-bold text-[var(--accent)] pt-0.5">01</span>
+                    <span><strong>We read your details:</strong> The architect examines plot orientation and municipal bye-laws.</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="font-mono text-xs font-bold text-[var(--accent)] pt-0.5">02</span>
+                    <span><strong>We call or message you:</strong> A structured 20-minute conversation about your brief and timeline.</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="font-mono text-xs font-bold text-[var(--accent)] pt-0.5">03</span>
+                    <span><strong>You get the written plot check:</strong> Setbacks, permissible FAR, ground coverage, and key risks in writing.</span>
+                  </li>
+                </ol>
+              </div>
+
+              {/* Direct Contact Card */}
+              <div className="p-6 border border-[var(--line)] bg-[var(--surface)] space-y-3">
+                <span className="font-mono text-xs uppercase tracking-wider text-[var(--muted)] font-semibold block mb-2">
+                  Prefer direct contact?
+                </span>
+                <div className="flex items-center gap-2">
+                  <Phone className="w-4 h-4 text-[var(--accent)] shrink-0" />
+                  <a
+                    href={`tel:${siteConfig.phone}`}
+                    onClick={() => trackPhoneClick('/book-a-call', 'book_page_card')}
+                    className="font-mono text-xs text-[var(--ink)] hover:text-[var(--accent)]"
+                  >
+                    {siteConfig.phoneDisplay}
+                  </a>
+                </div>
+                <div className="flex items-center gap-2">
+                  <MessageSquare className="w-4 h-4 text-[#25D366] shrink-0" />
+                  <a
+                    href={siteConfig.whatsappLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => trackWhatsAppClick('/book-a-call', 'book_page_card')}
+                    className="font-mono text-xs text-[var(--ink)] hover:text-[var(--accent)]"
+                  >
+                    WhatsApp the Architect
+                  </a>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Mail className="w-4 h-4 text-[var(--accent)] shrink-0" />
+                  <a href={`mailto:${siteConfig.email}`} className="font-mono text-xs text-[var(--ink)] hover:text-[var(--accent)]">
+                    {siteConfig.email}
+                  </a>
+                </div>
+                <div className="flex items-start gap-2 pt-2 border-t border-[var(--line)] text-xs text-[var(--muted)]">
+                  <MapPin className="w-4 h-4 text-[var(--accent)] shrink-0 mt-0.5" />
+                  <div>
+                    <span>{siteConfig.address}</span>
+                    <a
+                      href={siteConfig.mapsLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block text-[var(--accent)] hover:underline mt-0.5"
+                    >
+                      Get directions ↗
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* RIGHT COLUMN: The Form (Exact PRD R14 intact fields & Formspree) */}
+            <div className="lg:col-span-7">
+              {submitted ? (
+                <div className="border border-[var(--ink)] bg-[var(--band)] text-[var(--on-band)] p-8 sm:p-12 text-center flex flex-col items-center gap-4">
+                  <CheckCircle2 className="w-16 h-16 text-[var(--accent)]" />
+                  <h2 className="font-display text-3xl font-bold uppercase">
+                    Plot details received
+                  </h2>
+                  <p className="font-sans text-base text-[var(--band-muted)] max-w-md leading-relaxed">
+                    Thank you. The architect will review your plot parameters and reach out within 2 working days with your written plot check.
+                  </p>
+                </div>
+              ) : (
+                <form
+                  onSubmit={handleSubmit}
+                  data-form="book-call"
+                  className="border border-[var(--line)] bg-[var(--surface)] p-6 sm:p-8 space-y-5"
+                >
+                  <div className="border-b border-[var(--line)] pb-4 mb-4">
+                    <h2 className="font-display text-2xl font-bold uppercase text-[var(--ink)]">
+                      Plot Evaluation Request
+                    </h2>
+                    <p className="font-sans text-xs text-[var(--muted)] mt-1">
+                      Fill what you know today. Approximate numbers are completely fine.
+                    </p>
+                  </div>
+
+                  {error && (
+                    <div className="p-3 border border-[var(--accent)] bg-[var(--wash)] text-[var(--accent)] text-xs font-mono">
+                      {error}
+                    </div>
+                  )}
+
+                  {/* Hidden source field */}
+                  <input type="hidden" name="src" value={src} />
+
+                  {/* Full Name */}
+                  <div className="flex flex-col gap-1.5">
+                    <label className="font-mono text-xs uppercase tracking-wider text-[var(--ink)] font-medium">
+                      Full Name <span className="text-[var(--accent)]">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      name="name"
+                      required
+                      placeholder="Your name"
+                      className="w-full px-4 py-3 bg-[var(--bg)] border border-[var(--line)] text-base text-[var(--ink)] outline-none focus:border-[var(--accent)] rounded-none"
+                    />
+                  </div>
+
+                  {/* Phone */}
+                  <div className="flex flex-col gap-1.5">
+                    <label className="font-mono text-xs uppercase tracking-wider text-[var(--ink)] font-medium">
+                      Phone Number (WhatsApp preferred) <span className="text-[var(--accent)]">*</span>
+                    </label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      inputMode="tel"
+                      autoComplete="tel"
+                      required
+                      placeholder="+91 98765 43210"
+                      className="w-full px-4 py-3 bg-[var(--bg)] border border-[var(--line)] text-base text-[var(--ink)] outline-none focus:border-[var(--accent)] rounded-none"
+                    />
+                  </div>
+
+                  {/* Email */}
+                  <div className="flex flex-col gap-1.5">
+                    <label className="font-mono text-xs uppercase tracking-wider text-[var(--ink)] font-medium">
+                      Email Address <span className="text-[var(--accent)]">*</span>
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      inputMode="email"
+                      autoComplete="email"
+                      required
+                      placeholder="name@example.com"
+                      className="w-full px-4 py-3 bg-[var(--bg)] border border-[var(--line)] text-base text-[var(--ink)] outline-none focus:border-[var(--accent)] rounded-none"
+                    />
+                  </div>
+
+                  {/* City / Town (label fix only per Section 11) */}
+                  <div className="flex flex-col gap-1.5">
+                    <label className="font-mono text-xs uppercase tracking-wider text-[var(--ink)] font-medium">
+                      City / Town
+                    </label>
+                    <input
+                      type="text"
+                      name="city"
+                      placeholder="e.g. Gurugram, Delhi, Patna"
+                      className="w-full px-4 py-3 bg-[var(--bg)] border border-[var(--line)] text-base text-[var(--ink)] outline-none focus:border-[var(--accent)] rounded-none"
+                    />
+                  </div>
+
+                  {/* Project Typology */}
+                  <div className="flex flex-col gap-1.5">
+                    <label className="font-mono text-xs uppercase tracking-wider text-[var(--ink)] font-medium">
+                      Project Typology <span className="text-[var(--accent)]">*</span>
+                    </label>
+                    <select
+                      name="projectType"
+                      required
+                      defaultValue={
+                        preselectedType.toLowerCase().includes('residential')
+                          ? 'Residential Home'
+                          : preselectedType.toLowerCase().includes('commercial')
+                          ? 'Commercial'
+                          : preselectedType.toLowerCase().includes('interior')
+                          ? 'Concept / Renovation'
+                          : ''
+                      }
+                      className="w-full px-4 py-3 bg-[var(--bg)] border border-[var(--line)] text-base text-[var(--ink)] outline-none focus:border-[var(--accent)] rounded-none cursor-pointer"
+                    >
+                      <option value="">Select project type</option>
+                      <option value="Residential Home">Residential Home</option>
+                      <option value="Institutional">Institutional</option>
+                      <option value="Commercial">Commercial</option>
+                      <option value="Concept / Renovation">Concept / Renovation</option>
+                      <option value="Not sure yet">Not sure yet</option>
+                    </select>
+                  </div>
+
+                  {/* Budget Range */}
+                  <div className="flex flex-col gap-1.5">
+                    <label className="font-mono text-xs uppercase tracking-wider text-[var(--ink)] font-medium">
+                      Plot Size / Budget range <span className="text-[var(--accent)]">*</span>
+                    </label>
+                    <select
+                      name="budget"
+                      required
+                      defaultValue=""
+                      className="w-full px-4 py-3 bg-[var(--bg)] border border-[var(--line)] text-base text-[var(--ink)] outline-none focus:border-[var(--accent)] rounded-none cursor-pointer"
+                    >
+                      <option value="">Select budget range</option>
+                      <option value="Under ₹20 Lakh">Under ₹20 Lakh</option>
+                      <option value="₹20 – 50 Lakh">₹20 – 50 Lakh</option>
+                      <option value="₹50 Lakh – 1 Crore">₹50 Lakh – 1 Crore</option>
+                      <option value="Above ₹1 Crore">Above ₹1 Crore</option>
+                      <option value="Not decided yet">Not decided yet</option>
+                    </select>
+                  </div>
+
+                  {/* Custom Notes / Message */}
+                  <div className="flex flex-col gap-1.5">
+                    <label className="font-mono text-xs uppercase tracking-wider text-[var(--ink)] font-medium">
+                      Plot dimensions, locality or custom notes
+                    </label>
+                    <textarea
+                      name="message"
+                      rows={4}
+                      placeholder="e.g. 300 sq yd plot in Gurugram Sector 45, planning stilt + 4 floors..."
+                      className="w-full px-4 py-3 bg-[var(--bg)] border border-[var(--line)] text-base text-[var(--ink)] outline-none focus:border-[var(--accent)] rounded-none resize-y"
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="w-full py-4 bg-[var(--accent)] text-[var(--on-accent)] font-sans font-bold text-sm uppercase tracking-wider hover:opacity-95 transition-opacity disabled:opacity-50 select-none flex items-center justify-center gap-2"
+                  >
+                    <span>{loading ? 'Submitting...' : 'Get my free plot check'}</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
+                </form>
+              )}
+            </div>
+          </div>
+
+          {/* FAQs per Section 11 */}
+          <div className="mt-16 pt-12 border-t border-[var(--line)]">
+            <Eyebrow text="Common Questions" className="mb-2" />
+            <h2 className="font-display text-3xl font-bold uppercase mb-6">
+              Frequently asked questions
+            </h2>
+            <Faq items={bookFaqs} />
           </div>
         </div>
-      ))}
-    </div>
+      </article>
+    </>
   )
 }
 
 export default function BookACallPage() {
-  const [submitted, setSubmitted] = useState(false)
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    const formData = new FormData(e.currentTarget)
-    const res = await fetch('https://formspree.io/f/mpqyberw', {
-      method: 'POST',
-      body: formData,
-      headers: { Accept: 'application/json' },
-    })
-    if (res.ok) {
-      trackBookingFormSubmit({
-        projectType: (formData.get('projectType') || 'unknown') as string,
-        city: (formData.get('city') || 'unknown') as string,
-        budgetRange: (formData.get('budget') || 'unknown') as string,
-      })
-      setSubmitted(true)
-    }
-  }
-
   return (
-    <main style={{
-      width: '100%',
-      backgroundColor: '#FAF4EC',
-      minHeight: '100vh',
-      padding: '80px 40px',
-      boxSizing: 'border-box',
-    }}>
-      <div style={{
-        maxWidth: '960px',
-        margin: '0 auto',
-        display: 'grid',
-        gridTemplateColumns: '1fr 1fr',
-        gap: '80px',
-        alignItems: 'flex-start',
-      }}>
-
-        {/* LEFT — Info */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
-          <div>
-            <h1 style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontSize: '3rem',
-              fontWeight: 600,
-              color: '#184A45',
-              lineHeight: 1.15,
-              margin: '0 0 16px 0',
-            }}>
-              Book Your Free Design Clarity Call
-            </h1>
-            <p style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: '15px',
-              color: '#555555',
-              lineHeight: 1.75,
-              margin: 0,
-            }}>
-              You don&apos;t need drawings, perfect ideas, or technical knowledge. Bring your plot details, goals, and questions.
-            </p>
-          </div>
-
-          <div style={{
-            backgroundColor: '#ffffff',
-            borderRadius: '16px',
-            padding: '32px',
-            border: '1px solid #E2D8CA',
-          }}>
-            <p style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: '11px',
-              fontWeight: 600,
-              letterSpacing: '0.1em',
-              color: '#184A45',
-              textTransform: 'uppercase',
-              margin: '0 0 16px 0',
-            }}>
-              During this call, we will discuss
-            </p>
-            {[
-              'Your family\'s needs and priorities',
-              'Plot constraints and opportunities',
-              'Budget realism',
-              'Possible design directions',
-              'Next steps if you choose to proceed',
-            ].map((item) => (
-              <div key={item} style={{
-                display: 'flex',
-                alignItems: 'flex-start',
-                gap: '10px',
-                marginBottom: '12px',
-              }}>
-                <span style={{ color: '#184A45', fontSize: '16px', lineHeight: 1.5, flexShrink: 0 }}>→</span>
-                <p style={{
-                  fontFamily: "'Inter', sans-serif",
-                  fontSize: '14px',
-                  color: '#444444',
-                  lineHeight: 1.6,
-                  margin: 0,
-                }}>{item}</p>
-              </div>
-            ))}
-          </div>
-
-          <p style={{
-            fontFamily: "'Inter', sans-serif",
-            fontSize: '13px',
-            color: '#888888',
-            lineHeight: 1.65,
-            margin: 0,
-            fontStyle: 'italic',
-          }}>
-            I personally review every enquiry and respond within 24 hours.
-          </p>
-        </div>
-
-        {/* RIGHT — Form */}
-        {submitted ? (
-          <div style={{
-            backgroundColor: '#184A45',
-            borderRadius: '20px',
-            padding: '48px 40px',
-            textAlign: 'center',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            gap: '16px',
-          }}>
-            <p style={{ fontSize: '40px', margin: 0 }}>✓</p>
-            <h2 style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontSize: '1.8rem',
-              color: '#ffffff',
-              margin: 0,
-            }}>Request Received</h2>
-            <p style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: '14px',
-              color: 'rgba(255,255,255,0.75)',
-              lineHeight: 1.65,
-              margin: 0,
-            }}>
-              Thank you for reaching out. I will personally review your enquiry and respond within 24 hours.
-            </p>
-          </div>
-        ) : (
-          <form onSubmit={handleSubmit} data-form="book-call" style={{
-            backgroundColor: '#ffffff',
-            borderRadius: '20px',
-            padding: '40px',
-            border: '1px solid #E2D8CA',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '20px',
-            width: '100%',
-            boxSizing: 'border-box',
-          }}>
-            {[
-              { label: 'Full Name', type: 'text', name: 'name', required: true },
-              { label: 'Phone', type: 'tel', name: 'phone', required: true },
-              { label: 'Email Address', type: 'email', name: 'email', required: true },
-              { label: 'City', type: 'text', name: 'city', required: false },
-            ].map((field) => (
-              <div key={field.name} style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                <label style={{
-                  fontFamily: "'Inter', sans-serif",
-                  fontSize: '12px',
-                  fontWeight: 500,
-                  color: '#444444',
-                  letterSpacing: '0.04em',
-                }}>
-                  {field.label}{field.required && <span style={{ color: '#C96A40' }}> *</span>}
-                </label>
-                <input
-                  type={field.type}
-                  name={field.name}
-                  required={field.required}
-                  style={{
-                    width: '100%',
-                    padding: '12px 16px',
-                    borderRadius: '10px',
-                    border: '1px solid #D4C9B8',
-                    fontFamily: "'Inter', sans-serif",
-                    fontSize: '14px',
-                    color: '#222222',
-                    backgroundColor: '#FAF4EC',
-                    outline: 'none',
-                    boxSizing: 'border-box',
-                  }}
-                />
-              </div>
-            ))}
-
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-              <label style={{
-                fontFamily: "'Inter', sans-serif",
-                fontSize: '12px',
-                fontWeight: 500,
-                color: '#444444',
-                letterSpacing: '0.04em',
-              }}>
-                Project Type <span style={{ color: '#C96A40' }}>*</span>
-              </label>
-              <select name="projectType" required style={{
-                width: '100%',
-                padding: '12px 16px',
-                borderRadius: '10px',
-                border: '1px solid #D4C9B8',
-                fontFamily: "'Inter', sans-serif",
-                fontSize: '14px',
-                color: '#222222',
-                backgroundColor: '#FAF4EC',
-                outline: 'none',
-                boxSizing: 'border-box',
-              }}>
-                <option value="">Select type</option>
-                <option>Residential Home</option>
-                <option>Institutional</option>
-                <option>Commercial</option>
-                <option>Concept / Renovation</option>
-                <option>Not sure yet</option>
-              </select>
-            </div>
-
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-              <label style={{
-                fontFamily: "'Inter', sans-serif",
-                fontSize: '12px',
-                fontWeight: 500,
-                color: '#444444',
-                letterSpacing: '0.04em',
-              }}>
-                Budget Range <span style={{ color: '#C96A40' }}>*</span>
-              </label>
-              <select name="budget" required style={{
-                width: '100%',
-                padding: '12px 16px',
-                borderRadius: '10px',
-                border: '1px solid #D4C9B8',
-                fontFamily: "'Inter', sans-serif",
-                fontSize: '14px',
-                color: '#222222',
-                backgroundColor: '#FAF4EC',
-                outline: 'none',
-                boxSizing: 'border-box',
-              }}>
-                <option value="">Select range</option>
-                <option>Under ₹20 Lakh</option>
-                <option>₹20 – 50 Lakh</option>
-                <option>₹50 Lakh – 1 Crore</option>
-                <option>Above ₹1 Crore</option>
-                <option>Not decided yet</option>
-              </select>
-            </div>
-
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-              <label style={{
-                fontFamily: "'Inter', sans-serif",
-                fontSize: '12px',
-                fontWeight: 500,
-                color: '#444444',
-                letterSpacing: '0.04em',
-              }}>
-                Message
-              </label>
-              <textarea name="message" rows={4} style={{
-                width: '100%',
-                padding: '12px 16px',
-                borderRadius: '10px',
-                border: '1px solid #D4C9B8',
-                fontFamily: "'Inter', sans-serif",
-                fontSize: '14px',
-                color: '#222222',
-                backgroundColor: '#FAF4EC',
-                outline: 'none',
-                resize: 'vertical',
-                boxSizing: 'border-box',
-              }} />
-            </div>
-
-            <button type="submit" style={{
-              backgroundColor: '#184A45',
-              color: '#ffffff',
-              borderRadius: '9999px',
-              padding: '14px 32px',
-              fontSize: '14px',
-              fontFamily: "'Inter', sans-serif",
-              fontWeight: 500,
-              border: 'none',
-              cursor: 'pointer',
-              width: '100%',
-              marginTop: '8px',
-            }}>
-              Request a Clarity Call
-            </button>
-            <p style={{ textAlign: 'center', fontSize: '13px', color: '#888', marginTop: '12px' }}>
-              Or message directly on{' '}
-              <a href='https://wa.me/919473031016' onClick={trackWhatsAppClick} target='_blank' rel='noopener noreferrer' style={{ color: '#184A45', fontWeight: 600 }}>
-                WhatsApp
-              </a>
-            </p>
-          </form>
-        )}
-      </div>
-
-      {/* FAQ Section */}
-      <div style={{
-        maxWidth: '960px',
-        margin: '80px auto 0',
-      }}>
-        <h2 style={{
-          fontFamily: "'Cormorant Garamond', serif",
-          fontSize: '2rem',
-          fontWeight: 600,
-          color: '#184A45',
-          margin: '0 0 32px 0',
-        }}>
-          Questions Before Booking?
-        </h2>
-        <BookingFAQ />
-      </div>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify({
-          '@context': 'https://schema.org',
-          '@type': 'FAQPage',
-          mainEntity: BOOKING_FAQ.map(faq => ({
-            '@type': 'Question',
-            name: faq.q,
-            acceptedAnswer: { '@type': 'Answer', text: faq.a },
-          })),
-        }) }}
-      />
-    </main>
+    <Suspense fallback={<div className="min-h-screen bg-[var(--bg)] p-12 font-mono text-xs">Loading form...</div>}>
+      <BookCallContent />
+    </Suspense>
   )
 }
