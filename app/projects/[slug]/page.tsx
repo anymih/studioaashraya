@@ -1,408 +1,512 @@
-'use client'
-
-import { useState, useEffect } from 'react'
-import { useParams } from 'next/navigation'
-import Image from 'next/image'
-import { projects } from '@/lib/projects-data'
-import Button from '@/components/ui/Button'
-import { MapPin, Ruler, Calendar, CheckCircle, Leaf, Droplets, Sun } from 'lucide-react'
+import React from 'react'
+import type { Metadata } from 'next'
+import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { trackProjectView, trackCTAClick } from '@/lib/analytics'
+import { Breadcrumb } from '@/components/ui/Breadcrumb'
+import { StatusBadge } from '@/components/ui/StatusBadge'
+import { EvidenceLabel } from '@/components/ui/EvidenceLabel'
+import { SampleTag } from '@/components/ui/SampleTag'
+import { Img } from '@/lib/images'
+import CtaBand from '@/components/ui/CtaBand'
+import { ProjectViewTracker } from '@/components/projects/ProjectViewTracker'
+import { projects, getProjectBySlug, validateProjects } from '@/lib/projects-data'
+import { siteConfig } from '@/lib/site'
 
-const metricIcons = {
-  leaf: Leaf,
-  drop: Droplets,
-  sun: Sun,
+interface ProjectPageProps {
+  params: Promise<{ slug: string }>
 }
 
-export default function ProjectDetailPage() {
-  const params = useParams()
-  const project = projects.find((p) => p.slug === params.slug)
-  const [mainImage, setMainImage] = useState(0)
+export async function generateStaticParams() {
+  validateProjects()
+  return projects.map((p) => ({
+    slug: p.slug,
+  }))
+}
 
-  useEffect(() => {
-    if (project) {
-      trackProjectView({
-        projectSlug: project.slug,
-        projectName: project.title,
-        projectType: project.type,
-      })
-    }
-  }, [project])
+export async function generateMetadata({ params }: ProjectPageProps): Promise<Metadata> {
+  const { slug } = await params
+  const project = getProjectBySlug(slug)
 
   if (!project) {
-    return (
-      <div className="min-h-[60vh] flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="font-heading text-2xl mb-4">Project Not Found</h1>
-          <Button href="/projects" variant="primary">
-            Back to Projects
-          </Button>
-        </div>
-      </div>
-    )
+    return {
+      title: 'Project Not Found | Studio Aashraya',
+    }
   }
 
-  const MetricIcon = metricIcons[project.metricIcon]
+  const title = project.seo?.title || `${project.name} | Studio Aashraya`
+  const description =
+    project.seo?.description ||
+    `${project.name} in ${project.city}, ${project.region}. ${project.narrative.problem.slice(0, 140)}...`
 
-  const tagColors: Record<string, string> = {
-    Residential: 'bg-success text-white',
-    Institutional: 'bg-blue-600 text-white',
-    Concept: 'bg-accent text-white',
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: `${siteConfig.siteUrl}/projects/${project.slug}`,
+    },
+  }
+}
+
+const TECH_TITLES: Record<string, string> = {
+  'bim-clash': 'BIM clash detection',
+  'thermal-sim': 'Climate simulation',
+  'structural-seismic': 'Seismic structural analysis',
+  'lidar-twin': '360° LiDAR scans',
+  'concrete-testing': 'Lab-tested concrete',
+  'pulse-velocity': 'Pulse velocity testing',
+  'rebar-scan': 'Rebar scanning',
+  'flood-test': 'Flood-tested waterproofing',
+  'dashboard-cpm': 'Live dashboard',
+}
+
+export default async function ProjectDetailPage({ params }: ProjectPageProps) {
+  const { slug } = await params
+  const project = getProjectBySlug(slug)
+
+  if (!project) {
+    notFound()
   }
 
-  // Build per-project JSON-LD: Breadcrumb (Block 4) + CreativeWork (Block 5)
-  const projectCity = project.location.split(',')[0].trim()
-  const projectSchema = {
+  // Next and previous project navigation
+  const currentIndex = projects.findIndex((p) => p.slug === slug)
+  const prevProject = currentIndex > 0 ? projects[currentIndex - 1] : projects[projects.length - 1]
+  const nextProject = currentIndex < projects.length - 1 ? projects[currentIndex + 1] : projects[0]
+
+  const breadcrumbItems = [
+    { label: 'Home', href: '/' },
+    { label: 'Homes', href: '/projects' },
+    { label: project.name },
+  ]
+
+  const creativeWorkSchema = {
     '@context': 'https://schema.org',
-    '@graph': [
+    '@type': 'CreativeWork',
+    name: project.name,
+    description: project.narrative.approach,
+    creator: {
+      '@type': 'HomeAndConstructionBusiness',
+      name: 'Studio Aashraya',
+      url: siteConfig.siteUrl,
+    },
+    locationCreated: {
+      '@type': 'Place',
+      name: `${project.city}, ${project.region}`,
+    },
+    dateCreated: project.year,
+  }
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
       {
-        '@type': 'BreadcrumbList',
-        itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://studioaashraya.site' },
-          { '@type': 'ListItem', position: 2, name: 'Projects', item: 'https://studioaashraya.site/projects' },
-          { '@type': 'ListItem', position: 3, name: project.title, item: `https://studioaashraya.site/projects/${project.slug}` },
-        ],
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: siteConfig.siteUrl,
       },
       {
-        '@type': 'CreativeWork',
-        '@id': `https://studioaashraya.site/projects/${project.slug}#project`,
-        name: project.title,
-        description: project.story.problem + ' ' + project.story.approach,
-        creator: { '@id': 'https://studioaashraya.site/#founder' },
-        locationCreated: {
-          '@type': 'Place',
-          name: project.location,
-          address: {
-            '@type': 'PostalAddress',
-            addressLocality: projectCity,
-            addressRegion: 'Bihar',
-            addressCountry: 'IN',
-          },
-        },
-        image: `https://studioaashraya.site${project.heroImage}`,
-        dateCreated: project.year,
-        keywords: `${project.type} ${projectCity}, house design ${projectCity}, residential architecture Bihar, custom home design ${projectCity}, 3D home design Bihar, architecture project Patna, home construction Bihar`,
-        about: {
-          '@type': 'Thing',
-          name: 'Sustainable Architecture, Passive Cooling, Vernacular Design',
-        },
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Homes',
+        item: `${siteConfig.siteUrl}/projects`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: project.name,
+        item: `${siteConfig.siteUrl}/projects/${project.slug}`,
       },
     ],
   }
 
+  // Handover outcome calculation per PRD / Page Specs
+  let handoverResult = 'In progress'
+  if (project.delivery?.delivered) {
+    handoverResult = project.delivery.delivered <= project.delivery.agreed ? 'On time' : 'Late'
+  }
+
+  const coverId = `proj-${project.key}-cover`
+
   return (
-    <>
-      {/* Per-project JSON-LD: Breadcrumb + CreativeWork */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(projectSchema) }}
+    <article className="flex flex-col w-full bg-[var(--bg)] text-[var(--ink)]">
+      {/* Telemetry Tracking */}
+      <ProjectViewTracker
+        slug={project.slug}
+        city={project.city}
+        status={project.status}
       />
 
-      {/* Hero image */}
-      <section className="relative w-full aspect-[16/9] max-h-[500px] overflow-hidden">
-        <div
-          className="w-full h-full bg-primary/10 bg-cover bg-center"
-          style={{ backgroundImage: `url(${project.heroImage})` }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-        <span className={`absolute top-4 left-4 px-3 py-1 rounded-pill text-xs font-medium ${tagColors[project.type]}`}>
-          {project.type}
-        </span>
-      </section>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(creativeWorkSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
 
-      {/* Two-column layout */}
-      <section className="max-w-6xl mx-auto px-4 py-8 md:py-12">
-        <div className="grid md:grid-cols-[40%_60%] gap-8 md:gap-12">
-          {/* Left col — metadata */}
-          <div>
-            <h1 className="font-heading text-[var(--text-h1-m)] md:text-[var(--text-h1)] mb-2">
-              {project.title}
-            </h1>
-
-            {project.tagline && (
-              <p className="font-body text-base text-muted italic mb-4">{project.tagline}</p>
-            )}
-
-            {project.conceptName && (
-              <div className="mb-6">
-                <p className="text-[11px] font-body uppercase tracking-[0.18em] text-accent mb-2">
-                  {project.conceptName}
-                </p>
-                {project.conceptDescription && (
-                  <p className="text-sm font-body text-muted leading-relaxed max-w-[56ch]">
-                    {project.conceptDescription}
-                  </p>
-                )}
-              </div>
-            )}
-
-            {/* Metadata grid */}
-            <div className="grid grid-cols-2 gap-4 mb-8">
-              {[
-                { icon: MapPin, label: 'Location', value: project.location },
-                { icon: Ruler, label: 'Area', value: project.area },
-                ...(project.plotSize ? [{ icon: Ruler, label: 'Plot Size', value: project.plotSize }] : []),
-                ...(project.uds ? [{ icon: Ruler, label: 'UDS', value: project.uds }] : []),
-                ...(project.sbua ? [{ icon: Ruler, label: 'SBUA', value: project.sbua }] : []),
-                { icon: Calendar, label: 'Year', value: project.year },
-                { icon: CheckCircle, label: 'Status', value: project.status },
-              ].map((item) => (
-                <div key={item.label} className="flex items-start gap-2">
-                  <item.icon size={16} className="text-accent mt-0.5 shrink-0" />
-                  <div>
-                    <p className="text-[11px] text-muted font-body uppercase tracking-wider">{item.label}</p>
-                    <p className="text-sm font-body font-medium">{item.value}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Metric */}
-            <div className="flex items-center gap-2 mb-8 px-4 py-3 bg-primary/5 rounded-card">
-              <MetricIcon size={18} className="text-accent" />
-              <span className="text-sm font-medium font-body text-primary">{project.metric}</span>
-            </div>
-
-            {/* Passive Strategies */}
-            <div className="mb-8">
-              <h2 className="font-heading text-lg mb-3">Passive Strategies</h2>
-              <ul className="space-y-2">
-                {project.passiveStrategies.map((strategy, i) => (
-                  <li key={i} className="flex items-start gap-2 text-sm font-body text-muted leading-relaxed">
-                    <span className="w-1.5 h-1.5 rounded-full bg-accent mt-2 shrink-0" />
-                    {strategy}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Materials */}
-            <div>
-              <h2 className="font-heading text-lg mb-3">Materials</h2>
-              <div className="flex flex-wrap gap-2">
-                {project.materials.map((material) => (
-                  <span
-                    key={material}
-                    className="px-3 py-1 rounded-pill bg-bg border border-border text-primary text-xs font-body"
-                  >
-                    {material}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Right col — image gallery */}
-          <div>
-            <div className="rounded-card overflow-hidden mb-3 aspect-[4/3] bg-primary/5">
-              <div
-                className="w-full h-full bg-cover bg-center transition-all duration-300"
-                style={{
-                  backgroundImage: `url(${project.galleryImages[mainImage] || project.heroImage})`,
-                }}
-              />
-            </div>
-            <div className="grid grid-cols-3 gap-3">
-              {project.galleryImages.map((img, i) => (
-                <button
-                  key={i}
-                  onClick={() => setMainImage(i)}
-                  aria-label={`View gallery image ${i + 1} of ${project.title}`}
-                  className={`rounded-card overflow-hidden aspect-[4/3] bg-primary/5 border-2 transition-all cursor-pointer ${
-                    mainImage === i ? 'border-primary' : 'border-transparent hover:border-border'
-                  }`}
-                >
-                  <div
-                    className="w-full h-full bg-cover bg-center"
-                    style={{ backgroundImage: `url(${img})` }}
-                  />
-                </button>
-              ))}
-            </div>
-          </div>
+      {/* 1. Breadcrumb */}
+      <section className="pt-8 pb-4 border-b border-[var(--line)] bg-[var(--bg)]">
+        <div className="wrap">
+          <Breadcrumb items={breadcrumbItems} />
         </div>
       </section>
 
-      {/* Cinematic Detail Image (if present) */}
-      {project.detailImage && (
-        <section className="max-w-6xl mx-auto px-4 pb-12">
-          <div className="relative w-full aspect-[21/9] rounded-card overflow-hidden shadow-card border border-border">
-            <Image
-              src={project.detailImage}
-              alt={`${project.title} detail view`}
-              fill
-              sizes="(max-width: 1200px) 100vw, 1200px"
-              className="object-cover"
-            />
+      {/* 2. Header: H1, StatusBadge, sample chip */}
+      <section className="py-8 md:py-12 border-b border-[var(--line)] bg-[var(--bg)]">
+        <div className="wrap space-y-4">
+          <div className="flex flex-wrap items-center gap-3">
+            <span className="font-mono text-xs uppercase tracking-widest text-[var(--muted)]">
+              {project.city}, {project.region} · {project.type}
+            </span>
+            <StatusBadge status={project.status} />
+            {project.placeholder && <SampleTag kind="project" />}
           </div>
-        </section>
-      )}
 
-      {/* Feature Gallery (if present) */}
-      {project.featureGallery && project.featureGallery.length > 0 && (
-        <section className="max-w-6xl mx-auto px-4 pb-12">
-          <h2 className="font-heading text-xl md:text-2xl mb-6">Design Features</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {project.featureGallery.map((img, i) => (
-              <div key={i} className="relative aspect-[4/3] rounded-card overflow-hidden shadow-card border border-border">
-                <Image
-                  src={img}
-                  alt={`${project.title} architectural feature ${i + 1}`}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover"
-                />
-              </div>
-            ))}
-          </div>
-        </section>
-      )}
-
-      {/* Masterplan & Architectural Layouts (if present) */}
-      {project.masterplanImages && project.masterplanImages.length > 0 && (
-        <section className="max-w-6xl mx-auto px-4 pb-12">
-          <div className="border-t border-border pt-10">
-            <h2 className="font-heading text-xl md:text-2xl mb-2">Masterplan & Floor Plans</h2>
-            <p className="text-sm font-body text-muted mb-6">
-              Spatial organization, circulation pathways, and indoor-outdoor boundary definitions.
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {project.masterplanImages.map((img, i) => (
-                <div key={i} className="bg-surface rounded-card p-4 border border-border shadow-card flex flex-col items-center">
-                  <div className="relative w-full aspect-[4/3] mb-3 bg-white rounded overflow-hidden">
-                    <Image
-                      src={img}
-                      alt={`${project.title} floor plan layout ${i + 1}`}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                      className="object-contain p-2"
-                    />
-                  </div>
-                  <span className="text-xs font-body font-medium text-muted uppercase tracking-wider">
-                    Layout Diagram 0{i + 1}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* Story of the Home */}
-      <section className="max-w-[680px] mx-auto px-4 py-8 md:py-12">
-        <h2 className="font-heading text-[var(--text-h2-m)] md:text-[var(--text-h2)] text-center mb-10">
-          Story of the Home
-        </h2>
-
-        {[
-          { title: 'The Problem', content: project.story.problem },
-          { title: 'Design Approach', content: project.story.approach },
-          { title: 'Outcome', content: project.story.outcome },
-        ].map((section) => (
-          <div key={section.title} className="mb-8">
-            <h3 className="font-heading text-xl mb-3">{section.title}</h3>
-            <p className="text-base font-body text-muted leading-[1.7]">{section.content}</p>
-          </div>
-        ))}
-      </section>
-
-      {/* Interactive Site Feasibility Section */}
-      <section className="max-w-4xl mx-auto px-4 pb-12">
-        <div className="bg-[#FAF4EC] border border-[#E2D8CA] rounded-3xl p-6 md:p-8">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
-            <div className="md:col-span-4 overflow-hidden rounded-2xl aspect-[4/3] relative border border-[#E2D8CA]/80">
-              <Image
-                src="/images/site-feasibility.png"
-                alt="Site Feasibility Calculator — Architects reviewing plot boundaries"
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 33vw"
-              />
-            </div>
-            <div className="md:col-span-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-              <div>
-                <span className="text-[11px] font-semibold uppercase tracking-wider text-[#184A45] block mb-1 font-body">
-                  Planning Tools
-                </span>
-                <h3 className="font-heading text-2xl text-[#184A45] mb-2">
-                  Site Feasibility Calculator
-                </h3>
-                <p className="text-sm font-body text-[#555555] leading-relaxed max-w-xl">
-                  Test plot boundaries, setbacks, road edges, and development potential before design begins. Evaluate plot feasibility in one interactive tool.
-                </p>
-              </div>
-              <Link
-                href="/calculators/site-feasibility"
-                className="bg-[#184A45] text-white text-sm font-medium px-6 py-3 rounded-full hover:bg-[#184A45]/90 transition-colors shrink-0 font-body shadow-sm"
-              >
-                Open Tool &rarr;
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Bottom CTA */}
-      <section style={{
-        width: '100%',
-        padding: '80px 40px',
-        backgroundColor: '#FAF4EC',
-        display: 'flex',
-        justifyContent: 'center',
-      }}>
-        <div style={{
-          backgroundColor: '#184A45',
-          borderRadius: '20px',
-          padding: '56px 64px',
-          maxWidth: '700px',
-          width: '100%',
-          textAlign: 'center',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: '16px',
-        }}>
-          <h2 style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            fontSize: '2.2rem',
-            fontWeight: 600,
-            color: '#ffffff',
-            margin: 0,
-            lineHeight: 1.2,
-            width: '100%',
-            whiteSpace: 'normal',
-          }}>
-            Want a similar home?
-          </h2>
-          <p style={{
-            fontFamily: "'Inter', sans-serif",
-            fontSize: '15px',
-            color: 'rgba(255,255,255,0.75)',
-            lineHeight: 1.7,
-            margin: 0,
-            width: '100%',
-            whiteSpace: 'normal',
-          }}>
-            Let&apos;s discuss how to bring this kind of design thinking to your plot in Bihar.
+          <h1 className="font-display font-extrabold uppercase text-4xl sm:text-5xl md:text-6xl tracking-tight leading-[0.92] text-[var(--ink)]">
+            {project.name}
+          </h1>
+          <p className="font-sans text-lg text-[var(--muted)] max-w-2xl leading-relaxed">
+            {project.headline}
           </p>
-          <Link href="/book-a-call" onClick={() => trackCTAClick('project_bottom_book_call', 'project_detail')} style={{
-            marginTop: '8px',
-            backgroundColor: '#ffffff',
-            color: '#184A45',
-            borderRadius: '9999px',
-            padding: '14px 32px',
-            fontSize: '14px',
-            fontFamily: "'Inter', sans-serif",
-            fontWeight: 600,
-            textDecoration: 'none',
-            display: 'inline-block',
-            whiteSpace: 'nowrap',
-          }}>
-            Book a Clarity Call
-          </Link>
         </div>
       </section>
-    </>
+
+      {/* 3. Title-block metrics (Plot, Built-up, Floors, Climate zone, Year, City) */}
+      <section className="border-b-[1.5px] border-[var(--ink)] bg-[var(--surface)]">
+        <div className="wrap py-0">
+          <dl className="grid grid-cols-2 md:grid-cols-6 m-0 divide-y md:divide-y-0 md:divide-x divide-[var(--line)]">
+            <div className="p-4 sm:p-5">
+              <dt className="font-mono text-[10px] uppercase tracking-[0.1em] text-[var(--muted)]">Site Area</dt>
+              <dd className="font-sans text-base font-semibold text-[var(--ink)] mt-1">{project.plotArea || '—'}</dd>
+            </div>
+            <div className="p-4 sm:p-5">
+              <dt className="font-mono text-[10px] uppercase tracking-[0.1em] text-[var(--muted)]">Built-up</dt>
+              <dd className="font-sans text-base font-semibold text-[var(--ink)] mt-1">{project.builtUp || '—'}</dd>
+            </div>
+            <div className="p-4 sm:p-5">
+              <dt className="font-mono text-[10px] uppercase tracking-[0.1em] text-[var(--muted)]">Floors</dt>
+              <dd className="font-sans text-base font-semibold text-[var(--ink)] mt-1">{project.floors}</dd>
+            </div>
+            <div className="p-4 sm:p-5">
+              <dt className="font-mono text-[10px] uppercase tracking-[0.1em] text-[var(--muted)]">Climate Zone</dt>
+              <dd className="font-sans text-base font-semibold text-[var(--ink)] mt-1">{project.climateZone}</dd>
+            </div>
+            <div className="p-4 sm:p-5">
+              <dt className="font-mono text-[10px] uppercase tracking-[0.1em] text-[var(--muted)]">Year</dt>
+              <dd className="font-sans text-base font-semibold text-[var(--ink)] mt-1">{project.year || '—'}</dd>
+            </div>
+            <div className="p-4 sm:p-5 col-span-2 md:col-span-1">
+              <dt className="font-mono text-[10px] uppercase tracking-[0.1em] text-[var(--muted)]">Location</dt>
+              <dd className="font-sans text-base font-semibold text-[var(--ink)] mt-1">{project.city}</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      {/* 4. Cover photo with frame and caption */}
+      <section className="py-10 md:py-16 border-b border-[var(--line)] bg-[var(--bg)]">
+        <div className="wrap">
+          <Img id={coverId} priority={true} className="w-full" sizes="(max-width: 1200px) 100vw, 1200px" />
+        </div>
+      </section>
+
+      {/* 5. Narrative: Problem, Approach, Solution */}
+      <section className="py-16 md:py-20 border-b border-[var(--line)] bg-[var(--surface)]">
+        <div className="wrap">
+          <div className="max-w-3xl space-y-12">
+            <div>
+              <span className="font-mono text-xs uppercase tracking-widest text-[var(--accent)] font-semibold block mb-2">
+                01 / The Challenge
+              </span>
+              <h2 className="font-display font-extrabold uppercase text-2xl md:text-3xl text-[var(--ink)] mb-3">
+                The Problem
+              </h2>
+              <p className="font-sans text-base md:text-lg leading-relaxed text-[var(--muted)]">
+                {project.narrative.problem}
+              </p>
+            </div>
+
+            <div className="border-t border-[var(--line)] pt-8">
+              <span className="font-mono text-xs uppercase tracking-widest text-[var(--accent)] font-semibold block mb-2">
+                02 / Architectural Response
+              </span>
+              <h2 className="font-display font-extrabold uppercase text-2xl md:text-3xl text-[var(--ink)] mb-3">
+                The Approach
+              </h2>
+              <p className="font-sans text-base md:text-lg leading-relaxed text-[var(--muted)]">
+                {project.narrative.approach}
+              </p>
+            </div>
+
+            <div className="border-t border-[var(--line)] pt-8">
+              <span className="font-mono text-xs uppercase tracking-widest text-[var(--accent)] font-semibold block mb-2">
+                03 / Delivered Reality
+              </span>
+              <h2 className="font-display font-extrabold uppercase text-2xl md:text-3xl text-[var(--ink)] mb-3">
+                The Solution
+              </h2>
+              <p className="font-sans text-base md:text-lg leading-relaxed text-[var(--muted)]">
+                {project.narrative.solution}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 6. CtaBand project-<slug>-mid */}
+      <CtaBand variant="projects" ctaId={`project_${project.slug}_mid`} />
+
+      {/* 7. Key Strategies */}
+      <section className="py-16 md:py-20 border-b border-[var(--line)] bg-[var(--bg)]">
+        <div className="wrap">
+          <div className="max-w-3xl">
+            <span className="font-mono text-xs uppercase tracking-widest text-[var(--muted)] font-semibold block mb-2">
+              Engineering Logic
+            </span>
+            <h2 className="font-display font-extrabold uppercase text-3xl md:text-4xl text-[var(--ink)] mb-8">
+              Design & Construction Strategies
+            </h2>
+
+            <div className="space-y-6">
+              {project.strategies.map((strat, idx) => (
+                <div key={idx} className="border-[1.5px] border-[var(--ink)] bg-[var(--surface)] p-6 sm:p-8">
+                  <div className="flex items-start gap-4">
+                    <span className="font-mono text-xs font-bold text-[var(--accent)] px-2 py-1 border border-[var(--accent)] shrink-0">
+                      0{idx + 1}
+                    </span>
+                    <div>
+                      <h3 className="font-display font-bold uppercase text-xl text-[var(--ink)] mb-2">
+                        {strat.name}
+                      </h3>
+                      <p className="font-sans text-base text-[var(--muted)] leading-relaxed">
+                        {strat.description}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 8. Technology Used (tags linking to /technology#<id>) */}
+      {project.technology && project.technology.length > 0 && (
+        <section className="py-16 md:py-20 border-b border-[var(--line)] bg-[var(--surface)]">
+          <div className="wrap">
+            <div className="max-w-3xl">
+              <span className="font-mono text-xs uppercase tracking-widest text-[var(--accent)] font-semibold block mb-2">
+                Verification Instruments
+              </span>
+              <h2 className="font-display font-extrabold uppercase text-3xl md:text-4xl text-[var(--ink)] mb-4">
+                Technology Used
+              </h2>
+              <p className="font-sans text-base text-[var(--muted)] mb-8">
+                Instruments applied to verify structural integrity, thermal performance, and execution quality on this site.
+              </p>
+              <div className="flex flex-wrap gap-3">
+                {project.technology.map((techId) => (
+                  <Link
+                    key={techId}
+                    href={`/technology#${techId}`}
+                    className="inline-flex items-center gap-2 px-4 py-2.5 border-[1.5px] border-[var(--ink)] bg-[var(--bg)] hover:bg-[var(--surface)] text-[var(--ink)] font-mono text-xs uppercase tracking-wider font-semibold transition-colors group"
+                  >
+                    <span>{TECH_TITLES[techId] || techId}</span>
+                    <span className="text-[var(--accent)] group-hover:translate-x-0.5 transition-transform">&rarr;</span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* 9. Handover Record */}
+      {project.delivery && (
+        <section className="py-16 md:py-20 border-b border-[var(--line)] bg-[var(--bg)]">
+          <div className="wrap">
+            <div className="max-w-3xl">
+              <span className="font-mono text-xs uppercase tracking-widest text-[var(--accent)] font-semibold block mb-2">
+                Accountability
+              </span>
+              <h2 className="font-display font-extrabold uppercase text-3xl md:text-4xl text-[var(--ink)] mb-8">
+                Handover Record
+              </h2>
+              <div className="border-[1.5px] border-[var(--ink)] bg-[var(--surface)] p-6 sm:p-8">
+                <dl className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                  <div>
+                    <dt className="font-mono text-xs uppercase tracking-wider text-[var(--muted)] mb-1">
+                      Agreed Handover Date
+                    </dt>
+                    <dd className="font-sans text-lg font-bold text-[var(--ink)]">
+                      {project.delivery.agreed}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="font-mono text-xs uppercase tracking-wider text-[var(--muted)] mb-1">
+                      Actual Handover Date
+                    </dt>
+                    <dd className="font-sans text-lg font-bold text-[var(--ink)]">
+                      {project.delivery.delivered || 'In progress'}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="font-mono text-xs uppercase tracking-wider text-[var(--muted)] mb-1">
+                      Schedule Outcome
+                    </dt>
+                    <dd className="font-mono text-sm font-semibold text-[var(--accent)]">
+                      {handoverResult}
+                    </dd>
+                  </div>
+                </dl>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* 10. Performance Block with Evidence Labels */}
+      <section className="py-16 md:py-20 border-b border-[var(--line)] bg-[var(--surface)]">
+        <div className="wrap">
+          <div className="max-w-3xl">
+            <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
+              <span className="font-mono text-xs uppercase tracking-widest text-[var(--accent)] font-semibold">
+                Verified Metrics
+              </span>
+              {project.placeholder && <SampleTag kind="figure" />}
+            </div>
+            <h2 className="font-display font-extrabold uppercase text-3xl md:text-4xl text-[var(--ink)] mb-8">
+              Performance Verification
+            </h2>
+
+            <div className="border-[1.5px] border-[var(--ink)] bg-[var(--bg)] divide-y divide-[var(--line)]">
+              {project.metrics.map((m, idx) => (
+                <div key={idx} className="p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <div>
+                    <span className="font-mono text-xs uppercase tracking-wider text-[var(--muted)] block mb-1">
+                      {m.label}
+                    </span>
+                    <span className="font-display font-extrabold uppercase text-3xl text-[var(--ink)]">
+                      {m.value}
+                    </span>
+                  </div>
+                  <div className="flex flex-col sm:items-end gap-1.5 shrink-0">
+                    <EvidenceLabel state={m.evidence} />
+                    {m.method && (
+                      <span className="font-mono text-[11px] text-[var(--muted)] max-w-[32ch] sm:text-right">
+                        Method: {m.method}
+                      </span>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 11. Material Palette */}
+      <section className="py-16 md:py-20 border-b border-[var(--line)] bg-[var(--bg)]">
+        <div className="wrap">
+          <div className="max-w-3xl">
+            <span className="font-mono text-xs uppercase tracking-widest text-[var(--muted)] font-semibold block mb-2">
+              Tactile Materials
+            </span>
+            <h2 className="font-display font-extrabold uppercase text-3xl text-[var(--ink)] mb-6">
+              Material Palette
+            </h2>
+            <div className="flex flex-wrap gap-2.5">
+              {project.materials.map((mat, idx) => (
+                <span
+                  key={idx}
+                  className="px-4 py-2 border-[1.5px] border-[var(--ink)] bg-[var(--surface)] font-mono text-xs uppercase tracking-wider text-[var(--ink)] font-semibold"
+                >
+                  {mat}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 12. Gallery */}
+      <section className="py-16 md:py-24 border-b border-[var(--line)] bg-[var(--surface)]">
+        <div className="wrap">
+          <span className="font-mono text-xs uppercase tracking-widest text-[var(--muted)] font-semibold block mb-2">
+            Visual Record
+          </span>
+          <h2 className="font-display font-extrabold uppercase text-3xl md:text-4xl text-[var(--ink)] mb-4">
+            Site Gallery
+          </h2>
+          <p className="font-sans text-base text-[var(--muted)] mb-8 max-w-2xl">
+            Photographs documenting architectural junctions, lighting, and materiality.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {project.galleryCaptions.map((caption, idx) => {
+              const galleryId = `proj-${project.key}-g${idx + 1}`
+              return (
+                <div key={idx} className="space-y-2">
+                  <Img id={galleryId} sizes="(max-width: 768px) 100vw, 33vw" />
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* 13. Technical Plans sheet */}
+      <section className="py-16 md:py-20 border-b border-[var(--line)] bg-[var(--bg)]">
+        <div className="wrap">
+          <span className="font-mono text-xs uppercase tracking-widest text-[var(--muted)] font-semibold block mb-2">
+            Architectural Drawings
+          </span>
+          <h2 className="font-display font-extrabold uppercase text-3xl md:text-4xl text-[var(--ink)] mb-4">
+            Technical Plans
+          </h2>
+          <p className="font-sans text-base text-[var(--muted)] mb-8 max-w-2xl">
+            Floor layouts and architectural sections drawn to scale.
+          </p>
+          <div>
+            <Img id={`proj-${project.key}-plan`} sizes="100vw" />
+          </div>
+        </div>
+      </section>
+
+      {/* 14. Next and previous project navigation */}
+      <section className="border-b-[1.5px] border-[var(--ink)] bg-[var(--wash)]">
+        <div className="wrap py-0">
+          <nav className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-[var(--line)]">
+            <Link
+              href={`/projects/${prevProject.slug}`}
+              className="p-6 md:p-8 flex flex-col justify-between hover:bg-[var(--surface)] transition-colors group"
+            >
+              <span className="font-mono text-[10px] uppercase tracking-widest text-[var(--muted)] mb-2">
+                &larr; Previous Project
+              </span>
+              <span className="font-display font-extrabold text-2xl uppercase tracking-[0.01em] text-[var(--ink)] group-hover:text-[var(--accent)]">
+                {prevProject.name}
+              </span>
+            </Link>
+
+            <Link
+              href={`/projects/${nextProject.slug}`}
+              className="p-6 md:p-8 flex flex-col justify-between md:items-end hover:bg-[var(--surface)] transition-colors group text-left md:text-right"
+            >
+              <span className="font-mono text-[10px] uppercase tracking-widest text-[var(--muted)] mb-2">
+                Next Project &rarr;
+              </span>
+              <span className="font-display font-extrabold text-2xl uppercase tracking-[0.01em] text-[var(--ink)] group-hover:text-[var(--accent)]">
+                {nextProject.name}
+              </span>
+            </Link>
+          </nav>
+        </div>
+      </section>
+
+      {/* 15. Final CtaBand */}
+      <CtaBand variant="projects" ctaId={`project_${project.slug}_end`} />
+    </article>
   )
 }

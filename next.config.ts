@@ -77,6 +77,45 @@ const nextConfig: NextConfig = {
       },
     ]
   },
+  async redirects() {
+    return [
+      {
+        source: '/projects/the-clay-house',
+        destination: '/projects',
+        permanent: true,
+      },
+      {
+        source: '/projects/the-veranda-villa',
+        destination: '/projects',
+        permanent: true,
+      },
+      {
+        source: '/projects/aashraya-farmstead',
+        destination: '/projects',
+        permanent: true,
+      },
+      {
+        source: '/projects/vidya-learning-center',
+        destination: '/projects',
+        permanent: true,
+      },
+      {
+        source: '/projects/heritage-library-bhagalpur',
+        destination: '/projects',
+        permanent: true,
+      },
+      {
+        source: '/projects/zero-carbon-pavilion',
+        destination: '/projects',
+        permanent: true,
+      },
+      {
+        source: '/projects/codename-madhuban',
+        destination: '/projects',
+        permanent: true,
+      },
+    ]
+  },
 }
 
 export default nextConfig
