@@ -24,7 +24,7 @@
 | 10 Tools & Feasibility | done | `861bd78` | 3 Nov 2026 | `/calculators` index; `/calculators/cost-estimator` with NCR notice; `/calculators/far-checker`; `/calculators/site-feasibility` canvas mapped to tokens; admin tools gated. |
 | 11 SEO & Schema | done | `3a83f37` | 3 Nov 2026 | `app/robots.ts` disallows `/api/`; `app/sitemap.ts` includes all public routes; root `Organization` + `HomeAndConstructionBusiness` schema; `app/specifications` gated (404 while empty); `app/opengraph-image.tsx`. |
 | 12 Mobile Pass | done | `9a57ea1` | 3 Nov 2026 | Mobile viewports (360x640, 390x844, 412x915) verified; sticky `MobileCtaBar` hides primary button on `/book-a-call`; screenshots captured. |
-| 13 Verification & Hand-back | done | (current) | 3 Nov 2026 | Deleted `/_kit`; `npm run verify` exits 0; story matrix 13/13 passes; 0 banned tokens; 0 competitor mentions. |
+| 13 Verification & Hand-back | done | `c6d842e` | 3 Nov 2026 | Deleted `/_kit`; `npm run verify` exits 0; story matrix 13/13 passes; 0 banned tokens; 0 competitor mentions. |
 
 ---
 
