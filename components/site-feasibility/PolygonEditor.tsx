@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import { Point2D, PlotEdge } from "@/lib/site-feasibility/types";
+import { Point2D } from "@/lib/site-feasibility/types";
 import { calculateDistance, calculateOutwardNormalOffset } from "@/lib/site-feasibility/geometry";
 import { 
   DrawingUnit, 
@@ -512,11 +512,11 @@ export default function PolygonEditor({
               <path
                 d="M 40 0 L 0 0 0 40"
                 fill="none"
-                stroke="rgba(0,0,0,0.06)"
+                stroke="var(--grid)"
                 strokeWidth="1"
               />
             </pattern>
-            {/* Diagonal Red Hatching Pattern for setbacks */}
+            {/* Setback Hatching Pattern in --line */}
             <pattern
               id="setback-hatch"
               width="8"
@@ -529,7 +529,7 @@ export default function PolygonEditor({
                 y1="0"
                 x2="0"
                 y2="8"
-                stroke="rgba(239, 68, 68, 0.4)"
+                stroke="var(--line)"
                 strokeWidth="1.5"
               />
             </pattern>
@@ -543,7 +543,7 @@ export default function PolygonEditor({
           </defs>
           <rect x="-1000" y="-1000" width="3000" height="3000" fill="url(#grid)" />
 
-          {/* Render Red Hatch Setback Overlay using Masking */}
+          {/* Render Setback Overlay using Masking */}
           {isClosed && isBuildableValid && buildableVertices.length >= 3 && (
             <rect
               x="-1000"
@@ -555,27 +555,32 @@ export default function PolygonEditor({
             />
           )}
 
-          {/* Draw Polygon Fill when closed (translucent background inside outer plot) */}
+          {/* Draw Polygon Fill when closed */}
           {vertices.length >= 3 && !isClosed && (
             <polygon
               points={outerPointsStr}
-              className="fill-transparent stroke-blue-400 stroke-2"
+              fill="none"
+              stroke="var(--accent)"
+              strokeWidth="1.5"
               strokeDasharray="5,5"
             />
           )}
           {vertices.length >= 3 && isClosed && (
             <polygon
               points={outerPointsStr}
-              className="fill-transparent stroke-neutral-300 stroke-1"
+              fill="none"
+              stroke="var(--ink)"
+              strokeWidth="1.5"
             />
           )}
 
-          {/* Render Green Buildable footprint polygon */}
+          {/* Render Buildable footprint polygon in --accent */}
           {isClosed && isBuildableValid && buildableVertices.length >= 3 && (
             <polygon
               points={innerPointsStr}
-              fill="rgba(34, 197, 94, 0.12)"
-              stroke="rgb(34, 197, 94)"
+              fill="var(--accent)"
+              fillOpacity="0.15"
+              stroke="var(--accent)"
               strokeWidth="2"
               strokeDasharray="4,2"
               className="transition-all duration-300"
@@ -756,11 +761,15 @@ export default function PolygonEditor({
               cx={metersToScreen(vertices[0]).x}
               cy={metersToScreen(vertices[0]).y}
               r="12"
-              className="fill-green-500/20 stroke-green-500 stroke-2 animate-ping"
+              fill="var(--accent)"
+              fillOpacity="0.2"
+              stroke="var(--accent)"
+              strokeWidth="2"
+              className="animate-ping"
             />
           )}
 
-          {/* Render draggable Vertex circles */}
+          {/* Render draggable Vertex circles (handles in --ink) */}
           {vertices.map((p, i) => {
             const scr = metersToScreen(p);
             const isFirst = i === 0;
@@ -772,13 +781,10 @@ export default function PolygonEditor({
                   cy={scr.y}
                   r="6"
                   onMouseDown={(e) => handleVertexMouseDown(i, e)}
-                  className={`transition-all ${isPanMode ? "cursor-grab pointer-events-none" : "cursor-move"} ${
-                    isFirst && !isClosed
-                      ? hoveringFirstVertex
-                        ? "fill-green-600 stroke-green-800 stroke-2 scale-125"
-                        : "fill-blue-600 stroke-white stroke-2 scale-110"
-                      : "fill-white stroke-blue-500 stroke-2 hover:fill-blue-500"
-                  }`}
+                  fill={isFirst && !isClosed && hoveringFirstVertex ? 'var(--accent)' : 'var(--surface)'}
+                  stroke="var(--ink)"
+                  strokeWidth="2"
+                  className={`transition-all ${isPanMode ? "cursor-grab pointer-events-none" : "cursor-move"} hover:scale-125`}
                 />
                 <text
                   x={scr.x}

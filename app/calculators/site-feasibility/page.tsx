@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Point2D, SiteEntity, PlotEdge } from "@/lib/site-feasibility/types";
+import { Point2D, PlotEdge } from "@/lib/site-feasibility/types";
 import {
   calculatePolygonArea,
   calculatePolygonPerimeter,
@@ -18,7 +18,11 @@ import { SUGGESTED_CITIES } from "@/lib/site-feasibility/registry";
 import PolygonEditor from "@/components/site-feasibility/PolygonEditor";
 import SandboxPanel from "@/components/site-feasibility/SandboxPanel";
 import { IngestionRecord, VerificationStatus } from "@/lib/site-feasibility/ingestion-types";
-import { ShieldCheck, ClipboardList, Ruler, FileJson, Route, AlertTriangle, Square, Building, MapPin, ExternalLink, Download, Upload, Loader2 } from "lucide-react";
+import { ShieldCheck, ClipboardList, Ruler, FileJson, AlertTriangle, Building, MapPin, ExternalLink, Download, Upload, Loader2 } from "lucide-react";
+import { Notice } from "@/components/ui/Notice";
+import CtaBand from "@/components/ui/CtaBand";
+import { Breadcrumb } from "@/components/ui/Breadcrumb";
+import { Eyebrow } from "@/components/ui/Eyebrow";
 
 export default function SiteFeasibilityPage() {
   const [vertices, setVertices] = useState<Point2D[]>([]);
@@ -233,25 +237,46 @@ export default function SiteFeasibilityPage() {
     return directions[val];
   };
 
-  const getSetbackTypeDisplay = (type: 'front' | 'side' | 'rear', isRoad: boolean) => {
-    if (isRoad) return "Front (Road)";
-    if (type === 'rear') return "Rear Boundary";
-    return "Side Boundary";
-  };
 
   const allTestsPassed = unitTestResults.length > 0 && unitTestResults.every(r => r.passed);
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-6xl font-sans">
-      {/* Page Header */}
-      <div className="mb-6">
-        <h1 className="text-2xl md:text-3xl font-bold text-neutral-800 tracking-tight">
-          Site Feasibility Calculator
-        </h1>
-        <p className="text-neutral-600 text-sm mt-1.5 max-w-3xl leading-relaxed">
-          Evaluate plot boundaries, building setbacks, road width constraints, and development potential with our interactive site feasibility calculator. Designed for plot feasibility analysis and municipal bye-law evaluation before design moves forward.
-        </p>
-      </div>
+    <div className="min-h-screen bg-[var(--bg)] text-[var(--ink)]">
+      <div className="max-w-6xl mx-auto px-4 py-8">
+        {/* Breadcrumb */}
+        <Breadcrumb
+          items={[
+            { label: 'Home', href: '/' },
+            { label: 'Tools', href: '/calculators' },
+            { label: 'Site Feasibility' },
+          ]}
+          className="mb-6"
+        />
+
+        {/* Page Header */}
+        <div className="mb-6">
+          <Eyebrow text="CAD Tools" className="mb-2" />
+          <h1 className="font-display text-4xl sm:text-5xl font-extrabold uppercase tracking-tight text-[var(--ink)]">
+            Site Feasibility Calculator
+          </h1>
+          <p className="font-sans text-[var(--muted)] text-base mt-2 max-w-3xl leading-relaxed mb-6">
+            Evaluate plot boundaries, building setbacks, road width constraints, and development potential with our interactive site feasibility calculator.
+          </p>
+
+          {/* Coverage Notice per Section 12 */}
+          <Notice
+            label="Rules coverage"
+            actionText="Get a free plot check"
+            actionHref="/book-a-call?src=tool-feasibility-coverage"
+          >
+            Rules loaded: Bihar Building Bye-laws 2014. For plots in Gurugram and Delhi, we run the check by hand.
+          </Notice>
+        </div>
+
+        {/* Top CTA Band */}
+        <div className="mb-8">
+          <CtaBand id="tool-feasibility-top" variant="plot-check" />
+        </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Left Side: Polygon Editor Workspace */}
@@ -867,15 +892,21 @@ export default function SiteFeasibilityPage() {
         </div>
       </div>
 
-      {/* Sandbox Panel (Slice 6) */}
-      <div className="mt-8">
-        <SandboxPanel
-          records={ingestionRecords}
-          onUpdateStatus={handleUpdateStatus}
-          onRefresh={fetchRecords}
-          isLoading={isLoadingRecords}
-        />
+        {/* Sandbox Panel (Admin Only) */}
+        {process.env.NEXT_PUBLIC_ENABLE_ADMIN_TOOLS === 'true' && (
+          <div className="mt-8">
+            <SandboxPanel
+              records={ingestionRecords}
+              onUpdateStatus={handleUpdateStatus}
+              onRefresh={fetchRecords}
+              isLoading={isLoadingRecords}
+            />
+          </div>
+        )}
       </div>
+
+      {/* End CTA Band */}
+      <CtaBand id="tool-feasibility-result" variant="plot-check" />
     </div>
   );
 }

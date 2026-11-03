@@ -12,9 +12,7 @@ import type {
   HeightRuleRow,
 } from "@/lib/site-feasibility/normalization-types";
 import {
-  ShieldAlert,
   CheckCircle,
-  HelpCircle,
   Plus,
   Trash2,
   Link,
@@ -25,7 +23,6 @@ import {
   RotateCcw,
   AlertTriangle,
   Info,
-  ChevronDown,
   X,
 } from "lucide-react";
 
@@ -43,7 +40,7 @@ export default function RuleNormalizationEditor({
   const [selectedOccupancy, setSelectedOccupancy] = useState<string>("");
   const [draftId, setDraftId] = useState<string | null>(null);
   const [status, setStatus] = useState<MappingApprovalStatus>("draft");
-  const [createdAt, setCreatedAt] = useState<string>("");
+  const [, setCreatedAt] = useState<string>("");
 
   // Rule rows state
   const [farRules, setFarRules] = useState<FarRuleRow[]>([]);
@@ -479,6 +476,10 @@ export default function RuleNormalizationEditor({
       </button>
     );
   };
+
+  if (process.env.NEXT_PUBLIC_ENABLE_ADMIN_TOOLS !== 'true') {
+    return null;
+  }
 
   return (
     <div className="flex flex-col h-full space-y-4">
@@ -962,7 +963,7 @@ export default function RuleNormalizationEditor({
                     <span className="text-neutral-500">Page {clause.pageNumber}</span>
                   </div>
                   <p className="text-neutral-600 italic font-mono text-[10px] leading-relaxed">
-                    "{clause.excerpt}"
+                    &quot;{clause.excerpt}&quot;
                   </p>
                 </button>
               ))}

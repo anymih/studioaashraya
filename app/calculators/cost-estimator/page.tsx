@@ -1,10 +1,15 @@
 'use client'
 
-import { useState } from 'react'
-import Button from '@/components/ui/Button'
-import { trackCalculatorComplete, trackCTAClick } from '@/lib/analytics'
-import { Calculator, Info } from 'lucide-react'
-import { COST_RATES, TIMELINE, QUALITY_DESCRIPTIONS, formatLakhs } from '@/lib/calculator-constants'
+import React, { useState } from 'react'
+import Link from 'next/link'
+import { Breadcrumb } from '@/components/ui/Breadcrumb'
+import { Eyebrow } from '@/components/ui/Eyebrow'
+import { Notice } from '@/components/ui/Notice'
+import { Button } from '@/components/ui/Button'
+import CtaBand from '@/components/ui/CtaBand'
+import { trackCalculatorComplete } from '@/lib/analytics'
+import { Calculator } from 'lucide-react'
+import { COST_RATES, TIMELINE, formatLakhs } from '@/lib/calculator-constants'
 
 const COST_FAQ_DATA = [
   { q: 'How much does it cost to build a house in Patna?', a: 'Construction cost in Patna ranges from ₹1,400–₹2,800 per sq ft depending on the quality of finish (basic, standard, or premium). A 1,000 sq ft home can cost between ₹14–28 lakhs approximately.' },
@@ -16,29 +21,37 @@ const COST_FAQ_DATA = [
 function CostFAQ() {
   const [openIdx, setOpenIdx] = useState<number | null>(null)
   return (
-    <div style={{ display: 'flex', flexDirection: 'column' }}>
+    <div className="flex flex-col border-t border-[var(--line)]">
       {COST_FAQ_DATA.map((faq, i) => (
-        <div key={i} style={{ borderBottom: '1px solid #E2D8CA' }}>
-          <button onClick={() => setOpenIdx(openIdx === i ? null : i)} style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px 0', border: 'none', backgroundColor: 'transparent', cursor: 'pointer', textAlign: 'left', gap: '12px' }}>
-            <span style={{ fontFamily: "'Inter', sans-serif", fontSize: '14px', fontWeight: 500, color: '#184A45', lineHeight: 1.5 }}>{faq.q}</span>
-            <span style={{ fontSize: '18px', color: '#184A45', flexShrink: 0, transition: 'transform 0.2s ease', transform: openIdx === i ? 'rotate(45deg)' : 'rotate(0deg)' }}>+</span>
+        <div key={i} className="border-b border-[var(--line)]">
+          <button
+            onClick={() => setOpenIdx(openIdx === i ? null : i)}
+            className="w-full flex justify-between items-center py-4 text-left gap-3 bg-transparent border-0 cursor-pointer"
+          >
+            <span className="font-sans text-sm font-semibold text-[var(--ink)] leading-snug">{faq.q}</span>
+            <span className="text-lg font-mono text-[var(--accent)] shrink-0 transition-transform">
+              {openIdx === i ? '−' : '+'}
+            </span>
           </button>
-          <div style={{ maxHeight: openIdx === i ? '300px' : '0', overflow: 'hidden', transition: 'max-height 0.3s ease' }}>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: '13px', color: '#666666', lineHeight: 1.7, margin: '0 0 16px 0' }}>{faq.a}</p>
-          </div>
+          {openIdx === i && (
+            <p className="font-sans text-xs sm:text-sm text-[var(--muted)] leading-relaxed pb-4">
+              {faq.a}
+            </p>
+          )}
         </div>
       ))}
     </div>
   )
 }
 
-const cities = ['Patna', 'Gaya', 'Muzaffarpur', 'Bhagalpur', 'Other'] as const
+const cities = ['Patna', 'Gaya', 'Muzaffarpur', 'Bhagalpur', 'Delhi NCR', 'Other'] as const
 const qualities = ['Basic', 'Standard', 'Premium'] as const
 
 export default function CostEstimatorPage() {
   const [area, setArea] = useState('')
   const [quality, setQuality] = useState('Standard')
-  const [city, setCity] = useState('Patna')
+  const [city, setCity] = useState<string>('Patna')
+  const [isNcr, setIsNcr] = useState(false)
   const [result, setResult] = useState<{
     min: number
     max: number
@@ -51,16 +64,29 @@ export default function CostEstimatorPage() {
     const sqft = parseInt(area)
     if (!sqft || sqft <= 0) return
 
-    const rates = COST_RATES[city][quality]
-    const min = sqft * rates[0]
-    const max = sqft * rates[1]
+    if (city === 'Delhi NCR') {
+      setIsNcr(true)
+      setResult(null)
+      trackCalculatorComplete('cost_estimator', {
+        built_up_area: sqft,
+        quality_level: quality,
+        city: 'Delhi NCR',
+      })
+      return
+    }
+
+    setIsNcr(false)
+    const rates = COST_RATES[city as keyof typeof COST_RATES] || COST_RATES.Other
+    const selectedRates = rates[quality as keyof typeof rates] || rates.Standard
+    const min = sqft * selectedRates[0]
+    const max = sqft * selectedRates[1]
 
     setResult({
       min,
       max,
-      perSqFtMin: rates[0],
-      perSqFtMax: rates[1],
-      timeline: TIMELINE[quality],
+      perSqFtMin: selectedRates[0],
+      perSqFtMax: selectedRates[1],
+      timeline: TIMELINE[quality as keyof typeof TIMELINE],
     })
 
     trackCalculatorComplete('cost_estimator', {
@@ -72,168 +98,173 @@ export default function CostEstimatorPage() {
     })
   }
 
+  const breadcrumbItems = [
+    { label: 'Home', href: '/' },
+    { label: 'Tools', href: '/calculators' },
+    { label: 'Cost Estimator' },
+  ]
+
   return (
-    <>
-      {/* Page header */}
-      <section className="pt-10 pb-6 px-4 text-center">
-        <h1 className="font-heading text-[var(--text-h1-m)] md:text-[var(--text-h1)] mb-3">
-          Construction Cost Estimator for Bihar
+    <article className="min-h-screen bg-[var(--bg)] text-[var(--ink)]">
+      {/* Breadcrumb & Header */}
+      <div className="wrap pt-8 pb-8">
+        <Breadcrumb items={breadcrumbItems} className="mb-6" />
+
+        <Eyebrow text="Planning Tools" className="mb-3" />
+        <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold uppercase tracking-tight leading-[0.92] mb-4">
+          Construction Cost Estimator
         </h1>
-        <p className="text-muted font-body max-w-xl mx-auto">
-          Get Bihar-specific construction cost estimates based on current market rates in your city.
+        <p className="font-sans text-base md:text-lg text-[var(--muted)] max-w-2xl leading-relaxed mb-6">
+          Calculate indicative construction budgets by built-up area and finish specifications.
         </p>
-      </section>
 
-      {/* Form card */}
-      <section className="px-4 pb-8">
-        <div className="max-w-[480px] mx-auto bg-surface rounded-card shadow-card border border-border p-6 md:p-8">
-          {/* Area input */}
-          <div className="mb-5">
-            <label className="block text-sm font-body font-medium mb-2">Built-up Area</label>
-            <div className="relative">
-              <input
-                type="number"
-                placeholder="e.g. 1500"
-                value={area}
-                onChange={(e) => setArea(e.target.value)}
-                className="w-full px-4 py-3 border border-border rounded-input font-body text-sm
-                           bg-bg focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary
-                           transition-all"
-              />
-              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-muted text-xs font-body">
-                sq ft
-              </span>
+        {/* Coverage notice per Section 12 */}
+        <Notice label="Rates coverage">
+          Rates loaded: Bihar tiers. For Delhi NCR we give an indicative range on request. A fixed figure always comes with a bill of quantities.
+        </Notice>
+      </div>
+
+      {/* Top CTA Band */}
+      <CtaBand id="tool-cost-top" variant="plot-check" />
+
+      {/* Form section */}
+      <section className="py-12 md:py-16 border-y border-[var(--line)] bg-[var(--surface)]">
+        <div className="wrap max-w-xl mx-auto">
+          <div className="border-[1.5px] border-[var(--ink)] bg-[var(--bg)] p-6 sm:p-8 space-y-6">
+            <h2 className="font-display font-bold uppercase text-2xl text-[var(--ink)]">
+              Estimate Your Build
+            </h2>
+
+            {/* Area input */}
+            <div>
+              <label className="block font-mono text-xs uppercase tracking-wider text-[var(--muted)] mb-2">
+                Built-up Area (sq ft)
+              </label>
+              <div className="relative">
+                <input
+                  type="number"
+                  placeholder="e.g. 2500"
+                  value={area}
+                  onChange={(e) => setArea(e.target.value)}
+                  className="w-full px-4 py-3 border-[1.5px] border-[var(--ink)] bg-[var(--surface)] font-mono text-base text-[var(--ink)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
+                />
+              </div>
             </div>
-          </div>
 
-          {/* Quality dropdown */}
-          <div className="mb-5">
-            <label className="block text-sm font-body font-medium mb-2">Construction Quality</label>
-            <select
-              value={quality}
-              onChange={(e) => setQuality(e.target.value)}
-              className="w-full px-4 py-3 border border-border rounded-input font-body text-sm
-                         bg-bg focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary
-                         transition-all cursor-pointer appearance-none"
-            >
-              {qualities.map((q) => (
-                <option key={q} value={q}>
-                  {q} {q === 'Standard' ? '(Recommended)' : ''}
-                </option>
-              ))}
-            </select>
-            <div className="mt-2 flex items-start gap-1.5 text-xs text-muted">
-              <Info size={12} className="mt-0.5 shrink-0" />
-              <span>{QUALITY_DESCRIPTIONS[quality]}</span>
+            {/* Quality dropdown */}
+            <div>
+              <label className="block font-mono text-xs uppercase tracking-wider text-[var(--muted)] mb-2">
+                Specification Standard
+              </label>
+              <select
+                value={quality}
+                onChange={(e) => setQuality(e.target.value)}
+                className="w-full px-4 py-3 border-[1.5px] border-[var(--ink)] bg-[var(--surface)] font-mono text-sm text-[var(--ink)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)] cursor-pointer"
+              >
+                {qualities.map((q) => (
+                  <option key={q} value={q}>
+                    {q} Specification
+                  </option>
+                ))}
+              </select>
             </div>
-          </div>
 
-          {/* City dropdown */}
-          <div className="mb-6">
-            <label className="block text-sm font-body font-medium mb-2">City in Bihar</label>
-            <select
-              value={city}
-              onChange={(e) => setCity(e.target.value)}
-              className="w-full px-4 py-3 border border-border rounded-input font-body text-sm
-                         bg-bg focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary
-                         transition-all cursor-pointer appearance-none"
+            {/* City dropdown */}
+            <div>
+              <label className="block font-mono text-xs uppercase tracking-wider text-[var(--muted)] mb-2">
+                Location / Region
+              </label>
+              <select
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+                className="w-full px-4 py-3 border-[1.5px] border-[var(--ink)] bg-[var(--surface)] font-mono text-sm text-[var(--ink)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)] cursor-pointer"
+              >
+                {cities.map((c) => (
+                  <option key={c} value={c}>
+                    {c}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {/* Calculate button */}
+            <Button
+              variant="primary"
+              className="w-full"
+              onClick={handleCalculate}
             >
-              {cities.map((c) => (
-                <option key={c} value={c}>
-                  {c === 'Other' ? 'Other Bihar City' : c}
-                </option>
-              ))}
-            </select>
+              <Calculator size={18} className="mr-2 inline" /> Calculate Estimate
+            </Button>
           </div>
-
-          {/* Calculate button */}
-          <Button
-            variant="primary"
-            size="lg"
-            className="w-full"
-            onClick={handleCalculate}
-            icon={<Calculator size={18} />}
-          >
-            Calculate Estimate
-          </Button>
         </div>
       </section>
 
-      {/* Result card */}
-      {result && (
-        <section className="px-4 pb-8 animate-fade-in-up">
-          <div className="max-w-[480px] mx-auto bg-surface rounded-card shadow-card border border-border p-6 md:p-8">
-            <div className="flex items-center gap-2 mb-1">
-              <span className="text-[11px] text-muted font-body uppercase tracking-wider">
-                Current Market Estimate
-              </span>
-            </div>
+      {/* Result Section */}
+      {(result || isNcr) && (
+        <section className="py-12 border-b border-[var(--line)] bg-[var(--bg)]">
+          <div className="wrap max-w-xl mx-auto">
+            {isNcr ? (
+              <div className="border-[1.5px] border-[var(--accent)] bg-[var(--surface)] p-6 sm:p-8 space-y-4">
+                <span className="font-mono text-xs uppercase tracking-widest text-[var(--accent)] font-semibold block">
+                  Delhi NCR Estimate
+                </span>
+                <h3 className="font-display font-extrabold uppercase text-3xl text-[var(--ink)]">
+                  Indicative range on request
+                </h3>
+                <p className="font-sans text-base text-[var(--muted)] leading-relaxed">
+                  For plots in Gurugram and Delhi NCR, construction cost varies by basement requirement, soil condition, and structural frame specifications. We give an indicative range on request, followed by a detailed bill of quantities after consultation.
+                </p>
+                <div className="pt-2">
+                  <Link
+                    href="/book-a-call?src=tool-cost-result"
+                    className="inline-flex items-center gap-2 px-5 py-3 bg-[var(--accent)] text-[var(--on-accent)] font-mono text-xs uppercase tracking-wider font-semibold hover:bg-[var(--ink)] transition-colors"
+                  >
+                    Get Indicative Quote &rarr;
+                  </Link>
+                </div>
+              </div>
+            ) : result ? (
+              <div className="border-[1.5px] border-[var(--ink)] bg-[var(--surface)] p-6 sm:p-8 space-y-6">
+                <div>
+                  <span className="font-mono text-xs uppercase tracking-widest text-[var(--muted)] font-semibold block mb-1">
+                    Market Rate Estimate ({city})
+                  </span>
+                  <div className="font-display font-extrabold text-3xl sm:text-4xl text-[var(--accent)]">
+                    {formatLakhs(result.min)} – {formatLakhs(result.max)}
+                  </div>
+                  <p className="font-mono text-xs text-[var(--muted)] mt-1">
+                    Approx. ₹{result.perSqFtMin.toLocaleString()} – ₹{result.perSqFtMax.toLocaleString()} per sq ft
+                  </p>
+                </div>
 
-            <div className="mb-4">
-              <p className="text-sm text-muted font-body mb-1">Estimated Cost Range</p>
-              <p className="font-heading text-[var(--text-h2)] text-primary">
-                {formatLakhs(result.min)} – {formatLakhs(result.max)}
-              </p>
-              <p className="text-sm text-muted font-body mt-1">
-                Approx. ₹{result.perSqFtMin.toLocaleString()} – ₹{result.perSqFtMax.toLocaleString()} per sq ft
-              </p>
-            </div>
+                <div className="border-t border-[var(--line)] pt-4">
+                  <span className="font-mono text-xs uppercase tracking-wider text-[var(--muted)] block mb-1">
+                    Estimated Construction Timeline
+                  </span>
+                  <p className="font-sans font-semibold text-base text-[var(--ink)]">{result.timeline}</p>
+                </div>
 
-            <div className="mb-4 pt-4 border-t border-border">
-              <p className="text-sm text-muted font-body mb-1">Estimated Timeline</p>
-              <p className="font-body font-semibold text-text">{result.timeline}</p>
-            </div>
-
-            <p className="text-xs text-muted font-body italic leading-relaxed">
-              *This is an indicative estimate based on current Bihar market rates. Actual costs may vary based on
-              site conditions, specific material choices, design complexity, and contractor rates. Contact us for a
-              detailed estimate.
-            </p>
+                <p className="font-mono text-xs text-[var(--muted)] italic leading-relaxed">
+                  *Indicative estimate based on local rates. Final construction cost is guaranteed in writing with a complete bill of quantities.
+                </p>
+              </div>
+            ) : null}
           </div>
         </section>
       )}
 
-      {/* CTA */}
-      <section className="px-4 pb-12">
-        <div className="max-w-[480px] mx-auto bg-primary rounded-2xl p-6 md:p-8 text-center">
-          <h3 className="font-heading text-xl text-white mb-2">
-            Discuss this estimate with the architect
-          </h3>
-          <p className="text-white/70 font-body text-sm mb-5">
-            Get a personalized assessment based on your specific requirements and plot.
-          </p>
-          <Button
-            href="/book-a-call"
-            onClick={() => trackCTAClick('discuss_cost_estimate', 'calculator_result')}
-            variant="secondary"
-            className="!border-white !text-white hover:!bg-white hover:!text-primary"
-          >
-            Book a Call
-          </Button>
-        </div>
-      </section>
-
       {/* FAQ Section */}
-      <section className="px-4 pb-16">
-        <div className="max-w-[480px] mx-auto">
-          <h2 className="font-heading text-2xl text-primary mb-6">
-            Construction Cost FAQs
+      <section className="py-16 md:py-20 border-b border-[var(--line)] bg-[var(--surface)]">
+        <div className="wrap max-w-xl mx-auto">
+          <h2 className="font-display font-extrabold uppercase text-2xl sm:text-3xl text-[var(--ink)] mb-6">
+            Cost & Estimation FAQs
           </h2>
           <CostFAQ />
         </div>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'FAQPage',
-            mainEntity: COST_FAQ_DATA.map(faq => ({
-              '@type': 'Question',
-              name: faq.q,
-              acceptedAnswer: { '@type': 'Answer', text: faq.a },
-            })),
-          }) }}
-        />
       </section>
-    </>
+
+      {/* Result CTA Band */}
+      <CtaBand id="tool-cost-result" variant="plot-check" />
+    </article>
   )
 }

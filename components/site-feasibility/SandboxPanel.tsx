@@ -47,6 +47,10 @@ export default function SandboxPanel({
     }
   };
 
+  if (process.env.NEXT_PUBLIC_ENABLE_ADMIN_TOOLS !== 'true') {
+    return null
+  }
+
   return (
     <div className="bg-white border border-neutral-200 rounded-lg p-5 shadow-sm space-y-4">
       {/* Panel Header */}
@@ -261,7 +265,7 @@ export default function SandboxPanel({
                               <span className="font-semibold text-neutral-600 block text-[10px] mb-0.5">
                                 {c.referenceSection} (Page {c.pageNumber})
                               </span>
-                              <p className="text-neutral-700 italic font-mono text-[10px]">"{c.excerpt}"</p>
+                              <p className="text-neutral-700 italic font-mono text-[10px]">&quot;{c.excerpt}&quot;</p>
                             </div>
                           ))}
                         </div>
@@ -277,7 +281,7 @@ export default function SandboxPanel({
                               <span className="font-semibold text-neutral-600 block text-[10px] mb-0.5">
                                 {c.referenceSection} (Page {c.pageNumber})
                               </span>
-                              <p className="text-neutral-700 italic font-mono text-[10px]">"{c.excerpt}"</p>
+                              <p className="text-neutral-700 italic font-mono text-[10px]">&quot;{c.excerpt}&quot;</p>
                             </div>
                           ))}
                         </div>
@@ -293,7 +297,7 @@ export default function SandboxPanel({
                               <span className="font-semibold text-neutral-600 block text-[10px] mb-0.5">
                                 {c.referenceSection} (Page {c.pageNumber})
                               </span>
-                              <p className="text-neutral-700 italic font-mono text-[10px]">"{c.excerpt}"</p>
+                              <p className="text-neutral-700 italic font-mono text-[10px]">&quot;{c.excerpt}&quot;</p>
                             </div>
                           ))}
                         </div>
