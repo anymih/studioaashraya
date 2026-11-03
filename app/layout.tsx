@@ -1,58 +1,81 @@
 import type { Metadata, Viewport } from 'next'
+import { Big_Shoulders, IBM_Plex_Sans, IBM_Plex_Mono } from 'next/font/google'
 import '@/styles/globals.css'
 import Header from '@/components/ui/Header'
 import Footer from '@/components/ui/Footer'
-import BottomNav from '@/components/ui/BottomNav'
+import MobileCtaBar from '@/components/ui/MobileCtaBar'
+import SampleBanner from '@/components/ui/SampleBanner'
 import { GoogleAnalytics } from '@next/third-parties/google'
 import { ScrollTracker } from '@/components/ui/ScrollTracker'
+
+const fontDisplay = Big_Shoulders({
+  subsets: ['latin'],
+  weight: ['600', '800'],
+  variable: '--font-display',
+  display: 'swap',
+  fallback: ['Arial Narrow', 'Impact', 'sans-serif'],
+})
+
+const fontSans = IBM_Plex_Sans({
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+  variable: '--font-sans',
+  display: 'swap',
+  fallback: ['system-ui', 'sans-serif'],
+})
+
+const fontMono = IBM_Plex_Mono({
+  subsets: ['latin'],
+  weight: ['400', '500'],
+  variable: '--font-mono',
+  display: 'swap',
+  fallback: ['ui-monospace', 'monospace'],
+})
 
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
+  viewportFit: 'cover',
 }
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://studioaashraya.com'
+
 export const metadata: Metadata = {
-  title: 'Architect in Patna, Bihar | House & Home Design — Studio Aashraya',
-  description: 'Studio Aashraya is an architect in Patna designing custom homes, 3D house plans, and sustainable residential spaces across Bihar. Book a free consultation.',
-  keywords: ['architect Patna', 'architect in Patna', 'residential architect Bihar', 'house design Patna', 'home design Bihar', 'architecture firm Patna', '3D house design Bihar', 'best architect Patna', 'ghar ka design Patna', 'building design Bihar', 'architecture services Patna'],
+  metadataBase: new URL(siteUrl),
+  title: {
+    template: '%s | Studio Aashraya',
+    default: 'Architect and Builder in Gurugram, Delhi NCR | Studio Aashraya',
+  },
+  description:
+    'IIT-led architecture and construction for private homes in Gurugram and Delhi NCR. Design, engineering, approvals and build under one accountable team.',
+  keywords: [
+    'architect and builder in Gurugram',
+    'turnkey home construction Gurugram',
+    'NRI home construction Gurugram',
+    'plot feasibility report Gurugram',
+    'architect in Delhi',
+    'architect in Patna',
+    'IIT architect Gurugram',
+  ],
   authors: [{ name: 'Anumeh Prakhar, Studio Aashraya' }],
   icons: {
-    icon: [
-      { url: '/favicon.ico', sizes: '32x32', type: 'image/x-icon' },
-      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-    ],
-    apple: [
-      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
-    ],
-    other: [
-      { url: '/android-chrome-192x192.png', sizes: '192x192', type: 'image/png' },
-      { url: '/android-chrome-512x512.png', sizes: '512x512', type: 'image/png' },
-    ],
+    icon: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
   },
-  manifest: '/site.webmanifest',
   openGraph: {
-    title: 'Architect in Patna, Bihar | House & Home Design — Studio Aashraya',
-    description: 'Studio Aashraya is an architect in Patna designing custom homes, 3D house plans, and sustainable residential spaces across Bihar. Book a free consultation.',
-    url: 'https://studioaashraya.site',
+    title: 'Architect and Builder in Gurugram, Delhi NCR | Studio Aashraya',
+    description:
+      'IIT-led architecture and construction for private homes in Gurugram and Delhi NCR. Design, engineering, approvals and build under one accountable team.',
+    url: siteUrl,
     siteName: 'Studio Aashraya',
     locale: 'en_IN',
     type: 'website',
-    images: [
-      {
-        url: 'https://studioaashraya.site/assets/og-social-card.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Architect in Patna Bihar — residential home design by Studio Aashraya',
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Architect in Patna, Bihar | House & Home Design — Studio Aashraya',
-    description: 'Studio Aashraya is an architect in Patna designing custom homes, 3D house plans, and sustainable residential spaces across Bihar. Book a free consultation.',
-    images: ['https://studioaashraya.site/assets/og-social-card.jpg'],
-    site: '@studioaashraya',
+    title: 'Architect and Builder in Gurugram, Delhi NCR | Studio Aashraya',
+    description:
+      'IIT-led architecture and construction for private homes in Gurugram and Delhi NCR. Design, engineering, approvals and build under one accountable team.',
   },
   robots: {
     index: true,
@@ -60,129 +83,43 @@ export const metadata: Metadata = {
     googleBot: { index: true, follow: true },
   },
   alternates: {
-    canonical: 'https://studioaashraya.site',
+    canonical: siteUrl,
   },
 }
 
-const globalSchema = {
+const rootSchema = {
   '@context': 'https://schema.org',
   '@graph': [
     {
-      '@type': ['LocalBusiness', 'Architect'],
-      '@id': 'https://studioaashraya.site/#business',
+      '@type': ['Organization', 'HomeAndConstructionBusiness'],
+      '@id': `${siteUrl}/#organization`,
       name: 'Studio Aashraya',
-      alternateName: 'Studio Aashraya Architecture',
-      description: 'IIT-trained architecture studio in Patna, Bihar designing climate-responsive, vernacular homes and commercial buildings. Specializing in sustainable architecture, passive cooling design, and vernacular materials.',
-      url: 'https://studioaashraya.site',
-      logo: {
-        '@type': 'ImageObject',
-        url: 'https://studioaashraya.site/assets/logo%20image.svg',
-        width: 200,
-        height: 60,
-      },
-      image: 'https://studioaashraya.site/assets/og-social-card.jpg',
-      telephone: '+919473031016',
-      email: 'hello@studioaashraya.site',
+      url: siteUrl,
+      description:
+        'IIT-led architecture and construction for private homes in Gurugram and Delhi NCR. On time, or 10% back. 15-year warranty.',
+      telephone: '+91-9473031016',
+      email: 'contact@studioaashraya.com',
       address: {
         '@type': 'PostalAddress',
-        streetAddress: 'D103, Road 6B, Rajiv Nagar',
-        addressLocality: 'Patna',
-        addressRegion: 'Bihar',
-        postalCode: '800016',
+        streetAddress: 'C93, Old DLF Colony, Sector 14',
+        addressLocality: 'Gurugram',
+        addressRegion: 'Haryana',
         addressCountry: 'IN',
       },
-      geo: {
-        '@type': 'GeoCoordinates',
-        latitude: 25.5941,
-        longitude: 85.1376,
-      },
       areaServed: [
-        { '@type': 'City', name: 'Patna' },
-        { '@type': 'State', name: 'Bihar' },
-        { '@type': 'City', name: 'Gaya' },
-        { '@type': 'City', name: 'Nalanda' },
-        { '@type': 'City', name: 'Delhi' },
-        { '@type': 'City', name: 'Noida' },
         { '@type': 'City', name: 'Gurugram' },
+        { '@type': 'City', name: 'Delhi' },
+        { '@type': 'City', name: 'Patna' },
+        { '@type': 'City', name: 'Almora' },
       ],
-      serviceArea: {
-        '@type': 'GeoCircle',
-        geoMidpoint: {
-          '@type': 'GeoCoordinates',
-          latitude: 25.5941,
-          longitude: 85.1376,
-        },
-        geoRadius: '500000',
-      },
-      hasOfferCatalog: {
-        '@type': 'OfferCatalog',
-        name: 'Architecture and Design Services',
-        itemListElement: [
-          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Residential Architecture Design', description: 'Climate-responsive residential home design for Bihar. Passive cooling, vernacular materials, and site-specific design.' } },
-          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Interior Design', description: 'Interior design services rooted in comfort, culture, and material honesty.' } },
-          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Sustainable Architecture', description: 'Energy-efficient, climate-adaptive building design using passive cooling and local materials.' } },
-          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Construction Supervision', description: 'On-site and remote construction supervision to ensure design intent is faithfully executed.' } },
-          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: '3D Visualization', description: 'Photorealistic 3D renders and walkthroughs for residential and commercial projects.' } },
-        ],
-      },
       founder: {
         '@type': 'Person',
-        '@id': 'https://studioaashraya.site/#founder',
         name: 'Anumeh Prakhar',
-        jobTitle: 'Principal Architect',
-        alumniOf: { '@type': 'EducationalOrganization', name: 'IIT (BHU) Varanasi' },
-        knowsAbout: ['Sustainable Architecture', 'Passive Cooling Design', 'Vernacular Architecture', 'Climate-Responsive Design', 'Residential Architecture Bihar'],
-        url: 'https://studioaashraya.site/about',
-      },
-      priceRange: '₹₹₹',
-      currenciesAccepted: 'INR',
-      paymentAccepted: 'Cash, Bank Transfer',
-      openingHoursSpecification: [
-        { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '10:00', closes: '19:00' },
-        { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Saturday'], opens: '10:00', closes: '14:00' },
-      ],
-      sameAs: [
-        'https://www.instagram.com/studioaashraya',
-        'https://www.linkedin.com/company/studioaashraya',
-      ],
-    },
-    {
-      '@type': 'Organization',
-      '@id': 'https://studioaashraya.site/#organization',
-      name: 'Studio Aashraya',
-      url: 'https://studioaashraya.site',
-      logo: 'https://studioaashraya.site/assets/logo%20image.svg',
-      contactPoint: {
-        '@type': 'ContactPoint',
-        telephone: '+919473031016',
-        contactType: 'customer service',
-        areaServed: 'IN',
-        availableLanguage: ['English', 'Hindi'],
-      },
-    },
-    {
-      '@type': 'WebSite',
-      '@id': 'https://studioaashraya.site/#website',
-      url: 'https://studioaashraya.site',
-      name: 'Studio Aashraya',
-      description: 'IIT-trained architecture studio in Patna, Bihar. Climate-responsive, sustainable residential and commercial architecture.',
-      publisher: { '@id': 'https://studioaashraya.site/#organization' },
-      inLanguage: 'en-IN',
-    },
-    {
-      '@type': 'Service',
-      serviceType: 'Architecture Design',
-      provider: { '@id': 'https://studioaashraya.site/#business' },
-      areaServed: [
-        { '@type': 'City', name: 'Patna' },
-        { '@type': 'State', name: 'Bihar' },
-      ],
-      description: 'Full-service residential and commercial architecture design in Bihar. Specializing in climate-responsive, sustainable, and vernacular architecture.',
-      offers: {
-        '@type': 'Offer',
-        priceCurrency: 'INR',
-        priceRange: '₹₹₹',
-        eligibleRegion: { '@type': 'Country', name: 'India' },
+        jobTitle: 'Principal Architect & Builder',
+        alumniOf: {
+          '@type': 'CollegeOrUniversity',
+          name: 'Indian Institute of Technology (BHU) Varanasi',
+        },
       },
     },
   ],
@@ -194,60 +131,40 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html
+      lang="en-IN"
+      className={`${fontDisplay.variable} ${fontSans.variable} ${fontMono.variable}`}
+      suppressHydrationWarning
+    >
       <head>
-        {/* Preconnects */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
-        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
-          rel="stylesheet"
-        />
-        <style
+        <script
           dangerouslySetInnerHTML={{
-            __html: `
-              body {
-                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-              }
-            `,
+            __html: `try{var url=new URL(window.location.href);var q=url.searchParams.get('theme');var t=q||localStorage.getItem('sa-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}`,
           }}
         />
-        <link
-          rel="preload"
-          as="image"
-          href="/images/hero.webp"
-        />
-
-        {/* Geo & Author meta */}
-        <meta name="author" content="Anumeh Prakhar, Studio Aashraya" />
-        <meta name="geo.region" content="IN-BR" />
-        <meta name="geo.placename" content="Patna, Bihar, India" />
-        <meta name="geo.position" content="25.5941;85.1376" />
-        <meta name="ICBM" content="25.5941, 85.1376" />
-
-        {/* Global JSON-LD @graph — Blocks 1, 2, 3, 7 */}
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(globalSchema) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(rootSchema) }}
         />
       </head>
-      <body className="bg-bg antialiased" style={{
-        width: '100%',
-        maxWidth: '100vw',
-        overflowX: 'hidden',
-        margin: 0,
-        padding: 0,
-      }}>
+      <body className="bg-[var(--bg)] text-[var(--ink)] font-sans antialiased selection:bg-[var(--accent)] selection:text-[var(--on-accent)]">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:px-4 focus:py-2 focus:bg-[var(--ink)] focus:text-[var(--bg)] focus:font-mono focus:text-xs focus:uppercase focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
+        >
+          Skip to content
+        </a>
         <ScrollTracker />
         <Header />
-        <main style={{width: '100%', paddingBottom: '80px'}}>
+        <SampleBanner />
+        <main id="main-content" className="w-full pb-20 md:pb-0">
           {children}
         </main>
         <Footer />
-        <BottomNav />
-        <GoogleAnalytics gaId="G-MQSCXRFH76" />
+        <MobileCtaBar />
+        {process.env.NEXT_PUBLIC_GA_ID && (
+          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+        )}
       </body>
     </html>
   )

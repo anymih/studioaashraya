@@ -1,59 +1,53 @@
+import React from 'react'
 import Link from 'next/link'
 
-type ButtonVariant = 'primary' | 'secondary'
-type ButtonSize = 'md' | 'lg'
-
-interface ButtonProps {
+export interface ButtonProps {
   children: React.ReactNode
-  variant?: ButtonVariant
-  size?: ButtonSize
   href?: string
-  type?: 'button' | 'submit'
+  variant?: 'primary' | 'alt' | 'secondary' | 'outline'
+  size?: 'sm' | 'md' | 'lg' | string
+  icon?: React.ReactNode
   className?: string
   onClick?: () => void
+  type?: 'button' | 'submit' | 'reset'
   disabled?: boolean
-  icon?: React.ReactNode
-}
-
-const variantStyles: Record<ButtonVariant, string> = {
-  primary:
-    'bg-primary text-white shadow-btn hover:opacity-90 hover:scale-[1.02]',
-  secondary:
-    'bg-transparent border-[1.5px] border-accent text-accent hover:bg-accent hover:text-white',
-}
-
-const sizeStyles: Record<ButtonSize, string> = {
-  md: 'px-6 py-3 text-sm',
-  lg: 'px-8 py-4 text-base',
+  'aria-label'?: string
 }
 
 export default function Button({
   children,
+  href,
   variant = 'primary',
   size = 'md',
-  href,
-  type = 'button',
+  icon,
   className = '',
   onClick,
+  type = 'button',
   disabled = false,
-  icon,
+  'aria-label': ariaLabel,
 }: ButtonProps) {
-  const classes = `
-    inline-flex items-center justify-center gap-2
-    rounded-pill font-body font-medium
-    transition-all duration-200 ease-out
-    cursor-pointer select-none
-    disabled:opacity-50 disabled:cursor-not-allowed
-    ${variantStyles[variant]}
-    ${sizeStyles[size]}
-    ${className}
-  `.trim()
+  const sizeClasses =
+    size === 'sm'
+      ? 'px-[14px] py-[8px] text-[13px] min-h-[36px]'
+      : size === 'lg'
+      ? 'px-[28px] py-[16px] text-[16px] min-h-[48px]'
+      : 'px-[22px] py-[14px] text-[15px] min-h-[44px]'
 
-  if (href) {
+  const baseClasses =
+    `inline-flex items-center justify-center gap-2 ${sizeClasses} font-sans font-semibold leading-none border-[1.5px] rounded-none cursor-pointer transition-colors duration-150 select-none text-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--accent)] focus-visible:outline-offset-[3px] disabled:opacity-50 disabled:cursor-not-allowed`
+
+  const variantClasses =
+    variant === 'primary'
+      ? 'border-[var(--ink)] bg-[var(--ink)] text-[var(--bg)] hover:bg-[var(--accent)] hover:border-[var(--accent)] hover:text-[var(--on-accent)]'
+      : 'border-[var(--ink)] bg-transparent text-[var(--ink)] hover:bg-[var(--ink)] hover:border-[var(--ink)] hover:text-[var(--bg)]'
+
+  const combinedClasses = `${baseClasses} ${variantClasses} ${className}`
+
+  if (href && !disabled) {
     return (
-      <Link href={href} className={classes}>
+      <Link href={href} className={combinedClasses} aria-label={ariaLabel} onClick={onClick}>
         {icon && <span className="shrink-0">{icon}</span>}
-        {children}
+        <span>{children}</span>
       </Link>
     )
   }
@@ -61,12 +55,15 @@ export default function Button({
   return (
     <button
       type={type}
-      className={classes}
+      className={combinedClasses}
       onClick={onClick}
       disabled={disabled}
+      aria-label={ariaLabel}
     >
       {icon && <span className="shrink-0">{icon}</span>}
-      {children}
+      <span>{children}</span>
     </button>
   )
 }
+
+export { Button }

@@ -1,180 +1,184 @@
+import React from 'react'
 import Link from 'next/link'
+import { siteConfig } from '@/lib/site'
+import { Phone, MessageSquare, Mail, MapPin } from 'lucide-react'
 
 export default function Footer() {
   return (
-    <footer style={{
-      backgroundColor: '#1a1a1a',
-      width: '100%',
-      padding: '64px 80px 32px',
-      boxSizing: 'border-box',
-    }}>
-
-      {/* 3-column grid */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(3, 1fr)',
-        gap: '0',
-        maxWidth: '1100px',
-        margin: '0 auto',
-        alignItems: 'flex-start',
-      }}>
-
-        {/* Column 1 — Brand */}
-        <div style={{display: 'flex', flexDirection: 'column', gap: '16px', paddingRight: '48px'}}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <img 
-              src="/assets/logo image.svg" 
-              alt="Studio Aashraya Logo Mark" 
-              style={{ height: '36px', width: 'auto', objectFit: 'contain', filter: 'invert(1) brightness(1.5)' }}
-            />
-            <img 
-              src="/assets/logo text.svg" 
-              alt="Studio Aashraya" 
-              style={{ height: '32px', width: 'auto', objectFit: 'contain', filter: 'invert(1) brightness(1.5)', marginTop: '2px' }}
-            />
-          </div>
-          <p style={{
-            fontFamily: "'Inter', sans-serif",
-            fontSize: '14px',
-            color: 'rgba(255,255,255,0.55)',
-            lineHeight: 1.7,
-            margin: 0,
-          }}>
-            Rooted in earth, reaching for the sky. We design spaces that honor tradition and embrace the future of sustainable living.
+    <footer className="border-t border-[var(--line)] bg-[var(--surface)] text-[var(--ink)] pt-12 md:pt-16 pb-24 md:pb-12">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12 mb-12">
+        {/* Col 1: Studio */}
+        <div className="space-y-4">
+          <Link
+            href="/"
+            className="flex items-center gap-2.5 font-display font-extrabold text-[22px] tracking-[0.07em] uppercase leading-none text-[var(--ink)] no-underline select-none"
+          >
+            <i className="block w-3 h-3 bg-[var(--accent)] shrink-0 not-italic" aria-hidden="true" />
+            <span>Studio Aashraya</span>
+          </Link>
+          <p className="font-sans text-sm text-[var(--muted)] leading-relaxed max-w-[32ch]">
+            IIT-led architecture and construction for private homes in Gurugram and Delhi NCR. On time, or 10% back. 15-year warranty.
           </p>
+          <div className="space-y-2 pt-2">
+            <Link
+              href="/guarantee"
+              className="block font-mono text-xs uppercase text-[var(--ink)] hover:text-[var(--accent)] transition-colors"
+            >
+              → On-Time Guarantee & Warranty
+            </Link>
+            <Link
+              href="/technology"
+              className="block font-mono text-xs uppercase text-[var(--ink)] hover:text-[var(--accent)] transition-colors"
+            >
+              → Construction Technology
+            </Link>
+          </div>
         </div>
 
-        {/* Column 2 — Contact */}
-        <div style={{display: 'flex', flexDirection: 'column', gap: '16px', paddingRight: '48px'}}>
-          <p style={{
-            fontFamily: "'Inter', sans-serif",
-            fontSize: '11px',
-            fontWeight: 600,
-            letterSpacing: '0.12em',
-            color: 'rgba(255,255,255,0.40)',
-            textTransform: 'uppercase',
-            margin: 0,
-          }}>
+        {/* Col 2: Services */}
+        <div>
+          <span className="block font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--muted)] mb-4">
+            Services
+          </span>
+          <ul className="space-y-2.5 font-sans text-sm">
+            <li>
+              <Link href="/services/buildability" className="text-[var(--muted)] hover:text-[var(--ink)] transition-colors">
+                Free Plot Check & Buildability Report
+              </Link>
+            </li>
+            <li>
+              <Link href="/services/design-build" className="text-[var(--muted)] hover:text-[var(--ink)] transition-colors">
+                Turnkey Design and Build
+              </Link>
+            </li>
+            <li>
+              <Link href="/services/nri-remote-build" className="text-[var(--muted)] hover:text-[var(--ink)] transition-colors">
+                NRI Remote Build Management
+              </Link>
+            </li>
+            <li>
+              <Link href="/services/redevelopment" className="text-[var(--muted)] hover:text-[var(--ink)] transition-colors">
+                House Redevelopment & Difficult Sites
+              </Link>
+            </li>
+            <li>
+              <Link href="/method" className="text-[var(--muted)] hover:text-[var(--ink)] transition-colors">
+                Our Method (8 Stages, 4 Gates)
+              </Link>
+            </li>
+          </ul>
+        </div>
+
+        {/* Col 3: Areas & Tools */}
+        <div>
+          <span className="block font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--muted)] mb-4">
+            Areas & Tools
+          </span>
+          <ul className="space-y-2.5 font-sans text-sm mb-6">
+            <li>
+              <Link href="/areas/gurugram" className="text-[var(--muted)] hover:text-[var(--ink)] transition-colors">
+                Gurugram (Focus Area)
+              </Link>
+            </li>
+            <li>
+              <Link href="/areas/delhi" className="text-[var(--muted)] hover:text-[var(--ink)] transition-colors">
+                Delhi NCR
+              </Link>
+            </li>
+            <li>
+              <Link href="/areas/patna" className="text-[var(--muted)] hover:text-[var(--ink)] transition-colors">
+                Patna & Bihar
+              </Link>
+            </li>
+            <li>
+              <Link href="/areas/almora" className="text-[var(--muted)] hover:text-[var(--ink)] transition-colors">
+                Almora & Uttarakhand
+              </Link>
+            </li>
+          </ul>
+          <span className="block font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--muted)] mb-2">
+            Client Tools
+          </span>
+          <ul className="space-y-2 font-sans text-sm">
+            <li>
+              <Link href="/calculators" className="text-[var(--muted)] hover:text-[var(--ink)] transition-colors">
+                All Calculators & Tools
+              </Link>
+            </li>
+            <li>
+              <Link href="/calculators/site-feasibility" className="text-[var(--muted)] hover:text-[var(--ink)] transition-colors">
+                Site Feasibility CAD
+              </Link>
+            </li>
+          </ul>
+        </div>
+
+        {/* Col 4: Contact & Locations */}
+        <div>
+          <span className="block font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--muted)] mb-4">
             Contact
-          </p>
-          <a href="mailto:studioaashraya@gmail.com" style={{
-            fontFamily: "'Inter', sans-serif",
-            fontSize: '14px',
-            color: 'rgba(255,255,255,0.75)',
-            textDecoration: 'none',
-          }}>
-            studioaashraya@gmail.com
-          </a>
-          <a href="tel:+919473031016" style={{
-            fontFamily: "'Inter', sans-serif",
-            fontSize: '14px',
-            color: 'rgba(255,255,255,0.75)',
-            textDecoration: 'none',
-          }}>
-            +91 94730 31016
-          </a>
-          <p style={{
-            fontFamily: "'Inter', sans-serif",
-            fontSize: '14px',
-            color: 'rgba(255,255,255,0.75)',
-            margin: 0,
-            lineHeight: 1.6,
-          }}>
-            D103, Road 6B, Rajiv Nagar,<br />Patna, Bihar, India
-          </p>
-        </div>
+          </span>
+          <div className="space-y-3 font-sans text-sm text-[var(--muted)] mb-4">
+            <div className="flex items-start gap-2 text-[var(--ink)]">
+              <MapPin className="w-4 h-4 text-[var(--accent)] shrink-0 mt-0.5" />
+              <div>
+                <p className="font-medium">{siteConfig.address}</p>
+                <a
+                  href={siteConfig.mapsLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-mono text-xs text-[var(--accent)] hover:underline inline-block mt-0.5"
+                >
+                  Get directions ↗
+                </a>
+              </div>
+            </div>
 
-        {/* Column 3 — Planning Tools & Follow */}
-        <div style={{display: 'flex', flexDirection: 'column', gap: '20px'}}>
-          <div style={{display: 'flex', flexDirection: 'column', gap: '12px'}}>
-            <p style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: '11px',
-              fontWeight: 600,
-              letterSpacing: '0.12em',
-              color: 'rgba(255,255,255,0.40)',
-              textTransform: 'uppercase',
-              margin: 0,
-            }}>
-              Planning Tools
-            </p>
-            <Link href="/calculators/site-feasibility" style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: '14px',
-              color: 'rgba(255,255,255,0.85)',
-              textDecoration: 'none',
-              fontWeight: 500,
-            }}>
-              Site Feasibility Calculator
-            </Link>
-            <Link href="/calculators/cost-estimator" style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: '14px',
-              color: 'rgba(255,255,255,0.75)',
-              textDecoration: 'none',
-            }}>
-              Cost Estimator
-            </Link>
-          </div>
-          <div style={{display: 'flex', flexDirection: 'column', gap: '12px'}}>
-            <p style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: '11px',
-              fontWeight: 600,
-              letterSpacing: '0.12em',
-              color: 'rgba(255,255,255,0.40)',
-              textTransform: 'uppercase',
-              margin: 0,
-            }}>
-              Follow
-            </p>
-            {['Instagram', 'LinkedIn', 'Pinterest'].map(platform => (
-              <a key={platform} href="#" style={{
-                fontFamily: "'Inter', sans-serif",
-                fontSize: '14px',
-                color: 'rgba(255,255,255,0.75)',
-                textDecoration: 'none',
-              }}>
-                {platform}
+            <div className="flex items-center gap-2">
+              <Phone className="w-4 h-4 text-[var(--accent)] shrink-0" />
+              <a href={`tel:${siteConfig.phone}`} className="text-[var(--ink)] hover:text-[var(--accent)]">
+                {siteConfig.phoneDisplay}
               </a>
-            ))}
+            </div>
+
+            <div className="flex items-center gap-2">
+              <MessageSquare className="w-4 h-4 text-[#25D366] shrink-0" />
+              <a
+                href={siteConfig.whatsappLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[var(--ink)] hover:text-[var(--accent)]"
+              >
+                WhatsApp the Architect
+              </a>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <Mail className="w-4 h-4 text-[var(--accent)] shrink-0" />
+              <a href={`mailto:${siteConfig.email}`} className="text-[var(--ink)] hover:text-[var(--accent)]">
+                {siteConfig.email}
+              </a>
+            </div>
+          </div>
+
+          <div className="pt-3 border-t border-[var(--line)] font-sans text-xs text-[var(--muted)] space-y-1">
+            <p><b className="text-[var(--ink)]">Patna Studio:</b> D103, Road 6B, Rajiv Nagar, Patna 800016</p>
           </div>
         </div>
-
       </div>
 
-      {/* Divider */}
-      <div style={{
-        maxWidth: '1100px',
-        margin: '48px auto 0',
-        borderTop: '1px solid rgba(255,255,255,0.10)',
-        paddingTop: '24px',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        flexWrap: 'wrap',
-        gap: '8px',
-      }}>
-        <p style={{
-          fontFamily: "'Inter', sans-serif",
-          fontSize: '12px',
-          color: 'rgba(255,255,255,0.30)',
-          margin: 0,
-          letterSpacing: '0.05em',
-        }}>
-          © 2026 STUDIO AASHRAYA. ALL RIGHTS RESERVED.
-        </p>
-        <p style={{
-          fontFamily: "'Inter', sans-serif",
-          fontSize: '12px',
-          color: 'rgba(255,255,255,0.30)',
-          margin: 0,
-          letterSpacing: '0.05em',
-        }}>
-          ARCHITECTURE. INTERIORS. VERNACULAR DESIGN.
-        </p>
+      <div className="max-w-7xl mx-auto px-4 md:px-6 border-t border-[var(--line)] pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-[var(--muted)]">
+        <div>
+          <span>COA-registered architect</span> · <span>© 2026 Studio Aashraya.</span>
+        </div>
+        <div className="flex items-center gap-4">
+          <Link href="/about" className="hover:text-[var(--ink)]">About</Link>
+          <Link href="/method" className="hover:text-[var(--ink)]">Method</Link>
+          <Link href="/technology" className="hover:text-[var(--ink)]">Technology</Link>
+          <Link href="/guarantee" className="hover:text-[var(--ink)]">Guarantee</Link>
+          <Link href="/book-a-call" className="hover:text-[var(--ink)]">Free Plot Check</Link>
+        </div>
       </div>
-
     </footer>
   )
 }

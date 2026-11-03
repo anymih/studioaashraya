@@ -1,122 +1,141 @@
-import Image from 'next/image'
+import React from 'react'
 import Link from 'next/link'
-import { Leaf, Droplets, Sun } from 'lucide-react'
+import Image from 'next/image'
+import { StatusBadge, ProjectStatus } from './StatusBadge'
+import type { Project } from '@/lib/projects-data'
 
-interface ProjectCardProps {
-  image: string
-  tag: 'Residential' | 'Institutional' | 'Concept'
-  title: string
-  location: string
-  area: string
-  metric: string
-  metricIcon: 'leaf' | 'drop' | 'sun'
-  slug: string
-}
-
-const tagColors: Record<string, string> = {
-  Residential: 'bg-success text-white',
-  Institutional: 'bg-blue-600 text-white',
-  Concept: 'bg-accent text-white',
-}
-
-const metricIcons = {
-  leaf: Leaf,
-  drop: Droplets,
-  sun: Sun,
+export interface ProjectCardProps {
+  slug?: string
+  name?: string
+  title?: string
+  city?: string
+  location?: string
+  status?: ProjectStatus | string
+  type?: string
+  tag?: string
+  plotArea?: string
+  builtUp?: string
+  area?: string
+  year?: string | number
+  placeholder?: boolean
+  cover?: {
+    src: string
+    alt: string
+  }
+  image?: string
+  metric?: string
+  metricIcon?: string
+  className?: string
+  project?: Partial<Project>
 }
 
 export default function ProjectCard({
-  image,
-  tag,
-  title,
-  location,
-  area,
-  metric,
-  metricIcon,
   slug,
+  name,
+  title,
+  city,
+  location,
+  status,
+  type,
+  tag,
+  plotArea,
+  builtUp,
+  area,
+  year,
+  placeholder,
+  cover,
+  image,
+  className = '',
+  project,
 }: ProjectCardProps) {
-  const MetricIcon = metricIcons[metricIcon]
+  const p = (project || {}) as Partial<Project> & {
+    title?: string
+    location?: string
+    heroImage?: string
+    area?: string
+    cover?: { src: string; alt: string }
+  }
+  const finalSlug = slug || p.slug
+  const displayName = name || title || p.name || p.title || 'Untitled Project'
+  const displayCity = city || location || p.city || p.location || 'India'
+  const displayType = type || tag || p.type || 'Residential'
+  const displayStatus = status || p.status || 'built'
+  const imageSrc = cover?.src || image || p.cover?.src || p.heroImage || (p.key ? `/images/projects/proj-${p.key}-cover.webp` : undefined)
+  const imageAlt = cover?.alt || p.cover?.alt || `${displayName} in ${displayCity}`
+  const displayBuiltUp = builtUp || area || p.builtUp || p.area || '—'
+  const displayPlotArea = plotArea || p.plotArea || '—'
+  const displayYear = year ? String(year) : p.year ? String(p.year) : '—'
+  const isPlaceholder = placeholder ?? p.placeholder ?? true
 
   return (
-    <Link
-      href={`/projects/${slug}`}
-      className="group block bg-surface rounded-card border border-border shadow-card
-                 hover:scale-[1.02] hover:shadow-lg transition-all duration-200 ease-out overflow-hidden"
-      style={{
-        width: '100%',
-        boxSizing: 'border-box',
-        minWidth: 0,
-        overflow: 'hidden',
-      }}
-    >
-      {/* Image — uses Next.js Image for automatic lazy loading, WebP conversion, and responsive sizing */}
-      <div className="relative w-full overflow-hidden" style={{ height: '200px' }}>
-        <Image
-          src={image}
-          alt={`${title} — ${tag.toLowerCase()} architecture project in ${location} by Studio Aashraya`}
-          fill
-          sizes="(max-width: 768px) 100vw, 33vw"
-          className="object-cover group-hover:scale-105 transition-transform duration-300"
-        />
-        {/* Tag badge */}
-        <span
-          className={`absolute top-3 left-3 px-3 py-1 rounded-pill text-xs font-medium ${tagColors[tag]} z-10`}
-        >
-          {tag}
-        </span>
-      </div>
+    <article className={`border-[1.5px] border-[var(--ink)] bg-[var(--surface)] min-w-0 flex flex-col justify-between ${className}`}>
+      <Link href={`/projects/${finalSlug}`} className="block group">
+        <div className="relative aspect-[4/3] w-full bg-[var(--wash)] overflow-hidden hatched-pattern flex items-center justify-center">
+          {imageSrc ? (
+            <Image
+              src={imageSrc}
+              alt={imageAlt}
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              className="object-cover transition-transform duration-200 group-hover:scale-[1.02]"
+            />
+          ) : (
+            <small className="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--muted)]">
+              Drawing archive
+            </small>
+          )}
 
-      {/* Body */}
-      <div style={{ width: '100%', boxSizing: 'border-box', padding: '16px' }}>
-        <h3 style={{
-          width: '100%',
-          display: 'block',
-          whiteSpace: 'normal',
-          wordBreak: 'break-word',
-          overflowWrap: 'break-word',
-          margin: 0,
-          fontFamily: "'Cormorant Garamond', serif",
-          fontSize: '1.1rem',
-          fontWeight: 600,
-          color: '#222222',
-          lineHeight: 1.3,
-          marginBottom: '4px',
-        }}>
-          {title}
-        </h3>
-        <p style={{
-          width: '100%',
-          display: 'block',
-          whiteSpace: 'normal',
-          wordBreak: 'break-word',
-          overflowWrap: 'break-word',
-          margin: 0,
-          fontFamily: "'Inter', sans-serif",
-          fontSize: '12px',
-          color: '#888888',
-          marginBottom: '8px',
-        }}>
-          {location} · {area}
-        </p>
+          {/* City Tag */}
+          <span className="absolute left-3 top-3 bg-[var(--ink)] text-[var(--bg)] font-mono font-medium text-[11px] uppercase tracking-[0.1em] px-2 py-1 select-none">
+            {displayCity}
+          </span>
 
-        {/* Metric row */}
-        <div className="mt-3 flex items-center gap-2">
-          <MetricIcon size={14} className="text-accent" style={{ flexShrink: 0 }} />
-          <p style={{
-            width: '100%',
-            display: 'block',
-            whiteSpace: 'normal',
-            wordBreak: 'break-word',
-            overflowWrap: 'break-word',
-            margin: 0,
-            fontFamily: "'Inter', sans-serif",
-            fontSize: '12px',
-            color: '#555555',
-          }}>
-            {metric}
-          </p>
+          {/* Status Badge */}
+          <div className="absolute right-3 top-3">
+            <StatusBadge status={displayStatus} />
+          </div>
+
+          {/* Sample Project Chip (PRD S8 / Section 8.1) */}
+          {isPlaceholder && (
+            <span className="absolute left-3 bottom-3 bg-[var(--bg)] border border-[var(--line)] text-[var(--ink)] font-mono text-[10px] uppercase tracking-wider px-2 py-0.5 select-none shadow-sm">
+              Sample project
+            </span>
+          )}
         </div>
-      </div>
-    </Link>
+      </Link>
+
+      <dl className="grid grid-cols-2 border-t-[1.5px] border-[var(--ink)] m-0">
+        <div className="col-span-2 p-2.5 sm:p-3 border-b border-[var(--line)] min-w-0">
+          <dt className="font-mono text-[10px] uppercase tracking-[0.1em] text-[var(--muted)]">
+            Project
+          </dt>
+          <dd className="mt-1 font-display font-extrabold text-[22px] leading-tight uppercase tracking-[0.01em] text-[var(--ink)] truncate">
+            <Link href={`/projects/${finalSlug}`} className="hover:text-[var(--accent)] transition-colors">
+              {displayName}
+            </Link>
+          </dd>
+        </div>
+
+        <div className="p-2.5 sm:p-3 border-b sm:border-b-0 border-r border-[var(--line)] min-w-0">
+          <dt className="font-mono text-[10px] uppercase tracking-[0.1em] text-[var(--muted)]">Typology</dt>
+          <dd className="mt-0.5 font-sans text-sm text-[var(--ink)] truncate">{displayType}</dd>
+        </div>
+
+        <div className="p-2.5 sm:p-3 border-b sm:border-b-0 min-w-0">
+          <dt className="font-mono text-[10px] uppercase tracking-[0.1em] text-[var(--muted)]">Plot Area</dt>
+          <dd className="mt-0.5 font-sans text-sm text-[var(--ink)] truncate">{displayPlotArea}</dd>
+        </div>
+
+        <div className="p-2.5 sm:p-3 border-r border-[var(--line)] min-w-0">
+          <dt className="font-mono text-[10px] uppercase tracking-[0.1em] text-[var(--muted)]">Built-up</dt>
+          <dd className="mt-0.5 font-sans text-sm text-[var(--ink)] truncate">{displayBuiltUp}</dd>
+        </div>
+
+        <div className="p-2.5 sm:p-3 min-w-0">
+          <dt className="font-mono text-[10px] uppercase tracking-[0.1em] text-[var(--muted)]">Handed Over</dt>
+          <dd className="mt-0.5 font-sans text-sm text-[var(--ink)] truncate">{displayYear}</dd>
+        </div>
+      </dl>
+    </article>
   )
 }
