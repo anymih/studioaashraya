@@ -1,14 +1,15 @@
 import type { MetadataRoute } from 'next'
+import { siteConfig } from '@/lib/site'
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = 'https://studioaashraya.site'
+  const baseUrl = siteConfig.siteUrl
 
   return {
     rules: [
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/admin', '/draft', '/staging'],
+        disallow: ['/api/'],
       },
     ],
     sitemap: `${baseUrl}/sitemap.xml`,
