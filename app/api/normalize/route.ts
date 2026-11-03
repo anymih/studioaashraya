@@ -125,11 +125,22 @@ function validateNormalizedRules(
   };
 }
 
+function checkAdminAuth(request: NextRequest): boolean {
+  const adminKey = process.env.ADMIN_API_KEY;
+  if (!adminKey) return false;
+  const providedKey = request.headers.get("x-admin-key");
+  return Boolean(providedKey && providedKey === adminKey);
+}
+
 // ---------------------------------------------------------------------------
 // GET — Retrieve normalized rules drafts
 // ---------------------------------------------------------------------------
 
 export async function GET(request: NextRequest): Promise<NextResponse> {
+  if (!checkAdminAuth(request)) {
+    return new NextResponse(null, { status: 401 });
+  }
+
   try {
     const { searchParams } = new URL(request.url);
     const recordId = searchParams.get("recordId");
@@ -161,6 +172,10 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 // ---------------------------------------------------------------------------
 
 export async function POST(request: NextRequest): Promise<NextResponse> {
+  if (!checkAdminAuth(request)) {
+    return new NextResponse(null, { status: 401 });
+  }
+
   try {
     const body = await request.json();
     const {

@@ -1,0 +1,41 @@
+{
+  "endpoint": "https://formspree.io/f/mpqyberw",
+  "fields": [
+    { "name": "src", "type": "hidden" },
+    { "name": "name", "type": "text", "required": true },
+    { "name": "phone", "type": "tel", "required": true },
+    { "name": "email", "type": "email", "required": true },
+    { "name": "city", "type": "text", "required": false },
+    {
+      "name": "projectType",
+      "type": "select",
+      "required": true,
+      "options": [
+        "Select project type",
+        "Residential Home",
+        "Institutional",
+        "Commercial",
+        "Concept / Renovation",
+        "Not sure yet"
+      ]
+    },
+    {
+      "name": "budget",
+      "type": "select",
+      "required": true,
+      "options": [
+        "Select budget range",
+        "Under ₹20 Lakh",
+        "₹20 – 50 Lakh",
+        "₹50 Lakh – 1 Crore",
+        "Above ₹1 Crore",
+        "Not decided yet"
+      ]
+    },
+    { "name": "message", "type": "textarea", "required": false }
+  ],
+  "analytics": [
+    "trackBookingFormSubmit",
+    "trackFormPageView"
+  ]
+}

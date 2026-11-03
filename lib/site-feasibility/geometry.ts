@@ -523,11 +523,11 @@ export function runGeometryUnitTests(): UnitTestResult[] {
   const setbackResult = calculateBuildableFootprint(squareVertices, emptyRoadConfig);
   const buildableArea = calculatePolygonArea(setbackResult.buildableVertices);
   
-  // Setbacks 1.2m off all sides -> square becomes 7.6m x 7.6m -> area = 57.76
+  // Setbacks: 1.2m side setbacks and 1.5m rear setback -> square becomes 7.6m x 7.3m -> area = 55.48
   results.push({
-    name: "Patna Setbacks Area (1.2m offset)",
-    passed: setbackResult.isValid && round(buildableArea) === 57.76,
-    expected: "57.76",
+    name: "Patna Setbacks Area (1.2m side, 1.5m rear offset)",
+    passed: setbackResult.isValid && round(buildableArea) === 55.48,
+    expected: "55.48",
     actual: buildableArea.toFixed(2)
   });
 

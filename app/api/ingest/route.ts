@@ -36,11 +36,22 @@ import type {
   VerificationStatus,
 } from "@/lib/site-feasibility/ingestion-types";
 
+function checkAdminAuth(request: NextRequest): boolean {
+  const adminKey = process.env.ADMIN_API_KEY;
+  if (!adminKey) return false;
+  const providedKey = request.headers.get("x-admin-key");
+  return Boolean(providedKey && providedKey === adminKey);
+}
+
 // ---------------------------------------------------------------------------
 // POST — Ingest a document
 // ---------------------------------------------------------------------------
 
 export async function POST(request: NextRequest): Promise<NextResponse> {
+  if (!checkAdminAuth(request)) {
+    return new NextResponse(null, { status: 401 });
+  }
+
   try {
     const formData = await request.formData();
     const file = formData.get("file") as File | null;
@@ -107,7 +118,11 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
 // GET — List all ingestion records
 // ---------------------------------------------------------------------------
 
-export async function GET(): Promise<NextResponse> {
+export async function GET(request: NextRequest): Promise<NextResponse> {
+  if (!checkAdminAuth(request)) {
+    return new NextResponse(null, { status: 401 });
+  }
+
   try {
     const records = await listIngestionRecords();
     return NextResponse.json({ records });
@@ -125,6 +140,10 @@ export async function GET(): Promise<NextResponse> {
 // ---------------------------------------------------------------------------
 
 export async function PATCH(request: NextRequest): Promise<NextResponse> {
+  if (!checkAdminAuth(request)) {
+    return new NextResponse(null, { status: 401 });
+  }
+
   try {
     const body = await request.json();
     const { id, status } = body as { id: string; status: VerificationStatus };

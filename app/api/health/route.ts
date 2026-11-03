@@ -1,27 +1,29 @@
 import { NextResponse } from "next/server";
+import { getSupabaseClient } from "@/lib/site-feasibility/supabase-client";
 
 export async function GET() {
-  const isDev = process.env.NODE_ENV === "development";
+  let status: "ok" | "degraded" = "ok";
+
   const hasSupabaseUrl = Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL);
   const hasSupabaseAnonKey = Boolean(process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
 
+  if (hasSupabaseUrl && hasSupabaseAnonKey) {
+    try {
+      const supabase = getSupabaseClient();
+      if (supabase) {
+        const { error } = await supabase.from("ingestion_records").select("id").limit(1);
+        if (error) {
+          status = "degraded";
+        }
+      }
+    } catch {
+      status = "degraded";
+    }
+  }
+
   return NextResponse.json({
-    status: "ok",
-    service: "site-feasibility-calculator",
-    version: "1.0.0-rc1",
+    status,
     timestamp: new Date().toISOString(),
-    environment: {
-      mode: process.env.NODE_ENV || "development",
-      isDev,
-    },
-    integrations: {
-      supabaseConfigured: hasSupabaseUrl && hasSupabaseAnonKey,
-      ocrProvider: "tesseract.js (local/wasm)",
-      mappingEngine: "SVG Native CAD Editor",
-    },
-    healthChecks: {
-      byelawRegistry: "operational",
-      geometryEngine: "operational",
-    },
   });
 }
+
