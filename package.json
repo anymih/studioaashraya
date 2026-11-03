@@ -6,7 +6,15 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "ledger:check": "node scripts/ledger-check.mjs",
+    "routes:check": "node scripts/routes-check.mjs",
+    "form:check": "node scripts/form-check.mjs",
+    "images:check": "node scripts/images-check.mjs",
+    "projects:check": "node scripts/projects-check.mjs",
+    "cta:check": "node scripts/cta-check.mjs",
+    "launch:check": "node scripts/launch-check.mjs",
+    "verify": "tsc --noEmit && npm run lint && npm run ledger:check && npm run form:check && npm run projects:check && npm run build && npm run routes:check && npm run images:check && npm run cta:check"
   },
   "dependencies": {
     "@next/third-parties": "^16.2.0",

@@ -1,272 +1,395 @@
-export type Project = {
-  slug: string
-  title: string
-  tagline?: string
-  conceptName?: string
-  conceptDescription?: string
-  location: string
-  type: 'Residential' | 'Institutional' | 'Concept'
-  area: string
-  plotSize?: string
-  uds?: string
-  sbua?: string
-  year: string
-  status: 'Completed' | 'In Progress' | 'Concept'
-  heroImage: string
-  detailImage?: string
-  galleryImages: string[]
-  featureGallery?: string[]
-  masterplanImages?: string[]
-  passiveStrategies: string[]
-  materials: string[]
-  metric: string
-  metricIcon: 'leaf' | 'drop' | 'sun'
-  story: { problem: string; approach: string; outcome: string }
-  seoTitle?: string
-  seoDescription?: string
+/**
+ * Studio Aashraya: six SAMPLE projects.
+ * Copied from docs/rebuild/06_SAMPLE_PROJECTS.ts per Revision 2 specs.
+ * `placeholder: true` means invented sample content.
+ * Metric values with evidence "sample" render with the tag "Sample figure".
+ */
+
+export type Evidence = 'measured' | 'simulated' | 'sample'
+export type ProjectStatus = 'built' | 'under-construction' | 'design'
+export type TechId =
+  | 'bim-clash'
+  | 'lidar-twin'
+  | 'thermal-sim'
+  | 'structural-seismic'
+  | 'concrete-testing'
+  | 'rebar-scan'
+  | 'flood-test'
+  | 'dashboard-cpm'
+
+export interface Metric {
+  label: string
+  value: string
+  evidence: Evidence
+  method?: string
 }
 
-export const projects: Project[] = [
+export interface Project {
+  slug: string
+  key: string // image id prefix: proj-<key>-cover, -g1, -g2, -g3, -plan
+  name: string
+  city: string
+  region: 'Delhi NCR' | 'Bihar' | 'Uttarakhand'
+  type: 'Residential' | 'Institutional' | 'Concept'
+  status: ProjectStatus
+  placeholder: boolean
+  year?: number
+  plotArea?: string
+  builtUp?: string
+  floors: string
+  climateZone: string
+  delivery?: { agreed: string; delivered?: string }
+  warrantyYears: 15
+  headline: string
+  summary: string
+  galleryCaptions: [string, string, string]
+  narrative: { problem: string; approach: string; solution: string }
+  strategies: { name: string; description: string }[]
+  materials: string[]
+  technology: TechId[]
+  metrics: Metric[]
+  seo: { title: string; description: string }
+}
+
+export const SAMPLE_PROJECTS: Project[] = [
   {
-    slug: 'the-clay-house',
-    title: 'The Clay House',
-    location: 'Patna, Bihar',
+    slug: 'jali-house',
+    key: 'jali',
+    name: 'Jali House',
+    city: 'Gurugram',
+    region: 'Delhi NCR',
     type: 'Residential',
-    area: '2,400 sq ft',
-    year: '2024',
-    status: 'Completed',
-    heroImage: '/images/hero.webp',
-    galleryImages: [
-      '/images/projects/the-clay-house/gallery-1.jpg',
-      '/images/projects/the-clay-house/gallery-2.jpg',
-      '/images/projects/the-clay-house/gallery-3.jpg',
+    status: 'built',
+    placeholder: true,
+    year: 2025,
+    plotArea: '500 sq yd',
+    builtUp: '8,200 sq ft',
+    floors: 'Ground + 2',
+    climateZone: 'Composite',
+    delivery: { agreed: '2025-05', delivered: '2025-05' },
+    warrantyYears: 15,
+    headline: 'A west façade that works as a heat shield.',
+    summary:
+      'A corner-plot family home where a brick jali screen with an air gap takes the afternoon sun before it reaches the wall.',
+    galleryCaptions: [
+      'Double-height courtyard with a skylight slot',
+      'Jali screen and air gap in section',
+      'Courtyard looking up through the neem',
     ],
-    passiveStrategies: [
-      'Cross-ventilation corridors aligned with prevailing winds',
-      'Thick earthen walls for thermal mass',
-      'Overhanging chajjas reducing solar heat gain by 40%',
-      'Internal courtyard acting as thermal chimney',
-    ],
-    materials: ['Compressed Earth Blocks', 'Exposed Brick', 'Bamboo Rafters', 'Kota Stone', 'Lime Plaster'],
-    metric: '40% lower cooling costs',
-    metricIcon: 'leaf',
-    story: {
+    narrative: {
       problem:
-        'A family of four living in Patna\'s extreme summers faced electricity bills exceeding ₹8,000/month for cooling alone. Their concrete apartment offered no respite from the 45°C peak temperatures.',
+        'The plot faces west. In a Gurugram summer a plain west wall takes direct sun for five hours, and the rooms behind it become the hottest in the house.',
       approach:
-        'We designed a home using compressed earth blocks with high thermal mass, oriented to capture the dominant southeast winds. Deep verandas and chajjas shade the walls during peak sun hours, while an internal courtyard creates a stack effect for natural cooling.',
-      outcome:
-        'The family now enjoys a consistently 6–8°C cooler interior without AC during most months. Their cooling bills dropped by 40%, and the home has become a neighborhood landmark for sustainable living in Bihar.',
+        'We moved the heat out before it arrived. A handmade-brick jali screen stands 150 mm off the wall, and a double-height courtyard pulls hot air up and out through a skylight slot.',
+      solution:
+        'The wall behind the jali stays in shade. The courtyard carries daylight to the centre of the plan, so the inner rooms need little artificial light through the day.',
+    },
+    strategies: [
+      { name: 'Jali screen with air gap', description: 'Brick screen 150 mm clear of the wall shades the façade and lets air move behind it.' },
+      { name: 'Stack-effect courtyard', description: 'A double-height void with a high skylight slot draws hot air upward and out.' },
+      { name: 'Cavity walls on the west', description: 'A sealed air cavity and insulation slow the heat that does reach the wall.' },
+      { name: 'Low-solar-gain glazing', description: 'Double glazing with a low solar heat gain coefficient on west and south openings.' },
+    ],
+    materials: ['Handmade brick jali', 'Dholpur sandstone cladding on SS clamps', 'Kota stone floors', 'Teak joinery', 'Lime-washed walls'],
+    technology: ['thermal-sim', 'bim-clash', 'structural-seismic', 'concrete-testing', 'flood-test', 'dashboard-cpm'],
+    metrics: [
+      { label: 'West-room peak afternoon temperature vs conventional reference', value: '-5 °C', evidence: 'sample' },
+      { label: 'Daylight reaching inner rooms without artificial light', value: 'Most of the day', evidence: 'sample' },
+      { label: 'Sanction approval', value: 'First submission', evidence: 'sample' },
+    ],
+    seo: {
+      title: 'Jali House, Gurugram',
+      description: 'A corner-plot home in Gurugram with a brick jali screen and a stack-effect courtyard, designed and built by Studio Aashraya.',
     },
   },
   {
-    slug: 'the-veranda-villa',
-    title: 'The Veranda Villa',
-    location: 'Gaya, Bihar',
+    slug: 'basement-villa',
+    key: 'basement',
+    name: 'Basement Villa',
+    city: 'Gurugram',
+    region: 'Delhi NCR',
     type: 'Residential',
-    area: '3,200 sq ft',
-    year: '2024',
-    status: 'Completed',
-    heroImage: '/images/hero.webp',
-    galleryImages: [
-      '/images/projects/the-veranda-villa/gallery-1.jpg',
-      '/images/projects/the-veranda-villa/gallery-2.jpg',
-      '/images/projects/the-veranda-villa/gallery-3.jpg',
+    status: 'under-construction',
+    placeholder: true,
+    plotArea: '600 sq yd',
+    builtUp: '11,500 sq ft',
+    floors: 'Basement + Ground + 2',
+    climateZone: 'Composite',
+    delivery: { agreed: '2027-02' },
+    warrantyYears: 15,
+    headline: 'A deep basement that is built to stay dry.',
+    summary:
+      'A basement-led villa where the retaining walls, drainage and membrane are coordinated and tested before any wall is closed.',
+    galleryCaptions: [
+      'Basement retaining wall with membrane and drainage board',
+      'Second-floor slab pour in progress',
+      'Reinforcement stacked by diameter on site',
     ],
-    passiveStrategies: [
-      'Wrap-around veranda acting as thermal buffer zone',
-      'High ceilings (14ft) with clerestory windows',
-      'Green roof insulation reducing heat gain',
-      'Rainwater harvesting integrated into design',
-    ],
-    materials: ['Local Sandstone', 'Reclaimed Teak', 'Clay Tiles', 'Lime Mortar', 'Jute Fiber Insulation'],
-    metric: '8°C cooler indoors',
-    metricIcon: 'sun',
-    story: {
+    narrative: {
       problem:
-        'A retired professor wanted a home that honored Gaya\'s architectural heritage while providing modern comfort. Conventional builders proposed generic RCC structures that ignored the region\'s climate.',
+        'A deep basement on a plot with a high water table is where leaks and clashes are most expensive. Water pressure on the walls, and services crossing structure, decide whether the basement stays usable.',
       approach:
-        'Drawing from Gaya\'s historic havelis, we designed deep wraparound verandas that create shaded transition spaces. Local sandstone walls provide massive thermal inertia, while high clerestory windows enable hot air to escape naturally.',
-      outcome:
-        'The home has become a model for climate-responsive living in Gaya. Indoor temperatures stay below 32°C even during peak summer, and the professor hosts architecture students eager to study vernacular adaptation.',
+        'We model the basement in BIM so every duct, sleeve and drain is placed before the pour, and we specify the waterproofing as a system with a protection board and a perimeter drain.',
+      solution:
+        'The retaining walls are poured to a coordinated sleeve plan. The membrane is laid and tested before the backfill. Progress is recorded at each gate and shared with the client.',
+    },
+    strategies: [
+      { name: 'Clash-free services', description: 'Ducts, drains and sleeves coordinated in BIM so no beam is cut after casting.' },
+      { name: 'Membrane and drainage board', description: 'Wall membrane with a protection board and a perimeter drain at the footing.' },
+      { name: 'Sleeve plan before the pour', description: 'Every penetration is cast in at the position drawn.' },
+      { name: 'Gate-linked payments', description: 'Payments follow the gates, so money moves when work has been checked.' },
+    ],
+    materials: ['RCC frame', 'Crystalline admixture in basement concrete', 'Wall membrane with protection board', 'Perimeter drain', 'Fly-ash brick infill above ground'],
+    technology: ['bim-clash', 'lidar-twin', 'structural-seismic', 'concrete-testing', 'rebar-scan', 'flood-test', 'dashboard-cpm'],
+    metrics: [
+      { label: 'Services clashes resolved in the model before casting', value: 'All logged and closed', evidence: 'sample' },
+      { label: 'Gates passed', value: '2 of 4', evidence: 'sample' },
+      { label: 'Schedule status', value: 'On the agreed plan', evidence: 'sample' },
+    ],
+    seo: {
+      title: 'Basement Villa, Gurugram',
+      description: 'A basement villa under construction in Gurugram with coordinated services, a tested membrane and gate-linked reporting.',
     },
   },
   {
-    slug: 'aashraya-farmstead',
-    title: 'Aashraya Farmstead',
-    location: 'Nalanda, Bihar',
+    slug: 'south-delhi-redevelopment',
+    key: 'delhi',
+    name: 'South Delhi Redevelopment',
+    city: 'Delhi',
+    region: 'Delhi NCR',
     type: 'Residential',
-    area: '4,800 sq ft',
-    year: '2025',
-    status: 'In Progress',
-    heroImage: '/images/hero.webp',
-    galleryImages: [
-      '/images/projects/aashraya-farmstead/gallery-1.jpg',
-      '/images/projects/aashraya-farmstead/gallery-2.jpg',
-      '/images/projects/aashraya-farmstead/gallery-3.jpg',
+    status: 'built',
+    placeholder: true,
+    year: 2025,
+    plotArea: '300 sq yd',
+    builtUp: '6,400 sq ft',
+    floors: 'Ground + 2 (one new)',
+    climateZone: 'Composite',
+    delivery: { agreed: '2025-09', delivered: '2025-09' },
+    warrantyYears: 15,
+    headline: 'An old house, strengthened and given a new floor.',
+    summary:
+      'A 1970s house that kept its character and gained strength, light and a new top floor.',
+    galleryCaptions: [
+      'Restored ground-floor living room with original arches',
+      'Lime plaster and brass door hardware',
+      'Staircase before and after restoration',
     ],
-    passiveStrategies: [
-      'Earth-sheltered design utilizing natural ground cooling',
-      'Passive solar orientation for winter warmth',
-      'Biogas integration from farm waste',
-      'Natural stone foundations from local quarry',
-    ],
-    materials: ['Rammed Earth', 'Local Stone', 'Bamboo', 'Fly Ash Bricks', 'Thatch Roofing'],
-    metric: '60% less embodied energy',
-    metricIcon: 'leaf',
-    story: {
+    narrative: {
       problem:
-        'A farming family in Nalanda wanted a spacious farmstead but refused to use materials imported from outside Bihar. They wanted their home to literally grow from their land.',
+        'The family loved the house and doubted the structure. Cracks ran at the column heads, the roof leaked, and the family needed one more floor.',
       approach:
-        'Using rammed earth from the site itself, bamboo from local groves, and stone from a quarry 12 km away, we created a farmstead with zero imported materials. The earth-sheltered design uses the ground\'s natural insulation.',
-      outcome:
-        'Construction costs came in 35% below conventional building. The farmstead uses 60% less embodied energy than comparable RCC buildings and has inspired three neighbors to adopt similar construction.',
+        'We surveyed the existing structure, tested the concrete, and priced three options: retain, strengthen or rebuild. The family chose to strengthen and add one floor.',
+      solution:
+        'Columns were jacketed, the roof was rebuilt with a sloped waterproofed screed, and a light new top floor was added. The arches and floors the family valued stayed.',
+    },
+    strategies: [
+      { name: 'Condition survey first', description: 'Rebound readings, cores and a crack map before any option was priced.' },
+      { name: 'Column jacketing', description: 'Existing columns strengthened with reinforced concrete jackets.' },
+      { name: 'Lightweight top floor', description: 'A light new floor sized to the strengthened frame.' },
+      { name: 'Roof rebuilt as a system', description: 'Sloped screed, membrane and protection layer, flood-tested before finishes.' },
+    ],
+    materials: ['Lime plaster', 'Restored oxide floors', 'Kota stone threshold', 'Brass hardware', 'Steel-frame new floor'],
+    technology: ['structural-seismic', 'concrete-testing', 'rebar-scan', 'flood-test', 'lidar-twin', 'dashboard-cpm'],
+    metrics: [
+      { label: 'Option chosen after pricing three routes', value: 'Strengthen and add one floor', evidence: 'sample' },
+      { label: 'Roof leak test', value: 'Passed at gate 3', evidence: 'sample' },
+      { label: 'Delivery against agreed date', value: 'On the date', evidence: 'sample' },
+    ],
+    seo: {
+      title: 'South Delhi Redevelopment',
+      description: 'A 1970s Delhi house strengthened and extended by Studio Aashraya, keeping its arches and floors.',
     },
   },
   {
-    slug: 'vidya-learning-center',
-    title: 'Vidya Learning Center',
-    location: 'Muzaffarpur, Bihar',
-    type: 'Institutional',
-    area: '6,500 sq ft',
-    year: '2024',
-    status: 'Completed',
-    heroImage: '/images/hero.webp',
-    galleryImages: [
-      '/images/projects/vidya-learning-center/gallery-1.jpg',
-      '/images/projects/vidya-learning-center/gallery-2.jpg',
-      '/images/projects/vidya-learning-center/gallery-3.jpg',
-    ],
-    passiveStrategies: [
-      'North-south classroom orientation for even daylighting',
-      'Jaali screens filtering harsh afternoon sun',
-      'Flat roof with reflective coating reducing heat absorption',
-      'Stepped floor plan following natural terrain',
-    ],
-    materials: ['Fly Ash Bricks', 'Steel Frame', 'Bamboo Screens', 'Polished Concrete', 'Recycled Wood'],
-    metric: 'Zero AC classrooms',
-    metricIcon: 'sun',
-    story: {
-      problem:
-        'An NGO needed a community learning center in Muzaffarpur that could function without electricity for AC, as power cuts are frequent. The center needed to serve 200+ students daily.',
-      approach:
-        'Every classroom opens to a central courtyard with a large banyan tree. Jaali screens on the west facade filter afternoon glare while allowing air movement. The stepped design follows the natural slope, creating natural ventilation channels.',
-      outcome:
-        'All classrooms maintain comfortable temperatures year-round without AC. The center serves 250 students daily with minimal operating costs, proving that institutional buildings in Bihar don\'t need active cooling.',
-    },
-  },
-  {
-    slug: 'heritage-library-bhagalpur',
-    title: 'Heritage Library Bhagalpur',
-    location: 'Bhagalpur, Bihar',
-    type: 'Institutional',
-    area: '5,200 sq ft',
-    year: '2025',
-    status: 'In Progress',
-    heroImage: '/images/hero.webp',
-    galleryImages: [
-      '/images/projects/heritage-library-bhagalpur/gallery-1.jpg',
-      '/images/projects/heritage-library-bhagalpur/gallery-2.jpg',
-      '/images/projects/heritage-library-bhagalpur/gallery-3.jpg',
-    ],
-    passiveStrategies: [
-      'Double-skin facade for humidity control',
-      'Stack ventilation through central atrium',
-      'Reflective pergola canopy for reading courtyard',
-      'Landscaped buffer zone for microclimate creation',
-    ],
-    materials: ['Fired Brick', 'Mild Steel', 'Toughened Glass', 'Local Granite', 'Cork Flooring'],
-    metric: '50% less water usage',
-    metricIcon: 'drop',
-    story: {
-      problem:
-        'Bhagalpur\'s silk heritage deserves a cultural space. The city lacked a modern, climate-appropriate library that could preserve books in Bihar\'s extreme humidity while remaining open and welcoming.',
-      approach:
-        'A double-skin brick facade controls humidity naturally, while a central atrium provides daylight to all reading areas. The design references Bhagalpur\'s silk weaving patterns in its jaali screens and floor mosaics.',
-      outcome:
-        'Currently under construction, the library is designed to maintain 55–65% relative humidity without mechanical systems. Rainwater harvesting and greywater recycling will reduce water consumption by half.',
-    },
-  },
-  {
-    slug: 'zero-carbon-pavilion',
-    title: 'Zero Carbon Pavilion',
-    location: 'Patna, Bihar',
-    type: 'Concept',
-    area: '1,800 sq ft',
-    year: '2025',
-    status: 'Concept',
-    heroImage: '/images/hero.webp',
-    galleryImages: [
-      '/images/projects/zero-carbon-pavilion/gallery-1.jpg',
-      '/images/projects/zero-carbon-pavilion/gallery-2.jpg',
-      '/images/projects/zero-carbon-pavilion/gallery-3.jpg',
-    ],
-    passiveStrategies: [
-      'Net-zero energy design with integrated solar',
-      'Modular construction for zero waste',
-      'Living walls for natural air purification',
-      'Phase-change materials for thermal regulation',
-    ],
-    materials: ['Hempcrete', 'Cross-Laminated Timber', 'Solar Glass', 'Living Wall Panels', 'Recycled Aluminum'],
-    metric: 'Net-zero carbon',
-    metricIcon: 'leaf',
-    story: {
-      problem:
-        'Bihar lacks a demonstration project showing that zero-carbon buildings are possible with locally available materials and skills. The construction industry remains skeptical about sustainable alternatives.',
-      approach:
-        'This concept pavilion combines hempcrete walls (carbon-negative), cross-laminated timber from managed forests, and integrated solar glass to achieve net-zero energy. The modular design allows local craftsmen to build with minimal training.',
-      outcome:
-        'As a concept project, the pavilion aims to prove that zero-carbon is achievable at Bihar construction budgets. If built, it would be Bihar\'s first net-zero public building and a training center for sustainable construction.',
-    },
-  },
-  {
-    slug: 'codename-madhuban',
-    title: 'Codename: Madhuban',
-    tagline: 'The Above Abode',
-    conceptName: 'Karang Jalananda',
-    conceptDescription: 'A sanctuary in the sky shaped by water, wind, brick, and elevated community living.',
-    location: 'Sarmera Road, Patna, Bihar',
+    slug: 'hillside-house-almora',
+    key: 'almora',
+    name: 'Hillside House',
+    city: 'Almora',
+    region: 'Uttarakhand',
     type: 'Residential',
-    area: '2,400 sq ft carpet (84% efficiency)',
-    plotSize: '~5,000 sq ft',
-    uds: '3,900 sq ft (UDS)',
-    sbua: '3,900 sq ft (SBUA)',
-    year: '2026',
-    status: 'In Progress',
-    heroImage: '/images/projects/codename-madhuban/img1.webp',
-    detailImage: '/images/projects/codename-madhuban/img2.webp',
-    galleryImages: [
-      '/images/projects/codename-madhuban/img3.webp',
-      '/images/projects/codename-madhuban/img6.webp',
-      '/images/projects/codename-madhuban/img7.webp',
+    status: 'built',
+    placeholder: true,
+    year: 2024,
+    plotArea: '250 sq m',
+    builtUp: '3,100 sq ft',
+    floors: 'Ground + 1, stepped',
+    climateZone: 'Temperate',
+    delivery: { agreed: '2024-10', delivered: '2024-10' },
+    warrantyYears: 15,
+    headline: 'A house that steps with the slope.',
+    summary:
+      'A stone and slate home that follows the contour, with retaining walls that double as terraces and a rainwater tank at the lowest level.',
+    galleryCaptions: [
+      'Stone house set into the terraced slope',
+      'Slate roof and aged deodar timber',
+      'Stepped dry-stone retaining wall with drainage',
     ],
-    featureGallery: [
-      '/images/projects/codename-madhuban/img7.webp',
-      '/images/projects/codename-madhuban/img5.webp',
-    ],
-    masterplanImages: [
-      '/images/projects/codename-madhuban/floorplan-154031.png',
-      '/images/projects/codename-madhuban/floorplan-154229.png',
-      '/images/projects/codename-madhuban/floorplan-154325.png',
-    ],
-    passiveStrategies: [
-      'Ground-level villa footprint eliminates stack-heat gain, keeping living spaces closer to the cooler earth plane instead of trapped mid-air in a tower',
-      'Large inward-facing gardens act as private microclimates, pulling moisture-cooled air into the home before it ever reaches a window',
-      'Full-height glazing on garden-facing walls enables cross ventilation without exposing interiors to street heat or glare',
-      'Exposed brick facades absorb and delay heat transfer, releasing it slowly through the night instead of into daytime living spaces',
-      'Deep covered thresholds and layered brick screening reduce direct solar strike on entry points and walkways',
-      'Continuous indoor-outdoor flooring removes thermal breaks, letting cool garden air move through the home instead of stopping at a door',
-    ],
-    materials: ['Exposed Brick', 'Full-Height Glazing', 'Continuous Stone Flooring', 'Brick Jaali Screening', 'Reinforced Concrete Frame'],
-    metric: '6°C cooler without a single AC hour',
-    metricIcon: 'drop',
-    story: {
+    narrative: {
       problem:
-        'Most homes in Patna solve heat by shutting it out. Thick curtains, sealed windows, a compressor running from noon to midnight. It works, until the power cuts, until the electricity bill arrives, until the family realizes they have built a beautiful box that only functions with a machine breathing for it. The client for Madhuban wanted something that older Patna homes understood instinctively, a house that stays cool because of how it is built, not because of what is plugged into it. The brief was not luxury for its own sake. It was luxury as consequence, a home spacious enough for a joint family, private enough to feel like a retreat, and cool enough to make the AC optional rather than mandatory.',
+        'A steep site with heavy monsoon runoff. Excavation and drainage, not the house, were the risk. Materials had to be carried up the slope.',
       approach:
-        'We started by refusing height. Where most premium plots in Patna go vertical to maximize floor area, Madhuban stays low, a ground-level villa that keeps its 2,400 sq ft of carpet space close to the earth, where temperatures naturally run lower than anything stacked above it. Around that footprint, we carved large inward gardens, not decorative strips but working climate infrastructure. Air moving across planted, shaded soil cools before it ever touches a wall. Full-height openings on every garden-facing room let that cooled air move straight through the house, room to room, without a single mechanical nudge. The brick you see everywhere is not a finish choice, it is thermal mass doing quiet, unglamorous work, soaking up daytime heat and giving it back slowly overnight, long after the family has gone to sleep in a room that never spiked. Every indoor-outdoor threshold was detailed to disappear, same flooring, same level, so the garden feels like an extension of the living room rather than a view through glass.',
-      outcome:
-        'The result is a home that runs six degrees cooler than its surroundings without a single hour of mechanical cooling doing the work alone. On a 2,400 sq ft plan carved out of a 3,900 sq ft build, on a 5,000 sq ft plot, Madhuban proves that space, privacy, and comfort do not require a compressor to coexist. It is a villa built for a family that wanted to gather outdoors and retreat indoors in the same afternoon, without choosing between the two, and without paying for that choice every month on their electricity bill.',
+        'We stepped the plan with the contour, used the local stone, and designed the retaining walls and drainage before the house.',
+      solution:
+        'Each level sits on its own terrace. Water is led away along planned channels and collected in a tank at the bottom, and the stone keeps the rooms cool in summer and warm in winter.',
+    },
+    strategies: [
+      { name: 'Stepped plan', description: 'The house follows the contour, which cuts excavation and retaining height.' },
+      { name: 'Drainage first', description: 'Channels and weep holes were set out before the walls were built.' },
+      { name: 'Local stone masonry', description: 'Thick stone walls give thermal mass and reduce transport.' },
+      { name: 'Rainwater tank', description: 'Roof water is collected at the lowest terrace for the garden.' },
+    ],
+    materials: ['Local stone masonry', 'Slate roofing', 'Aged deodar timber', 'Dry-stone retaining walls', 'Lime mortar'],
+    technology: ['structural-seismic', 'concrete-testing', 'flood-test', 'dashboard-cpm'],
+    metrics: [
+      { label: 'Excavation compared with a flat-plan scheme', value: 'Reduced', evidence: 'sample' },
+      { label: 'Monsoon performance, first season', value: 'No water ingress', evidence: 'sample' },
+      { label: 'Delivery against agreed date', value: 'On the date', evidence: 'sample' },
+    ],
+    seo: {
+      title: 'Hillside House, Almora',
+      description: 'A stepped stone and slate home on a steep Almora site, designed and built by Studio Aashraya.',
+    },
+  },
+  {
+    slug: 'courtyard-home-patna',
+    key: 'patna',
+    name: 'Courtyard Home',
+    city: 'Patna',
+    region: 'Bihar',
+    type: 'Residential',
+    status: 'built',
+    placeholder: true,
+    year: 2024,
+    plotArea: '2,400 sq ft',
+    builtUp: '3,200 sq ft',
+    floors: 'Ground + 1',
+    climateZone: 'Hot and humid',
+    delivery: { agreed: '2024-06', delivered: '2024-06' },
+    warrantyYears: 15,
+    headline: 'A courtyard and a veranda for a hot, wet climate.',
+    summary:
+      'A brick and lime home built around a courtyard, with a deep veranda that keeps the monsoon out and the air moving.',
+    galleryCaptions: [
+      'Central courtyard with planting',
+      'Exposed brick and jali openings',
+      'Veranda in monsoon light',
+    ],
+    narrative: {
+      problem:
+        'Patna is hot and humid, and the plot is narrow. The family wanted a home that was cool without running air-conditioning all day.',
+      approach:
+        'We opened the plan around a courtyard, added a deep veranda on the sun side, and used brick and lime so the walls can breathe.',
+      solution:
+        'Cross-ventilation runs through the jali openings and the courtyard. The veranda keeps rain and direct sun off the walls.',
+    },
+    strategies: [
+      { name: 'Courtyard planning', description: 'Rooms open onto a central courtyard for light and air.' },
+      { name: 'Deep veranda', description: 'A deep overhang keeps sun and rain off the walls.' },
+      { name: 'Jali cross-ventilation', description: 'Openings aligned for breeze across each room.' },
+      { name: 'Breathable walls', description: 'Brick and lime plaster that releases moisture.' },
+    ],
+    materials: ['Exposed brick', 'Lime plaster', 'Jali blocks', 'Stone drain', 'Terracotta tile roof layer'],
+    technology: ['thermal-sim', 'structural-seismic', 'concrete-testing', 'flood-test', 'dashboard-cpm'],
+    metrics: [
+      { label: 'Rooms with cross-ventilation', value: 'All principal rooms', evidence: 'sample' },
+      { label: 'Indoor temperature vs conventional reference, peak afternoon', value: '-4 °C', evidence: 'sample' },
+      { label: 'Delivery against agreed date', value: 'On the date', evidence: 'sample' },
+    ],
+    seo: {
+      title: 'Courtyard Home, Patna',
+      description: 'A brick and lime courtyard home in Patna with a deep veranda and cross-ventilation, built by Studio Aashraya.',
+    },
+  },
+  {
+    slug: 'nri-farmhouse-sohna',
+    key: 'farm',
+    name: 'NRI Farmhouse',
+    city: 'Sohna, Gurugram',
+    region: 'Delhi NCR',
+    type: 'Residential',
+    status: 'design',
+    placeholder: true,
+    plotArea: '1 acre',
+    builtUp: '9,800 sq ft',
+    floors: 'Ground + 1',
+    climateZone: 'Composite',
+    warrantyYears: 15,
+    headline: 'A farmhouse planned for an owner who lives abroad.',
+    summary:
+      'A low-slung farmhouse of rammed earth and stone, designed so the family can follow every stage of the build from overseas.',
+    galleryCaptions: [
+      'Deep verandas on the south side',
+      'Rammed-earth wall and battered stone plinth',
+      'Aerial view of the house, water channel and orchard',
+    ],
+    narrative: {
+      problem:
+        'The family lives overseas and will visit twice a year. They need to decide, approve and verify without being on site.',
+      approach:
+        'We planned the house with long verandas for shade, thick earth walls for thermal mass, and a reporting rhythm built around their time zone.',
+      solution:
+        'Weekly walkthroughs, a decision log and four gate records give the family one place to see where the build stands and what is waiting on them.',
+    },
+    strategies: [
+      { name: 'Deep verandas', description: 'Long overhangs shade the south and west sides.' },
+      { name: 'Rammed-earth walls', description: 'Thick earth walls add thermal mass and keep rooms stable.' },
+      { name: 'Water channel and orchard', description: 'A planned channel cools the air and feeds the planting.' },
+      { name: 'Remote build plan', description: 'Weekly video, gate records and a written decision log in the owner\'s time zone.' },
+    ],
+    materials: ['Rammed earth', 'Battered stone plinth', 'Timber rafters', 'Lime plaster', 'Stone paving'],
+    technology: ['thermal-sim', 'structural-seismic', 'bim-clash', 'dashboard-cpm'],
+    metrics: [
+      { label: 'Time-zone-fit reporting', value: 'Weekly walkthrough', evidence: 'sample' },
+      { label: 'Gate records planned', value: '4', evidence: 'sample' },
+      { label: 'Thermal simulation', value: 'Complete at design stage', evidence: 'simulated', method: 'OWNER_TO_SUPPLY' },
+    ],
+    seo: {
+      title: 'NRI Farmhouse, Sohna',
+      description: 'A design-stage farmhouse near Gurugram for an owner abroad, with a remote-build plan, from Studio Aashraya.',
     },
   },
 ]
+
+export const ALL_PROJECTS = SAMPLE_PROJECTS
+export const projects = SAMPLE_PROJECTS
+export const PROJECTS = SAMPLE_PROJECTS
+
+export function getAllProjects(): Project[] {
+  return ALL_PROJECTS
+}
+
+export function getProjectBySlug(slug: string): Project | undefined {
+  return ALL_PROJECTS.find((p) => p.slug === slug)
+}
+
+/**
+ * Validates project records per Section 8.2 & Implementation Plan:
+ * - 'built' requires 'year' and 'delivery.delivered'
+ * - Every metric has 'evidence'
+ * - Throws Error if invalid
+ */
+export function validateProjects(projects: Project[] = ALL_PROJECTS): boolean {
+  for (const p of projects) {
+    if (!p.slug || !p.key || !p.name) {
+      throw new Error(`Project validation error: missing identity for slug "${p.slug}"`)
+    }
+    if (p.status === 'built') {
+      if (!p.year) {
+        throw new Error(`Project "${p.slug}" has status "built" but is missing year`)
+      }
+      if (!p.delivery?.delivered) {
+        throw new Error(`Project "${p.slug}" has status "built" but is missing delivery.delivered`)
+      }
+    }
+    for (const m of p.metrics) {
+      if (!m.evidence) {
+        throw new Error(`Project "${p.slug}" metric "${m.label}" is missing evidence`)
+      }
+    }
+  }
+  return true
+}
+
+// Self-validate at load
+validateProjects()

@@ -1,96 +1,161 @@
 import { sendGAEvent } from '@next/third-parties/google'
 
-type CTALocation =
-  | 'hero'
-  | 'project_detail'
-  | 'calculator_result'
-  | 'about_page'
-  | 'footer'
-  | 'nav'
-  | string
+// UNIVERSAL EVENT DISPATCHER
+export function trackEvent(eventName: string, params: Record<string, unknown> = {}) {
+  try {
+    sendGAEvent('event', eventName, params)
+  } catch {
+    // ignore if GA not loaded
+  }
+}
 
-type ProjectType = 'residential' | 'institutional' | 'concept' | string
-type CalculatorName = 'cost_estimator' | 'far_checker'
-
-// EVENT 1 — BOOKING FORM SUBMIT (primary conversion)
+// PRIMARY CONVERSION — BOOKING FORM SUBMIT
 export function trackBookingFormSubmit(params: {
   projectType?: string
   city?: string
   budgetRange?: string
+  src?: string
 }) {
-  sendGAEvent('event', 'generate_lead', {
+  trackEvent('generate_lead', {
     event_category: 'Lead',
     event_label: 'book_call_form_submit',
     form_name: 'book_a_call',
     project_type: params.projectType ?? 'not_specified',
     city: params.city ?? 'not_specified',
     budget_range: params.budgetRange ?? 'not_specified',
+    src: params.src ?? 'direct',
   })
-  // Secondary event for custom funnel reporting
-  sendGAEvent('event', 'form_submit', {
+  trackEvent('form_submit', {
     event_category: 'Lead',
     form_name: 'book_a_call',
   })
 }
 
-// EVENT 2 — CTA BUTTON CLICK
-export function trackCTAClick(ctaLabel: string, location: CTALocation) {
-  sendGAEvent('event', 'click', {
-    event_category: 'CTA',
-    event_label: ctaLabel,
-    cta_location: location,
+export function trackLead(params: Record<string, unknown> = {}) {
+  trackEvent('generate_lead', {
+    event_category: 'Lead',
+    ...params,
   })
 }
 
-// EVENT 3 — PHONE CLICK
-export function trackPhoneClick() {
-  sendGAEvent('event', 'click', {
-    event_category: 'Contact',
-    event_label: 'phone_click',
-    contact_method: 'phone',
-  })
-}
-
-// EVENT 4 — WHATSAPP CLICK
-export function trackWhatsAppClick() {
-  sendGAEvent('event', 'click', {
-    event_category: 'Contact',
-    event_label: 'whatsapp_click',
-    contact_method: 'whatsapp',
-  })
-}
-
-// EVENT 5 — PROJECT VIEW
-export function trackProjectView(params: {
-  projectSlug: string
-  projectName: string
-  projectType: ProjectType
-}) {
-  sendGAEvent('event', 'view_item', {
-    event_category: 'Portfolio',
-    event_label: params.projectSlug,
-    project_slug: params.projectSlug,
-    project_name: params.projectName,
-    project_type: params.projectType,
-  })
-}
-
-// EVENT 6 — CALCULATOR COMPLETION
-export function trackCalculatorComplete(
-  calculatorName: CalculatorName,
-  inputs: Record<string, string | number>
+// CTA CLICK — With cta_id, page, section, variant
+export function trackCTAClick(
+  ctaId: string,
+  page: string,
+  section?: string,
+  variant?: string
 ) {
-  sendGAEvent('event', 'calculator_complete', {
-    event_category: 'Engagement',
-    event_label: calculatorName,
-    calculator_name: calculatorName,
-    ...inputs,
+  trackEvent('cta_click', {
+    cta_id: ctaId,
+    page,
+    section: section ?? '',
+    variant: variant ?? '',
   })
 }
 
-// EVENT 7 — 404 PAGE
+// PHONE CLICK
+export function trackPhoneClick(page: string = '', section: string = '') {
+  trackEvent('phone_click', {
+    page,
+    section,
+  })
+}
+
+// WHATSAPP CLICK
+export function trackWhatsAppClick(page: string = '', section: string = '') {
+  trackEvent('whatsapp_click', {
+    page,
+    section,
+  })
+}
+
+// MAPS / DIRECTIONS CLICK
+export function trackMapsClick(page: string = '') {
+  trackEvent('maps_click', {
+    page,
+  })
+}
+
+// PROJECT FILTER
+export function trackProjectFilter(
+  city: string,
+  type: string,
+  status: string,
+  results: number
+) {
+  trackEvent('project_filter', {
+    city,
+    type,
+    status,
+    results,
+  })
+}
+
+// PROJECT VIEW
+export function trackProjectView(slug: string, city: string = '', status: string = '') {
+  trackEvent('project_view', {
+    slug,
+    city,
+    status,
+  })
+}
+
+// METHOD STAGE EXPANDED
+export function trackMethodStageOpen(stage: string | number) {
+  trackEvent('method_stage_open', {
+    stage: String(stage),
+  })
+}
+
+// TECHNOLOGY BLOCK EXPANDED
+export function trackTechBlockOpen(id: string) {
+  trackEvent('tech_block_open', {
+    id,
+  })
+}
+
+// CALCULATOR START / COMPLETE
+export function trackCalculatorStart(tool: string) {
+  trackEvent('calculator_start', {
+    tool,
+  })
+}
+
+export function trackCalculatorComplete(
+  tool: string,
+  inputs?: Record<string, unknown>
+) {
+  trackEvent('calculator_complete', {
+    tool,
+    ...(inputs || {}),
+  })
+}
+
+// THEME TOGGLE
+export function trackThemeToggle(to: 'light' | 'dark') {
+  trackEvent('theme_toggle', {
+    to,
+  })
+}
+
+// SCROLL DEPTH
+export function trackScrollDepth(page: string, pct: number) {
+  trackEvent('scroll_depth', {
+    page,
+    pct,
+  })
+}
+
+// FORM PAGE VIEW
+export function trackFormPageView(src: string = 'direct') {
+  trackEvent('form_page_view', {
+    src,
+  })
+}
+
+// 404 PAGE
 export function track404(path: string) {
-  sendGAEvent('event', 'page_not_found', {
+  trackEvent('page_not_found', {
     event_category: 'Error',
     event_label: path,
   })
