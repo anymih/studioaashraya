@@ -42,7 +42,11 @@ its phasing (Phase 1 → Phase 2 → Phase 3) without explicit approval.
 - Do NOT touch existing routes (about, book-a-call, projects) unless required
   for navigation/linking to the new calculator
 
-## Process
+## Process & Collaboration
 - Before writing code, produce a plan artifact for review
 - After scaffolding, run npm run build / npm run dev and report any errors
 - Flag any ambiguity in the spec instead of guessing
+- **Git Commit Protocol**: Never commit or push directly to GitHub without explicit user confirmation of finalized changes.
+- **Ignore Local Skills**: `.agents/` and all local skills must never be committed to Git.
+- **Autonomous PM Skills Application**: Proactively apply relevant PM skills (`.agents/skills/`) autonomously according to context (e.g. `pm-prd` for specs, `pm-user-stories` for story breakdowns, `pm-rice-prioritization` or `pm-moscow-prioritization` for scope cutting, `pm-pre-mortem` for risk audits) without waiting for explicit prompts.
+
