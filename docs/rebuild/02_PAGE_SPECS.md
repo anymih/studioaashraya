@@ -7,7 +7,7 @@ Every string is final copy unless marked `[DATA]`. Components come from `03_DESI
 - WhatsApp `https://wa.me/919473031016?text=Hi%20Studio%20Aashraya%2C%20I%20would%20like%20a%20free%20plot%20check.`
 - address `C93, Old DLF Colony, Sector 14, Gurugram`
 - maps `https://www.google.com/maps/search/?api=1&query=C93+Old+DLF+Colony+Sector+14+Gurugram`
-- email `contact@studioaashraya.com`
+- email `studioaashraya@gmail.com`
 - form route `/book-a-call`
 
 ---

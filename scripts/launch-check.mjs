@@ -7,7 +7,7 @@ const warnings = [];
 // 1. Check NEXT_PUBLIC_SITE_URL in environment or fallback
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
 if (!siteUrl) {
-  warnings.push('NEXT_PUBLIC_SITE_URL is not set in environment (falling back to default https://studioaashraya.com).');
+  warnings.push('NEXT_PUBLIC_SITE_URL is not set in environment (falling back to default https://studioaashraya.site).');
 }
 
 // Check lib/site.ts constants

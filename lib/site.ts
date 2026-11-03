@@ -22,12 +22,13 @@ export interface SiteConfig {
   address: string
   mapsLink: string
   email: string
+  sameAs: string[]
   formRoute: string
   offices: OfficeLocation[]
 }
 
 export const siteConfig: SiteConfig = {
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://studioaashraya.com',
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://studioaashraya.site',
   name: 'Studio Aashraya',
   description:
     'IIT-led architecture and construction for private homes in Gurugram and Delhi NCR. On time or 10% back, with a 15-year warranty.',
@@ -46,7 +47,8 @@ export const siteConfig: SiteConfig = {
   address: 'C93, Old DLF Colony, Sector 14, Gurugram',
   mapsLink:
     'https://www.google.com/maps/search/?api=1&query=C93+Old+DLF+Colony+Sector+14+Gurugram',
-  email: 'contact@studioaashraya.com',
+  email: 'studioaashraya@gmail.com',
+  sameAs: [],
   formRoute: '/book-a-call',
   offices: [
     {

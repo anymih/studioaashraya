@@ -121,6 +121,15 @@ export function MenuOverlay({ isOpen, onClose, navLinks }: MenuOverlayProps) {
             <span>WhatsApp</span>
           </a>
         </div>
+
+        <div className="pt-2 text-center">
+          <a
+            href={`mailto:${siteConfig.email}`}
+            className="font-mono text-xs text-[var(--muted)] hover:text-[var(--ink)]"
+          >
+            {siteConfig.email}
+          </a>
+        </div>
       </div>
     </div>
   )

@@ -98,6 +98,14 @@ export default function Header() {
 
         {/* Right side controls */}
         <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+          {/* Email link on desktop */}
+          <a
+            href={`mailto:${siteConfig.email}`}
+            className="hidden 2xl:flex items-center gap-1.5 font-mono text-xs text-[var(--muted)] hover:text-[var(--ink)] transition-colors mr-1"
+          >
+            <span>{siteConfig.email}</span>
+          </a>
+
           {/* Phone link on desktop */}
           <a
             href={`tel:${siteConfig.phone}`}

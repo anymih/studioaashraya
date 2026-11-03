@@ -1,3 +1,4 @@
+import { siteConfig } from '@/lib/site'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -7,18 +8,18 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'About Studio Aashraya | Architecture Firm in Patna, Bihar',
     description: 'Meet the architect behind Studio Aashraya and learn how the firm designs better homes in Patna and Bihar through climate-conscious, practical residential design.',
-    url: 'https://studioaashraya.site/about',
+    url: `${siteConfig.siteUrl}/about`,
     type: 'profile',
-    images: [{ url: 'https://studioaashraya.site/assets/og-about.jpg', width: 1200, height: 630, alt: 'Studio Aashraya architecture firm Patna Bihar — meet our architect' }],
+    images: [{ url: `${siteConfig.siteUrl}/assets/og-about.jpg`, width: 1200, height: 630, alt: 'Studio Aashraya architecture firm Patna Bihar — meet our architect' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'About Studio Aashraya | Architecture Firm in Patna, Bihar',
     description: 'Meet the architect behind Studio Aashraya and learn how the firm designs better homes in Patna and Bihar through climate-conscious, practical residential design.',
-    images: ['https://studioaashraya.site/assets/og-about.jpg'],
+    images: [`${siteConfig.siteUrl}/assets/og-about.jpg`],
     site: '@studioaashraya',
   },
-  alternates: { canonical: 'https://studioaashraya.site/about' },
+  alternates: { canonical: `${siteConfig.siteUrl}/about` },
 }
 
 const aboutSchema = {
@@ -27,8 +28,8 @@ const aboutSchema = {
     {
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://studioaashraya.site' },
-        { '@type': 'ListItem', position: 2, name: 'About', item: 'https://studioaashraya.site/about' },
+        { '@type': 'ListItem', position: 1, name: 'Home', item: siteConfig.siteUrl },
+        { '@type': 'ListItem', position: 2, name: 'About', item: `${siteConfig.siteUrl}/about` },
       ],
     },
     {

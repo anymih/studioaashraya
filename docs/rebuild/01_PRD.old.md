@@ -285,7 +285,7 @@ All events go through `lib/analytics.ts`. Existing `trackBookingFormSubmit` and 
 
 ## 11. SEO requirements
 
-- Canonical origin from `NEXT_PUBLIC_SITE_URL` (default `https://studioaashraya.com`).
+- Canonical origin from `NEXT_PUBLIC_SITE_URL` (default `https://studioaashraya.site`).
 - One H1 per page; titles use the template `%s | Studio Aashraya`.
 - Primary keyword map is in `02_PAGE_SPECS.md` section 12.
 - Do not add Review or AggregateRating markup for testimonials on the studio's own site.
@@ -307,7 +307,7 @@ All events go through `lib/analytics.ts`. Existing `trackBookingFormSubmit` and 
 
 | # | Input | Default if missing |
 |---|---|---|
-| B1 | Canonical domain (.com or .site) | `studioaashraya.com` |
+| B1 | Canonical domain (.com or .site) | `studioaashraya.site` |
 | B2 | NCR contact: office or "by appointment" line, phone, WhatsApp, email | Reuse the phone, WhatsApp and email already on the old site; show "Gurugram, by appointment" |
 | B3 | For each project: status (built, under construction, design), city, plot area, built-up area, year, cover photo, gallery | Only projects with status and cover photo render |
 | B4 | Confirm each gate-checklist item and each live capability | Items as listed in the ledgers |

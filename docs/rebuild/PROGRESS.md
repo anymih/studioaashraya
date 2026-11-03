@@ -156,7 +156,7 @@ Route (app)
 ❌ [Launch Check Failed] Sample projects with placeholder: true exist and ALLOW_SAMPLE_CONTENT is not true.
 ❌ [Launch Check Failed] 30 project images have kind: "generated" and ALLOW_SAMPLE_CONTENT is not true.
 ⚠️  [Launch Check Warnings]:
-   - NEXT_PUBLIC_SITE_URL is not set in environment (falling back to default https://studioaashraya.com).
+   - NEXT_PUBLIC_SITE_URL is not set in environment (falling back to default https://studioaashraya.site).
 
 ❌ launch:check failed with errors.
 ```
@@ -206,8 +206,8 @@ Ran regex scan across all source code (`.ts`, `.tsx`, `.css`, `.json`) excluding
 
 | # | Item | Default Applied | Where Used |
 |---|---|---|---|
-| **B1** | Canonical domain | `https://studioaashraya.com` | `lib/site.ts`, `app/layout.tsx`, `app/robots.ts`, `app/sitemap.ts` |
-| **B2** | Email & office hours | `contact@studioaashraya.com`; no hours shown | `lib/site.ts`, `Header.tsx`, `Footer.tsx`, `app/book-a-call/page.tsx` |
+| **B1** | Canonical domain | `https://studioaashraya.site` | `lib/site.ts`, `app/layout.tsx`, `app/robots.ts`, `app/sitemap.ts` |
+| **B2** | Email & office hours | `studioaashraya@gmail.com`; no hours shown | `lib/site.ts`, `Header.tsx`, `Footer.tsx`, `app/book-a-call/page.tsx` |
 | **B3** | Real project data & photos | 6 sample projects in `06_SAMPLE_PROJECTS.ts` with `SampleTag` | `lib/projects-data.ts`, `app/projects/page.tsx`, `app/projects/[slug]/page.tsx` |
 | **B4** | Gate checks and instruments | As written in `02_PAGE_SPECS.md` Section 3 | `lib/method-data.ts`, `app/method/page.tsx` |
 | **B5** | NCR cost bands | "Indicative range on request" | `app/calculators/cost-estimator/page.tsx` |

@@ -292,7 +292,7 @@ Derived: CTA click-through = `cta_click` ÷ page views per placement. Form conve
 
 ## 11. SEO requirements
 
-- Canonical origin from `NEXT_PUBLIC_SITE_URL` (default `https://studioaashraya.com`).
+- Canonical origin from `NEXT_PUBLIC_SITE_URL` (default `https://studioaashraya.site`).
 - One H1 per page; title template `%s | Studio Aashraya`. Keyword map in `02_PAGE_SPECS.md` section 13.
 - Organization graph includes `telephone: "+91-9473031016"` and `address` with streetAddress "C93, Old DLF Colony, Sector 14", addressLocality "Gurugram", addressRegion "Haryana", addressCountry "IN". Add postalCode 122001 only after the owner confirms it.
 - No Review or AggregateRating markup.
@@ -315,8 +315,8 @@ Derived: CTA click-through = `cta_click` ÷ page views per placement. Form conve
 
 | # | Input | Default if missing |
 |---|---|---|
-| B1 | Canonical domain | `studioaashraya.com` |
-| B2 | Email and office hours | Email `contact@studioaashraya.com` (from the old site); no hours shown |
+| B1 | Canonical domain | `studioaashraya.site` |
+| B2 | Email and office hours | Email `studioaashraya@gmail.com` (from the old site); no hours shown |
 | B3 | Real project data and photos | Six sample projects in `06_SAMPLE_PROJECTS.ts` |
 | B4 | Gate checks and instruments per gate | As written in `02_PAGE_SPECS.md` section 3 |
 | B5 | NCR cost bands for the estimator | "Indicative range on request" |

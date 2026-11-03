@@ -7,6 +7,7 @@ import MobileCtaBar from '@/components/ui/MobileCtaBar'
 import SampleBanner from '@/components/ui/SampleBanner'
 import { GoogleAnalytics } from '@next/third-parties/google'
 import { ScrollTracker } from '@/components/ui/ScrollTracker'
+import { siteConfig } from '@/lib/site'
 
 const fontDisplay = Big_Shoulders({
   subsets: ['latin'],
@@ -38,25 +39,14 @@ export const viewport: Viewport = {
   viewportFit: 'cover',
 }
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://studioaashraya.com'
-
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL(siteConfig.siteUrl),
   title: {
     template: '%s | Studio Aashraya',
     default: 'Architect and Builder in Gurugram, Delhi NCR | Studio Aashraya',
   },
   description:
     'IIT-led architecture and construction for private homes in Gurugram and Delhi NCR. Design, engineering, approvals and build under one accountable team.',
-  keywords: [
-    'architect and builder in Gurugram',
-    'turnkey home construction Gurugram',
-    'NRI home construction Gurugram',
-    'plot feasibility report Gurugram',
-    'architect in Delhi',
-    'architect in Patna',
-    'IIT architect Gurugram',
-  ],
   authors: [{ name: 'Anumeh Prakhar, Studio Aashraya' }],
   icons: {
     icon: '/favicon.ico',
@@ -66,7 +56,7 @@ export const metadata: Metadata = {
     title: 'Architect and Builder in Gurugram, Delhi NCR | Studio Aashraya',
     description:
       'IIT-led architecture and construction for private homes in Gurugram and Delhi NCR. Design, engineering, approvals and build under one accountable team.',
-    url: siteUrl,
+    url: siteConfig.siteUrl,
     siteName: 'Studio Aashraya',
     locale: 'en_IN',
     type: 'website',
@@ -83,7 +73,7 @@ export const metadata: Metadata = {
     googleBot: { index: true, follow: true },
   },
   alternates: {
-    canonical: siteUrl,
+    canonical: siteConfig.siteUrl,
   },
 }
 
@@ -92,13 +82,14 @@ const rootSchema = {
   '@graph': [
     {
       '@type': ['Organization', 'HomeAndConstructionBusiness'],
-      '@id': `${siteUrl}/#organization`,
+      '@id': `${siteConfig.siteUrl}/#organization`,
       name: 'Studio Aashraya',
-      url: siteUrl,
+      url: siteConfig.siteUrl,
       description:
         'IIT-led architecture and construction for private homes in Gurugram and Delhi NCR. On time, or 10% back. 15-year warranty.',
-      telephone: '+91-9473031016',
-      email: 'contact@studioaashraya.com',
+      telephone: siteConfig.phone,
+      email: siteConfig.email,
+      sameAs: siteConfig.sameAs,
       address: {
         '@type': 'PostalAddress',
         streetAddress: 'C93, Old DLF Colony, Sector 14',

@@ -1,3 +1,4 @@
+import { siteConfig } from '@/lib/site'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -13,11 +14,11 @@ export const metadata: Metadata = {
     title: 'Book a Free Architecture Clarity Call | Studio Aashraya',
     description:
       'Schedule a free architecture clarity call for your home or building project in Bihar.',
-    url: 'https://studioaashraya.site/book-a-call',
+    url: `${siteConfig.siteUrl}/book-a-call`,
     type: 'website',
     images: [
       {
-        url: 'https://studioaashraya.site/assets/og-social-card.jpg',
+        url: `${siteConfig.siteUrl}/assets/og-social-card.jpg`,
         width: 1200,
         height: 630,
         alt: 'Book an architecture clarity call with Studio Aashraya in Patna Bihar',
@@ -29,11 +30,11 @@ export const metadata: Metadata = {
     title: 'Book a Free Architecture Clarity Call | Studio Aashraya',
     description:
       'Talk to an IIT-trained architect about your project in Patna or Bihar.',
-    images: ['https://studioaashraya.site/assets/og-social-card.jpg'],
+    images: [`${siteConfig.siteUrl}/assets/og-social-card.jpg`],
     site: '@studioaashraya',
   },
   alternates: {
-    canonical: 'https://studioaashraya.site/book-a-call',
+    canonical: `${siteConfig.siteUrl}/book-a-call`,
   },
 }
 
@@ -41,8 +42,8 @@ const bookCallSchema = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://studioaashraya.site' },
-    { '@type': 'ListItem', position: 2, name: 'Book a Call', item: 'https://studioaashraya.site/book-a-call' },
+    { '@type': 'ListItem', position: 1, name: 'Home', item: siteConfig.siteUrl },
+    { '@type': 'ListItem', position: 2, name: 'Book a Call', item: `${siteConfig.siteUrl}/book-a-call` },
   ],
 }
 

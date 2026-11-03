@@ -23,7 +23,7 @@ Read order: `AGENTS.md`, `01`, `03`, `02`, `05`, `06`, this file, then the refer
 
 | Variable | Value | Purpose |
 |---|---|---|
-| `NEXT_PUBLIC_SITE_URL` | `https://studioaashraya.com` (change if the domain differs) | Canonical URLs, sitemap, schema |
+| `NEXT_PUBLIC_SITE_URL` | `https://studioaashraya.site` (change if the domain differs) | Canonical URLs, sitemap, schema |
 | `NEXT_PUBLIC_GA_ID` | existing | GA4 |
 | `ADMIN_API_KEY` | a long random string | Protects `/api/ingest` and `/api/normalize` |
 | `NEXT_PUBLIC_ENABLE_ADMIN_TOOLS` | `false` | Hides bye-law admin panels |
