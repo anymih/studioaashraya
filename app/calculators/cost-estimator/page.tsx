@@ -12,10 +12,10 @@ import { Calculator } from 'lucide-react'
 import { COST_RATES, TIMELINE, formatLakhs } from '@/lib/calculator-constants'
 
 const COST_FAQ_DATA = [
-  { q: 'How much does it cost to build a house in Patna?', a: 'Construction cost in Patna ranges from ₹1,400–₹2,800 per sq ft depending on the quality of finish (basic, standard, or premium). A 1,000 sq ft home can cost between ₹14–28 lakhs approximately.' },
-  { q: 'What factors affect house construction cost in Bihar?', a: 'Key factors include plot location, soil conditions, quality of materials, number of floors, type of finish (basic vs premium), labour rates in your area, and design complexity.' },
-  { q: 'Does an architect increase building cost?', a: 'An architect actually helps optimize costs by avoiding design errors, reducing material waste, and ensuring efficient space planning. The design fee typically saves more than it costs over the construction period.' },
-  { q: 'How do I reduce construction cost without compromising quality?', a: 'Use locally sourced materials, optimize your floor plan to reduce wasted area, choose a simple building form, plan for natural ventilation to reduce AC costs, and work with an architect who understands Bihar\'s climate and material market.' },
+  { q: 'How much does it cost to build a house?', a: 'Construction cost typically ranges from ₹1,400–₹3,200 per sq ft depending on the location, soil conditions, and finish quality (basic, standard, or premium). For Gurugram and Delhi NCR plots, cost structures depend on basement excavation, stilt parking, and local municipal bylaws.' },
+  { q: 'What factors affect house construction cost?', a: 'Key factors include plot location, soil conditions, structural requirements, number of basements/floors, material specifications, and design complexity.' },
+  { q: 'Does an architect increase building cost?', a: 'An architect helps optimize costs by avoiding structural and spatial errors, reducing material waste, and ensuring disciplined procurement. Turnkey architectural execution eliminates contractor markups.' },
+  { q: 'How do I plan my construction budget?', a: 'Start with your permissible built-up area and define requirements clearly before excavation. Working with a single design-and-build team ensures budget alignment from the first sketch.' },
 ]
 
 function CostFAQ() {

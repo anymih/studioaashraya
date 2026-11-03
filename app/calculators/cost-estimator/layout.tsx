@@ -1,37 +1,23 @@
+import React from 'react'
+import type { Metadata } from 'next'
 import { siteConfig } from '@/lib/site'
-import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'House Construction Cost Estimator for Bihar and Patna | Studio Aashraya',
+  title: 'Construction Cost Estimator | Studio Aashraya',
   description:
-    "Estimate house construction cost for your plot in Patna and Bihar with Studio Aashraya's cost estimator tool.",
-  keywords: [
-    'construction cost estimator Bihar',
-    'house cost calculator Patna',
-    'ghar banane ka kharcha Bihar',
-  ],
+    'Estimate house construction cost for your plot in Gurugram, Delhi NCR and Bihar with Studio Aashraya.',
   openGraph: {
-    title: 'House Construction Cost Estimator for Bihar and Patna | Studio Aashraya',
+    title: 'Construction Cost Estimator | Studio Aashraya',
     description:
-      "Quickly estimate construction cost for your home in Bihar using Studio Aashraya's calculator.",
+      'Estimate house construction cost for your plot in Gurugram, Delhi NCR and Bihar with Studio Aashraya.',
     url: `${siteConfig.siteUrl}/calculators/cost-estimator`,
     type: 'website',
-    images: [
-      {
-        url: `${siteConfig.siteUrl}/assets/og-social-card.jpg`,
-        width: 1200,
-        height: 630,
-        alt: 'House construction cost estimator for Patna Bihar',
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'House Construction Cost Estimator for Bihar and Patna',
+    title: 'Construction Cost Estimator | Studio Aashraya',
     description:
-      'Estimate your house construction budget in Bihar.',
-    images: [`${siteConfig.siteUrl}/assets/og-social-card.jpg`],
-    site: '@studioaashraya',
+      'Estimate house construction cost for your plot in Gurugram, Delhi NCR and Bihar.',
   },
   alternates: {
     canonical: `${siteConfig.siteUrl}/calculators/cost-estimator`,
@@ -43,7 +29,7 @@ const costEstimatorSchema = {
   '@type': 'BreadcrumbList',
   itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Home', item: siteConfig.siteUrl },
-    { '@type': 'ListItem', position: 2, name: 'Calculators', item: `${siteConfig.siteUrl}/calculators/cost-estimator` },
+    { '@type': 'ListItem', position: 2, name: 'Calculators', item: `${siteConfig.siteUrl}/calculators` },
     { '@type': 'ListItem', position: 3, name: 'Construction Cost Estimator', item: `${siteConfig.siteUrl}/calculators/cost-estimator` },
   ],
 }

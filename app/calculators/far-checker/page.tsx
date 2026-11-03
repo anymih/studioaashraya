@@ -12,9 +12,9 @@ import { FAR_PRESETS } from '@/lib/calculator-constants'
 
 const FAR_FAQ_DATA = [
   { q: 'What is FAR and why does it matter?', a: 'Floor Area Ratio (FAR) determines the total built-up area allowed on your plot. For example, a FAR of 2.0 on a 1,000 sq ft plot means you can build up to 2,000 sq ft across all floors. Knowing your FAR prevents legal issues and helps plan your home design.' },
-  { q: 'What is the FAR limit in Patna?', a: 'FAR in Patna varies by zone and road width. Typical residential plots on wider roads get FAR of 2.0–2.5, while narrow-lane plots may be limited to 1.5. Municipal rules also set ground coverage limits (usually 50–60%).' },
-  { q: 'Can I build a basement? Does it count in FAR?', a: 'Basements are generally allowed in Patna under certain conditions. Depending on local building bylaws, basements used for parking or utilities may be partially or fully exempt from FAR calculations.' },
-  { q: 'How do I maximize buildable area on a small plot?', a: 'Work with an architect to optimize floor plan efficiency, use stilt parking to free ground coverage, design vertically where FAR allows multiple floors, and eliminate wasted corridor space. An architect in Patna familiar with local norms can help significantly.' },
+  { q: 'What determines the FAR limit for a plot?', a: 'FAR varies by municipal authority, plot size, and abutting road width. Gurugram (HSVP/DTCP), Delhi (MPD 2021), and regional building bye-laws set specific base FAR and purchasable FAR limits.' },
+  { q: 'Can I build a basement? Does it count in FAR?', a: 'Basements used for parking or utilities within permissible setbacks are generally exempt from FAR calculations across most urban development authorities, subject to local bye-law conditions.' },
+  { q: 'How do I maximize buildable area on a plot?', a: 'Work with an architect to optimize floor plan efficiency, utilize permissible exemptions (balconies, stilt parking), and purchase additional FAR where available under municipal norms.' },
 ]
 
 function FarFAQ() {

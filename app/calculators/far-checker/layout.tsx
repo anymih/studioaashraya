@@ -1,40 +1,23 @@
+import React from 'react'
+import type { Metadata } from 'next'
 import { siteConfig } from '@/lib/site'
-import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Plot FAR & Built-up Area Calculator for Patna, Bihar | Studio Aashraya',
+  title: 'Plot FAR & Built-up Area Checker | Studio Aashraya',
   description:
-    'Calculate FAR and permissible built-up area for your plot in Patna and Bihar according to building bylaws.',
-  keywords: [
-    'FAR calculator Patna',
-    'plot FAR Bihar',
-    'kitna ghar ban sakta hai Patna',
-    'how much can I build on my plot Bihar',
-    'floor area ratio Patna',
-    'built-up area calculator Bihar',
-  ],
+    'Calculate FAR and permissible built-up area for your plot in Gurugram, Delhi NCR and Bihar according to building bylaws.',
   openGraph: {
-    title: 'Plot FAR & Built-up Area Calculator for Patna, Bihar | Studio Aashraya',
+    title: 'Plot FAR & Built-up Area Checker | Studio Aashraya',
     description:
-      'Calculate FAR and permissible built-up area for your plot in Patna and Bihar according to building bylaws.',
+      'Calculate FAR and permissible built-up area for your plot in Gurugram, Delhi NCR and Bihar according to building bylaws.',
     url: `${siteConfig.siteUrl}/calculators/far-checker`,
     type: 'website',
-    images: [
-      {
-        url: `${siteConfig.siteUrl}/assets/og-social-card.jpg`,
-        width: 1200,
-        height: 630,
-        alt: 'Plot FAR and built-up area calculator for Patna Bihar by Studio Aashraya',
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Plot FAR & Built-up Area Calculator for Patna, Bihar | Studio Aashraya',
+    title: 'Plot FAR & Built-up Area Checker | Studio Aashraya',
     description:
-      'Calculate FAR and permissible built-up area for your plot in Patna and Bihar according to building bylaws.',
-    images: [`${siteConfig.siteUrl}/assets/og-social-card.jpg`],
-    site: '@studioaashraya',
+      'Calculate FAR and permissible built-up area for your plot in Gurugram, Delhi NCR and Bihar.',
   },
   alternates: {
     canonical: `${siteConfig.siteUrl}/calculators/far-checker`,
@@ -46,7 +29,7 @@ const farCheckerSchema = {
   '@type': 'BreadcrumbList',
   itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Home', item: siteConfig.siteUrl },
-    { '@type': 'ListItem', position: 2, name: 'Calculators', item: `${siteConfig.siteUrl}/calculators/cost-estimator` },
+    { '@type': 'ListItem', position: 2, name: 'Calculators', item: `${siteConfig.siteUrl}/calculators` },
     { '@type': 'ListItem', position: 3, name: 'FAR & Built-up Area Checker', item: `${siteConfig.siteUrl}/calculators/far-checker` },
   ],
 }
