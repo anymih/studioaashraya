@@ -1,1033 +1,744 @@
-"use client"
-
-import { useState } from 'react'
-import Image from 'next/image'
+import React from 'react'
+import type { Metadata } from 'next'
 import Link from 'next/link'
+import { SectionSheet } from '@/components/sheet/SectionSheet'
+import { Eyebrow } from '@/components/ui/Eyebrow'
+import { StageList } from '@/components/ui/StageList'
 import ProjectCard from '@/components/ui/ProjectCard'
-import { projects } from '@/lib/projects-data'
-import { trackCTAClick } from '@/lib/analytics'
+import { Faq } from '@/components/ui/Faq'
+import { CtaBand } from '@/components/ui/CtaBand'
+import { projects, type Project } from '@/lib/projects-data'
+import { homeFaqs, generateFaqSchema } from '@/lib/faq-data'
+import { methodStages } from '@/lib/method-data'
+import { siteConfig } from '@/lib/site'
+import { Claim } from '@/lib/ledger'
+import { Phone, MessageSquare, ArrowRight, ShieldCheck, MapPin } from 'lucide-react'
 
-const FAQ_DATA = [
-  { q: 'How much does an architect charge in Patna?', a: 'Fees depend on project scope. At Studio Aashraya, residential design packages in Patna typically start from ₹5–8 per sq ft for design drawings. We offer a free initial consultation to discuss your specific requirements and provide a transparent quote.' },
-  { q: 'What is included in a house design package?', a: 'A full package includes site analysis, concept design, 2D floor plans, 3D elevations, structural coordination, electrical and plumbing layouts, and construction guidance. We tailor deliverables based on your project needs.' },
-  { q: 'Do you design 2D and 3D house plans?', a: 'Yes. Every project includes detailed 2D floor plans for construction and realistic 3D elevation views so you can visualize your home before building begins.' },
-  { q: 'Can you help with construction guidance in Bihar?', a: 'Absolutely. We provide on-site supervision and construction guidance across Patna and Bihar to ensure the built outcome matches the design intent, including material selection and contractor coordination.' },
-  { q: 'Do you work on small plots and duplex homes?', a: 'Yes — small and compact plots are a specialty. We design space-efficient duplexes, independent homes, and multi-storey residential buildings optimized for typical Patna plot sizes.' },
-  { q: 'How long does a first concept take?', a: 'After the initial consultation and site visit, a first concept with floor plans and 3D views is typically ready within 2–3 weeks, depending on project complexity.' },
-  { q: 'Do you provide climate-conscious home design?', a: 'Yes. Every Studio Aashraya design incorporates passive cooling, cross-ventilation, sun path analysis, and locally sourced materials — reducing energy costs and improving comfort in Bihar\'s climate.' },
-  { q: 'Can I book a consultation before finalizing my plot layout?', a: 'Yes, and we recommend it. A pre-purchase consultation can help you evaluate plot potential, FAR limits, orientation, and design feasibility before you commit.' },
-]
-
-const TESTIMONIALS_DATA = [
-  {
-    name: 'Samir Singh',
-    rating: 5,
-    text: 'The firm has an excellent sense of design and aesthetics while keeping functionality in mind.',
+export const metadata: Metadata = {
+  title: 'Architect and Builder in Gurugram, Delhi NCR | Studio Aashraya',
+  description:
+    'IIT-led architecture and construction for private homes in Gurugram and Delhi NCR. On time or 10% back, with a 15-year warranty.',
+  alternates: {
+    canonical: siteConfig.siteUrl,
   },
-  {
-    name: 'Amit Vikram Ojha',
-    rating: 5,
-    text: 'Great team — Anumeh is equal to great work.',
-    badge: 'Local Guide',
-  },
-  {
-    name: 'Amit Kumar',
-    rating: 5,
-    text: 'मुझे Studio Aashraya Patna के साथ काम करना एक बेहतरीन अनुभव रहा। Anumeh और उनकी टीम ने मेरे विचारों को ध्यान से सुना और समझा, फिर उन्हें एक अद्भुत डिजाइन में बदल दिया। मैं पूरी तरह संतुष्ट हूँ और निश्चित रूप से उन्हें recommend करूंगा।',
-    badge: 'Local Guide',
-  },
-]
-
-function HomepageFAQ() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null)
-  return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
-      {FAQ_DATA.map((faq, i) => (
-        <div key={i} style={{ borderBottom: '1px solid #E2D8CA' }}>
-          <button
-            onClick={() => setOpenIndex(openIndex === i ? null : i)}
-            style={{
-              width: '100%',
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              padding: '20px 0',
-              border: 'none',
-              backgroundColor: 'transparent',
-              cursor: 'pointer',
-              textAlign: 'left',
-              gap: '16px',
-            }}
-          >
-            <span style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: '15px',
-              fontWeight: 500,
-              color: '#184A45',
-              lineHeight: 1.5,
-            }}>{faq.q}</span>
-            <span style={{
-              fontSize: '20px',
-              color: '#184A45',
-              flexShrink: 0,
-              transition: 'transform 0.2s ease',
-              transform: openIndex === i ? 'rotate(45deg)' : 'rotate(0deg)',
-            }}>+</span>
-          </button>
-          <div style={{
-            maxHeight: openIndex === i ? '300px' : '0',
-            overflow: 'hidden',
-            transition: 'max-height 0.3s ease',
-          }}>
-            <p style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: '14px',
-              color: '#666666',
-              lineHeight: 1.7,
-              margin: '0 0 20px 0',
-              paddingRight: '40px',
-            }}>{faq.a}</p>
-          </div>
-        </div>
-      ))}
-    </div>
-  )
 }
 
 export default function HomePage() {
-  const featured = projects.slice(0, 3)
+  const faqSchema = generateFaqSchema(homeFaqs)
 
-  const CONTAINER = {
-    maxWidth: '1100px',
-    margin: '0 auto',
-    padding: '0 40px',
-    width: '100%',
-    boxSizing: 'border-box' as const,
-  }
+  const featuredProjects = projects.slice(0, 3)
+
+  const condensedStages = methodStages.map((st) => ({
+    id: `stage-${st.num}`,
+    number: st.num,
+    title: st.name,
+    summary: st.description,
+    gate: st.gate,
+  }))
+
+  const comparisonRows = [
+    {
+      conventional: 'The handover date is a promise.',
+      aashraya: 'The handover date is in the agreement, backed by a 10% refund.',
+    },
+    {
+      conventional: 'Warranty terms are explained after you pay.',
+      aashraya: 'A 15-year warranty, with scope and exclusions written before you sign.',
+    },
+    {
+      conventional: 'Drawings clash on site.',
+      aashraya: 'BIM clash detection resolves them before any pour.',
+    },
+    {
+      conventional: 'Concrete quality is assumed.',
+      aashraya: 'Every pour is lab-tested and the certificates are filed.',
+    },
+    {
+      conventional: 'You get photographs in a chat group.',
+      aashraya: 'You get 360° scans, dated records and a live dashboard.',
+    },
+    {
+      conventional: 'Waterproofing is a product purchase.',
+      aashraya: 'Waterproofing is specified, laid and flood-tested.',
+    },
+  ]
+
+  const techTiles = [
+    {
+      id: 'bim',
+      title: 'BIM clash detection',
+      desc: 'Structure, ducts and pipes checked against each other before the pour.',
+      stage: 'Stage 03',
+    },
+    {
+      id: 'sim',
+      title: 'Climate simulation',
+      desc: 'Sun, heat gain and daylight modelled before the façade is fixed.',
+      stage: 'Stages 02 & 03',
+    },
+    {
+      id: 'lidar',
+      title: '360° LiDAR scans',
+      desc: 'Each gate scanned and compared with the model.',
+      stage: 'Every gate',
+    },
+    {
+      id: 'drone',
+      title: 'Drone audits',
+      desc: 'Roof, terrace and façade photographed from above, on schedule.',
+      stage: 'Structure & Finishes',
+    },
+    {
+      id: 'cube',
+      title: 'Lab-tested concrete',
+      desc: 'Cube samples from every pour, tested at NABL-accredited labs.',
+      stage: 'Gate 2',
+    },
+    {
+      id: 'upv',
+      title: 'Pulse velocity & rebar scans',
+      desc: 'Cast elements checked without breaking them.',
+      stage: 'Structure stage',
+    },
+    {
+      id: 'flood',
+      title: 'Flood-tested waterproofing',
+      desc: 'Water stands on it before anything covers it.',
+      stage: 'Gate 3',
+    },
+    {
+      id: 'dash',
+      title: 'Live dashboard',
+      desc: 'Schedule, gates, cost, photos, scans and decisions in one place.',
+      stage: 'Whole build',
+    },
+  ]
 
   return (
     <>
-      {/* ========== HERO SECTION ========== */}
-      <section style={{
-        position: 'relative',
-        height: 'calc(100vh - 64px)',
-        display: 'flex',
-        alignItems: 'center',
-        overflow: 'hidden',
-        margin: 0,
-        padding: 0,
-        width: '100vw',
-        marginLeft: 'calc(-1 * ((100vw - 100%) / 2))',
-      }}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
 
-        {/* Background image */}
-        <Image
-          src="/images/hero.webp"
-          alt="IIT-trained architect Studio Aashraya — sustainable home design Bihar"
-          priority
-          fill
-          sizes="100vw"
-          style={{
-            objectFit: 'cover',
-            backgroundColor: 'transparent',
-            objectPosition: 'center',
-            zIndex: 0,
-          }}
-        />
+      <div className="w-full bg-[var(--bg)] text-[var(--ink)]">
+        {/* 2.1 Hero Section */}
+        <section className="max-w-7xl mx-auto px-4 md:px-6 pt-8 pb-12 md:pb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            <div className="lg:col-span-7">
+              <Eyebrow text="Architect and builder · Gurugram, Delhi NCR" className="mb-3" />
+              <h1 className="font-display text-[40px] sm:text-[56px] lg:text-[68px] font-extrabold uppercase tracking-tight leading-[0.9] text-[var(--ink)] mb-4">
+                Build a home that is beautiful, <em className="text-[var(--accent)] not-italic">engineered</em>, and built to last.
+              </h1>
 
-        {/* Content wrapper */}
-        <div style={{
-          position: 'relative',
-          zIndex: 2,
-          width: '100%',
-          display: 'flex',
-          justifyContent: 'flex-end',
-          paddingRight: '40px',
-          boxSizing: 'border-box',
-          maxWidth: '80rem',
-          margin: '0 auto',
-        }}>
-          {/* White content card */}
-          <div style={{
-            backgroundColor: 'rgba(255,255,255,0.92)',
-            borderRadius: '20px',
-            padding: '48px 40px',
-            width: '420px',
-            maxWidth: 'calc(100vw - 48px)',
-            boxSizing: 'border-box',
-            backdropFilter: 'blur(8px)',
-            marginTop: '0',
-          }}>
-
-          <h1 style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            fontSize: '3rem',
-            fontWeight: 600,
-            lineHeight: 1.15,
-            color: '#184A45',
-            margin: '0 0 16px 0',
-            padding: 0,
-            width: '100%',
-            display: 'block',
-          }}>
-            Cooler, smarter homes for Bihar
-          </h1>
-
-          <p style={{
-            fontFamily: "'Inter', sans-serif",
-            fontSize: '15px',
-            lineHeight: 1.7,
-            color: '#555555',
-            margin: '0 0 32px 0',
-            width: '100%',
-            display: 'block',
-          }}>
-            Designing climate-responsive architecture that blends vernacular wisdom with modern efficiency.
-          </p>
-
-          <div style={{display: 'flex', gap: '12px', flexWrap: 'wrap'}}>
-            <Link href="/book-a-call" onClick={() => trackCTAClick('hero_book_call', 'hero')} style={{
-              backgroundColor: '#184A45',
-              color: '#ffffff',
-              borderRadius: '9999px',
-              padding: '12px 24px',
-              fontSize: '14px',
-              fontFamily: "'Inter', sans-serif",
-              fontWeight: 500,
-              textDecoration: 'none',
-              display: 'inline-block',
-              whiteSpace: 'nowrap',
-            }}>
-              Book a Free Clarity Call
-            </Link>
-            <Link href="/projects" onClick={() => trackCTAClick('hero_explore_projects', 'hero')} style={{
-              backgroundColor: 'transparent',
-              color: '#184A45',
-              border: '1.5px solid #184A45',
-              borderRadius: '9999px',
-              padding: '12px 24px',
-              fontSize: '14px',
-              fontFamily: "'Inter', sans-serif",
-              fontWeight: 500,
-              textDecoration: 'none',
-              display: 'inline-block',
-              whiteSpace: 'nowrap',
-            }}>
-              Explore Projects
-            </Link>
-          </div>
-
-        </div>
-        </div>
-      </section>
-
-      {/* SECTION 3 — Featured Projects */}
-      <section className="py-24 w-full">
-        <div style={CONTAINER}>
-          <h2 className="text-primary mb-4 text-4xl">Featured Projects</h2>
-        <div className="flex items-center justify-between gap-4 mb-8 w-full">
-          <p className="text-base min-w-0 flex-1"
-             style={{color: '#666666', fontFamily: "'Inter', sans-serif"}}>
-            Creating sanctuaries that breathe with the environment.
-          </p>
-          <Link href="/projects"
-             className="text-sm font-medium whitespace-nowrap flex-shrink-0 underline underline-offset-4"
-             style={{color: '#184A45', fontFamily: "'Inter', sans-serif"}}>
-            View Portfolio →
-          </Link>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
-          {featured.map((project) => (
-            <div key={project.slug} className="min-w-0">
-              <ProjectCard
-                image={project.heroImage}
-                tag={project.type}
-                title={project.title}
-                location={project.location}
-                area={project.area}
-                metric={project.metric}
-                metricIcon={project.metricIcon}
-                slug={project.slug}
-              />
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-      {/* ========== SITE FEASIBILITY LANDING SECTION ========== */}
-      <section className="py-20 w-full" style={{ backgroundColor: '#FAF4EC' }}>
-        <div style={CONTAINER}>
-          <div className="bg-white rounded-3xl border border-[#E2D8CA] shadow-sm overflow-hidden">
-            <div className="grid grid-cols-1 lg:grid-cols-2">
-
-              {/* Left — Architectural Photo */}
-              <div className="relative min-h-[320px] lg:min-h-[480px]">
-                <Image
-                  src="/images/site-planning.png"
-                  alt="Architect's site planning desk with plot boundary drawings, scale ruler, and building elevation sketches"
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                />
+              {/* 3 Promise Chips */}
+              <div className="flex flex-wrap items-center gap-2 mb-6">
+                <span className="font-mono text-xs uppercase px-2.5 py-1 bg-[var(--surface)] border border-[var(--line)] text-[var(--ink)] font-semibold">
+                  On time, or 10% back
+                </span>
+                <span className="font-mono text-xs uppercase px-2.5 py-1 bg-[var(--surface)] border border-[var(--line)] text-[var(--ink)] font-semibold">
+                  15-year warranty
+                </span>
+                <span className="font-mono text-xs uppercase px-2.5 py-1 bg-[var(--surface)] border border-[var(--line)] text-[var(--ink)] font-semibold">
+                  IIT-led · COA-registered
+                </span>
               </div>
 
-              {/* Right — Copy Column */}
-              <div className="p-8 lg:p-12 flex flex-col justify-center">
+              <p className="font-sans text-base sm:text-lg text-[var(--muted)] leading-relaxed mb-8 max-w-2xl">
+                IIT-led architecture and construction in Gurugram and Delhi NCR. Every home handed over on time. A 15-year warranty. If we ever miss your handover date, we pay you back 10% of the construction amount.
+              </p>
 
-                {/* Eyebrow */}
-                <span style={{
-                  fontFamily: "'Inter', sans-serif",
-                  fontSize: '11px',
-                  fontWeight: 600,
-                  letterSpacing: '0.12em',
-                  textTransform: 'uppercase',
-                  color: '#184A45',
-                  backgroundColor: 'rgba(24, 74, 69, 0.08)',
-                  padding: '4px 12px',
-                  borderRadius: '9999px',
-                  display: 'inline-block',
-                  marginBottom: '16px',
-                  alignSelf: 'flex-start',
-                }}>
-                  Planning Tool
-                </span>
-
-                {/* Heading */}
-                <h2 style={{
-                  fontFamily: "'Cormorant Garamond', serif",
-                  fontSize: '2.25rem',
-                  fontWeight: 600,
-                  color: '#184A45',
-                  lineHeight: 1.15,
-                  margin: '0 0 16px 0',
-                }}>
-                  Site Feasibility Calculator
-                </h2>
-
-                {/* Paragraph */}
-                <p style={{
-                  fontFamily: "'Inter', sans-serif",
-                  fontSize: '15px',
-                  color: '#555555',
-                  lineHeight: 1.7,
-                  margin: '0 0 24px 0',
-                }}>
-                  Test plot feasibility, setbacks, road width, and development potential before design begins. Compare site plans, check building bye-laws, and review practical buildability in one simple tool.
-                </p>
-
-                {/* Keyword Chips */}
-                <div style={{
-                  display: 'flex',
-                  flexWrap: 'wrap',
-                  gap: '8px',
-                  marginBottom: '28px',
-                }}>
-                  {[
-                    'Site Feasibility Calculator',
-                    'Plot Feasibility',
-                    'Setback Calculator',
-                    'Building Bye-Laws',
-                    'Road Width Planning',
-                    'Development Potential',
-                  ].map((chip) => (
-                    <span key={chip} style={{
-                      fontFamily: "'Inter', sans-serif",
-                      fontSize: '12px',
-                      color: '#184A45',
-                      backgroundColor: '#FAF4EC',
-                      border: '1px solid #E2D8CA',
-                      borderRadius: '9999px',
-                      padding: '5px 14px',
-                      fontWeight: 500,
-                    }}>
-                      {chip}
-                    </span>
-                  ))}
-                </div>
-
-                {/* CTA */}
+              {/* Dual CTAs */}
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
                 <Link
-                  href="/calculators/site-feasibility"
-                  onClick={() => trackCTAClick('home_site_feasibility_landing', 'homepage')}
-                  style={{
-                    backgroundColor: '#184A45',
-                    color: '#ffffff',
-                    borderRadius: '9999px',
-                    padding: '14px 28px',
-                    fontSize: '14px',
-                    fontFamily: "'Inter', sans-serif",
-                    fontWeight: 500,
-                    textDecoration: 'none',
-                    display: 'inline-block',
-                    whiteSpace: 'nowrap',
-                    alignSelf: 'flex-start',
-                    marginBottom: '24px',
-                  }}
+                  href="/book-a-call?src=hero-primary"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-4 bg-[var(--accent)] text-[var(--on-accent)] font-sans font-bold text-sm uppercase tracking-wider hover:opacity-95 transition-opacity min-h-[48px] select-none text-center"
                 >
-                  Open Site Feasibility Tool →
+                  <span>Get a free plot check</span>
+                  <ArrowRight className="w-4 h-4" />
                 </Link>
 
-                {/* Related Links */}
-                <div style={{
-                  borderTop: '1px solid #E2D8CA',
-                  paddingTop: '20px',
-                  display: 'flex',
-                  flexWrap: 'wrap',
-                  gap: '20px',
-                }}>
-                  {[
-                    { label: 'Read about setbacks', href: '/calculators/site-feasibility' },
-                    { label: 'Understand site planning', href: '/calculators/site-feasibility' },
-                    { label: 'Explore building bye-laws', href: '/calculators/site-feasibility' },
-                  ].map((link) => (
-                    <Link key={link.label} href={link.href} style={{
-                      fontFamily: "'Inter', sans-serif",
-                      fontSize: '13px',
-                      color: '#184A45',
-                      textDecoration: 'underline',
-                      textUnderlineOffset: '3px',
-                      fontWeight: 500,
-                    }}>
-                      {link.label}
-                    </Link>
-                  ))}
-                </div>
+                <a
+                  href={`tel:${siteConfig.phone}`}
+                  className="inline-flex items-center justify-center gap-2 px-5 py-4 border border-[var(--line)] bg-[var(--surface)] text-[var(--ink)] font-mono text-xs uppercase tracking-wider hover:bg-[var(--wash)] transition-colors min-h-[48px] select-none text-center"
+                >
+                  <Phone className="w-4 h-4 text-[var(--accent)]" />
+                  <span>Call {siteConfig.phoneDisplay}</span>
+                </a>
+              </div>
+            </div>
 
+            {/* Hero Figure in sheet frame */}
+            <div className="lg:col-span-5">
+              <div className="border border-[var(--ink)] bg-[var(--surface)] p-2 shadow-sm">
+                <SectionSheet />
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ADDITIONAL SECTION — How We Work */}
-      <section className="py-24 w-full" style={{backgroundColor: '#FAF4EC'}}>
-        <div style={CONTAINER}>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-            {/* Left Image */}
-            <div className="relative min-w-0">
-              <div className="rounded-3xl overflow-hidden shadow-2xl aspect-[4/5] md:aspect-square relative z-10">
-                <Image
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAdbV4_m1K40zhwn8ZJhuZa3TcSTZxImESK4xhBL__zoSLDh65Bpg7qcP9djyK0Dt8Hm2iPUFOH1wFtQIdGjm0sxm_MoVbCWOiGiJ57zotleK2tHeEC6E5GsgwWVxWqbx3qmrhLlOoBr6tNQEGjv4n9ZPq9SaesifRvdr07XiBPSFnm5SG2DcmyLHQWaA21Dhz8CS8JmBg6CyuVHNkUoMYjB6b-TpTX4Hz5nhBFtS_gcueK4-s0llPpHzxx5JWgeTH6lzla9m-vL8"
-                  alt="Architectural drawing"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="absolute -bottom-6 -right-6 w-32 h-32 rounded-full z-0" style={{backgroundColor: '#EDE8E0'}}></div>
+        {/* 2.2 Proof Bar (Ink Band) */}
+        <section className="w-full bg-[var(--band)] text-[var(--on-band)] border-y border-[var(--band-line)] py-6 px-4 md:px-6">
+          <div className="max-w-7xl mx-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 text-center">
+            <div className="border-r border-[var(--band-line)] last:border-r-0 pr-4">
+              <div className="font-display text-3xl md:text-4xl font-extrabold text-[var(--accent)]">30+</div>
+              <div className="font-mono text-xs uppercase text-[var(--band-muted)] mt-1">Homes built</div>
             </div>
-            
-            {/* Right Content */}
-            <div className="min-w-0">
-              <h2 className="text-primary mb-12 text-4xl">
-                How We Work
-              </h2>
-              <div className="space-y-10 w-full">
-                {[
-                  { num: '01', title: 'The Clarity Call', desc: 'Understanding your vision, lifestyle requirements, and site potential.' },
-                  { num: '02', title: 'Passive Design Strategy', desc: 'Analyzing sun paths and wind flows to naturally cool your space.' },
-                  { num: '03', title: 'Material Selection', desc: 'Curating local materials that age beautifully and reduce carbon footprint.' },
-                  { num: '04', title: 'Execution & Handover', desc: 'Overseeing construction to ensure every detail matches the architectural intent.' },
-                ].map((step) => (
-                  <div key={step.num} className="flex gap-6 w-full">
-                    <span className="font-heading italic text-3xl text-primary mt-1 flex-shrink-0">{step.num}</span>
-                    <div className="min-w-0 flex-1">
-                      <h3 className="text-primary mb-2 text-2xl">{step.title}</h3>
-                      <p className="font-body text-muted leading-relaxed text-[15px]">{step.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
+            <div className="border-r border-[var(--band-line)] last:border-r-0 pr-4">
+              <div className="font-display text-3xl md:text-4xl font-extrabold text-[var(--on-band)]">50+</div>
+              <div className="font-mono text-xs uppercase text-[var(--band-muted)] mt-1">Projects designed</div>
+            </div>
+            <div className="border-r border-[var(--band-line)] last:border-r-0 pr-4">
+              <div className="font-display text-2xl md:text-3xl font-extrabold text-[var(--on-band)]">Every home</div>
+              <div className="font-mono text-xs uppercase text-[var(--band-muted)] mt-1">Handed over on time</div>
+            </div>
+            <div className="border-r border-[var(--band-line)] last:border-r-0 pr-4">
+              <div className="font-display text-3xl md:text-4xl font-extrabold text-[var(--accent)]">15 years</div>
+              <div className="font-mono text-xs uppercase text-[var(--band-muted)] mt-1">Warranty</div>
+            </div>
+            <div className="col-span-2 sm:col-span-1">
+              <div className="font-display text-3xl md:text-4xl font-extrabold text-[var(--accent)]">10%</div>
+              <div className="font-mono text-xs uppercase text-[var(--band-muted)] mt-1">Back if late</div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ========== SERVICES IN PATNA ========== */}
-      <section className="py-20 w-full" style={{backgroundColor: '#ffffff'}}>
-        <div style={CONTAINER}>
-          <h2 style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            fontSize: '2.5rem',
-            fontWeight: 600,
-            color: '#184A45',
-            margin: '0 0 12px 0',
-            lineHeight: 1.2,
-          }}>
-            Architectural Services in Patna
-          </h2>
-          <p style={{
-            fontFamily: "'Inter', sans-serif",
-            fontSize: '15px',
-            color: '#666666',
-            lineHeight: 1.7,
-            margin: '0 0 40px 0',
-            maxWidth: '600px',
-          }}>
-            From first concept to construction guidance — everything a homeowner in Bihar needs to build with confidence.
-          </p>
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-            gap: '24px',
-          }}>
-            {[
-              { icon: '🏠', title: 'Custom House Design', desc: 'Homes designed around your family\'s lifestyle, plot, and Bihar\'s climate.' },
-              { icon: '📐', title: '2D Floor Plans', desc: 'Detailed, build-ready floor plans optimized for your plot dimensions.' },
-              { icon: '🏗️', title: '3D Elevation Design', desc: 'Realistic 3D views so you can see your home before construction begins.' },
-              { icon: '🏡', title: 'Residential Architecture', desc: 'Full architectural service for independent houses, duplexes, and villas.' },
-              { icon: '🌿', title: 'Sustainable Home Design', desc: 'Climate-responsive design using passive cooling, natural light, and local materials.' },
-              { icon: '🧱', title: 'Construction Guidance', desc: 'On-site support and supervision to ensure quality matches the design intent.' },
-              { icon: '📏', title: 'Plot Planning', desc: 'Site analysis, setback optimization, and FAR-compliant layout design.' },
-              { icon: '💬', title: 'Design Consultation', desc: 'A free clarity call to discuss your goals, budget, and design direction.' },
-            ].map((service) => (
-              <div key={service.title} style={{
-                backgroundColor: '#FAF4EC',
-                borderRadius: '16px',
-                padding: '28px 24px',
-                border: '1px solid #E2D8CA',
-              }}>
-                <span style={{ fontSize: '28px', display: 'block', marginBottom: '12px' }}>{service.icon}</span>
-                <h3 style={{
-                  fontFamily: "'Cormorant Garamond', serif",
-                  fontSize: '1.25rem',
-                  fontWeight: 600,
-                  color: '#184A45',
-                  margin: '0 0 8px 0',
-                }}>{service.title}</h3>
-                <p style={{
-                  fontFamily: "'Inter', sans-serif",
-                  fontSize: '13px',
-                  color: '#666666',
-                  lineHeight: 1.65,
-                  margin: 0,
-                }}>{service.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ========== WHAT WE DESIGN ========== */}
-      <section className="py-20 w-full" style={{backgroundColor: '#FAF4EC'}}>
-        <div style={CONTAINER}>
-          <h2 style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            fontSize: '2.5rem',
-            fontWeight: 600,
-            color: '#184A45',
-            margin: '0 0 12px 0',
-            lineHeight: 1.2,
-          }}>
-            What We Design
-          </h2>
-          <p style={{
-            fontFamily: "'Inter', sans-serif",
-            fontSize: '15px',
-            color: '#666666',
-            lineHeight: 1.7,
-            margin: '0 0 40px 0',
-            maxWidth: '560px',
-          }}>
-            Every home is different. Here are the building types we specialize in across Patna and Bihar.
-          </p>
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-            gap: '16px',
-          }}>
-            {[
-              'Duplex Homes',
-              'Independent Villas',
-              'Compact Plot Homes',
-              'Rental Buildings',
-              'Multi-Storey Residential',
-              'Climate-Conscious Homes',
-            ].map((type) => (
-              <div key={type} style={{
-                backgroundColor: '#ffffff',
-                borderRadius: '12px',
-                padding: '20px 24px',
-                border: '1px solid #E2D8CA',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '12px',
-              }}>
-                <span style={{
-                  width: '8px',
-                  height: '8px',
-                  borderRadius: '50%',
-                  backgroundColor: '#184A45',
-                  flexShrink: 0,
-                }} />
-                <span style={{
-                  fontFamily: "'Inter', sans-serif",
-                  fontSize: '14px',
-                  fontWeight: 500,
-                  color: '#184A45',
-                }}>{type}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ========== AREAS WE SERVE ========== */}
-      <section className="py-20 w-full" style={{backgroundColor: '#ffffff'}}>
-        <div style={CONTAINER}>
-          <h2 style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            fontSize: '2.5rem',
-            fontWeight: 600,
-            color: '#184A45',
-            margin: '0 0 12px 0',
-            lineHeight: 1.2,
-          }}>
-            Areas We Serve
-          </h2>
-          <p style={{
-            fontFamily: "'Inter', sans-serif",
-            fontSize: '15px',
-            color: '#666666',
-            lineHeight: 1.7,
-            margin: '0 0 32px 0',
-            maxWidth: '560px',
-          }}>
-            Based in Rajiv Nagar, Patna — we design homes across the city and throughout Bihar.
-          </p>
-          <div style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            gap: '12px',
-          }}>
-            {[
-              'Patna', 'Rajiv Nagar', 'Kankarbagh', 'Bailey Road', 'Danapur',
-              'Saguna More', 'Patliputra Colony', 'Bihta', 'Patna City', 'Boring Road',
-              'Greater Bihar',
-            ].map((area) => (
-              <span key={area} style={{
-                fontFamily: "'Inter', sans-serif",
-                fontSize: '13px',
-                fontWeight: 500,
-                color: '#184A45',
-                backgroundColor: '#FAF4EC',
-                border: '1px solid #E2D8CA',
-                borderRadius: '9999px',
-                padding: '8px 20px',
-                whiteSpace: 'nowrap',
-              }}>{area}</span>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ========== TRUST / WHY STUDIO AASHRAYA ========== */}
-      <section className="py-20 w-full" style={{backgroundColor: '#FAF4EC'}}>
-        <div style={CONTAINER}>
-          <h2 style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            fontSize: '2.5rem',
-            fontWeight: 600,
-            color: '#184A45',
-            margin: '0 0 12px 0',
-            lineHeight: 1.2,
-          }}>
-            Why Homeowners Choose Studio Aashraya
-          </h2>
-          <p style={{
-            fontFamily: "'Inter', sans-serif",
-            fontSize: '15px',
-            color: '#666666',
-            lineHeight: 1.7,
-            margin: '0 0 40px 0',
-            maxWidth: '600px',
-          }}>
-            We are not a listing page or a directory. Studio Aashraya is a named, practicing <Link href="/about" style={{color: '#184A45', fontWeight: 500, textDecoration: 'underline', textUnderlineOffset: '3px'}}>architecture firm in Patna</Link> with real projects and real outcomes.
-          </p>
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-            gap: '24px',
-          }}>
-            {[
-              { num: '01', title: 'Named, IIT-Educated Architect', desc: 'Every project is personally led by the founder — not outsourced to anonymous freelancers.' },
-              { num: '02', title: 'Real Projects, Real Outcomes', desc: 'Browse completed homes with photos, locations, and measurable design outcomes.' },
-              { num: '03', title: 'Practical, Budget-Conscious', desc: 'We design within Bihar&apos;s real construction costs and local material availability.' },
-              { num: '04', title: 'Climate-Responsive by Default', desc: 'Passive cooling, cross-ventilation, and sun path analysis built into every design.' },
-            ].map((item) => (
-              <div key={item.num} style={{
-                backgroundColor: '#ffffff',
-                borderRadius: '16px',
-                padding: '28px 24px',
-                border: '1px solid #E2D8CA',
-              }}>
-                <span style={{
-                  fontFamily: "'Cormorant Garamond', serif",
-                  fontSize: '2rem',
-                  fontWeight: 300,
-                  fontStyle: 'italic',
-                  color: 'rgba(24,74,69,0.25)',
-                  display: 'block',
-                  marginBottom: '12px',
-                }}>{item.num}</span>
-                <h3 style={{
-                  fontFamily: "'Cormorant Garamond', serif",
-                  fontSize: '1.3rem',
-                  fontWeight: 600,
-                  color: '#184A45',
-                  margin: '0 0 8px 0',
-                }}>{item.title}</h3>
-                <p style={{
-                  fontFamily: "'Inter', sans-serif",
-                  fontSize: '13px',
-                  color: '#666666',
-                  lineHeight: 1.65,
-                  margin: 0,
-                }}>{item.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ========== FAQ SECTION ========== */}
-      <section className="py-20 w-full" style={{backgroundColor: '#ffffff'}}>
-        <div style={CONTAINER}>
-          <h2 style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            fontSize: '2.5rem',
-            fontWeight: 600,
-            color: '#184A45',
-            margin: '0 0 12px 0',
-            lineHeight: 1.2,
-          }}>
-            Frequently Asked Questions
-          </h2>
-          <p style={{
-            fontFamily: "'Inter', sans-serif",
-            fontSize: '15px',
-            color: '#666666',
-            lineHeight: 1.7,
-            margin: '0 0 40px 0',
-            maxWidth: '560px',
-          }}>
-            Common questions homeowners in Patna ask before hiring an architect.
-          </p>
-          <HomepageFAQ />
-        </div>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'FAQPage',
-            mainEntity: FAQ_DATA.map(faq => ({
-              '@type': 'Question',
-              name: faq.q,
-              acceptedAnswer: { '@type': 'Answer', text: faq.a },
-            })),
-          }) }}
-        />
-      </section>
-
-      {/* ========== TESTIMONIALS ========== */}
-      <section className="py-20 w-full" style={{backgroundColor: '#FAF4EC'}}>
-        <div style={CONTAINER}>
-          <h2 style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            fontSize: '2.5rem',
-            fontWeight: 600,
-            color: '#184A45',
-            margin: '0 0 12px 0',
-            lineHeight: 1.2,
-          }}>
-            What Our Clients Say
-          </h2>
-          <p style={{
-            fontFamily: "'Inter', sans-serif",
-            fontSize: '15px',
-            color: '#666666',
-            lineHeight: 1.7,
-            margin: '0 0 40px 0',
-            maxWidth: '560px',
-          }}>
-            Real reviews from homeowners who worked with Studio Aashraya in Patna.
-          </p>
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: '24px',
-          }}>
-            {TESTIMONIALS_DATA.map((review) => (
-              <div key={review.name} style={{
-                backgroundColor: '#ffffff',
-                borderRadius: '16px',
-                padding: '32px 28px',
-                border: '1px solid #E2D8CA',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '16px',
-              }}>
-                <div style={{ display: 'flex', gap: '2px' }}>
-                  {Array.from({ length: review.rating }).map((_, i) => (
-                    <span key={i} style={{ color: '#F4B400', fontSize: '18px' }}>★</span>
-                  ))}
-                </div>
-                <p style={{
-                  fontFamily: "'Inter', sans-serif",
-                  fontSize: '14px',
-                  color: '#444444',
-                  lineHeight: 1.7,
-                  margin: 0,
-                  fontStyle: 'italic',
-                }}>&quot;{review.text}&quot;</p>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginTop: 'auto' }}>
-                  <div style={{
-                    width: '36px',
-                    height: '36px',
-                    borderRadius: '50%',
-                    backgroundColor: '#184A45',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: '#ffffff',
-                    fontFamily: "'Inter', sans-serif",
-                    fontSize: '14px',
-                    fontWeight: 600,
-                    flexShrink: 0,
-                  }}>{review.name.charAt(0)}</div>
-                  <div>
-                    <p style={{
-                      fontFamily: "'Inter', sans-serif",
-                      fontSize: '13px',
-                      fontWeight: 600,
-                      color: '#184A45',
-                      margin: 0,
-                    }}>{review.name}</p>
-                    <p style={{
-                      fontFamily: "'Inter', sans-serif",
-                      fontSize: '11px',
-                      color: '#999999',
-                      margin: 0,
-                    }}>{'badge' in review ? `${review.badge} · Google Review` : 'Google Review'}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'LocalBusiness',
-            name: 'Studio Aashraya',
-            aggregateRating: {
-              '@type': 'AggregateRating',
-              ratingValue: '5.0',
-              reviewCount: '3',
-              bestRating: '5',
-            },
-            review: TESTIMONIALS_DATA.map(r => ({
-              '@type': 'Review',
-              author: { '@type': 'Person', name: r.name },
-              reviewRating: { '@type': 'Rating', ratingValue: String(r.rating), bestRating: '5' },
-              reviewBody: r.text,
-            })),
-          }) }}
-        />
-      </section>
-
-      <section style={{
-        width: '100%',
-        backgroundColor: '#FAF4EC',
-        padding: '80px 0',
-      }}>
-        <div style={{
-          ...CONTAINER,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: '48px',
-          minWidth: 0,
-          overflow: 'hidden',
-        }}>
-
-          {/* Heading block — dark green pill card */}
-          <div style={{
-            backgroundColor: '#184A45',
-            borderRadius: '20px',
-            padding: '40px 48px',
-            textAlign: 'center',
-            width: '100%',
-            boxSizing: 'border-box',
-          }}>
-            <h2 style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontSize: '2.5rem',
-              fontWeight: 600,
-              color: '#ffffff',
-              margin: '0 0 12px 0',
-              lineHeight: 1.2,
-            }}>
-              Plan Before You Build
+        {/* 2.3 Start Here (Three Doors) */}
+        <section className="max-w-7xl mx-auto px-4 md:px-6 py-16">
+          <div className="mb-8">
+            <Eyebrow text="Start here" className="mb-2" />
+            <h2 className="font-display text-3xl md:text-4xl font-bold uppercase tracking-tight">
+              Where are you starting from?
             </h2>
-            <p style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: '15px',
-              color: 'rgba(255,255,255,0.70)',
-              margin: 0,
-              lineHeight: 1.7,
-              maxWidth: '480px',
-              marginLeft: 'auto',
-              marginRight: 'auto',
-            }}>
-              Free tools to help you take the first step towards your dream home.
-            </p>
           </div>
 
-          {/* Calculator cards — white, side by side */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: '24px',
-            width: '100%',
-          }}>
-
-            {/* Card 1 */}
-            <div style={{
-              backgroundColor: '#ffffff',
-              borderRadius: '16px',
-              padding: '32px',
-              border: '1px solid #E2D8CA',
-              boxShadow: '0 2px 16px rgba(0,0,0,0.06)',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '12px',
-            }}>
-              <span style={{fontSize: '24px'}}>🧮</span>
-              <h3 style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontSize: '1.4rem',
-                fontWeight: 600,
-                color: '#184A45',
-                margin: 0,
-              }}>
-                Estimate Construction Cost
-              </h3>
-              <p style={{
-                fontFamily: "'Inter', sans-serif",
-                fontSize: '14px',
-                color: '#666666',
-                lineHeight: 1.65,
-                margin: 0,
-                flex: 1,
-              }}>
-                Get a rough estimate based on your square footage and finish preferences in Bihar.
-              </p>
-              <a href="/calculators/cost-estimator" style={{
-                display: 'inline-block',
-                backgroundColor: '#184A45',
-                color: '#ffffff',
-                borderRadius: '9999px',
-                padding: '10px 22px',
-                fontSize: '13px',
-                fontFamily: "'Inter', sans-serif",
-                fontWeight: 500,
-                textDecoration: 'none',
-                alignSelf: 'flex-start',
-                marginTop: '8px',
-              }}>
-                Launch Tool →
-              </a>
-            </div>
-
-            {/* Card 2 */}
-            <div style={{
-              backgroundColor: '#ffffff',
-              borderRadius: '16px',
-              padding: '32px',
-              border: '1px solid #E2D8CA',
-              boxShadow: '0 2px 16px rgba(0,0,0,0.06)',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '12px',
-            }}>
-              <span style={{fontSize: '24px'}}>📐</span>
-              <h3 style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontSize: '1.4rem',
-                fontWeight: 600,
-                color: '#184A45',
-                margin: 0,
-              }}>
-                Check Plot FAR
-              </h3>
-              <p style={{
-                fontFamily: "'Inter', sans-serif",
-                fontSize: '14px',
-                color: '#666666',
-                lineHeight: 1.65,
-                margin: 0,
-                flex: 1,
-              }}>
-                Calculate the Floor Area Ratio and permissible built-up area for your specific city plot.
-              </p>
-              <a href="/calculators/far-checker" style={{
-                display: 'inline-block',
-                backgroundColor: '#184A45',
-                color: '#ffffff',
-                borderRadius: '9999px',
-                padding: '10px 22px',
-                fontSize: '13px',
-                fontFamily: "'Inter', sans-serif",
-                fontWeight: 500,
-                textDecoration: 'none',
-                alignSelf: 'flex-start',
-                marginTop: '8px',
-              }}>
-                Check Now →
-              </a>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 5 — Have a plot in Bihar? */}
-      <section className="w-full py-20" style={{backgroundColor: '#FAF4EC'}}>
-        <div style={CONTAINER}>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-
-            {/* Left — Image */}
-            <div className="w-full rounded-2xl overflow-hidden aspect-[4/3] min-w-0">
-              <img
-                src="/images/book-call.jpg"
-                alt="Book a clarity call"
-                className="w-full h-full object-cover"
-              />
-            </div>
-
-            {/* Right — Text */}
-            <div className="min-w-0 flex flex-col items-start gap-4">
-              <h2 className="text-4xl lg:text-5xl font-semibold leading-tight"
-                  style={{fontFamily: "'Cormorant Garamond', serif", color: '#184A45'}}>
-                Have a plot in Bihar?
-              </h2>
-              <p className="text-base leading-relaxed w-full"
-                 style={{fontFamily: "'Inter', sans-serif", color: '#555555'}}>
-                Let&apos;s discuss how to design a home that&apos;s cooler, sustainable, and truly yours.
-              </p>
-              <Link href="/book-a-call"
-                 onClick={() => trackCTAClick('homepage_bottom_book_call', 'homepage')}
-                 className="mt-2 px-7 py-3.5 rounded-full text-white text-sm font-medium"
-                 style={{backgroundColor: '#184A45', fontFamily: "'Inter', sans-serif"}}>
-                Book Your Clarity Call
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 overflow-x-auto snap-x">
+            {/* Door 1: Plot */}
+            <div className="p-8 border border-[var(--line)] bg-[var(--surface)] flex flex-col justify-between snap-start">
+              <div>
+                <span className="font-mono text-xs uppercase text-[var(--accent)] font-semibold mb-2 block">01 / Plot Owner</span>
+                <h3 className="font-display text-2xl font-bold uppercase mb-3">I own a plot.</h3>
+                <p className="font-sans text-sm text-[var(--muted)] leading-relaxed mb-6">
+                  Find out what it can hold and what it will cost to build well.
+                </p>
+              </div>
+              <Link
+                href="/book-a-call?src=door-plot"
+                className="inline-flex items-center justify-between w-full px-5 py-3.5 bg-[var(--ink)] text-[var(--bg)] font-sans font-semibold text-xs uppercase tracking-wider hover:bg-[var(--accent)] hover:text-[var(--on-accent)] transition-colors select-none"
+              >
+                <span>Check my plot</span>
+                <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
 
+            {/* Door 2: Abroad */}
+            <div className="p-8 border border-[var(--line)] bg-[var(--surface)] flex flex-col justify-between snap-start">
+              <div>
+                <span className="font-mono text-xs uppercase text-[var(--accent)] font-semibold mb-2 block">02 / NRI Clients</span>
+                <h3 className="font-display text-2xl font-bold uppercase mb-3">I live abroad.</h3>
+                <p className="font-sans text-sm text-[var(--muted)] leading-relaxed mb-6">
+                  Build in India with weekly video, scans and a live client dashboard.
+                </p>
+              </div>
+              <Link
+                href="/book-a-call?src=door-abroad"
+                className="inline-flex items-center justify-between w-full px-5 py-3.5 bg-[var(--ink)] text-[var(--bg)] font-sans font-semibold text-xs uppercase tracking-wider hover:bg-[var(--accent)] hover:text-[var(--on-accent)] transition-colors select-none"
+              >
+                <span>Plan from abroad</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+
+            {/* Door 3: Old House */}
+            <div className="p-8 border border-[var(--line)] bg-[var(--surface)] flex flex-col justify-between snap-start">
+              <div>
+                <span className="font-mono text-xs uppercase text-[var(--accent)] font-semibold mb-2 block">03 / Redevelopment</span>
+                <h3 className="font-display text-2xl font-bold uppercase mb-3">I have an old house.</h3>
+                <p className="font-sans text-sm text-[var(--muted)] leading-relaxed mb-6">
+                  We survey it, then price retain, strengthen and rebuild options.
+                </p>
+              </div>
+              <Link
+                href="/book-a-call?src=door-old"
+                className="inline-flex items-center justify-between w-full px-5 py-3.5 bg-[var(--ink)] text-[var(--bg)] font-sans font-semibold text-xs uppercase tracking-wider hover:bg-[var(--accent)] hover:text-[var(--on-accent)] transition-colors select-none"
+              >
+                <span>Survey my house</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+
+        {/* 2.4 The Problem & Market Failure Risk */}
+        <section className="max-w-7xl mx-auto px-4 md:px-6 py-16 border-t border-[var(--line)]">
+          <div className="max-w-3xl mb-10">
+            <Eyebrow text="The risk" className="mb-2" />
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold uppercase tracking-tight leading-[0.95] mb-4 text-[var(--ink)]">
+              <span className="text-[var(--accent)]"><Claim id="c.market78" /></span> of homes miss their deadline or leak. We hand over on time, or we pay you.
+            </h2>
+            <p className="font-sans text-base md:text-lg text-[var(--muted)] leading-relaxed">
+              A home fails at the basement, the terrace, the façade, the plumbing line or the structural junction. Clients usually find out after the money is spent and the decision cannot be undone.
+            </p>
+          </div>
+
+          {/* Comparison Table */}
+          <div className="border border-[var(--line)] bg-[var(--surface)] mb-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-[var(--line)]">
+              <div className="p-4 md:p-6 bg-[var(--wash)] font-mono text-xs uppercase tracking-wider text-[var(--muted)]">
+                What often happens
+              </div>
+              <div className="p-4 md:p-6 bg-[var(--surface)] font-mono text-xs uppercase tracking-wider text-[var(--accent)] font-bold">
+                What we do
+              </div>
+            </div>
+
+            <div className="divide-y divide-[var(--line)]">
+              {comparisonRows.map((row, idx) => (
+                <div key={idx} className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-[var(--line)] font-sans text-sm">
+                  <div className="p-4 md:p-5 text-[var(--muted)] bg-[var(--wash)]/40">
+                    {row.conventional}
+                  </div>
+                  <div className="p-4 md:p-5 text-[var(--ink)] font-medium">
+                    {row.aashraya}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <CtaBand id="home-after-problem" variant="plot-check" />
+        </section>
+
+        {/* 2.5 The Guarantee (Dark Band) */}
+        <section className="w-full bg-[var(--band)] text-[var(--on-band)] border-y border-[var(--band-line)] py-16 px-4 md:px-6">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div className="lg:col-span-8">
+              <div className="inline-block px-3 py-1 bg-[var(--accent)] text-[var(--on-accent)] font-mono text-xs font-bold uppercase tracking-wider mb-4">
+                10% Refund Guarantee
+              </div>
+              <h2 className="font-display text-4xl sm:text-5xl font-extrabold uppercase tracking-tight mb-4">
+                On time, or 10% back.
+              </h2>
+              <p className="font-sans text-base sm:text-lg text-[var(--band-muted)] leading-relaxed mb-4 max-w-2xl">
+                Before work starts, your agreement fixes a handover date. If we miss it, we refund 10% of the total construction amount. Every home we have built has been handed over on time, so this has never been needed. It is there so you do not have to take our word for it.
+              </p>
+              <p className="font-mono text-xs text-[var(--band-muted)] uppercase mb-8">
+                Conditions are in your agreement.
+              </p>
+
+              <div className="flex flex-wrap items-center gap-4">
+                <Link
+                  href="/book-a-call?src=home-guarantee"
+                  className="inline-flex items-center justify-center px-6 py-4 bg-[var(--accent)] text-[var(--on-accent)] font-sans font-bold text-sm uppercase tracking-wider hover:opacity-95 select-none"
+                >
+                  Start my project
+                </Link>
+                <Link
+                  href="/guarantee"
+                  className="font-mono text-xs uppercase tracking-wider text-[var(--on-band)] hover:text-[var(--accent)] underline underline-offset-4"
+                >
+                  Read the full guarantee →
+                </Link>
+              </div>
+            </div>
+
+            <div className="lg:col-span-4 flex justify-center">
+              <div className="w-40 h-40 border-2 border-[var(--accent)] bg-[var(--band)] flex flex-col items-center justify-center text-center p-4">
+                <ShieldCheck className="w-10 h-10 text-[var(--accent)] mb-2" />
+                <span className="font-display text-3xl font-bold uppercase">10%</span>
+                <span className="font-mono text-[10px] uppercase tracking-widest text-[var(--band-muted)]">On-Time Back</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 2.6 Technology Wall */}
+        <section className="max-w-7xl mx-auto px-4 md:px-6 py-16">
+          <div className="max-w-3xl mb-10">
+            <Eyebrow text="Technology" className="mb-2" />
+            <h2 className="font-display text-3xl sm:text-4xl font-extrabold uppercase tracking-tight mb-3">
+              Built with instruments, not opinions.
+            </h2>
+            <p className="font-sans text-base md:text-lg text-[var(--muted)] leading-relaxed">
+              Most of what goes wrong in a house is hidden behind plaster by the time anyone looks. We measure it before it is covered.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+            {techTiles.map((t) => (
+              <Link
+                key={t.id}
+                href={`/technology#${t.id}`}
+                className="p-5 border border-[var(--line)] bg-[var(--surface)] hover:border-[var(--ink)] transition-colors flex flex-col justify-between group"
+              >
+                <div>
+                  <span className="font-mono text-[10px] uppercase tracking-wider text-[var(--accent)] block mb-2">
+                    {t.stage}
+                  </span>
+                  <h3 className="font-display text-xl font-bold uppercase text-[var(--ink)] mb-2 group-hover:text-[var(--accent)] transition-colors">
+                    {t.title}
+                  </h3>
+                  <p className="font-sans text-xs text-[var(--muted)] leading-relaxed">
+                    {t.desc}
+                  </p>
+                </div>
+                <div className="mt-4 font-mono text-[11px] text-[var(--accent)] uppercase font-semibold">
+                  Read spec →
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-6 border border-[var(--line)] bg-[var(--wash)]">
+            <span className="font-sans text-sm text-[var(--ink)] font-medium">
+              Want to see how these instruments apply to your specific plot?
+            </span>
+            <Link
+              href="/technology"
+              className="font-mono text-xs uppercase tracking-wider text-[var(--accent)] font-bold hover:underline shrink-0"
+            >
+              See all technology details →
+            </Link>
+          </div>
+
+          <div className="mt-10">
+            <CtaBand id="home-tech" variant="tech" />
+          </div>
+        </section>
+
+        {/* 2.7 Method Teaser */}
+        <section className="w-full bg-[var(--band)] text-[var(--on-band)] border-y border-[var(--band-line)] py-16 px-4 md:px-6">
+          <div className="max-w-7xl mx-auto">
+            <div className="max-w-3xl mb-10">
+              <Eyebrow text="Method" className="mb-2" />
+              <h2 className="font-display text-3xl sm:text-4xl font-extrabold uppercase tracking-tight mb-3">
+                Nothing is poured, closed or covered until the last stage is checked.
+              </h2>
+              <Link
+                href="/method"
+                className="font-mono text-xs uppercase tracking-wider text-[var(--accent)] hover:underline"
+              >
+                Read the full method (8 stages, 4 gates) →
+              </Link>
+            </div>
+
+            <StageList stages={condensedStages} className="mb-8" />
+          </div>
+        </section>
+
+        {/* 2.8 Work */}
+        <section className="max-w-7xl mx-auto px-4 md:px-6 py-16">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+            <div>
+              <Eyebrow text="Portfolio" className="mb-2" />
+              <h2 className="font-display text-3xl sm:text-4xl font-extrabold uppercase tracking-tight">
+                Homes built, not rendered.
+              </h2>
+            </div>
+            <div className="font-mono text-xs uppercase tracking-wider text-[var(--muted)]">
+              30+ built · 50+ designed
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
+            {featuredProjects.map((p: Project) => (
+              <ProjectCard key={p.slug} project={p} />
+            ))}
+          </div>
+
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <Link
+              href="/projects"
+              className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-[var(--ink)] hover:text-[var(--accent)]"
+            >
+              <span>See all projects</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+
+          <div className="mt-12">
+            <CtaBand id="home-projects" variant="projects" />
+          </div>
+        </section>
+
+        {/* 2.9 Warranty Block */}
+        <section className="max-w-7xl mx-auto px-4 md:px-6 py-16 border-t border-[var(--line)]">
+          <div className="p-8 md:p-12 border border-[var(--line)] bg-[var(--surface)] grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div className="lg:col-span-8">
+              <span className="font-mono text-xs uppercase tracking-widest text-[var(--accent)] font-bold block mb-2">
+                15-Year Warranty
+              </span>
+              <h2 className="font-display text-3xl sm:text-4xl font-extrabold uppercase tracking-tight mb-4">
+                15 years. In writing.
+              </h2>
+              <p className="font-sans text-base text-[var(--muted)] leading-relaxed mb-6">
+                Your home comes with a 15-year warranty from handover. Scope, exclusions and how to make a claim are written into your agreement before you sign.
+              </p>
+              <Link
+                href="/guarantee#warranty"
+                className="font-mono text-xs uppercase tracking-wider text-[var(--accent)] font-bold hover:underline"
+              >
+                Read the warranty section →
+              </Link>
+            </div>
+            <div className="lg:col-span-4 flex justify-center">
+              <div className="w-32 h-32 border border-[var(--ink)] bg-[var(--wash)] flex flex-col items-center justify-center text-center p-3">
+                <span className="font-display text-3xl font-bold">15 YRS</span>
+                <span className="font-mono text-[10px] uppercase text-[var(--muted)]">Coverage</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 2.10 NRI Strip */}
+        <section className="max-w-7xl mx-auto px-4 md:px-6 py-12">
+          <div className="p-8 border border-[var(--line)] bg-[var(--wash)] mb-8">
+            <Eyebrow text="For NRI Families" className="mb-2" />
+            <h2 className="font-display text-3xl font-extrabold uppercase tracking-tight mb-3">
+              Abroad? You still see everything.
+            </h2>
+            <p className="font-sans text-base text-[var(--muted)] leading-relaxed max-w-2xl mb-4">
+              Weekly video walkthroughs, 360° scans at every gate, a live dashboard and a written decision log. Payments follow passed gates.
+            </p>
+            <Link
+              href="/nri"
+              className="font-mono text-xs uppercase tracking-wider text-[var(--accent)] font-bold hover:underline inline-block"
+            >
+              Explore NRI build management →
+            </Link>
+          </div>
+
+          <CtaBand id="home-nri" variant="nri" />
+        </section>
+
+        {/* 2.11 Services */}
+        <section className="max-w-7xl mx-auto px-4 md:px-6 py-16 border-t border-[var(--line)]">
+          <div className="mb-10">
+            <Eyebrow text="Services" className="mb-2" />
+            <h2 className="font-display text-3xl sm:text-4xl font-extrabold uppercase tracking-tight">
+              One studio. Complete responsibility.
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Card 1 */}
+            <div className="p-6 border border-[var(--line)] bg-[var(--surface)] flex flex-col justify-between">
+              <div>
+                <h3 className="font-display text-xl font-bold uppercase mb-2">Free plot check</h3>
+                <p className="font-sans text-xs text-[var(--muted)] leading-relaxed mb-6">
+                  A written note on your plot: setbacks, coverage, FAR and the main risks.
+                </p>
+              </div>
+              <Link
+                href="/book-a-call?src=home-svc-plot"
+                className="w-full py-2.5 px-3 bg-[var(--accent)] text-[var(--on-accent)] font-sans font-bold text-xs uppercase tracking-wider text-center"
+              >
+                Get my plot check
+              </Link>
+            </div>
+
+            {/* Card 2 */}
+            <div className="p-6 border border-[var(--line)] bg-[var(--surface)] flex flex-col justify-between">
+              <div>
+                <h3 className="font-display text-xl font-bold uppercase mb-2">Design and build</h3>
+                <p className="font-sans text-xs text-[var(--muted)] leading-relaxed mb-6">
+                  One agreement for design, structure, approvals, construction and interiors.
+                </p>
+              </div>
+              <Link
+                href="/services/design-build"
+                className="w-full py-2.5 px-3 border border-[var(--line)] bg-[var(--bg)] font-mono text-xs uppercase tracking-wider text-center hover:bg-[var(--wash)]"
+              >
+                Learn more →
+              </Link>
+            </div>
+
+            {/* Card 3 */}
+            <div className="p-6 border border-[var(--line)] bg-[var(--surface)] flex flex-col justify-between">
+              <div>
+                <h3 className="font-display text-xl font-bold uppercase mb-2">NRI remote build</h3>
+                <p className="font-sans text-xs text-[var(--muted)] leading-relaxed mb-6">
+                  A reporting system built so you do not need to be on site.
+                </p>
+              </div>
+              <Link
+                href="/services/nri-remote-build"
+                className="w-full py-2.5 px-3 border border-[var(--line)] bg-[var(--bg)] font-mono text-xs uppercase tracking-wider text-center hover:bg-[var(--wash)]"
+              >
+                Learn more →
+              </Link>
+            </div>
+
+            {/* Card 4 */}
+            <div className="p-6 border border-[var(--line)] bg-[var(--surface)] flex flex-col justify-between">
+              <div>
+                <h3 className="font-display text-xl font-bold uppercase mb-2">Redevelopment</h3>
+                <p className="font-sans text-xs text-[var(--muted)] leading-relaxed mb-6">
+                  Old houses, tight plots, basements, farmhouses.
+                </p>
+              </div>
+              <Link
+                href="/services/redevelopment"
+                className="w-full py-2.5 px-3 border border-[var(--line)] bg-[var(--bg)] font-mono text-xs uppercase tracking-wider text-center hover:bg-[var(--wash)]"
+              >
+                Learn more →
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* 2.12 Tools Banner */}
+        <section className="max-w-7xl mx-auto px-4 md:px-6 py-12">
+          <div className="p-8 border border-[var(--line)] bg-[var(--surface)] flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+            <div>
+              <Eyebrow text="Planning Tools" className="mb-2" />
+              <h2 className="font-display text-2xl md:text-3xl font-bold uppercase mb-2">
+                Draw your plot. See the buildable area.
+              </h2>
+              <p className="font-sans text-sm text-[var(--muted)] max-w-2xl leading-relaxed">
+                The feasibility tool draws setbacks and the buildable footprint from the Bihar Building Bye-laws 2014. For plots in Gurugram and Delhi, we run the check by hand and send it to you.
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0">
+              <Link
+                href="/calculators/site-feasibility"
+                className="px-5 py-3 border border-[var(--line)] bg-[var(--bg)] font-mono text-xs uppercase tracking-wider hover:bg-[var(--wash)]"
+              >
+                Try the tool
+              </Link>
+              <Link
+                href="/book-a-call?src=home-tools"
+                className="px-5 py-3 bg-[var(--accent)] text-[var(--on-accent)] font-sans font-bold text-xs uppercase tracking-wider"
+              >
+                Get a free plot check
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* 2.13 Areas */}
+        <section className="max-w-7xl mx-auto px-4 md:px-6 py-16 border-t border-[var(--line)]">
+          <div className="mb-10">
+            <Eyebrow text="Coverage" className="mb-2" />
+            <h2 className="font-display text-3xl sm:text-4xl font-extrabold uppercase tracking-tight">
+              Regions we design and build in
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <Link
+              href="/areas/gurugram"
+              className="p-8 border border-[var(--line)] bg-[var(--surface)] hover:border-[var(--ink)] transition-colors group"
+            >
+              <span className="font-mono text-xs uppercase text-[var(--accent)] font-bold block mb-2">
+                Focus Area
+              </span>
+              <h3 className="font-display text-2xl font-bold uppercase mb-2 group-hover:text-[var(--accent)] transition-colors">
+                Delhi NCR (Gurugram & Delhi)
+              </h3>
+              <p className="font-sans text-sm text-[var(--muted)] leading-relaxed">
+                Private homes, farmhouse plots, and tight-plot redevelopments from our Gurugram office.
+              </p>
+            </Link>
+
+            <Link
+              href="/areas/patna"
+              className="p-8 border border-[var(--line)] bg-[var(--surface)] hover:border-[var(--ink)] transition-colors group"
+            >
+              <span className="font-mono text-xs uppercase text-[var(--muted)] font-bold block mb-2">
+                Regional Studio
+              </span>
+              <h3 className="font-display text-2xl font-bold uppercase mb-2 group-hover:text-[var(--accent)] transition-colors">
+                Patna & Bihar
+              </h3>
+              <p className="font-sans text-sm text-[var(--muted)] leading-relaxed">
+                Climate-responsive homes with courtyards and shaded verandas, where our studio began.
+              </p>
+            </Link>
+
+            <Link
+              href="/areas/almora"
+              className="p-8 border border-[var(--line)] bg-[var(--surface)] hover:border-[var(--ink)] transition-colors group"
+            >
+              <span className="font-mono text-xs uppercase text-[var(--muted)] font-bold block mb-2">
+                Regional Desk
+              </span>
+              <h3 className="font-display text-2xl font-bold uppercase mb-2 group-hover:text-[var(--accent)] transition-colors">
+                Almora & Uttarakhand
+              </h3>
+              <p className="font-sans text-sm text-[var(--muted)] leading-relaxed">
+                Homes on steep hill sites where slope, drainage and access define structural integrity.
+              </p>
+            </Link>
+          </div>
+        </section>
+
+        {/* 2.14 FAQ */}
+        <section className="max-w-7xl mx-auto px-4 md:px-6 py-16 border-t border-[var(--line)]">
+          <div className="mb-10">
+            <Eyebrow text="Common Questions" className="mb-2" />
+            <h2 className="font-display text-3xl sm:text-4xl font-extrabold uppercase tracking-tight">
+              Frequently asked questions
+            </h2>
+          </div>
+
+          <Faq items={homeFaqs} />
+        </section>
+
+        {/* 2.15 Final CTA */}
+        <section className="w-full bg-[var(--surface)] border-t border-[var(--line)] py-16 px-4 md:px-6">
+          <div className="max-w-4xl mx-auto text-center">
+            <Eyebrow text="Start Your Project" className="mb-3" />
+            <h2 className="font-display text-4xl sm:text-5xl font-extrabold uppercase tracking-tight mb-4">
+              Send us your plot.
+            </h2>
+            <p className="font-sans text-lg text-[var(--muted)] mb-8">
+              We reply in writing within 2 working days with what your plot allows: setbacks, coverage, FAR and key risks.
+            </p>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-10">
+              <Link
+                href="/book-a-call?src=home-final"
+                className="w-full sm:w-auto px-8 py-4 bg-[var(--accent)] text-[var(--on-accent)] font-sans font-bold text-sm uppercase tracking-wider hover:opacity-95 select-none"
+              >
+                Get my free plot check
+              </Link>
+
+              <a
+                href={`tel:${siteConfig.phone}`}
+                className="w-full sm:w-auto px-6 py-4 border border-[var(--line)] bg-[var(--bg)] font-mono text-xs uppercase tracking-wider text-[var(--ink)] hover:bg-[var(--wash)] select-none flex items-center justify-center gap-2"
+              >
+                <Phone className="w-4 h-4 text-[var(--accent)]" />
+                <span>Call {siteConfig.phoneDisplay}</span>
+              </a>
+
+              <a
+                href={siteConfig.whatsappLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto px-6 py-4 border border-[var(--line)] bg-[var(--bg)] font-mono text-xs uppercase tracking-wider text-[var(--ink)] hover:bg-[var(--wash)] select-none flex items-center justify-center gap-2"
+              >
+                <MessageSquare className="w-4 h-4 text-[#25D366]" />
+                <span>WhatsApp us</span>
+              </a>
+            </div>
+
+            <div className="flex items-center justify-center gap-2 font-mono text-xs text-[var(--muted)]">
+              <MapPin className="w-4 h-4 text-[var(--accent)]" />
+              <span>{siteConfig.address}</span>
+              <span>·</span>
+              <a
+                href={siteConfig.mapsLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[var(--accent)] hover:underline"
+              >
+                Get directions ↗
+              </a>
+            </div>
+          </div>
+        </section>
+      </div>
     </>
   )
 }
