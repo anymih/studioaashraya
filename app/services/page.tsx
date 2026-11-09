@@ -53,27 +53,24 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Top CTA */}
-      <CtaBand id="services-top" variant="plot-check" />
-
       {/* Services Grid (4 Cards) */}
-      <section className="py-16 md:py-20 max-w-6xl mx-auto px-4 md:px-6 w-full">
+      <section className="py-16 md:py-20 wrap w-full">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {servicesData.map((service, idx) => (
             <article
               key={service.slug}
-              className="border border-[var(--line)] p-8 bg-[var(--surface)] flex flex-col justify-between"
+              className="card-standard p-8 bg-[var(--surface)] flex flex-col justify-between"
             >
               <div>
                 <div className="flex items-center justify-between gap-4 mb-3">
-                  <span className="font-mono text-xs text-[var(--accent)] font-semibold">
+                  <span className="font-sans text-xs text-[var(--accent)] font-semibold">
                     Service 0{idx + 1}
                   </span>
-                  <span className="font-mono text-[10px] text-[var(--muted)]">
+                  <span className="font-sans text-xs text-[var(--muted)]">
                     Turnkey
                   </span>
                 </div>
-                <h2 className="font-display font-extrabold text-2xl sm:text-3xl text-[var(--ink)] mb-3">
+                <h2 className="mb-3">
                   {service.title}
                 </h2>
                 <p className="font-sans text-base text-[var(--muted)] leading-relaxed mb-6">
@@ -81,7 +78,7 @@ export default function ServicesPage() {
                 </p>
 
                 <div className="border-t border-[var(--line)] pt-4 mb-6">
-                  <span className="font-mono text-[11px] text-[var(--ink)] font-semibold block mb-2">
+                  <span className="font-sans text-xs text-[var(--ink)] font-semibold block mb-2">
                     What you receive:
                   </span>
                   <ul className="space-y-1.5 list-none p-0 m-0">
@@ -95,20 +92,13 @@ export default function ServicesPage() {
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-[var(--line)] flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+              <div className="pt-4 border-t border-[var(--line)] flex items-center justify-between">
                 <Link
                   href={`/services/${service.slug}`}
-                  className="font-mono text-xs text-[var(--ink)] font-semibold hover:text-[var(--accent)] flex items-center gap-1"
+                  className="font-sans text-sm text-[var(--ink)] font-semibold hover:text-[var(--accent)] flex items-center gap-1"
                 >
                   <span>View service details</span>
                   <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
-
-                <Link
-                  href={`/book-a-call?src=svc-${service.slug}`}
-                  className="px-4 py-2.5 bg-[var(--accent)] text-[var(--on-accent)] font-sans font-bold text-xs text-center"
-                >
-                  Consult
                 </Link>
               </div>
             </article>

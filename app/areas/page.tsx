@@ -65,9 +65,6 @@ export default function AreasIndexPage() {
         </div>
       </section>
 
-      {/* Top CTA */}
-      <CtaBand variant="plot-check" ctaId="areas_index_top" />
-
       {/* Areas Grid (Delhi NCR first) */}
       <section className="py-16 md:py-24 border-b border-[var(--line)] bg-[var(--surface)]">
         <div className="wrap">
@@ -75,18 +72,18 @@ export default function AreasIndexPage() {
             {liveAreas.map((area) => (
               <article
                 key={area.slug}
-                className="border-[1.5px] border-[var(--ink)] p-8 bg-[var(--bg)] flex flex-col justify-between"
+                className="card-standard p-8 bg-[var(--bg)] flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between gap-4 mb-3">
-                    <span className="font-mono text-xs text-[var(--accent)] font-semibold">
+                    <span className="font-sans text-xs text-[var(--accent)] font-semibold">
                       {area.region}
                     </span>
-                    <span className="font-mono text-[10px] text-[var(--muted)]">
+                    <span className="font-sans text-xs text-[var(--muted)]">
                       {area.tier === 'primary' ? 'Primary Focus' : 'Established Work'}
                     </span>
                   </div>
-                  <h2 className="font-display font-extrabold text-2xl md:text-3xl text-[var(--ink)] mb-3">
+                  <h2 className="mb-3">
                     {area.h1}
                   </h2>
                   <p className="font-sans text-base text-[var(--muted)] leading-relaxed mb-6">
@@ -97,15 +94,9 @@ export default function AreasIndexPage() {
                 <div className="pt-4 border-t border-[var(--line)] flex items-center justify-between">
                   <Link
                     href={`/areas/${area.slug}`}
-                    className="font-mono text-xs text-[var(--ink)] font-semibold hover:text-[var(--accent)]"
+                    className="font-sans text-sm text-[var(--ink)] font-semibold hover:text-[var(--accent)]"
                   >
                     View location details &rarr;
-                  </Link>
-                  <Link
-                    href={`/book-a-call?src=areas_${area.slug}`}
-                    className="font-mono text-xs text-[var(--accent)] font-semibold hover:underline"
-                  >
-                    Free plot check &rarr;
                   </Link>
                 </div>
               </article>

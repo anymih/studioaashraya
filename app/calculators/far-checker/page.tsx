@@ -113,9 +113,6 @@ export default function FARCheckerPage() {
         </Notice>
       </div>
 
-      {/* Top CTA Band */}
-      <CtaBand id="tool-far-top" variant="plot-check" />
-
       {/* Form section */}
       <section className="py-12 md:py-16 border-y border-[var(--line)] bg-[var(--surface)]">
         <div className="wrap max-w-xl mx-auto">

@@ -95,9 +95,6 @@ export default function NriPage() {
         </div>
       </section>
 
-      {/* Top CTA */}
-      <CtaBand id="nri-top" variant="nri" />
-
       {/* What You Receive */}
       <section className="py-16 md:py-20 border-b border-[var(--line)] bg-[var(--surface)]">
         <div className="max-w-6xl mx-auto px-4 md:px-6">

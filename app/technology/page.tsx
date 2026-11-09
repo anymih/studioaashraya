@@ -151,9 +151,6 @@ export default function TechnologyPage() {
           </p>
         </div>
 
-        {/* Top CTA */}
-        <CtaBand id="tech-top" variant="tech" />
-
         {/* First 3 Tech Blocks */}
         <section className="max-w-6xl mx-auto px-4 md:px-6 py-12 md:py-16">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

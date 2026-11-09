@@ -59,9 +59,6 @@ export default function GuaranteePage() {
           </p>
         </div>
 
-        {/* Top CTA */}
-        <CtaBand id="guarantee-top" variant="guarantee" />
-
         {/* Main Content */}
         <section className="max-w-6xl mx-auto px-4 md:px-6 py-12 md:py-16">
           {/* Guarantee Badge Callout */}

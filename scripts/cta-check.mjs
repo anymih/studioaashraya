@@ -35,25 +35,22 @@ for (const file of htmlFiles) {
   // Find all links (href="...")
   const linkMatches = [...content.matchAll(/href=["']([^"']+)["']/g)].map(m => m[1]);
 
-  // Count links to /book-a-call, tel:, or wa.me / whatsapp
-  const ctaLinks = linkMatches.filter(href => 
-    href.startsWith('/book-a-call') ||
-    href.startsWith('tel:') ||
-    href.includes('wa.me') ||
-    href.includes('whatsapp')
-  );
+  // Links to /book-a-call
+  const bookLinks = linkMatches.filter(href => href.startsWith('/book-a-call'));
 
-  if (route !== '/book-a-call' && ctaLinks.length < 3) {
-    errors.push(`Route ${route} has only ${ctaLinks.length} CTA links (minimum 3 required).`);
+  // F8 threshold check: min 2, max 4 per page (except /book-a-call page itself)
+  if (route !== '/book-a-call') {
+    if (bookLinks.length < 2) {
+      errors.push(`Route ${route} has only ${bookLinks.length} /book-a-call CTA links (minimum 2 required).`);
+    } else if (bookLinks.length > 4) {
+      errors.push(`Route ${route} has ${bookLinks.length} /book-a-call CTA links (maximum 4 allowed). Links: ${bookLinks.join(', ')}`);
+    }
   }
 
-  // Check that primary /book-a-call links have src parameter
-  const bookLinks = linkMatches.filter(href => href.startsWith('/book-a-call'));
+  // Check that every /book-a-call link has a ?src= parameter
   for (const href of bookLinks) {
-    // If it's a primary CTA (not just header plain link or root book-a-call link)
-    // Note: Header "Book a consultation" and CtaBands use bookHref(src)
-    if (href === '/book-a-call' && route !== '/book-a-call' && route !== '/') {
-      // Just warn or verify
+    if (route !== '/book-a-call' && !href.includes('src=')) {
+      errors.push(`Route ${route} contains /book-a-call link without ?src= parameter: "${href}"`);
     }
   }
 
@@ -69,5 +66,5 @@ if (errors.length > 0) {
   errors.forEach(e => console.error('   - ' + e));
   process.exit(1);
 } else {
-  console.log(`✅ [CTA Check Passed] Verified CTA count, parameters, and MobileCtaBar across ${htmlFiles.length} pages.`);
+  console.log(`✅ [CTA Check Passed] Verified CTA count (min 2, max 4 per page), parameters, and MobileCtaBar across ${htmlFiles.length} pages.`);
 }

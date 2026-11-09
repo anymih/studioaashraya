@@ -172,7 +172,6 @@ export default function Footer() {
           <Link href="/method" className="hover:text-[var(--ink)]">Method</Link>
           <Link href="/technology" className="hover:text-[var(--ink)]">Technology</Link>
           <Link href="/guarantee" className="hover:text-[var(--ink)]">Guarantee</Link>
-          <Link href="/book-a-call" className="hover:text-[var(--ink)]">Free Plot Check</Link>
         </div>
       </div>
     </footer>

@@ -271,11 +271,6 @@ export default function SiteFeasibilityPage() {
           </Notice>
         </div>
 
-        {/* Top CTA Band */}
-        <div className="mb-8">
-          <CtaBand id="tool-feasibility-top" variant="plot-check" />
-        </div>
-
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Left Side: Polygon Editor Workspace */}
         <div className="lg:col-span-7 flex flex-col space-y-4">

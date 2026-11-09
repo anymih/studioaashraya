@@ -61,9 +61,6 @@ export default function MethodPage() {
         </div>
       </section>
 
-      {/* Top CTA */}
-      <CtaBand id="method-top" variant="tech" />
-
       {/* Expandable Stage List on Dark Band */}
       <section className="py-16 md:py-24 bg-[var(--band)] text-[var(--on-band)] border-b border-[var(--line)]">
         <div className="max-w-6xl mx-auto px-4 md:px-6">
