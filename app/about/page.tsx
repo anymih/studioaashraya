@@ -2,7 +2,6 @@ import React from 'react'
 import type { Metadata } from 'next'
 import { siteConfig } from '@/lib/site'
 import { Breadcrumb } from '@/components/ui/Breadcrumb'
-import { Eyebrow } from '@/components/ui/Eyebrow'
 import { ThreeUp } from '@/components/ui/ThreeUp'
 import { CtaBand } from '@/components/ui/CtaBand'
 
@@ -59,8 +58,7 @@ export default function AboutPage() {
         <div className="max-w-6xl mx-auto px-4 md:px-6 pt-8 pb-12">
           <Breadcrumb items={breadcrumbItems} className="mb-6" />
 
-          <Eyebrow text="About the Studio" className="mb-3" />
-          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[0.92] mb-6 max-w-4xl">
+                    <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[0.92] mb-6 max-w-4xl">
             The architect you deal with is the one who builds.
           </h1>
 
@@ -132,8 +130,7 @@ export default function AboutPage() {
         {/* ThreeUp: How We Work */}
         <section className="max-w-6xl mx-auto px-4 md:px-6 py-16 md:py-20">
           <div className="mb-10">
-            <Eyebrow text="Principles" className="mb-2" />
-            <h2 className="font-display text-3xl md:text-4xl font-extrabold">
+                        <h2 className="font-display text-3xl md:text-4xl font-extrabold">
               How we work
             </h2>
           </div>

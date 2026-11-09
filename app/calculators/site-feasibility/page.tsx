@@ -22,7 +22,6 @@ import { ShieldCheck, ClipboardList, Ruler, FileJson, AlertTriangle, Building, M
 import { Notice } from "@/components/ui/Notice";
 import CtaBand from "@/components/ui/CtaBand";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
-import { Eyebrow } from "@/components/ui/Eyebrow";
 
 export default function SiteFeasibilityPage() {
   const [vertices, setVertices] = useState<Point2D[]>([]);
@@ -255,8 +254,7 @@ export default function SiteFeasibilityPage() {
 
         {/* Page Header */}
         <div className="mb-6">
-          <Eyebrow text="CAD Tools" className="mb-2" />
-          <h1 className="font-display text-4xl sm:text-5xl font-extrabold text-[var(--ink)]">
+                    <h1 className="font-display text-4xl sm:text-5xl font-extrabold text-[var(--ink)]">
             Site Feasibility Calculator
           </h1>
           <p className="font-sans text-[var(--muted)] text-base mt-2 max-w-3xl leading-relaxed mb-6">

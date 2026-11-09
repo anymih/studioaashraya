@@ -2,7 +2,6 @@ import React from 'react'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { Breadcrumb } from '@/components/ui/Breadcrumb'
-import { Eyebrow } from '@/components/ui/Eyebrow'
 import { Faq } from '@/components/ui/Faq'
 import { CtaBand } from '@/components/ui/CtaBand'
 import { servicesData, getServiceBySlug } from '@/lib/services-data'
@@ -122,8 +121,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
       <section className="pt-8 pb-12 md:pb-16 max-w-6xl mx-auto px-4 md:px-6 w-full">
         <Breadcrumb items={breadcrumbItems} className="mb-6" />
         <div className="max-w-4xl">
-          <Eyebrow text="Turnkey Service" className="mb-3" />
-          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[0.92] mb-6">
+                    <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[0.92] mb-6">
             {service.title}
           </h1>
           <p className="font-sans text-lg md:text-xl text-[var(--muted)] leading-relaxed">
@@ -139,8 +137,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
       <section className="py-16 md:py-20 border-b border-[var(--line)] bg-[var(--surface)]">
         <div className="max-w-6xl mx-auto px-4 md:px-6">
           <div className="max-w-3xl">
-            <Eyebrow text="Audience" className="mb-2" />
-            <h2 className="font-display text-3xl font-extrabold mb-4">
+                        <h2 className="font-display text-3xl font-extrabold mb-4">
               Who this is for
             </h2>
             <div className="border-t-[1.5px] border-[var(--ink)] pt-4">
@@ -163,8 +160,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
       <section className="py-16 md:py-20 border-b border-[var(--line)] bg-[var(--bg)]">
         <div className="max-w-6xl mx-auto px-4 md:px-6">
           <div className="mb-8">
-            <Eyebrow text="Execution" className="mb-2" />
-            <h2 className="font-display text-3xl font-extrabold">
+                        <h2 className="font-display text-3xl font-extrabold">
               How it runs
             </h2>
           </div>
@@ -189,8 +185,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
         <div className="max-w-6xl mx-auto px-4 md:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             <div className="lg:col-span-7">
-              <Eyebrow text="Deliverables" className="mb-2" />
-              <h2 className="font-display text-3xl font-extrabold mb-4">
+                            <h2 className="font-display text-3xl font-extrabold mb-4">
                 What you receive
               </h2>
 
@@ -237,8 +232,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
         <section className="py-16 md:py-20 border-b border-[var(--line)] bg-[var(--bg)]">
           <div className="max-w-6xl mx-auto px-4 md:px-6">
             <div className="mb-8">
-              <Eyebrow text="Questions" className="mb-2" />
-              <h2 className="font-display text-3xl font-extrabold">
+                            <h2 className="font-display text-3xl font-extrabold">
                 Frequently asked questions
               </h2>
             </div>

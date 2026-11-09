@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react'
 import { Breadcrumb } from '@/components/ui/Breadcrumb'
-import { Eyebrow } from '@/components/ui/Eyebrow'
 import { Notice } from '@/components/ui/Notice'
 import { Button } from '@/components/ui/Button'
 import CtaBand from '@/components/ui/CtaBand'
@@ -97,8 +96,7 @@ export default function FARCheckerPage() {
       <div className="wrap pt-8 pb-8">
         <Breadcrumb items={breadcrumbItems} className="mb-6" />
 
-        <Eyebrow text="Planning Tools" className="mb-3" />
-        <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[0.92] mb-4">
+                <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[0.92] mb-4">
           FAR & Setback Checker
         </h1>
         <p className="font-sans text-base md:text-lg text-[var(--muted)] max-w-2xl leading-relaxed mb-6">

@@ -1,7 +1,6 @@
 import React from 'react'
 import type { Metadata } from 'next'
 import { siteConfig } from '@/lib/site'
-import { Eyebrow } from '@/components/ui/Eyebrow'
 import { CtaBand } from '@/components/ui/CtaBand'
 import { Breadcrumb } from '@/components/ui/Breadcrumb'
 import { Faq } from '@/components/ui/Faq'
@@ -52,8 +51,7 @@ export default function GuaranteePage() {
         <div className="max-w-6xl mx-auto px-4 md:px-6 pt-8 pb-12">
           <Breadcrumb items={breadcrumbItems} className="mb-6" />
 
-          <Eyebrow text="Guarantee & Warranty" className="mb-3" />
-          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[0.92] mb-6 max-w-4xl">
+                    <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[0.92] mb-6 max-w-4xl">
             On time, or 10% back.
           </h1>
           <p className="font-sans text-lg md:text-xl text-[var(--muted)] max-w-3xl leading-relaxed">
@@ -126,8 +124,7 @@ export default function GuaranteePage() {
           <div id="warranty" className="p-8 md:p-12 border border-[var(--line)] bg-[var(--surface)] mb-16 scroll-mt-24">
             <div className="flex items-center gap-3 mb-4">
               <ShieldCheck className="w-8 h-8 text-[var(--accent)]" />
-              <Eyebrow text="Protection" />
-            </div>
+                          </div>
             <h2 className="font-display text-3xl md:text-4xl font-extrabold mb-4">
               15-year warranty.
             </h2>

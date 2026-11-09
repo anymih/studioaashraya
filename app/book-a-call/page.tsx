@@ -4,7 +4,6 @@ import React, { useState, useEffect, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { siteConfig } from '@/lib/site'
 import { Breadcrumb } from '@/components/ui/Breadcrumb'
-import { Eyebrow } from '@/components/ui/Eyebrow'
 import { Faq } from '@/components/ui/Faq'
 import {
   trackBookingFormSubmit,
@@ -86,8 +85,7 @@ function BookCallContent() {
 
           {/* Page Heading & Promise Strip */}
           <div className="max-w-3xl mb-8">
-            <Eyebrow text="Free Plot Check & Consultation" className="mb-2" />
-            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[0.92] mb-4">
+                        <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[0.92] mb-4">
               Send us your plot.
             </h1>
             <p className="font-sans text-lg text-[var(--muted)] leading-relaxed mb-6">
@@ -95,17 +93,9 @@ function BookCallContent() {
             </p>
 
             {/* Promise Strip */}
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="font-mono text-xs px-2.5 py-1 bg-[var(--surface)] border border-[var(--line)] text-[var(--ink)] font-semibold">
-                On time, or 10% back
-              </span>
-              <span className="font-mono text-xs px-2.5 py-1 bg-[var(--surface)] border border-[var(--line)] text-[var(--ink)] font-semibold">
-                15-year warranty
-              </span>
-              <span className="font-mono text-xs px-2.5 py-1 bg-[var(--surface)] border border-[var(--line)] text-[var(--ink)] font-semibold">
-                IIT-led · COA-registered
-              </span>
-            </div>
+            <p className="font-sans text-xs text-[var(--muted)]">
+              On time, or 10% back. 15-year warranty. IIT-led · COA-registered.
+            </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
@@ -384,8 +374,7 @@ function BookCallContent() {
 
           {/* FAQs per Section 11 */}
           <div className="mt-16 pt-12 border-t border-[var(--line)]">
-            <Eyebrow text="Common Questions" className="mb-2" />
-            <h2 className="font-display text-3xl font-bold mb-6">
+                        <h2 className="font-display text-3xl font-bold mb-6">
               Frequently asked questions
             </h2>
             <Faq items={bookFaqs} />

@@ -1,7 +1,6 @@
 import React from 'react'
 import type { Metadata } from 'next'
 import { siteConfig } from '@/lib/site'
-import { Eyebrow } from '@/components/ui/Eyebrow'
 import { CtaBand } from '@/components/ui/CtaBand'
 import { Breadcrumb } from '@/components/ui/Breadcrumb'
 import { EvidenceLabel } from '@/components/ui/EvidenceLabel'
@@ -143,8 +142,7 @@ export default function TechnologyPage() {
         <div className="max-w-6xl mx-auto px-4 md:px-6 pt-8 pb-12">
           <Breadcrumb items={breadcrumbItems} className="mb-6" />
 
-          <Eyebrow text="Technology" className="mb-3" />
-          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[0.92] mb-6 max-w-4xl">
+                    <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[0.92] mb-6 max-w-4xl">
             Built with instruments, not opinions.
           </h1>
           <p className="font-sans text-lg md:text-xl text-[var(--muted)] max-w-3xl leading-relaxed">

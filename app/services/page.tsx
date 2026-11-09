@@ -2,7 +2,6 @@ import React from 'react'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Breadcrumb } from '@/components/ui/Breadcrumb'
-import { Eyebrow } from '@/components/ui/Eyebrow'
 import { CtaBand } from '@/components/ui/CtaBand'
 import { servicesData } from '@/lib/services-data'
 import { siteConfig } from '@/lib/site'
@@ -45,8 +44,7 @@ export default function ServicesPage() {
       <section className="pt-8 pb-12 md:pb-16 max-w-6xl mx-auto px-4 md:px-6 w-full">
         <Breadcrumb items={breadcrumbItems} className="mb-6" />
         <div className="max-w-4xl">
-          <Eyebrow text="Services" className="mb-3" />
-          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[0.92] mb-6">
+                    <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[0.92] mb-6">
             One studio. Complete responsibility.
           </h1>
           <p className="font-sans text-lg md:text-xl text-[var(--muted)] leading-relaxed">

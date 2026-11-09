@@ -2,7 +2,6 @@ import React from 'react'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Breadcrumb } from '@/components/ui/Breadcrumb'
-import { Eyebrow } from '@/components/ui/Eyebrow'
 import { Faq } from '@/components/ui/Faq'
 import { CtaBand } from '@/components/ui/CtaBand'
 import { nriFaqs, generateFaqSchema } from '@/lib/faq-data'
@@ -87,8 +86,7 @@ export default function NriPage() {
       <section className="pt-8 pb-12 md:pb-16 max-w-6xl mx-auto px-4 md:px-6 w-full">
         <Breadcrumb items={breadcrumbItems} className="mb-6" />
         <div className="max-w-4xl">
-          <Eyebrow text="For NRI families" className="mb-3" />
-          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[0.92] mb-6">
+                    <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[0.92] mb-6">
             Build in India without flying in for every decision.
           </h1>
           <p className="font-sans text-lg md:text-xl text-[var(--muted)] leading-relaxed">
@@ -104,8 +102,7 @@ export default function NriPage() {
       <section className="py-16 md:py-20 border-b border-[var(--line)] bg-[var(--surface)]">
         <div className="max-w-6xl mx-auto px-4 md:px-6">
           <div className="mb-10">
-            <Eyebrow text="Reporting System" className="mb-2" />
-            <h2 className="font-display text-3xl md:text-4xl font-extrabold">
+                        <h2 className="font-display text-3xl md:text-4xl font-extrabold">
               What you receive
             </h2>
           </div>
@@ -131,8 +128,7 @@ export default function NriPage() {
       <section className="py-16 md:py-20 border-b border-[var(--line)] bg-[var(--bg)]">
         <div className="max-w-6xl mx-auto px-4 md:px-6">
           <div className="mb-10">
-            <Eyebrow text="Schedule" className="mb-2" />
-            <h2 className="font-display text-3xl md:text-4xl font-extrabold">
+                        <h2 className="font-display text-3xl md:text-4xl font-extrabold">
               Reporting rhythm
             </h2>
           </div>
@@ -166,8 +162,7 @@ export default function NriPage() {
         <div className="max-w-6xl mx-auto px-4 md:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-16">
             <div className="lg:col-span-7">
-              <Eyebrow text="Prerequisites" className="mb-2" />
-              <h2 className="font-display text-3xl font-extrabold mb-4">
+                            <h2 className="font-display text-3xl font-extrabold mb-4">
                 Before you start
               </h2>
               <ul className="space-y-4 border-t-[1.5px] border-[var(--ink)] pt-6 list-none p-0">
@@ -202,8 +197,7 @@ export default function NriPage() {
           {/* FAQ */}
           <div>
             <div className="mb-8">
-              <Eyebrow text="Questions" className="mb-2" />
-              <h2 className="font-display text-3xl font-bold">
+                            <h2 className="font-display text-3xl font-bold">
                 Frequently asked questions
               </h2>
             </div>

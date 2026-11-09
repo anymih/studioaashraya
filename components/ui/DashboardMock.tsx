@@ -7,21 +7,21 @@ export interface DashboardMockProps {
 export function DashboardMock({ className = '' }: DashboardMockProps) {
   return (
     <div
-      className={`border-[1.5px] border-[var(--ink)] bg-[var(--surface)] p-5 sm:p-7 ${className}`}
+      className={`card-standard ${className}`}
       aria-label="Client dashboard preview"
     >
-      {/* Header with Title and "Sample data" tag */}
+      {/* Header with Title and "Illustration" caption */}
       <div className="flex items-center justify-between border-b border-[var(--line)] pb-4 mb-5">
         <div>
-          <span className="font-mono text-[10px] text-[var(--muted)] block">
-            Client Portal Live View
+          <span className="font-sans text-xs text-[var(--muted)] block">
+            Client portal live view
           </span>
-          <div className="font-display font-extrabold text-xl text-[var(--ink)]">
-            Project Dashboard
+          <div className="font-sans font-semibold text-lg text-[var(--ink)]">
+            Project dashboard
           </div>
         </div>
-        <span className="font-mono text-[11px] px-2 py-0.5 border border-[var(--accent)] text-[var(--accent)] bg-[var(--bg)] font-semibold">
-          Sample data
+        <span className="font-sans text-xs text-[var(--muted)]">
+          Illustration
         </span>
       </div>
 

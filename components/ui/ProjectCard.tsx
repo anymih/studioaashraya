@@ -68,9 +68,9 @@ export default function ProjectCard({
   const isPlaceholder = placeholder ?? p.placeholder ?? true
 
   return (
-    <article className={`border-[1.5px] border-[var(--ink)] bg-[var(--surface)] min-w-0 flex flex-col justify-between ${className}`}>
+    <article className={`card-standard min-w-0 flex flex-col justify-between p-0 overflow-hidden ${className}`}>
       <Link href={`/projects/${finalSlug}`} className="block group">
-        <div className="relative aspect-[4/3] w-full bg-[var(--wash)] overflow-hidden hatched-pattern flex items-center justify-center">
+        <div className="relative aspect-[4/3] w-full bg-[var(--surface)] border-b border-[var(--line)] overflow-hidden flex items-center justify-center">
           {imageSrc ? (
             <Image
               src={imageSrc}
@@ -80,31 +80,31 @@ export default function ProjectCard({
               className="object-cover transition-transform duration-200 group-hover:scale-[1.02]"
             />
           ) : (
-            <small className="font-mono text-[11px] text-[var(--muted)]">
-              Drawing archive
-            </small>
+            <span className="font-sans text-xs text-[var(--muted)] p-4 text-center">
+              Illustration. Project photographs to follow.
+            </span>
           )}
 
-          {/* City Tag */}
-          <span className="absolute left-3 top-3 bg-[var(--ink)] text-[var(--bg)] font-mono font-medium text-[11px] px-2 py-1 select-none">
+          {/* City */}
+          <span className="absolute left-3 top-3 font-sans text-xs text-[var(--muted)] bg-[var(--surface)] px-2 py-0.5 border border-[var(--line)] select-none">
             {displayCity}
           </span>
 
-          {/* Status Badge */}
+          {/* Status */}
           <div className="absolute right-3 top-3">
             <StatusBadge status={displayStatus} />
           </div>
 
-          {/* Sample Project Chip (PRD S8 / Section 8.1) */}
+          {/* Sample project caption */}
           {isPlaceholder && (
-            <span className="absolute left-3 bottom-3 bg-[var(--bg)] border border-[var(--line)] text-[var(--ink)] font-mono text-[10px] px-2 py-0.5 select-none shadow-sm">
+            <span className="absolute left-3 bottom-3 font-sans text-xs text-[var(--muted)] bg-[var(--surface)] px-2 py-0.5 border border-[var(--line)] select-none">
               Sample project
             </span>
           )}
         </div>
       </Link>
 
-      <dl className="grid grid-cols-2 border-t-[1.5px] border-[var(--ink)] m-0">
+      <dl className="grid grid-cols-2 border-t border-[var(--line)] m-0">
         <div className="col-span-2 p-2.5 sm:p-3 border-b border-[var(--line)] min-w-0">
           <dt className="font-mono text-[10px] text-[var(--muted)]">
             Project

@@ -1,7 +1,6 @@
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import { specSchedule } from '@/lib/spec-schedule'
-import { Eyebrow } from '@/components/ui/Eyebrow'
 import { CtaBand } from '@/components/ui/CtaBand'
 
 export const metadata: Metadata = {
@@ -19,8 +18,7 @@ export default function SpecificationsPage() {
   return (
     <div className="min-h-screen bg-[var(--bg)] text-[var(--ink)] pt-12 pb-16">
       <div className="max-w-5xl mx-auto px-4 md:px-6">
-        <Eyebrow text="STANDARDS &amp; QUALITY" />
-        <h1 className="font-display text-4xl md:text-5xl font-light text-[var(--ink)] mt-2 mb-6">
+                <h1 className="font-display text-4xl md:text-5xl font-light text-[var(--ink)] mt-2 mb-6">
           Specifications Schedule
         </h1>
         <p className="text-[var(--ink-muted)] max-w-2xl text-base mb-8">
