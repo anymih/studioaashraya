@@ -68,7 +68,7 @@ export default async function AreaDetailPage({ params }: AreaPageProps) {
     { label: area.name },
   ]
 
-  const areaProjects = projects.filter((p: Project) => area.projectSlugs.includes(p.slug))
+  const areaProjects = projects.filter((p: Project) => (area.projectSlugs || []).includes(p.slug))
 
   const businessSchema = {
     '@context': 'https://schema.org',
