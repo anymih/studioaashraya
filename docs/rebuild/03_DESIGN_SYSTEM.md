@@ -132,7 +132,7 @@ Provide fallbacks: display `'Arial Narrow', Impact, sans-serif`; body `system-ui
 | `TechBlock` | Technology page block: image, then four label and text pairs (`What it is`, `What it catches`, `What you receive`, `Used at`). Phones: collapsed under the title, opened by a 48 px row. |
 | `CompareTable` | Two columns, "What often happens" and "What we do", 1 px dividers, accent square bullet in the second column. Below 700 px each row becomes a card with the two statements stacked under mono labels. |
 | `ImageFrame` | Wrapper for every image: 1.5 px ink border, no radius, reserved aspect ratio, mono caption (`Illustration`, `Design render`, `Sample drawing`, or a real location and year). |
-| `ClaimNote` | Mono 11 px footnote under a ledger claim. Shows the source of `c.market78` and the "Conditions are in your agreement" line under the guarantee and warranty. |
+| `ClaimNote` | Mono 11 px footnote under a ledger claim. Shows the source of `c.delay62` and the "Conditions are in your agreement" line under the guarantee and warranty. |
 
 ## 6. Imagery
 
@@ -179,7 +179,7 @@ The toggle sets `data-theme`, writes `sa-theme` inside `try/catch`, and fires `t
 **10.1 Page rhythm.** Every page follows the same order: hero (H1, one promise line, one primary button) → proof (`ProofBar` or `CredStrip`) → content blocks → a `CtaRow` after every second block → a closing `StartBand`. Backgrounds alternate to set the pace: `--bg`, then an ink or band block, then `--bg`, then the accent `StartBand` last.
 
 **10.2 Attacking tone, in layout terms.**
-- One oversized element per screen: the H1, a `PromiseCard` figure or the 78% figure. Never two.
+- One oversized element per screen: the H1, a `PromiseCard` figure or the market figure. Never two.
 - Short declarative lines. Headings: 14 words at most. Body sentences: 22 words at most. Numbers over adjectives, and only numbers that come from the ledger.
 - Accent fills (`StartBand`, primary buttons, `MobileCtaBar` primary) never touch each other. At most one accent-filled block in a single screen, apart from the `MobileCtaBar`.
 - Comparison is stated as a table (`CompareTable`), not as insults. No competitor is named.
@@ -191,7 +191,7 @@ The toggle sets `data-theme`, writes `sa-theme` inside `try/catch`, and fires `t
 - Every primary CTA links to `/book-a-call?src=<cta_id>`. Call and WhatsApp are secondary links, shown beside it.
 - `/book-a-call` itself has no CTA bands. The form is the page.
 
-**10.4 The 78% line.** H2 in display type. The figure "78%" is set in `--accent` at the H2 size or larger; the rest of the line is `--ink`. A `ClaimNote` footnote sits under the heading and shows `c.market78.source`.
+**10.4 The market figure line.** H2 in display type: "62% of under-construction housing projects in 50 Indian cities are delayed." A ClaimNote link sits below the heading block and links to c.delay62.sourceUrl.
 
 **10.5 Guarantee and warranty.** Two `PromiseCard`s side by side on desktop (`10%`, `15`) and stacked on phones, with the `GuaranteeTimeline` beneath. The line "Conditions are in your agreement" appears as a `ClaimNote` directly under the cards.
 

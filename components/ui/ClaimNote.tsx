@@ -1,17 +1,28 @@
 import React from 'react'
 
 export interface ClaimNoteProps {
-  note?: string
   source?: string
+  sourceUrl?: string
   className?: string
 }
 
-export function ClaimNote({ note, source, className = '' }: ClaimNoteProps) {
-  const text = note || (source ? `Source: ${source}` : 'Source: to be added')
+export function ClaimNote({ source, sourceUrl, className = '' }: ClaimNoteProps) {
+  if (!source) return null
 
   return (
     <p className={`font-mono text-[11px] text-[var(--muted)] tracking-wider mt-2 ${className}`}>
-      {text}
+      {sourceUrl ? (
+        <a
+          href={sourceUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:text-[var(--accent)] underline underline-offset-2"
+        >
+          Source: {source}
+        </a>
+      ) : (
+        `Source: ${source}`
+      )}
     </p>
   )
 }

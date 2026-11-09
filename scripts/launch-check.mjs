@@ -63,9 +63,9 @@ if (fs.existsSync(imagesTsPath)) {
 const ledgerPath = path.join(process.cwd(), 'lib/ledger.tsx');
 if (fs.existsSync(ledgerPath)) {
   const content = fs.readFileSync(ledgerPath, 'utf8');
-  // Check claims with state: "owner-directed" and source: ""
-  if (content.includes('"c.market78"') && (content.includes('source: ""') || content.includes("source: ''"))) {
-    warnings.push("Claim 'c.market78' is owner-directed without a verified source (Source: to be added).");
+  // Check for banned c.market78
+  if (content.includes('c.market78')) {
+    errors.push("Banned claim 'c.market78' found in lib/ledger.tsx. Must use 'c.delay62'.");
   }
 }
 

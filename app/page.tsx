@@ -11,7 +11,8 @@ import { projects, type Project } from '@/lib/projects-data'
 import { homeFaqs, generateFaqSchema } from '@/lib/faq-data'
 import { methodStages } from '@/lib/method-data'
 import { siteConfig } from '@/lib/site'
-import { Claim } from '@/lib/ledger'
+import { Claim, CLAIMS } from '@/lib/ledger'
+import { ClaimNote } from '@/components/ui/ClaimNote'
 import { Phone, MessageSquare, ArrowRight, ShieldCheck, MapPin } from 'lucide-react'
 
 export const metadata: Metadata = {
@@ -274,11 +275,15 @@ export default function HomePage() {
           <div className="max-w-3xl mb-10">
             <Eyebrow text="The risk" className="mb-2" />
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold uppercase tracking-tight leading-[0.95] mb-4 text-[var(--ink)]">
-              <span className="text-[var(--accent)]"><Claim id="c.market78" /></span> of homes miss their deadline or leak. We hand over on time, or we pay you.
+              62% of under-construction housing projects in 50 Indian cities are delayed.
             </h2>
-            <p className="font-sans text-base md:text-lg text-[var(--muted)] leading-relaxed">
-              A home fails at the basement, the terrace, the façade, the plumbing line or the structural junction. Clients usually find out after the money is spent and the decision cannot be undone.
+            <p className="font-sans text-base md:text-lg text-[var(--muted)] leading-relaxed mb-3">
+              We commit to the handover date in writing. If we miss it, we refund 10% of the total construction amount. Conditions, scope and exclusions are in your agreement.
             </p>
+            <ClaimNote
+              source={CLAIMS['c.delay62'].source}
+              sourceUrl={CLAIMS['c.delay62'].sourceUrl}
+            />
           </div>
 
           {/* Comparison Table */}

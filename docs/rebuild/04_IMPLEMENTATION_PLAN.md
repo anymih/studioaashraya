@@ -96,13 +96,12 @@ Continue from the first step not marked done. Same rules. Do not push.
 export type ClaimState = "measured" | "owner-attested" | "contractual" | "owner-directed";
 export interface Claim { id: string; text: string; state: ClaimState; source?: string; note?: string; ownerOverride?: boolean }
 export const CLAIMS: Record<string, Claim> = {
-  "c.market78": { id: "c.market78", text: "78%", state: "owner-directed", source: "", ownerOverride: true,
-    note: "Owner directed on 2 Nov 2026, no source supplied." },
+  "c.delay62": { id: "c.delay62", text: "62% of under-construction housing projects across 50 Indian cities were delayed", state: "sourced", source: "Liases Foras survey, 2017", sourceUrl: "https://mas360.moneylife.in/article/delay-in-62-percentage-of-housing-projects-in-50-indian-cities-finds-liases-foras-survey/2477.html" },
   // c.track, c.credentials, c.ontime, c.refund, c.warranty, c.thermal, c.energy, c.approval, c.seismic per the PRD
 };
 export const TECH = { /* ten ids: bim-clash, thermal-sim, lidar-twin, drone-audit, concrete-testing, pulse-velocity, rebar-scan, flood-test, dashboard-cpm, structural-seismic */ };
 ```
-  Add `<Claim id>` and `<Cap id>` helpers; `<Claim>` renders `EvidenceLabel` for `measured` and `ClaimNote` for `c.market78`.
+  Add `<Claim id>` and `<Cap id>` helpers; `<Claim>` renders `EvidenceLabel` for `measured` and `ClaimNote` for `c.delay62`.
 - Data files: `lib/faq-data.ts`, `lib/services-data.ts`, `lib/areas-data.ts`, `lib/method-data.ts`, `lib/tech-data.ts` (ten blocks from `02_PAGE_SPECS.md` section 4), `lib/testimonials.ts` (empty), `lib/spec-schedule.ts` (empty), `lib/measurement-note.ts` (default "Measured data is available on request.").
 - `lib/projects-data.ts`: copy `06_SAMPLE_PROJECTS.ts` and keep its types. Add `validateProjects()` and call it from `generateStaticParams` and from `scripts/projects-check.mjs`.
 - `lib/images.ts`: the registry from `05_IMAGE_BRIEFS.md` section 3 (all 54 ids with width, height, alt, kind, priority) and a `<Img id>` helper that renders `next/image` inside `ImageFrame` with the caption rule.
@@ -139,7 +138,7 @@ export const TECH = { /* ten ids: bim-clash, thermal-sim, lidar-twin, drone-audi
 ### Step 5. Home
 - Build `app/page.tsx` as server components per `02_PAGE_SPECS.md` section 2 (sections 2.1 to 2.15). FAQ from `lib/faq-data.ts` with FAQPage JSON-LD. Remove the old testimonial JSON-LD.
 - Hero H1 is exactly: "Build a home that is beautiful, engineered, and built to last." with "engineered" emphasised.
-- **Done when:** on a 375 px viewport the H1, three promise chips and the primary button are visible in the first screen; the 78% line renders through `<Claim id="c.market78">` with its footnote; no hard-coded figure appears in the page file.
+- **Done when:** on a 375 px viewport the H1, three promise chips and the primary button are visible in the first screen; the market figure renders through c.delay62 with linked source with its footnote; no hard-coded figure appears in the page file.
 
 ### Step 6. Method, Technology, Guarantee, NRI
 - `app/method/page.tsx` (eight stages, four gates with instruments, `GateRecord` sample, `SectionSheet`, gate images).
@@ -213,7 +212,7 @@ async redirects() {
 ## 6. Swapping in real content later (owner, after the build)
 
 1. **A real project:** edit its record in `lib/projects-data.ts`: set `placeholder: false`, change `status`, fill facts, set `delivery`, replace metrics with `evidence: "measured"` and a `method`. Drop the real photos in `public/images/projects/` with the same ids, then set `kind: "photo"` and update `alt` and `caption` in `lib/images.ts`. Repeat per project.
-2. **The 78% source:** set `source` in `lib/ledger.ts` for `c.market78` (or change `text`). The footnote updates everywhere.
+2. **The market figure:** sourced to Liases Foras 2017 survey in c.delay62.
 3. **Refund and warranty wording:** change `c.refund` and `c.warranty` text once the contract wording is final.
 4. **Going live with samples (your call):** set `ALLOW_SAMPLE_CONTENT=true`. The `SampleTag` and `SampleBanner` stay visible, so visitors can see the content is sample content. Set `NEXT_PUBLIC_SHOW_SAMPLE_BANNER=false` only after every sample is replaced.
 5. **Push and deploy:** review `PROGRESS.md`, confirm in writing, then push `rebuild/v2` and deploy a preview before production.

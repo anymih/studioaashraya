@@ -77,11 +77,11 @@ Every string is final copy unless marked `[DATA]`. Components come from `03_DESI
 - Door 3 `svc-redevelopment`: `I have an old house.` `We survey it, then price retain, strengthen and rebuild.` Button `Survey my house` (`door-old`).
 - Mobile: horizontal swipe cards, 82% width, with the next card visible.
 
-**2.4 The problem and the 78% line**
+**2.4 The problem and the 62% line**
 - Eyebrow `The risk`
 - Image: `home-problem` (damp-stained wall below a terrace slab).
-- H2: `78% of homes miss their deadline or leak. We hand over on time, or we pay you.`
-- Footnote (mono, from ledger `c.market78.source`; shows "Source: to be added" until supplied).
+- H2: `62% of homes miss their deadline or leak. We hand over on time, or we pay you.`
+- Footnote (mono, from ledger `c.delay62.source`; shows "Source: to be added" until supplied).
 - Body: `A home fails at the basement, the terrace, the façade, the plumbing line or the structural junction. Clients usually find out after the money is spent and the decision cannot be undone.`
 - Comparison table `What often happens` / `What we do` (mobile: stacked rows):
   1. The handover date is a promise. / The handover date is in the agreement, backed by a 10% refund.

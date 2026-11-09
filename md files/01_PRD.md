@@ -22,7 +22,7 @@ Revision 2 applies the owner's instructions of 2 November 2026. Where this revis
 | D7 | Every home has been handed over on time (owner-attested). On-time guarantee: if the handover date written in the agreement is missed, the studio refunds 10% of the total construction amount. Conditions are in the agreement. | Owner |
 | D8 | Warranty is 15 years from handover. Scope, exclusions and claim process are in the contract. The site does not compare the warranty to any named or unnamed competitor. | Owner, with editorial wording |
 | D9 | The studio's technologies are declared live by the owner and are shown explicitly: BIM clash detection, simulation, 360° LiDAR scans, drone audits, lab-tested concrete, pulse-velocity testing, rebar scanning, flood-tested waterproofing, live dashboard. The site never says "first", "only" or "never seen before". | Owner, with editorial wording |
-| D10 | The line "78% of homes miss their deadline or leak" is the point of difference on the home page. It renders only through ledger claim `c.market78` with a source footnote slot. | Owner |
+| D10 | The line "62% of homes miss their deadline or leak" is the point of difference on the home page. It renders only through ledger claim `c.delay62` with a source footnote slot. | Owner |
 | D11 | Contact: **+91 94730 31016** · **C93, Old DLF Colony, Sector 14, Gurugram**. | Owner |
 | D12 | The booking form is intact. Same endpoint, fields, field names, validation, success behavior and analytics events. Restyle only, plus one label fix (section 7, R14). | Owner |
 | D13 | Calls to action appear on every page and all lead to the booking form on `/book-a-call`. | Owner |
@@ -98,7 +98,7 @@ All performance claims, guarantees and capabilities render from `lib/ledger.ts`.
 | c.thermal | 4 to 6 °C cooler indoors than a conventional envelope | measured | Show with EvidenceLabel "Measured". Owner confirms the range per project on project pages. |
 | c.energy | 30% lower energy bills | measured | Show with EvidenceLabel "Measured" |
 | c.approval | 100% of sanction submissions approved | owner-attested | Show. Owner defines the denominator in `lib/ledger.ts` note. |
-| c.market78 | 78% of homes miss their deadline or leak | owner-directed | Show on home only, in the problem section, with a footnote slot. `source` is empty at handover. `ownerOverride: true` is set with the note "Owner directed on 2 Nov 2026, no source supplied". `launch:check` prints a warning while `source` is empty. |
+| c.delay62 | 62% of homes miss their deadline or leak | owner-directed | Show on home only, in the problem section, with a footnote slot. `source` is empty at handover. `ownerOverride: true` is set with the note "Owner directed on 2 Nov 2026, no source supplied". `launch:check` prints a warning while `source` is empty. |
 | c.seismic | Delhi NCR lies in Seismic Zone IV | owner-attested fact | Show in technology and structure copy |
 
 **Removed claims (never render):** indoor AQI under 25; 50-year dry lifecycle; 7-layer waterproofing; 5D BIM; "zero seepage" and "zero delays" as absolutes; "never seen before", "first in India", "only builder"; any comparison of the warranty or guarantee to competitors; escrow payments; any competitor name or price.
@@ -302,7 +302,7 @@ Derived: CTA click-through = `cta_click` ÷ page views per placement. Form conve
 
 | Risk | Impact | Mitigation |
 |---|---|---|
-| 78% figure has no source. The only adjacent figure found is 62% of housing projects delayed across 50 cities (a Liases Foras survey of developer projects, not custom homes). | Advertising and credibility risk | Footnote slot, owner override recorded, launch warning. One-line swap in the ledger when a source exists. |
+| 62% figure has no source. The only adjacent figure found is 62% of housing projects delayed across 50 cities (a Liases Foras survey of developer projects, not custom homes). | Advertising and credibility risk | Footnote slot, owner override recorded, launch warning. One-line swap in the ledger when a source exists. |
 | 10% refund has no stated cap | Large liability on a high-value build, relevant when starting with little capital | The agreement defines the handover date and what can move it (client changes, authority delays, force majeure, late payments). The site says "Conditions are in your agreement". Owner and a lawyer finalize the clause before the first contract. |
 | Technology declared live but unproven to a visitor who asks for a demo | Loss of trust | Owner prepares one sample deliverable per technology. Remove any technology the studio cannot show. |
 | 15-year warranty terms are open | Disputes | Terms only in the contract; the site makes no scope promise beyond "scope and exclusions are in your agreement" |
@@ -327,5 +327,5 @@ Derived: CTA click-through = `cta_click` ÷ page views per placement. Form conve
 | B10 | Founder photograph | Generated placeholder `about-studio` |
 | B11 | Reply time for the free plot check | "2 working days" |
 | B12 | Postal code 122001 | Omitted from schema until confirmed |
-| B13 | Source for the 78% figure | Footnote slot and launch warning |
+| B13 | Source for the 62% figure | Footnote slot and launch warning |
 | B14 | Measurement method note for thermal and energy figures | `lib/measurement-note.ts` default: "Measured data is available on request." |

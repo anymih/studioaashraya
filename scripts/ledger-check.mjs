@@ -5,7 +5,7 @@ import path from 'node:path'
 // "fails on: AQI under, 50-year, 7-layer, 5D, zero seepage, zero delays, never seen,
 //  first in india, only builder, longer than any, escrow, and any competitor name
 const BANNED_PATTERNS = [
-  { pattern: /\b78\s?%/i, label: '78% (must come from ledger claim c.market78)' },
+  { pattern: /\b78\s?%/i, label: '78% (banned claim)' },
   { pattern: /AQI under/i, label: 'AQI under' },
   { pattern: /50-year/i, label: '50-year' },
   { pattern: /7-layer/i, label: '7-layer' },

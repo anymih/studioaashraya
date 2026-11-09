@@ -1,12 +1,12 @@
 import React from 'react'
 import { EvidenceLabel } from '@/components/ui/EvidenceLabel'
-import { ClaimNote } from '@/components/ui/ClaimNote'
 
 export type ClaimState =
   | 'measured'
   | 'simulated'
   | 'owner-attested'
   | 'contractual'
+  | 'sourced'
   | 'owner-directed'
   | 'pending'
   | 'removed'
@@ -17,11 +17,12 @@ export interface Claim {
   id: string
   text?: string
   source?: string
+  sourceUrl?: string
   state: ClaimState
   displayRule?: string
   method?: string
   ownerOverride?: boolean
-  note?: string
+  internalNote?: string
 }
 
 export interface Capability {
@@ -60,7 +61,6 @@ export const CLAIMS: Record<string, Claim> = {
     source: 'Contract',
     state: 'contractual',
     displayRule: 'Show with "Conditions are in your agreement"',
-    note: 'Conditions are in your agreement',
   },
   'c.warranty': {
     id: 'c.warranty',
@@ -68,7 +68,6 @@ export const CLAIMS: Record<string, Claim> = {
     source: 'Contract',
     state: 'contractual',
     displayRule: 'Show with "Scope and exclusions are in your agreement"',
-    note: 'Scope and exclusions are in your agreement',
   },
   'c.thermal': {
     id: 'c.thermal',
@@ -92,16 +91,16 @@ export const CLAIMS: Record<string, Claim> = {
     source: 'Owner',
     state: 'owner-attested',
     displayRule: 'Show',
-    note: 'Sanction submissions handled across municipal authorities',
   },
-  'c.market78': {
-    id: 'c.market78',
-    text: '78%',
-    source: '', // Empty at handover per D10 & B13
-    state: 'owner-directed',
-    displayRule: 'Show on home only, in the problem section, with a footnote slot',
-    ownerOverride: true,
-    note: 'Owner directed on 2 Nov 2026, no source supplied.',
+  'c.delay62': {
+    id: 'c.delay62',
+    text: '62% of under-construction housing projects across 50 Indian cities were delayed',
+    source: 'Liases Foras survey, 2017',
+    sourceUrl:
+      'https://mas360.moneylife.in/article/delay-in-62-percentage-of-housing-projects-in-50-indian-cities-finds-liases-foras-survey/2477.html',
+    state: 'sourced',
+    internalNote:
+      'Survey is from Nov 2017 and measures delay only, not leaks. Do not paraphrase it as leaks.',
   },
   'c.seismic': {
     id: 'c.seismic',
@@ -272,7 +271,10 @@ export function Claim({
 
   const isSimulated = claim.state === 'simulated'
   const isMeasured = claim.state === 'measured'
-  const isMarket78 = id === 'c.market78'
+
+  if (!isSimulated && !isMeasured) {
+    return <span className={className}>{claim.text}</span>
+  }
 
   return (
     <span className={`inline-flex items-baseline gap-2 flex-wrap ${className}`}>
@@ -288,9 +290,6 @@ export function Claim({
           type="measured"
           methodLink={claim.method || '/technology#measurement'}
         />
-      )}
-      {isMarket78 && (
-        <ClaimNote source={claim.source} note={claim.note} className="w-full" />
       )}
     </span>
   )

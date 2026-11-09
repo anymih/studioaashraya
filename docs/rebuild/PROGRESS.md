@@ -16,7 +16,7 @@
 | 2 Data layer & Truth | done | `79dbb59` | 2 Nov 2026 | `lib/ledger.tsx` claim/capability truth engine; `lib/site.ts`; verification scripts (`ledger:check`, `routes:check`, `form:check`, `images:check`, `projects:check`, `cta:check`, `launch:check`). |
 | 3 CTA System | done | `9e2423e` | 3 Nov 2026 | `CtaRow`, `StartBand`, `CtaBand` (6 variants) linking to `/book-a-call?src=<cta_id>`; `MobileCtaBar` integrated in root layout. |
 | 4 Images & Graphics | done | `df3428c` | 3 Nov 2026 | 54 image briefs registered in `lib/images.tsx`; coded SVGs (`SectionSheet`, `HeroOverlay`, `PromiseCard`, `GuaranteeTimeline`, `DashboardMock`, `OgImage`); hatched placeholder fallbacks. |
-| 5 Home Page | done | `fe73614` | 3 Nov 2026 | All 15 sections rebuilt per `02_PAGE_SPECS.md` Section 2; `<Claim id="c.market78">` with footnote; `FAQPage` JSON-LD. |
+| 5 Home Page | done | `fe73614` | 3 Nov 2026 | All 15 sections rebuilt per `02_PAGE_SPECS.md` Section 2; market figure (62% Liases Foras) with linked source; `FAQPage` JSON-LD. |
 | 6 Method, Tech, Guarantee, NRI | done | `dfd2d93` | 3 Nov 2026 | Rebuilt `/method` (8 stages, 4 gates), `/technology` (10 blocks), `/guarantee` (10% back + 15yr warranty), `/nri` (8 reporting deliverables). |
 | 7 Services and Areas | done | `755a005` | 3 Nov 2026 | Rebuilt `/services` and `/services/[slug]` (4 slugs); `/areas` and `/areas/[slug]` (4 slugs); SSG prerendering. |
 | 8 Projects & Redirects | done | `fa49028` | 3 Nov 2026 | 6 sample projects loaded from `06_SAMPLE_PROJECTS.ts`; `SampleTag` & "Sample figure" metrics; 308 permanent redirects for 7 legacy slugs in `next.config.ts`. |
@@ -218,7 +218,7 @@ Ran regex scan across all source code (`.ts`, `.tsx`, `.css`, `.json`) excluding
 | **B10** | Founder photograph | Generated architectural drawing placeholder `about-studio` | `lib/images.tsx`, `app/about/page.tsx` |
 | **B11** | Reply time for free plot check | "2 working days" | `app/book-a-call/page.tsx`, `Notice.tsx` |
 | **B12** | Postal code 122001 | Omitted from schema graph until confirmed by owner | `app/layout.tsx` schema graph |
-| **B13** | Source for 78% figure | Footnote slot "Liases Foras survey... Custom homes survey to be added" | `lib/ledger.tsx`, `app/page.tsx` |
+| **B13** | Market figure | Replaced with Liases Foras 62% survey (2017) | lib/ledger.tsx, app/page.tsx |
 | **B14** | Measurement method note | "Measured data is available on request." | `lib/measurement-note.ts`, `app/projects/[slug]/page.tsx` |
 
 ---
