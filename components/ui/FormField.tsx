@@ -50,13 +50,13 @@ export function FormField({
     <div className={`flex flex-col gap-1.5 ${className}`}>
       <label
         htmlFor={fieldId}
-        className="font-mono text-[11px] text-[var(--muted)] flex items-center justify-between"
+        className="font-mono text-xs text-[var(--muted)] flex items-center justify-between"
       >
         <span>
           {label} {required && <span className="text-[var(--accent)]">*</span>}
         </span>
         {maxLength && value !== undefined && (
-          <span className="text-[10px] tabular-nums">
+          <span className="text-xs tabular-nums">
             {value.length}/{maxLength}
           </span>
         )}

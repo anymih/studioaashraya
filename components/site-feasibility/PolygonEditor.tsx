@@ -383,12 +383,12 @@ export default function PolygonEditor({
         <div className="flex flex-wrap items-center gap-2">
           <span className="font-semibold text-neutral-800 text-sm">Site Boundary Editor</span>
           {isClosed ? (
-            <span className="flex items-center text-[10px] text-green-700 bg-green-100 px-2 py-0.5 rounded-full font-medium space-x-1">
+            <span className="flex items-center text-xs text-green-700 bg-green-100 px-2 py-0.5 rounded-full font-medium space-x-1">
               <CheckCircle2 size={11} />
               <span>Closed Plot</span>
             </span>
           ) : (
-            <span className="text-[10px] text-amber-700 bg-amber-100 px-2 py-0.5 rounded-full font-medium">
+            <span className="text-xs text-amber-700 bg-amber-100 px-2 py-0.5 rounded-full font-medium">
               Drawing Mode
             </span>
           )}
@@ -414,7 +414,7 @@ export default function PolygonEditor({
             </button>
             <button
               onClick={handleResetView}
-              className="px-1.5 py-1 text-[10px] hover:bg-neutral-50 border-l border-neutral-100 text-neutral-500 font-semibold transition"
+              className="px-1.5 py-1 text-xs hover:bg-neutral-50 border-l border-neutral-100 text-neutral-500 font-semibold transition"
               title="Reset View"
             >
               Reset view
@@ -482,7 +482,7 @@ export default function PolygonEditor({
           {/* Reset Workspace */}
           <button
             onClick={resetCanvas}
-            className="flex items-center space-x-1 text-[11px] px-2.5 py-1 bg-white border border-neutral-200 rounded hover:bg-red-50 hover:border-red-200 hover:text-red-600 transition text-neutral-600 font-medium"
+            className="flex items-center space-x-1 text-xs px-2.5 py-1 bg-white border border-neutral-200 rounded hover:bg-red-50 hover:border-red-200 hover:text-red-600 transition text-neutral-600 font-medium"
           >
             <RefreshCw size={11} />
             <span>Reset Plot</span>
@@ -700,7 +700,7 @@ export default function PolygonEditor({
                       <text
                         textAnchor="middle"
                         dominantBaseline="middle"
-                        className="text-[8px] font-bold fill-white font-sans"
+                        className="text-xs font-bold fill-white font-sans"
                         y="-10"
                       >
                         {formatLengthShort(distance, unit)}
@@ -746,7 +746,7 @@ export default function PolygonEditor({
                   <text
                     textAnchor="middle"
                     dominantBaseline="middle"
-                    className="text-[9px] font-bold fill-neutral-700 font-sans"
+                    className="text-xs font-bold fill-neutral-700 font-sans"
                     y="-1"
                   >
                     {formatLengthShort(dist, unit)}
@@ -790,7 +790,7 @@ export default function PolygonEditor({
                   x={scr.x}
                   y={scr.y - 10}
                   textAnchor="middle"
-                  className="text-[9px] font-medium fill-neutral-500 font-sans pointer-events-none"
+                  className="text-xs font-medium fill-neutral-500 font-sans pointer-events-none"
                 >
                   P{i + 1}
                 </text>
@@ -841,7 +841,7 @@ export default function PolygonEditor({
                     y={bubbleScr.y}
                     textAnchor="middle"
                     dominantBaseline="middle"
-                    className="text-[9px] font-bold fill-white font-sans"
+                    className="text-xs font-bold fill-white font-sans"
                   >
                     {config.road_width_m}m
                   </text>
@@ -852,7 +852,7 @@ export default function PolygonEditor({
 
         {/* Live Coordinate Overlay HUD */}
         <div className="absolute bottom-2 left-2 bg-white/95 px-2 py-1 border border-neutral-200 rounded shadow-sm pointer-events-none">
-          <span className="text-[10px] font-mono text-neutral-600">
+          <span className="text-xs font-mono text-neutral-600">
             Cursor: {hoverCoords ? `${formatLength(hoverCoords.x, unit)}, ${formatLength(hoverCoords.y, unit)}` : "Outside Canvas"}
           </span>
         </div>
@@ -888,7 +888,7 @@ export default function PolygonEditor({
                 onClick={(e) => e.stopPropagation()}
               >
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-[11px] font-bold text-neutral-700 flex items-center space-x-1 font-sans">
+                  <span className="text-xs font-bold text-neutral-700 flex items-center space-x-1 font-sans">
                     <Route size={12} className="text-orange-500" />
                     <span>Set Road Width</span>
                   </span>
@@ -906,7 +906,7 @@ export default function PolygonEditor({
                     <button
                       key={`preset-${w}`}
                       onClick={() => updateRoadWidth(activeBubbleKey, w)}
-                      className={`text-[10px] font-bold py-1 px-0.5 rounded border transition ${
+                      className={`text-xs font-bold py-1 px-0.5 rounded border transition ${
                         config.road_width_m === w
                           ? "bg-orange-500 border-orange-500 text-white"
                           : "bg-neutral-50 border-neutral-200 text-neutral-600 hover:bg-neutral-100"
@@ -919,7 +919,7 @@ export default function PolygonEditor({
 
                 {/* Slider Control */}
                 <div className="space-y-1 font-sans">
-                  <div className="flex justify-between text-[9px] text-neutral-500">
+                  <div className="flex justify-between text-xs text-neutral-500">
                     <span>Manual Range</span>
                     <span className="font-bold text-neutral-700">{config.road_width_m} m</span>
                   </div>
@@ -956,7 +956,7 @@ export default function PolygonEditor({
       {/* Vertices List */}
       {vertices.length > 0 && (
         <div className="px-4 py-2 border-t border-neutral-200 max-h-32 overflow-y-auto">
-          <div className="text-[11px] font-semibold text-neutral-500 mb-1 font-sans">
+          <div className="text-xs font-semibold text-neutral-500 mb-1 font-sans">
             Plot Nodes (Stored in Metric)
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">

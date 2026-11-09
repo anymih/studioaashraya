@@ -422,13 +422,13 @@ export default function RuleNormalizationEditor({
   const getStatusBadge = () => {
     switch (status) {
       case "approved":
-        return <span className="bg-green-100 text-green-800 border-green-200 border text-[10px] px-2 py-0.5 rounded-full font-bold">Approved &amp; Locked</span>;
+        return <span className="bg-green-100 text-green-800 border-green-200 border text-xs px-2 py-0.5 rounded-full font-bold">Approved &amp; Locked</span>;
       case "needs_review":
-        return <span className="bg-amber-100 text-amber-800 border-amber-200 border text-[10px] px-2 py-0.5 rounded-full font-bold">Needs Review</span>;
+        return <span className="bg-amber-100 text-amber-800 border-amber-200 border text-xs px-2 py-0.5 rounded-full font-bold">Needs Review</span>;
       case "superseded":
-        return <span className="bg-neutral-200 text-neutral-800 border-neutral-300 border text-[10px] px-2 py-0.5 rounded-full font-bold">Superseded</span>;
+        return <span className="bg-neutral-200 text-neutral-800 border-neutral-300 border text-xs px-2 py-0.5 rounded-full font-bold">Superseded</span>;
       default:
-        return <span className="bg-blue-100 text-blue-800 border-blue-200 border text-[10px] px-2 py-0.5 rounded-full font-bold">Draft</span>;
+        return <span className="bg-blue-100 text-blue-800 border-blue-200 border text-xs px-2 py-0.5 rounded-full font-bold">Draft</span>;
     }
   };
 
@@ -450,7 +450,7 @@ export default function RuleNormalizationEditor({
             <Unlink size={12} />
           </button>
           <span
-            className={`text-[9px] px-1.5 py-0.5 rounded border max-w-[80px] truncate cursor-pointer font-semibold ${
+            className={`text-xs px-1.5 py-0.5 rounded border max-w-[80px] truncate cursor-pointer font-semibold ${
               isCross 
                 ? "bg-amber-50 text-amber-800 border-amber-200 hover:bg-amber-100" 
                 : "bg-green-50 text-green-800 border-green-200 hover:bg-green-100"
@@ -469,7 +469,7 @@ export default function RuleNormalizationEditor({
       <button
         type="button"
         onClick={() => openLinker(type, rowIndex)}
-        className="flex items-center space-x-1 text-[10px] text-violet-600 hover:text-violet-800 border border-violet-200 hover:bg-violet-50 px-1.5 py-0.5 rounded font-semibold transition"
+        className="flex items-center space-x-1 text-xs text-violet-600 hover:text-violet-800 border border-violet-200 hover:bg-violet-50 px-1.5 py-0.5 rounded font-semibold transition"
       >
         <Link size={10} />
         <span>Link</span>
@@ -487,7 +487,7 @@ export default function RuleNormalizationEditor({
       <div className="flex flex-wrap items-center justify-between gap-3 bg-neutral-50 p-3 rounded-lg border border-neutral-200">
         <div className="flex items-center space-x-3">
           <div>
-            <label className="text-[10px] font-bold text-neutral-500 block">
+            <label className="text-xs font-bold text-neutral-500 block">
               Occupancy Use Type
             </label>
             <select
@@ -559,7 +559,7 @@ export default function RuleNormalizationEditor({
             <AlertTriangle size={15} />
             <span>Rule Validation Warnings ({validationWarnings.length})</span>
           </div>
-          <ul className="list-disc pl-5 font-mono text-[10px] space-y-0.5 text-amber-900">
+          <ul className="list-disc pl-5 font-mono text-xs space-y-0.5 text-amber-900">
             {validationWarnings.map((w, idx) => (
               <li key={idx}>
                 <strong>{w.field}:</strong> {w.message}
@@ -583,16 +583,16 @@ export default function RuleNormalizationEditor({
             <button
               type="button"
               onClick={addFarRow}
-              className="text-[10px] font-bold text-violet-600 hover:text-violet-800 flex items-center space-x-0.5"
+              className="text-xs font-bold text-violet-600 hover:text-violet-800 flex items-center space-x-0.5"
             >
               <Plus size={10} />
               <span>Add Row</span>
             </button>
           </div>
           <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse text-[11px]">
+            <table className="w-full text-left border-collapse text-xs">
               <thead>
-                <tr className="bg-neutral-50/50 text-neutral-600 border-b border-neutral-200 font-semibold text-[9px]">
+                <tr className="bg-neutral-50/50 text-neutral-600 border-b border-neutral-200 font-semibold text-xs">
                   <th className="px-3 py-2">Plot Min (m²)</th>
                   <th className="px-3 py-2">Plot Max (m²)</th>
                   <th className="px-3 py-2">Road Min (m)</th>
@@ -684,16 +684,16 @@ export default function RuleNormalizationEditor({
             <button
               type="button"
               onClick={addSetbackRow}
-              className="text-[10px] font-bold text-violet-600 hover:text-violet-800 flex items-center space-x-0.5"
+              className="text-xs font-bold text-violet-600 hover:text-violet-800 flex items-center space-x-0.5"
             >
               <Plus size={10} />
               <span>Add Row</span>
             </button>
           </div>
           <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse text-[11px]">
+            <table className="w-full text-left border-collapse text-xs">
               <thead>
-                <tr className="bg-neutral-50/50 text-neutral-600 border-b border-neutral-200 font-semibold text-[9px]">
+                <tr className="bg-neutral-50/50 text-neutral-600 border-b border-neutral-200 font-semibold text-xs">
                   <th className="px-2 py-2">Plot range (m²)</th>
                   <th className="px-2 py-2">Road range (m)</th>
                   <th className="px-2 py-2">Front (m)</th>
@@ -773,15 +773,15 @@ export default function RuleNormalizationEditor({
                     <td className="px-2 py-1.5">
                       <div className="flex flex-col space-y-1">
                         <div className="flex items-center space-x-1.5">
-                          <span className="text-[9px] text-neutral-400 w-8">Front:</span>
+                          <span className="text-xs text-neutral-400 w-8">Front:</span>
                           {renderProvenanceButton(row.provenance.front, "setback-front", idx)}
                         </div>
                         <div className="flex items-center space-x-1.5">
-                          <span className="text-[9px] text-neutral-400 w-8">Rear:</span>
+                          <span className="text-xs text-neutral-400 w-8">Rear:</span>
                           {renderProvenanceButton(row.provenance.rear, "setback-rear", idx)}
                         </div>
                         <div className="flex items-center space-x-1.5">
-                          <span className="text-[9px] text-neutral-400 w-8">Side:</span>
+                          <span className="text-xs text-neutral-400 w-8">Side:</span>
                           {renderProvenanceButton(row.provenance.side, "setback-side", idx)}
                         </div>
                       </div>
@@ -816,16 +816,16 @@ export default function RuleNormalizationEditor({
             <button
               type="button"
               onClick={addHeightRow}
-              className="text-[10px] font-bold text-violet-600 hover:text-violet-800 flex items-center space-x-0.5"
+              className="text-xs font-bold text-violet-600 hover:text-violet-800 flex items-center space-x-0.5"
             >
               <Plus size={10} />
               <span>Add Row</span>
             </button>
           </div>
           <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse text-[11px]">
+            <table className="w-full text-left border-collapse text-xs">
               <thead>
-                <tr className="bg-neutral-50/50 text-neutral-600 border-b border-neutral-200 font-semibold text-[9px]">
+                <tr className="bg-neutral-50/50 text-neutral-600 border-b border-neutral-200 font-semibold text-xs">
                   <th className="px-3 py-2">Road Min Width (m)</th>
                   <th className="px-3 py-2">Max Height (m)</th>
                   <th className="px-3 py-2">Max Storeys (Storeys)</th>
@@ -887,7 +887,7 @@ export default function RuleNormalizationEditor({
 
         {/* General Notes Input */}
         <div className="space-y-1">
-          <label className="text-[10px] font-bold text-neutral-500 block">
+          <label className="text-xs font-bold text-neutral-500 block">
             General Mapping Notes
           </label>
           <textarea
@@ -908,7 +908,7 @@ export default function RuleNormalizationEditor({
             <div className="flex items-center justify-between border-b border-neutral-200 px-4 py-3 bg-neutral-50 rounded-t-xl">
               <div>
                 <span className="font-bold text-neutral-800 text-sm">Link Clause to Field</span>
-                <p className="text-[10px] text-neutral-500">
+                <p className="text-xs text-neutral-500">
                   Select evidence from document to verify value for:{" "}
                   <strong className="text-violet-700">
                     {linkingTarget.type.replace("-", " ")} (Row #{linkingTarget.rowIndex + 1})
@@ -958,11 +958,11 @@ export default function RuleNormalizationEditor({
                       : "border-neutral-200 hover:bg-neutral-50/50"
                   }`}
                 >
-                  <div className="flex items-center justify-between w-full font-bold text-[10px]">
+                  <div className="flex items-center justify-between w-full font-bold text-xs">
                     <span className="text-neutral-700">{clause.referenceSection}</span>
                     <span className="text-neutral-500">Page {clause.pageNumber}</span>
                   </div>
-                  <p className="text-neutral-600 italic font-mono text-[10px] leading-relaxed">
+                  <p className="text-neutral-600 italic font-mono text-xs leading-relaxed">
                     &quot;{clause.excerpt}&quot;
                   </p>
                 </button>
@@ -979,11 +979,11 @@ export default function RuleNormalizationEditor({
             {/* Cross-Category Justification Input */}
             {selectedClauseIndex !== null && isCrossCategoryMapping() && (
               <div className="border-t border-neutral-200 p-3 bg-amber-50/50 space-y-1">
-                <div className="flex items-center space-x-1 text-[10px] text-amber-700 font-bold">
+                <div className="flex items-center space-x-1 text-xs text-amber-700 font-bold">
                   <AlertTriangle size={12} />
                   <span>Mandatory Cross-Category Justification</span>
                 </div>
-                <p className="text-[9px] text-neutral-600 leading-normal">
+                <p className="text-xs text-neutral-600 leading-normal">
                   You are mapping a <strong>{activeEvidenceTab} clause</strong> to a{" "}
                   <strong>{linkingTarget.type.split("-")[0]} field</strong>. Please describe why this derivation is valid:
                 </p>

@@ -14,6 +14,7 @@
     "projects:check": "node scripts/projects-check.mjs",
     "cta:check": "node scripts/cta-check.mjs",
     "launch:check": "node scripts/launch-check.mjs",
+    "test:ui": "playwright test",
     "verify": "tsc --noEmit && npm run lint && npm run ledger:check && npm run form:check && npm run projects:check && npm run build && npm run routes:check && npm run images:check && npm run cta:check"
   },
   "dependencies": {
@@ -25,6 +26,7 @@
     "react-dom": "19.2.3"
   },
   "devDependencies": {
+    "@playwright/test": "^1.65.0",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",

@@ -2,7 +2,6 @@ import React from 'react'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Breadcrumb } from '@/components/ui/Breadcrumb'
-import { SectionHead } from '@/components/ui/SectionHead'
 import CtaBand from '@/components/ui/CtaBand'
 import { areasData } from '@/lib/areas-data'
 import { siteConfig } from '@/lib/site'
@@ -55,12 +54,10 @@ export default function AreasIndexPage() {
         <div className="wrap">
           <Breadcrumb items={breadcrumbItems} className="mb-8" />
           <div className="max-w-3xl">
-            <SectionHead
-              eyebrow="Geography"
-              title="Where we build."
-              lead="Architectural design, municipal approvals, and turnkey construction managed under one accountable agreement."
-              className="mb-0"
-            />
+            <h1 className="mb-4">Where we build.</h1>
+            <p className="font-sans text-lg text-[var(--muted)] leading-relaxed">
+              Architectural design, municipal approvals, and turnkey construction managed under one accountable agreement.
+            </p>
           </div>
         </div>
       </section>

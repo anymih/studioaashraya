@@ -178,27 +178,27 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
         <div className="wrap py-0">
           <dl className="grid grid-cols-2 md:grid-cols-6 m-0 divide-y md:divide-y-0 md:divide-x divide-[var(--line)]">
             <div className="p-4 sm:p-5">
-              <dt className="font-mono text-[10px] text-[var(--muted)]">Site Area</dt>
+              <dt className="font-mono text-xs text-[var(--muted)]">Site Area</dt>
               <dd className="font-sans text-base font-semibold text-[var(--ink)] mt-1">{project.plotArea || '—'}</dd>
             </div>
             <div className="p-4 sm:p-5">
-              <dt className="font-mono text-[10px] text-[var(--muted)]">Built-up</dt>
+              <dt className="font-mono text-xs text-[var(--muted)]">Built-up</dt>
               <dd className="font-sans text-base font-semibold text-[var(--ink)] mt-1">{project.builtUp || '—'}</dd>
             </div>
             <div className="p-4 sm:p-5">
-              <dt className="font-mono text-[10px] text-[var(--muted)]">Floors</dt>
+              <dt className="font-mono text-xs text-[var(--muted)]">Floors</dt>
               <dd className="font-sans text-base font-semibold text-[var(--ink)] mt-1">{project.floors}</dd>
             </div>
             <div className="p-4 sm:p-5">
-              <dt className="font-mono text-[10px] text-[var(--muted)]">Climate Zone</dt>
+              <dt className="font-mono text-xs text-[var(--muted)]">Climate Zone</dt>
               <dd className="font-sans text-base font-semibold text-[var(--ink)] mt-1">{project.climateZone}</dd>
             </div>
             <div className="p-4 sm:p-5">
-              <dt className="font-mono text-[10px] text-[var(--muted)]">Year</dt>
+              <dt className="font-mono text-xs text-[var(--muted)]">Year</dt>
               <dd className="font-sans text-base font-semibold text-[var(--ink)] mt-1">{project.year || '—'}</dd>
             </div>
             <div className="p-4 sm:p-5 col-span-2 md:col-span-1">
-              <dt className="font-mono text-[10px] text-[var(--muted)]">Location</dt>
+              <dt className="font-mono text-xs text-[var(--muted)]">Location</dt>
               <dd className="font-sans text-base font-semibold text-[var(--ink)] mt-1">{project.city}</dd>
             </div>
           </dl>
@@ -395,7 +395,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                   <div className="flex flex-col sm:items-end gap-1.5 shrink-0">
                     <EvidenceLabel state={m.evidence} />
                     {m.method && (
-                      <span className="font-mono text-[11px] text-[var(--muted)] max-w-[32ch] sm:text-right">
+                      <span className="font-mono text-xs text-[var(--muted)] max-w-[32ch] sm:text-right">
                         Method: {m.method}
                       </span>
                     )}
@@ -482,7 +482,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
               href={`/projects/${prevProject.slug}`}
               className="p-6 md:p-8 flex flex-col justify-between hover:bg-[var(--surface)] transition-colors group"
             >
-              <span className="font-mono text-[10px] text-[var(--muted)] mb-2">
+              <span className="font-mono text-xs text-[var(--muted)] mb-2">
                 &larr; Previous Project
               </span>
               <span className="font-display font-extrabold text-2xl text-[var(--ink)] group-hover:text-[var(--accent)]">
@@ -494,7 +494,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
               href={`/projects/${nextProject.slug}`}
               className="p-6 md:p-8 flex flex-col justify-between md:items-end hover:bg-[var(--surface)] transition-colors group text-left md:text-right"
             >
-              <span className="font-mono text-[10px] text-[var(--muted)] mb-2">
+              <span className="font-mono text-xs text-[var(--muted)] mb-2">
                 Next Project &rarr;
               </span>
               <span className="font-display font-extrabold text-2xl text-[var(--ink)] group-hover:text-[var(--accent)]">

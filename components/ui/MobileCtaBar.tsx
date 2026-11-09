@@ -45,6 +45,7 @@ export function MobileCtaBar() {
 
   return (
     <nav
+      data-mobile-cta-bar
       aria-label="Quick contact actions"
       className="fixed bottom-0 left-0 right-0 z-40 h-[56px] bg-[var(--bg)] border-t-[1.5px] border-[var(--ink)] flex items-stretch min-[900px]:hidden"
       style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}

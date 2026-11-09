@@ -31,7 +31,7 @@ export function TechTileInteractive({ item }: { item: TechItem }) {
     >
       <div>
         <div className="flex items-center justify-between gap-2 mb-3">
-          <span className="font-mono text-[11px] text-[var(--accent)] font-semibold">
+          <span className="font-mono text-xs text-[var(--accent)] font-semibold">
             {item.usedAt}
           </span>
           <button

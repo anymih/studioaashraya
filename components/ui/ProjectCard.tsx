@@ -106,7 +106,7 @@ export default function ProjectCard({
 
       <dl className="grid grid-cols-2 border-t border-[var(--line)] m-0">
         <div className="col-span-2 p-2.5 sm:p-3 border-b border-[var(--line)] min-w-0">
-          <dt className="font-mono text-[10px] text-[var(--muted)]">
+          <dt className="font-mono text-xs text-[var(--muted)]">
             Project
           </dt>
           <dd className="mt-1 font-display font-extrabold text-[22px] leading-tight text-[var(--ink)] truncate">
@@ -117,22 +117,22 @@ export default function ProjectCard({
         </div>
 
         <div className="p-2.5 sm:p-3 border-b sm:border-b-0 border-r border-[var(--line)] min-w-0">
-          <dt className="font-mono text-[10px] text-[var(--muted)]">Typology</dt>
+          <dt className="font-mono text-xs text-[var(--muted)]">Typology</dt>
           <dd className="mt-0.5 font-sans text-sm text-[var(--ink)] truncate">{displayType}</dd>
         </div>
 
         <div className="p-2.5 sm:p-3 border-b sm:border-b-0 min-w-0">
-          <dt className="font-mono text-[10px] text-[var(--muted)]">Plot Area</dt>
+          <dt className="font-mono text-xs text-[var(--muted)]">Plot Area</dt>
           <dd className="mt-0.5 font-sans text-sm text-[var(--ink)] truncate">{displayPlotArea}</dd>
         </div>
 
         <div className="p-2.5 sm:p-3 border-r border-[var(--line)] min-w-0">
-          <dt className="font-mono text-[10px] text-[var(--muted)]">Built-up</dt>
+          <dt className="font-mono text-xs text-[var(--muted)]">Built-up</dt>
           <dd className="mt-0.5 font-sans text-sm text-[var(--ink)] truncate">{displayBuiltUp}</dd>
         </div>
 
         <div className="p-2.5 sm:p-3 min-w-0">
-          <dt className="font-mono text-[10px] text-[var(--muted)]">Handed Over</dt>
+          <dt className="font-mono text-xs text-[var(--muted)]">Handed Over</dt>
           <dd className="mt-0.5 font-sans text-sm text-[var(--ink)] truncate">{displayYear}</dd>
         </div>
       </dl>

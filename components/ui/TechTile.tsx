@@ -34,7 +34,7 @@ export function TechTile({
     >
       <div className="flex justify-between items-start mb-4">
         <span
-          className={`font-mono text-[10.5px] sm:text-[11px]   font-semibold ${
+          className={`font-mono text-xs sm:text-xs   font-semibold ${
             onBand ? 'text-[var(--accent-hi)]' : 'text-[var(--accent)]'
           }`}
         >

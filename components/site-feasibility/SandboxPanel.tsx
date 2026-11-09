@@ -102,14 +102,14 @@ export default function SandboxPanel({
                     {record.evidence.documentMetadata.title}
                   </span>
                   <span
-                    className={`text-[9px] px-1.5 py-0.5 rounded-full font-bold border ${getStatusBadgeClass(
+                    className={`text-xs px-1.5 py-0.5 rounded-full font-bold border ${getStatusBadgeClass(
                       record.verificationStatus
                     )}`}
                   >
                     {record.verificationStatus.replace("_", " ")}
                   </span>
                 </div>
-                <div className="flex items-center justify-between text-[10px] text-neutral-500 w-full">
+                <div className="flex items-center justify-between text-xs text-neutral-500 w-full">
                   <span className="truncate max-w-[60%]">
                     Source: {record.sourceUrl === "manual_upload" ? "Manual Upload" : record.sourceUrl}
                   </span>
@@ -143,14 +143,14 @@ export default function SandboxPanel({
                   <button
                     onClick={() => handleStatusChange("reviewed")}
                     disabled={isSaving}
-                    className="text-[10px] px-2 py-1 rounded bg-neutral-100 hover:bg-neutral-200 text-neutral-700 font-semibold border border-neutral-300 disabled:opacity-50 transition"
+                    className="text-xs px-2 py-1 rounded bg-neutral-100 hover:bg-neutral-200 text-neutral-700 font-semibold border border-neutral-300 disabled:opacity-50 transition"
                   >
                     Mark as Reviewed
                   </button>
                   <button
                     onClick={() => handleStatusChange("verified")}
                     disabled={isSaving}
-                    className="text-[10px] px-2 py-1 rounded bg-green-600 hover:bg-green-700 text-white font-semibold disabled:opacity-50 transition"
+                    className="text-xs px-2 py-1 rounded bg-green-600 hover:bg-green-700 text-white font-semibold disabled:opacity-50 transition"
                   >
                     Mark as Verified
                   </button>
@@ -190,7 +190,7 @@ export default function SandboxPanel({
                     {/* Metadata */}
                     <div className="grid grid-cols-2 gap-3 bg-neutral-50 rounded border border-neutral-100 p-2.5">
                       <div>
-                        <span className="text-[10px] font-semibold text-neutral-500 block">
+                        <span className="text-xs font-semibold text-neutral-500 block">
                           Title
                         </span>
                         <span className="font-bold text-neutral-700">
@@ -198,7 +198,7 @@ export default function SandboxPanel({
                         </span>
                       </div>
                       <div>
-                        <span className="text-[10px] font-semibold text-neutral-500 block">
+                        <span className="text-xs font-semibold text-neutral-500 block">
                           Year / Jurisdiction
                         </span>
                         <span className="font-bold text-neutral-700">
@@ -206,7 +206,7 @@ export default function SandboxPanel({
                         </span>
                       </div>
                       <div>
-                        <span className="text-[10px] font-semibold text-neutral-500 block">
+                        <span className="text-xs font-semibold text-neutral-500 block">
                           Confidence Score
                         </span>
                         <span className={`font-bold ${
@@ -218,7 +218,7 @@ export default function SandboxPanel({
                         </span>
                       </div>
                       <div>
-                        <span className="text-[10px] font-semibold text-neutral-500 block">
+                        <span className="text-xs font-semibold text-neutral-500 block">
                           Extraction Method
                         </span>
                         <span className="font-semibold text-neutral-700">
@@ -230,7 +230,7 @@ export default function SandboxPanel({
                     {/* Status Summary */}
                     <div>
                       <span className="font-semibold text-neutral-600 block mb-1">Status Summary:</span>
-                      <div className="p-2.5 bg-neutral-50 rounded border border-neutral-100 font-mono text-[10px] text-neutral-600">
+                      <div className="p-2.5 bg-neutral-50 rounded border border-neutral-100 font-mono text-xs text-neutral-600">
                         {selectedRecord.evidence.statusSummary}
                       </div>
                     </div>
@@ -242,7 +242,7 @@ export default function SandboxPanel({
                         {selectedRecord.evidence.occupancyLabelsFound.map((label, idx) => (
                           <span
                             key={idx}
-                            className="bg-neutral-100 text-neutral-800 text-[10px] px-2 py-0.5 rounded font-semibold border border-neutral-200"
+                            className="bg-neutral-100 text-neutral-800 text-xs px-2 py-0.5 rounded font-semibold border border-neutral-200"
                           >
                             {label}
                           </span>
@@ -262,10 +262,10 @@ export default function SandboxPanel({
                         <div className="p-2 space-y-2">
                           {selectedRecord.evidence.setbackClauses.map((c, i) => (
                             <div key={i} className="p-2 bg-neutral-50/50 rounded border border-neutral-100">
-                              <span className="font-semibold text-neutral-600 block text-[10px] mb-0.5">
+                              <span className="font-semibold text-neutral-600 block text-xs mb-0.5">
                                 {c.referenceSection} (Page {c.pageNumber})
                               </span>
-                              <p className="text-neutral-700 italic font-mono text-[10px]">&quot;{c.excerpt}&quot;</p>
+                              <p className="text-neutral-700 italic font-mono text-xs">&quot;{c.excerpt}&quot;</p>
                             </div>
                           ))}
                         </div>
@@ -278,10 +278,10 @@ export default function SandboxPanel({
                         <div className="p-2 space-y-2">
                           {selectedRecord.evidence.farClauses.map((c, i) => (
                             <div key={i} className="p-2 bg-neutral-50/50 rounded border border-neutral-100">
-                              <span className="font-semibold text-neutral-600 block text-[10px] mb-0.5">
+                              <span className="font-semibold text-neutral-600 block text-xs mb-0.5">
                                 {c.referenceSection} (Page {c.pageNumber})
                               </span>
-                              <p className="text-neutral-700 italic font-mono text-[10px]">&quot;{c.excerpt}&quot;</p>
+                              <p className="text-neutral-700 italic font-mono text-xs">&quot;{c.excerpt}&quot;</p>
                             </div>
                           ))}
                         </div>
@@ -294,10 +294,10 @@ export default function SandboxPanel({
                         <div className="p-2 space-y-2">
                           {selectedRecord.evidence.heightClauses.map((c, i) => (
                             <div key={i} className="p-2 bg-neutral-50/50 rounded border border-neutral-100">
-                              <span className="font-semibold text-neutral-600 block text-[10px] mb-0.5">
+                              <span className="font-semibold text-neutral-600 block text-xs mb-0.5">
                                 {c.referenceSection} (Page {c.pageNumber})
                               </span>
-                              <p className="text-neutral-700 italic font-mono text-[10px]">&quot;{c.excerpt}&quot;</p>
+                              <p className="text-neutral-700 italic font-mono text-xs">&quot;{c.excerpt}&quot;</p>
                             </div>
                           ))}
                         </div>

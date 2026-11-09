@@ -302,7 +302,7 @@ export default function SiteFeasibilityPage() {
                 <FileJson size={14} className="text-neutral-500" />
                 <span>Site TRD Data Entity Preview</span>
               </div>
-              <pre className="text-[10px] font-mono text-neutral-600 bg-white border border-neutral-100 rounded p-2 overflow-x-auto max-h-48">
+              <pre className="text-xs font-mono text-neutral-600 bg-white border border-neutral-100 rounded p-2 overflow-x-auto max-h-48">
                 {JSON.stringify(
                   {
                     id: "mock-site-id-123",
@@ -360,7 +360,7 @@ export default function SiteFeasibilityPage() {
                   <h3 className="font-semibold text-neutral-800 text-sm">Geometry Test Engine</h3>
                 </div>
                 {unitTestResults.length > 0 && (
-                  <span className={`text-[10px] px-2 py-0.5 rounded-full font-semibold ${
+                  <span className={`text-xs px-2 py-0.5 rounded-full font-semibold ${
                     allTestsPassed ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"
                   }`}>
                     {allTestsPassed ? "All Passed" : "Failure Detected"}
@@ -376,10 +376,10 @@ export default function SiteFeasibilityPage() {
                   >
                     <span className="font-medium text-neutral-700">{result.name}</span>
                     <div className="flex items-center space-x-2">
-                      <span className="text-[10px] text-neutral-500 font-mono">
+                      <span className="text-xs text-neutral-500 font-mono">
                         Expected: {result.expected} | Got: {result.actual}
                       </span>
-                      <span className={`font-bold px-1.5 py-0.5 rounded text-[9px] ${
+                      <span className={`font-bold px-1.5 py-0.5 rounded text-xs ${
                         result.passed ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"
                       }`}>
                         {result.passed ? "PASS" : "FAIL"}
@@ -418,7 +418,7 @@ export default function SiteFeasibilityPage() {
                 <button
                   key={city}
                   onClick={() => setJurisdictionQuery(city)}
-                  className={`text-[10px] px-2.5 py-1 rounded-full font-semibold border transition ${
+                  className={`text-xs px-2.5 py-1 rounded-full font-semibold border transition ${
                     jurisdictionQuery.toLowerCase() === city.toLowerCase()
                       ? "bg-violet-100 border-violet-300 text-violet-800"
                       : "bg-neutral-50 border-neutral-200 text-neutral-600 hover:bg-neutral-100"
@@ -434,8 +434,8 @@ export default function SiteFeasibilityPage() {
               <div className="space-y-2 font-sans text-xs">
                 {/* Provenance Badge & Search Trace */}
                 <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-semibold text-neutral-500">Resolution Chain</span>
-                  <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold ${
+                  <span className="text-xs font-semibold text-neutral-500">Resolution Chain</span>
+                  <span className={`text-xs px-2 py-0.5 rounded-full font-bold ${
                     resolvedSource.confidence === "High"
                       ? "bg-green-100 text-green-800"
                       : resolvedSource.confidence === "Medium"
@@ -448,11 +448,11 @@ export default function SiteFeasibilityPage() {
 
                 {/* Human Readable Resolution Path Trace */}
                 <div className="bg-neutral-50 border border-neutral-200 rounded p-2.5 space-y-1">
-                  <div className="text-[10px] font-semibold text-neutral-500">Lookup Trace</div>
+                  <div className="text-xs font-semibold text-neutral-500">Lookup Trace</div>
                   <div className="text-neutral-700 leading-normal">{jurisdictionTrace.message}</div>
                   
                   {jurisdictionTrace.aliasResolved && (
-                    <div className="inline-block text-[9px] bg-violet-50 text-violet-700 px-1.5 py-0.5 rounded font-mono mt-1">
+                    <div className="inline-block text-xs bg-violet-50 text-violet-700 px-1.5 py-0.5 rounded font-mono mt-1">
                       Alias: {jurisdictionTrace.aliasResolved} &rarr; {jurisdictionTrace.cityNormalized}
                     </div>
                   )}
@@ -461,17 +461,17 @@ export default function SiteFeasibilityPage() {
                 {/* Gurugram / Gurgaon Ambiguity warning card */}
                 {jurisdictionTrace.authorityAmbiguous && (
                   <div className="bg-amber-50 border border-amber-200 rounded p-3 space-y-2">
-                    <div className="flex items-center space-x-1.5 text-amber-800 font-bold text-[11px]">
+                    <div className="flex items-center space-x-1.5 text-amber-800 font-bold text-xs">
                       <AlertTriangle size={13} className="text-amber-600 shrink-0" />
                       <span>Local Governance Ambiguity</span>
                     </div>
-                    <p className="text-[10px] text-amber-700 leading-relaxed">
+                    <p className="text-xs text-amber-700 leading-relaxed">
                       {jurisdictionTrace.disambiguationNote}
                     </p>
                     {jurisdictionTrace.knownAuthorities && (
                       <div className="pt-1.5 border-t border-amber-200/50">
-                        <span className="text-[9px] font-bold text-amber-800 block mb-1">Potential Local Authorities:</span>
-                        <ul className="list-disc list-inside text-[9px] text-amber-700 space-y-0.5 pl-1">
+                        <span className="text-xs font-bold text-amber-800 block mb-1">Potential Local Authorities:</span>
+                        <ul className="list-disc list-inside text-xs text-amber-700 space-y-0.5 pl-1">
                           {jurisdictionTrace.knownAuthorities.map((auth, idx) => (
                             <li key={idx}>{auth}</li>
                           ))}
@@ -483,19 +483,19 @@ export default function SiteFeasibilityPage() {
 
                 {/* Metadata Grid */}
                 <div className="bg-neutral-50/80 border border-neutral-100 rounded p-2.5 space-y-1.5">
-                  <div className="flex items-start justify-between text-[11px]">
+                  <div className="flex items-start justify-between text-xs">
                     <span className="text-neutral-500 font-medium">Jurisdiction</span>
                     <span className="text-neutral-800 font-semibold text-right max-w-[60%]">{resolvedSource.jurisdictionName}</span>
                   </div>
-                  <div className="flex items-start justify-between text-[11px]">
+                  <div className="flex items-start justify-between text-xs">
                     <span className="text-neutral-500 font-medium">State</span>
                     <span className="text-neutral-700">{resolvedSource.state}</span>
                   </div>
-                  <div className="flex items-start justify-between text-[11px]">
+                  <div className="flex items-start justify-between text-xs">
                     <span className="text-neutral-500 font-medium">Authority</span>
                     <span className="text-neutral-700 text-right max-w-[60%]">{resolvedSource.authority}</span>
                   </div>
-                  <div className="flex items-start justify-between text-[11px]">
+                  <div className="flex items-start justify-between text-xs">
                     <span className="text-neutral-500 font-medium">Confidence</span>
                     <span className={`font-bold ${
                       resolvedSource.confidence === "High"
@@ -506,8 +506,8 @@ export default function SiteFeasibilityPage() {
                     }`}>{resolvedSource.confidence}</span>
                   </div>
                   {resolvedSource.documentTitle && (
-                    <div className="flex items-start justify-between text-[11px] pt-1 border-t border-neutral-100/50">
-                      <span className="text-neutral-500 font-medium font-mono text-[9px]">Document Cataloged</span>
+                    <div className="flex items-start justify-between text-xs pt-1 border-t border-neutral-100/50">
+                      <span className="text-neutral-500 font-medium font-mono text-xs">Document Cataloged</span>
                       <span className="text-neutral-700 text-right max-w-[65%] font-medium">
                         {resolvedSource.documentTitle} {resolvedSource.documentYear ? `(${resolvedSource.documentYear})` : ""}
                       </span>
@@ -519,7 +519,7 @@ export default function SiteFeasibilityPage() {
                         href={resolvedSource.sourceUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center space-x-1 text-[10px] text-violet-700 hover:text-violet-900 font-semibold transition"
+                        className="inline-flex items-center space-x-1 text-xs text-violet-700 hover:text-violet-900 font-semibold transition"
                       >
                         <ExternalLink size={10} />
                         <span>View Official Source</span>
@@ -532,7 +532,7 @@ export default function SiteFeasibilityPage() {
                 {resolvedSource.sourceType === "fallback" && (
                   <div className="flex items-start space-x-1.5 bg-orange-50 border border-orange-200 rounded p-2">
                     <AlertTriangle size={12} className="text-orange-500 shrink-0 mt-0.5" />
-                    <span className="text-[10px] text-orange-700 leading-normal">
+                    <span className="text-xs text-orange-700 leading-normal">
                       No city- or state-specific source found. Using TCPO Model Building Bye-Laws 2016 as a general reference. Rules may not reflect local regulations.
                     </span>
                   </div>
@@ -540,7 +540,7 @@ export default function SiteFeasibilityPage() {
 
                 {/* Ingestion & Fetch UI */}
                 <div className="border-t border-neutral-100 pt-3.5 mt-2 space-y-2">
-                  <span className="text-[10px] font-semibold text-neutral-500 block">Document Ingestion</span>
+                  <span className="text-xs font-semibold text-neutral-500 block">Document Ingestion</span>
                   <div className="flex flex-col space-y-2">
                     <button
                       onClick={handleFetchAndIngest}
@@ -564,7 +564,7 @@ export default function SiteFeasibilityPage() {
                     {/* Manual Ingestion Fallback */}
                     {(!resolvedSource.hasVerifiedDocument || fetchFailed || resolvedSource.sourceType === "fallback") && (
                       <div className="bg-neutral-50 border border-dashed border-neutral-300 rounded-lg p-3 text-center space-y-2 animate-fadeIn">
-                        <span className="text-[10px] text-neutral-500 font-medium block">
+                        <span className="text-xs text-neutral-500 font-medium block">
                           Manual Fallback: Upload PDF / Image
                         </span>
                         <label className="inline-flex items-center justify-center space-x-1.5 py-1 px-3 text-xs font-semibold rounded bg-white hover:bg-neutral-50 text-neutral-700 border border-neutral-300 cursor-pointer transition">
@@ -581,7 +581,7 @@ export default function SiteFeasibilityPage() {
                     )}
 
                     {ingestStatusMessage && (
-                      <div className="text-[10px] p-2 bg-neutral-50 rounded border border-neutral-100 text-neutral-600 text-center font-medium">
+                      <div className="text-xs p-2 bg-neutral-50 rounded border border-neutral-100 text-neutral-600 text-center font-medium">
                         {ingestStatusMessage}
                       </div>
                     )}
@@ -630,13 +630,13 @@ export default function SiteFeasibilityPage() {
                 <div className="grid grid-cols-2 gap-3">
                   {/* Total Plot Area */}
                   <div className="bg-neutral-50 border border-neutral-100 rounded p-2.5">
-                    <span className="text-[10px] font-semibold text-neutral-500 block">
+                    <span className="text-xs font-semibold text-neutral-500 block">
                       Total Plot Area
                     </span>
                     <div className="mt-1 flex flex-col">
                       <span className="text-base font-bold text-neutral-800">{areaM2.toFixed(1)} m²</span>
                       <span className="text-xs text-neutral-500">{sqFt.toFixed(0)} sq ft</span>
-                      <span className="text-[11px] text-amber-700 font-medium mt-0.5">
+                      <span className="text-xs text-amber-700 font-medium mt-0.5">
                         ≈ {katthaPatna.toFixed(2)} Kattha
                       </span>
                     </div>
@@ -644,7 +644,7 @@ export default function SiteFeasibilityPage() {
 
                   {/* Buildable Area */}
                   <div className="bg-green-50/50 border border-green-100 rounded p-2.5">
-                    <span className="text-[10px] font-semibold text-green-700 block">
+                    <span className="text-xs font-semibold text-green-700 block">
                       Buildable Area
                     </span>
                     <div className="mt-1 flex flex-col">
@@ -654,7 +654,7 @@ export default function SiteFeasibilityPage() {
                       <span className="text-xs text-green-600">
                         {isBuildableValid ? `${buildableSqFt.toFixed(0)} sq ft` : "0 sq ft"}
                       </span>
-                      <span className="text-[11px] text-green-700 font-medium mt-0.5">
+                      <span className="text-xs text-green-700 font-medium mt-0.5">
                         {isBuildableValid ? `≈ ${buildableKattha.toFixed(2)} Kattha` : "—"}
                       </span>
                     </div>
@@ -683,7 +683,7 @@ export default function SiteFeasibilityPage() {
                       </span>
                     </div>
                     {/* Provenance Indicator Pill */}
-                    <span className={`text-[9px] px-1.5 py-0.5 rounded font-bold ${
+                    <span className={`text-xs px-1.5 py-0.5 rounded font-bold ${
                       resolvedSource.confidence === "High"
                         ? "bg-green-100 text-green-800"
                         : resolvedSource.confidence === "Medium"
@@ -697,7 +697,7 @@ export default function SiteFeasibilityPage() {
                   <div className="grid grid-cols-3 gap-2">
                     {/* Applied FAR */}
                     <div className="bg-indigo-50/60 border border-indigo-100 rounded p-2.5">
-                      <span className="text-[10px] font-semibold text-indigo-600 block">
+                      <span className="text-xs font-semibold text-indigo-600 block">
                         Applied FAR
                       </span>
                       <div className="mt-1">
@@ -706,7 +706,7 @@ export default function SiteFeasibilityPage() {
                         ) : (
                           <span className="text-lg font-bold text-indigo-800">{farResult.far.toFixed(1)}</span>
                         )}
-                        <span className="block text-[9px] text-indigo-500 font-medium truncate mt-0.5" title={resolvedSource.jurisdictionName}>
+                        <span className="block text-xs text-indigo-500 font-medium truncate mt-0.5" title={resolvedSource.jurisdictionName}>
                           {resolvedSource.jurisdictionName}
                         </span>
                       </div>
@@ -714,7 +714,7 @@ export default function SiteFeasibilityPage() {
 
                     {/* Permissible Built-Up Area */}
                     <div className="bg-indigo-50/60 border border-indigo-100 rounded p-2.5">
-                      <span className="text-[10px] font-semibold text-indigo-600 block">
+                      <span className="text-xs font-semibold text-indigo-600 block">
                         Permissible Area
                       </span>
                       <div className="mt-1 flex flex-col">
@@ -725,7 +725,7 @@ export default function SiteFeasibilityPage() {
                             <span className="text-base font-bold text-indigo-800">
                               {farResult.permissibleAreaM2.toFixed(1)} m²
                             </span>
-                            <span className="text-[9px] text-indigo-500">
+                            <span className="text-xs text-indigo-500">
                               {permissibleSqFt.toFixed(0)} sq ft
                             </span>
                           </>
@@ -741,7 +741,7 @@ export default function SiteFeasibilityPage() {
                           ? "bg-amber-50/60 border-amber-100"
                           : "bg-indigo-50/60 border-indigo-100"
                     }`}>
-                      <span className={`text-[10px] font-semibold   block ${
+                      <span className={`text-xs font-semibold   block ${
                         resolvedSource.sourceType === "fallback" || farResult.approxFloors === 0
                           ? "text-neutral-500"
                           : farResult.isHeightCapped
@@ -754,12 +754,12 @@ export default function SiteFeasibilityPage() {
                         {resolvedSource.sourceType === "fallback" ? (
                           <>
                             <span className="text-lg font-bold text-neutral-400">—</span>
-                            <span className="block text-[9px] text-neutral-500 mt-0.5">Unverified source</span>
+                            <span className="block text-xs text-neutral-500 mt-0.5">Unverified source</span>
                           </>
                         ) : farResult.approxFloors === 0 ? (
                           <>
                             <span className="text-lg font-bold text-red-700">—</span>
-                            <span className="block text-[9px] text-red-500 mt-0.5">No buildable area</span>
+                            <span className="block text-xs text-red-500 mt-0.5">No buildable area</span>
                           </>
                         ) : (
                           <>
@@ -768,7 +768,7 @@ export default function SiteFeasibilityPage() {
                             }`}>
                               {farResult.approxFloors.toFixed(1)}
                             </span>
-                            <span className={`block text-[9px] mt-0.5 ${
+                            <span className={`block text-xs mt-0.5 ${
                               farResult.isHeightCapped ? "text-amber-600 font-semibold" : "text-indigo-500"
                             }`}>
                               {farResult.isHeightCapped ? "Height Capped (15m)" : "Floors"}
@@ -781,7 +781,7 @@ export default function SiteFeasibilityPage() {
 
                   {/* Warning Alerts / Explanations */}
                   {resolvedSource.sourceType === "fallback" ? (
-                    <div className="flex items-start space-x-1 px-2 py-1.5 bg-orange-50 border border-orange-200 rounded text-[9px] text-orange-700 leading-normal">
+                    <div className="flex items-start space-x-1 px-2 py-1.5 bg-orange-50 border border-orange-200 rounded text-xs text-orange-700 leading-normal">
                       <AlertTriangle size={11} className="text-orange-500 shrink-0 mt-0.5" />
                       <span>
                         FAR and setback calculation disabled. Displaying no confident regulations because city/state building code is unresolved.
@@ -789,17 +789,17 @@ export default function SiteFeasibilityPage() {
                     </div>
                   ) : (
                     <div className="space-y-1 mt-2">
-                      <div className="px-2 py-1 bg-neutral-50 rounded text-[10px] text-neutral-500 leading-normal">
+                      <div className="px-2 py-1 bg-neutral-50 rounded text-xs text-neutral-500 leading-normal">
                         Permissible Built Area = Plot Area &times; FAR = {areaM2.toFixed(1)} &times; {farResult.far.toFixed(1)} = {farResult.permissibleAreaM2.toFixed(1)} m²
                         {farResult.approxFloors > 0 && (
-                          <span className="block font-mono mt-0.5 text-[9px]">
+                          <span className="block font-mono mt-0.5 text-xs">
                             Floors &asymp; {farResult.permissibleAreaM2.toFixed(1)} / {buildableAreaM2.toFixed(1)} = {(farResult.permissibleAreaM2 / (buildableAreaM2 || 1)).toFixed(2)} &rarr; {farResult.approxFloors.toFixed(1)}
                           </span>
                         )}
                       </div>
                       
                       {jurisdictionTrace.authorityAmbiguous && (
-                        <div className="flex items-start space-x-1 px-2 py-1 bg-blue-50 border border-blue-100 rounded text-[9px] text-blue-700 leading-normal">
+                        <div className="flex items-start space-x-1 px-2 py-1 bg-blue-50 border border-blue-100 rounded text-xs text-blue-700 leading-normal">
                           <AlertTriangle size={11} className="text-blue-500 shrink-0 mt-0.5" />
                           <span>
                             Note: Applies Haryana State Building Code as a fallback reference. Local rules for {resolvedSource.state} apply. Verify specific planning authority context (MCG/HSVP/private) before detailed drafting.
@@ -841,15 +841,15 @@ export default function SiteFeasibilityPage() {
                               </td>
                               <td className="px-3 py-2">
                                 {e.is_road_edge ? (
-                                  <span className="inline-flex items-center text-[10px] bg-orange-100 text-orange-800 font-semibold px-2 py-0.5 rounded-full">
+                                  <span className="inline-flex items-center text-xs bg-orange-100 text-orange-800 font-semibold px-2 py-0.5 rounded-full">
                                     Road ({e.road_width_m}m)
                                   </span>
                                 ) : setbackType ? (
-                                  <span className="text-[10px] text-neutral-600 font-medium">
+                                  <span className="text-xs text-neutral-600 font-medium">
                                     {setbackType === 'rear' ? "Rear Boundary" : "Side Boundary"}
                                   </span>
                                 ) : (
-                                  <span className="text-[10px] text-neutral-400">
+                                  <span className="text-xs text-neutral-400">
                                     Property Boundary
                                   </span>
                                 )}
@@ -877,7 +877,7 @@ export default function SiteFeasibilityPage() {
                 <div className="flex flex-col items-center justify-center p-6 text-center border border-dashed border-neutral-200 rounded">
                   <Ruler className="text-neutral-300 mb-2" size={24} />
                   <span className="text-xs font-medium text-neutral-500">No boundaries drawn yet</span>
-                  <span className="text-[10px] text-neutral-400">Click in the left editor panel to begin defining coordinates.</span>
+                  <span className="text-xs text-neutral-400">Click in the left editor panel to begin defining coordinates.</span>
                 </div>
               )}
             </div>

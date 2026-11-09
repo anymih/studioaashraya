@@ -197,7 +197,7 @@ export default async function AreaDetailPage({ params }: AreaPageProps) {
                       href="/calculators/site-feasibility"
                       className="p-4 border border-[var(--line)] bg-[var(--bg)] hover:border-[var(--ink)] transition-colors group"
                     >
-                      <span className="font-mono text-[10px] text-[var(--muted)] block mb-1">Tool 01</span>
+                      <span className="font-mono text-xs text-[var(--muted)] block mb-1">Tool 01</span>
                       <span className="font-display font-extrabold text-sm text-[var(--ink)] group-hover:text-[var(--accent)]">
                         Site Feasibility &rarr;
                       </span>
@@ -206,7 +206,7 @@ export default async function AreaDetailPage({ params }: AreaPageProps) {
                       href="/calculators/far-checker"
                       className="p-4 border border-[var(--line)] bg-[var(--bg)] hover:border-[var(--ink)] transition-colors group"
                     >
-                      <span className="font-mono text-[10px] text-[var(--muted)] block mb-1">Tool 02</span>
+                      <span className="font-mono text-xs text-[var(--muted)] block mb-1">Tool 02</span>
                       <span className="font-display font-extrabold text-sm text-[var(--ink)] group-hover:text-[var(--accent)]">
                         FAR Checker &rarr;
                       </span>
@@ -215,7 +215,7 @@ export default async function AreaDetailPage({ params }: AreaPageProps) {
                       href="/calculators/cost-estimator"
                       className="p-4 border border-[var(--line)] bg-[var(--bg)] hover:border-[var(--ink)] transition-colors group"
                     >
-                      <span className="font-mono text-[10px] text-[var(--muted)] block mb-1">Tool 03</span>
+                      <span className="font-mono text-xs text-[var(--muted)] block mb-1">Tool 03</span>
                       <span className="font-display font-extrabold text-sm text-[var(--ink)] group-hover:text-[var(--accent)]">
                         Cost Estimator &rarr;
                       </span>

@@ -73,7 +73,7 @@ export function StageList({
 
               <div className="flex items-center gap-2 justify-self-start md:justify-self-end mt-1 md:mt-0">
                 {stage.gate && (
-                  <span className="inline-block font-mono text-[11px] font-medium px-2 py-1.5 bg-[var(--accent-hi)] text-[#1A0F08] whitespace-nowrap rounded-none">
+                  <span className="inline-block font-mono text-xs font-medium px-2 py-1.5 bg-[var(--accent-hi)] text-[#1A0F08] whitespace-nowrap rounded-none">
                     {stage.gate}
                   </span>
                 )}
@@ -89,7 +89,7 @@ export function StageList({
               <div className="mt-4 pt-4 border-t border-[var(--band-line)] pl-[48px] md:pl-[72px] grid gap-4 text-sm font-sans text-[var(--on-band)]">
                 {stage.whatWeDo && (
                   <div>
-                    <span className="block font-mono text-[11px] text-[var(--band-muted)] mb-1">
+                    <span className="block font-mono text-xs text-[var(--band-muted)] mb-1">
                       What we do
                     </span>
                     <p className="text-[var(--on-band)] leading-relaxed max-w-[65ch]">
@@ -99,7 +99,7 @@ export function StageList({
                 )}
                 {stage.whatYouReceive && (
                   <div>
-                    <span className="block font-mono text-[11px] text-[var(--band-muted)] mb-1">
+                    <span className="block font-mono text-xs text-[var(--band-muted)] mb-1">
                       What you receive
                     </span>
                     <p className="text-[var(--on-band)] leading-relaxed max-w-[65ch]">
@@ -109,7 +109,7 @@ export function StageList({
                 )}
                 {stage.checks && stage.checks.length > 0 && (
                   <div>
-                    <span className="block font-mono text-[11px] text-[var(--accent-hi)] mb-1.5 font-semibold">
+                    <span className="block font-mono text-xs text-[var(--accent-hi)] mb-1.5 font-semibold">
                       Gate checks (work does not proceed until verified)
                     </span>
                     <ul className="space-y-1.5">

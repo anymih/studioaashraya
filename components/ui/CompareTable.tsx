@@ -58,7 +58,7 @@ export function CompareTable({ rows = defaultRows, className = '' }: CompareTabl
           >
             {/* What often happens */}
             <div className="p-4 sm:p-5 text-[var(--muted)]">
-              <span className="min-[700px]:hidden font-mono text-[11px] text-[var(--muted)] font-semibold block mb-1.5">
+              <span className="min-[700px]:hidden font-mono text-xs text-[var(--muted)] font-semibold block mb-1.5">
                 What often happens:
               </span>
               <p>{row.oftenHappens}</p>
@@ -68,7 +68,7 @@ export function CompareTable({ rows = defaultRows, className = '' }: CompareTabl
             <div className="p-4 sm:p-5 bg-[var(--bg)]/40 min-[700px]:bg-transparent text-[var(--ink)] font-medium flex items-start gap-2.5">
               <i className="block w-2.5 h-2.5 bg-[var(--accent)] shrink-0 mt-1.5 not-italic" aria-hidden="true" />
               <div>
-                <span className="min-[700px]:hidden font-mono text-[11px] text-[var(--accent)] font-semibold block mb-1.5">
+                <span className="min-[700px]:hidden font-mono text-xs text-[var(--accent)] font-semibold block mb-1.5">
                   What we do:
                 </span>
                 <p>{row.whatWeDo}</p>

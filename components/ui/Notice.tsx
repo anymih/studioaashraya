@@ -24,7 +24,7 @@ export function Notice({
     >
       <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-3">
         <div>
-          <span className="block font-mono text-[11px] text-[var(--muted)] mb-1">
+          <span className="block font-mono text-xs text-[var(--muted)] mb-1">
             {label}
           </span>
           <p className="font-sans text-sm text-[var(--ink)] leading-relaxed">{children}</p>

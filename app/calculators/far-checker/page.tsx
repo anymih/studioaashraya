@@ -206,7 +206,7 @@ export default function FARCheckerPage() {
                   <p className="font-sans font-bold text-lg text-[var(--ink)]">
                     {result.maxGroundCoverage.toLocaleString()} sq ft
                   </p>
-                  <span className="font-mono text-[11px] text-[var(--muted)]">({(result.coverage * 100).toFixed(0)}% coverage)</span>
+                  <span className="font-mono text-xs text-[var(--muted)]">({(result.coverage * 100).toFixed(0)}% coverage)</span>
                 </div>
                 <div>
                   <span className="font-mono text-xs text-[var(--muted)] block mb-1">
@@ -215,7 +215,7 @@ export default function FARCheckerPage() {
                   <p className="font-sans font-bold text-lg text-[var(--ink)]">
                     ~{result.approxFloors} Floors
                   </p>
-                  <span className="font-mono text-[11px] text-[var(--muted)]">(Subject to setbacks)</span>
+                  <span className="font-mono text-xs text-[var(--muted)]">(Subject to setbacks)</span>
                 </div>
               </div>
 

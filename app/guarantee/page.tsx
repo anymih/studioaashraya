@@ -66,7 +66,7 @@ export default function GuaranteePage() {
             <div className="flex items-center gap-6">
               <div className="w-24 h-24 bg-[var(--accent)] text-[var(--on-accent)] font-display font-extrabold text-4xl flex flex-col items-center justify-center shrink-0">
                 <span>10%</span>
-                <span className="font-mono text-[10px]">Back</span>
+                <span className="font-mono text-xs">Back</span>
               </div>
               <div>
                 <span className="font-mono text-xs text-[var(--accent)] font-semibold block mb-1">

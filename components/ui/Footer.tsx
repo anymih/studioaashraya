@@ -37,7 +37,7 @@ export default function Footer() {
 
         {/* Col 2: Services */}
         <div>
-          <span className="block font-mono text-[11px] text-[var(--muted)] mb-4">
+          <span className="block font-mono text-xs text-[var(--muted)] mb-4">
             Services
           </span>
           <ul className="space-y-2.5 font-sans text-sm">
@@ -71,7 +71,7 @@ export default function Footer() {
 
         {/* Col 3: Areas & Tools */}
         <div>
-          <span className="block font-mono text-[11px] text-[var(--muted)] mb-4">
+          <span className="block font-mono text-xs text-[var(--muted)] mb-4">
             Areas & Tools
           </span>
           <ul className="space-y-2.5 font-sans text-sm mb-6">
@@ -96,7 +96,7 @@ export default function Footer() {
               </Link>
             </li>
           </ul>
-          <span className="block font-mono text-[11px] text-[var(--muted)] mb-2">
+          <span className="block font-mono text-xs text-[var(--muted)] mb-2">
             Client Tools
           </span>
           <ul className="space-y-2 font-sans text-sm">
@@ -115,7 +115,7 @@ export default function Footer() {
 
         {/* Col 4: Contact & Locations */}
         <div>
-          <span className="block font-mono text-[11px] text-[var(--muted)] mb-4">
+          <span className="block font-mono text-xs text-[var(--muted)] mb-4">
             Contact
           </span>
           <div className="space-y-3 font-sans text-sm text-[var(--muted)] mb-4">

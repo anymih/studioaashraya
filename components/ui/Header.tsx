@@ -120,7 +120,7 @@ export default function Header() {
           <button
             type="button"
             onClick={toggleTheme}
-            className="font-mono font-medium text-[11px] px-2.5 py-2 border border-[var(--line)] bg-transparent text-[var(--muted)] hover:text-[var(--ink)] hover:border-[var(--ink)] transition-colors cursor-pointer select-none rounded-none"
+            className="font-mono font-medium text-xs px-2.5 py-2 border border-[var(--line)] bg-transparent text-[var(--muted)] hover:text-[var(--ink)] hover:border-[var(--ink)] transition-colors cursor-pointer select-none rounded-none"
             aria-label="Switch colour theme"
           >
             {theme === 'dark' ? 'Light' : 'Theme'}

@@ -42,7 +42,7 @@ export function GuaranteeTimeline({ className = '' }: GuaranteeTimelineProps) {
                 <span className="font-display font-bold text-lg text-[var(--ink)] block mb-1">
                   {step.label}
                 </span>
-                <span className="font-mono text-[11px] text-[var(--muted)] max-w-[160px] leading-tight block">
+                <span className="font-mono text-xs text-[var(--muted)] max-w-[160px] leading-tight block">
                   {step.note}
                 </span>
               </div>
