@@ -32,7 +32,7 @@ export function CredStrip({
                 idx !== items.length - 1 ? 'border-b sm:border-b-0 border-[var(--line)] sm:border-r' : ''
               }`}
             >
-              <b className="block font-display font-extrabold uppercase text-[clamp(38px,4vw,52px)] leading-none text-[var(--ink)] tracking-[0.01em]">
+              <b className="stat-numeral block text-[var(--ink)]">
                 {item.value}
               </b>
               <span className="block mt-2 font-sans text-sm text-[var(--muted)] max-w-[30ch]">

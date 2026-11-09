@@ -256,7 +256,7 @@ export default function SiteFeasibilityPage() {
         {/* Page Header */}
         <div className="mb-6">
           <Eyebrow text="CAD Tools" className="mb-2" />
-          <h1 className="font-display text-4xl sm:text-5xl font-extrabold uppercase tracking-tight text-[var(--ink)]">
+          <h1 className="font-display text-4xl sm:text-5xl font-extrabold text-[var(--ink)]">
             Site Feasibility Calculator
           </h1>
           <p className="font-sans text-[var(--muted)] text-base mt-2 max-w-3xl leading-relaxed mb-6">
@@ -305,7 +305,7 @@ export default function SiteFeasibilityPage() {
           {/* GeoJSON Debug Preview panel */}
           {vertices.length > 0 && (
             <div className="bg-neutral-50 border border-neutral-200 rounded-lg p-4">
-              <div className="flex items-center space-x-2 text-neutral-700 font-semibold text-xs uppercase tracking-wider mb-2">
+              <div className="flex items-center space-x-2 text-neutral-700 font-semibold text-xs mb-2">
                 <FileJson size={14} className="text-neutral-500" />
                 <span>Site TRD Data Entity Preview</span>
               </div>
@@ -407,7 +407,7 @@ export default function SiteFeasibilityPage() {
 
             {/* Search Input */}
             <div className="mb-3">
-              <label className="block text-xs font-semibold text-neutral-500 uppercase tracking-wider mb-1">
+              <label className="block text-xs font-semibold text-neutral-500 mb-1">
                 City / State
               </label>
               <input
@@ -441,7 +441,7 @@ export default function SiteFeasibilityPage() {
               <div className="space-y-2 font-sans text-xs">
                 {/* Provenance Badge & Search Trace */}
                 <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-semibold text-neutral-500 uppercase tracking-wider">Resolution Chain</span>
+                  <span className="text-[10px] font-semibold text-neutral-500">Resolution Chain</span>
                   <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold ${
                     resolvedSource.confidence === "High"
                       ? "bg-green-100 text-green-800"
@@ -455,7 +455,7 @@ export default function SiteFeasibilityPage() {
 
                 {/* Human Readable Resolution Path Trace */}
                 <div className="bg-neutral-50 border border-neutral-200 rounded p-2.5 space-y-1">
-                  <div className="text-[10px] font-semibold text-neutral-500 uppercase">Lookup Trace</div>
+                  <div className="text-[10px] font-semibold text-neutral-500">Lookup Trace</div>
                   <div className="text-neutral-700 leading-normal">{jurisdictionTrace.message}</div>
                   
                   {jurisdictionTrace.aliasResolved && (
@@ -477,7 +477,7 @@ export default function SiteFeasibilityPage() {
                     </p>
                     {jurisdictionTrace.knownAuthorities && (
                       <div className="pt-1.5 border-t border-amber-200/50">
-                        <span className="text-[9px] font-bold uppercase text-amber-800 block mb-1">Potential Local Authorities:</span>
+                        <span className="text-[9px] font-bold text-amber-800 block mb-1">Potential Local Authorities:</span>
                         <ul className="list-disc list-inside text-[9px] text-amber-700 space-y-0.5 pl-1">
                           {jurisdictionTrace.knownAuthorities.map((auth, idx) => (
                             <li key={idx}>{auth}</li>
@@ -547,7 +547,7 @@ export default function SiteFeasibilityPage() {
 
                 {/* Ingestion & Fetch UI */}
                 <div className="border-t border-neutral-100 pt-3.5 mt-2 space-y-2">
-                  <span className="text-[10px] font-semibold text-neutral-500 uppercase tracking-wider block">Document Ingestion</span>
+                  <span className="text-[10px] font-semibold text-neutral-500 block">Document Ingestion</span>
                   <div className="flex flex-col space-y-2">
                     <button
                       onClick={handleFetchAndIngest}
@@ -608,7 +608,7 @@ export default function SiteFeasibilityPage() {
             <div className="space-y-4">
               {/* Intended Use Selection */}
               <div>
-                <label className="block text-xs font-semibold text-neutral-500 uppercase tracking-wider mb-1">
+                <label className="block text-xs font-semibold text-neutral-500 mb-1">
                   Intended Use
                 </label>
                 <div className="grid grid-cols-2 gap-2">
@@ -637,7 +637,7 @@ export default function SiteFeasibilityPage() {
                 <div className="grid grid-cols-2 gap-3">
                   {/* Total Plot Area */}
                   <div className="bg-neutral-50 border border-neutral-100 rounded p-2.5">
-                    <span className="text-[10px] font-semibold text-neutral-500 uppercase tracking-wider block">
+                    <span className="text-[10px] font-semibold text-neutral-500 block">
                       Total Plot Area
                     </span>
                     <div className="mt-1 flex flex-col">
@@ -651,7 +651,7 @@ export default function SiteFeasibilityPage() {
 
                   {/* Buildable Area */}
                   <div className="bg-green-50/50 border border-green-100 rounded p-2.5">
-                    <span className="text-[10px] font-semibold text-green-700 uppercase tracking-wider block">
+                    <span className="text-[10px] font-semibold text-green-700 block">
                       Buildable Area
                     </span>
                     <div className="mt-1 flex flex-col">
@@ -685,7 +685,7 @@ export default function SiteFeasibilityPage() {
                   <div className="flex items-center justify-between border-b border-neutral-100 pb-1">
                     <div className="flex items-center space-x-2">
                       <Building size={14} className="text-indigo-600" />
-                      <span className="text-xs font-semibold text-neutral-800 uppercase tracking-wider">
+                      <span className="text-xs font-semibold text-neutral-800">
                         Development Potential
                       </span>
                     </div>
@@ -704,7 +704,7 @@ export default function SiteFeasibilityPage() {
                   <div className="grid grid-cols-3 gap-2">
                     {/* Applied FAR */}
                     <div className="bg-indigo-50/60 border border-indigo-100 rounded p-2.5">
-                      <span className="text-[10px] font-semibold text-indigo-600 uppercase tracking-wider block">
+                      <span className="text-[10px] font-semibold text-indigo-600 block">
                         Applied FAR
                       </span>
                       <div className="mt-1">
@@ -721,7 +721,7 @@ export default function SiteFeasibilityPage() {
 
                     {/* Permissible Built-Up Area */}
                     <div className="bg-indigo-50/60 border border-indigo-100 rounded p-2.5">
-                      <span className="text-[10px] font-semibold text-indigo-600 uppercase tracking-wider block">
+                      <span className="text-[10px] font-semibold text-indigo-600 block">
                         Permissible Area
                       </span>
                       <div className="mt-1 flex flex-col">
@@ -748,7 +748,7 @@ export default function SiteFeasibilityPage() {
                           ? "bg-amber-50/60 border-amber-100"
                           : "bg-indigo-50/60 border-indigo-100"
                     }`}>
-                      <span className={`text-[10px] font-semibold uppercase tracking-wider block ${
+                      <span className={`text-[10px] font-semibold   block ${
                         resolvedSource.sourceType === "fallback" || farResult.approxFloors === 0
                           ? "text-neutral-500"
                           : farResult.isHeightCapped
@@ -821,7 +821,7 @@ export default function SiteFeasibilityPage() {
               {/* Edge List Data Table */}
               {vertices.length > 0 && (
                 <div>
-                  <span className="block text-xs font-semibold text-neutral-500 uppercase tracking-wider mb-2">
+                  <span className="block text-xs font-semibold text-neutral-500 mb-2">
                     Segment Geometry & Setbacks
                   </span>
                   <div className="border border-neutral-200 rounded overflow-hidden">

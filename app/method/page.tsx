@@ -54,7 +54,7 @@ export default function MethodPage() {
         <Breadcrumb items={breadcrumbItems} className="mb-6" />
         <div className="max-w-4xl">
           <Eyebrow text="Method" className="mb-3" />
-          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold uppercase tracking-tight leading-[0.92] mb-6">
+          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[0.92] mb-6">
             Eight stages. Four gates.
           </h1>
           <p className="font-sans text-lg md:text-xl text-[var(--muted)] leading-relaxed">
@@ -71,14 +71,14 @@ export default function MethodPage() {
         <div className="max-w-6xl mx-auto px-4 md:px-6">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
             <div>
-              <span className="font-mono text-xs uppercase tracking-widest text-[var(--band-muted)] font-semibold block mb-2">
+              <span className="font-mono text-xs text-[var(--band-muted)] font-semibold block mb-2">
                 Construction Sequence
               </span>
-              <h2 className="font-display font-extrabold uppercase text-3xl md:text-5xl text-[var(--on-band)]">
+              <h2 className="font-display font-extrabold text-3xl md:text-5xl text-[var(--on-band)]">
                 The Eight Stages
               </h2>
             </div>
-            <p className="font-mono text-xs uppercase tracking-wider text-[var(--band-muted)] max-w-[40ch]">
+            <p className="font-mono text-xs text-[var(--band-muted)] max-w-[40ch]">
               Expand any stage to see what we do, what you receive, and the checks and instruments used.
             </p>
           </div>
@@ -97,7 +97,7 @@ export default function MethodPage() {
             <div className="lg:col-span-5 space-y-6">
               <div>
                 <Eyebrow text="Accountability" className="mb-2" />
-                <h2 className="font-display text-3xl md:text-4xl font-extrabold uppercase mb-3">
+                <h2 className="font-display text-3xl md:text-4xl font-extrabold mb-3">
                   What you can verify
                 </h2>
                 <p className="font-sans text-base text-[var(--muted)] leading-relaxed mb-6">
@@ -113,7 +113,7 @@ export default function MethodPage() {
                   </li>
                 ))}
               </ul>
-              <p className="font-mono text-xs uppercase tracking-wider text-[var(--muted)] pt-4">
+              <p className="font-mono text-xs text-[var(--muted)] pt-4">
                 Inspection records are signed on site with instruments before work on subsequent stages proceeds.
               </p>
             </div>

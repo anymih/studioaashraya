@@ -1,5 +1,4 @@
 import React from 'react'
-import { Eyebrow } from './Eyebrow'
 
 export interface SectionHeadProps {
   eyebrow?: string
@@ -23,14 +22,14 @@ export function SectionHead({
   const isBand = theme === 'band'
 
   return (
-    <div className={`grid gap-4 mb-7 md:mb-12 ${className}`}>
+    <div className={`mb-10 ${className}`}>
       {eyebrow && (
-        <Eyebrow className={isBand ? 'text-[var(--band-muted)]' : 'text-[var(--muted)]'}>
+        <p className={`font-sans text-sm mb-3 ${isBand ? 'text-[var(--band-muted)]' : 'text-[var(--muted)]'}`}>
           {eyebrow}
-        </Eyebrow>
+        </p>
       )}
       <h2
-        className={`font-display font-extrabold uppercase text-[clamp(36px,5.4vw,68px)] leading-[0.95] tracking-[0.005em] text-balance ${
+        className={`${
           isBand ? 'text-[var(--on-band)]' : 'text-[var(--ink)]'
         } ${titleClassName}`}
       >
@@ -38,7 +37,7 @@ export function SectionHead({
       </h2>
       {lead && (
         <p
-          className={`font-sans text-[clamp(17px,1.5vw,19px)] leading-relaxed max-w-[62ch] ${
+          className={`mt-4 ${
             isBand ? 'text-[var(--band-muted)]' : 'text-[var(--muted)]'
           } ${leadClassName}`}
         >

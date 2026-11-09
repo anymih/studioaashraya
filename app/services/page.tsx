@@ -46,7 +46,7 @@ export default function ServicesPage() {
         <Breadcrumb items={breadcrumbItems} className="mb-6" />
         <div className="max-w-4xl">
           <Eyebrow text="Services" className="mb-3" />
-          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold uppercase tracking-tight leading-[0.92] mb-6">
+          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[0.92] mb-6">
             One studio. Complete responsibility.
           </h1>
           <p className="font-sans text-lg md:text-xl text-[var(--muted)] leading-relaxed">
@@ -68,14 +68,14 @@ export default function ServicesPage() {
             >
               <div>
                 <div className="flex items-center justify-between gap-4 mb-3">
-                  <span className="font-mono text-xs uppercase tracking-widest text-[var(--accent)] font-semibold">
+                  <span className="font-mono text-xs text-[var(--accent)] font-semibold">
                     Service 0{idx + 1}
                   </span>
-                  <span className="font-mono text-[10px] uppercase tracking-wider text-[var(--muted)]">
+                  <span className="font-mono text-[10px] text-[var(--muted)]">
                     Turnkey
                   </span>
                 </div>
-                <h2 className="font-display font-extrabold uppercase text-2xl sm:text-3xl text-[var(--ink)] mb-3">
+                <h2 className="font-display font-extrabold text-2xl sm:text-3xl text-[var(--ink)] mb-3">
                   {service.title}
                 </h2>
                 <p className="font-sans text-base text-[var(--muted)] leading-relaxed mb-6">
@@ -83,7 +83,7 @@ export default function ServicesPage() {
                 </p>
 
                 <div className="border-t border-[var(--line)] pt-4 mb-6">
-                  <span className="font-mono text-[11px] uppercase tracking-wider text-[var(--ink)] font-semibold block mb-2">
+                  <span className="font-mono text-[11px] text-[var(--ink)] font-semibold block mb-2">
                     What you receive:
                   </span>
                   <ul className="space-y-1.5 list-none p-0 m-0">
@@ -100,7 +100,7 @@ export default function ServicesPage() {
               <div className="pt-4 border-t border-[var(--line)] flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
                 <Link
                   href={`/services/${service.slug}`}
-                  className="font-mono text-xs uppercase tracking-wider text-[var(--ink)] font-semibold hover:text-[var(--accent)] flex items-center gap-1"
+                  className="font-mono text-xs text-[var(--ink)] font-semibold hover:text-[var(--accent)] flex items-center gap-1"
                 >
                   <span>View service details</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -108,7 +108,7 @@ export default function ServicesPage() {
 
                 <Link
                   href={`/book-a-call?src=svc-${service.slug}`}
-                  className="px-4 py-2.5 bg-[var(--accent)] text-[var(--on-accent)] font-sans font-bold text-xs uppercase tracking-wider text-center"
+                  className="px-4 py-2.5 bg-[var(--accent)] text-[var(--on-accent)] font-sans font-bold text-xs text-center"
                 >
                   Consult
                 </Link>

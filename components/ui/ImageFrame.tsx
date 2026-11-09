@@ -29,19 +29,15 @@ export function ImageFrame({
       : 'aspect-[4/3]'
 
   return (
-    <figure className={`border-[1.5px] border-[var(--ink)] bg-[var(--surface)] overflow-hidden m-0 ${className}`}>
-      <div className={`relative w-full ${aspectClass} overflow-hidden bg-[var(--wash)]`}>
+    <figure
+      aria-label={alt || caption || undefined}
+      className={`border border-[var(--line)] bg-[var(--surface)] overflow-hidden m-0 ${className}`}
+    >
+      <div className={`relative w-full ${aspectClass} overflow-hidden bg-[var(--surface)]`}>
         {isMissing ? (
-          // Hatched architectural placeholder per spec (repeating 135° lines in --line over --wash)
-          <div
-            className="w-full h-full flex flex-col items-center justify-center p-4 text-center select-none"
-            style={{
-              backgroundImage:
-                'repeating-linear-gradient(135deg, var(--line) 0, var(--line) 1px, transparent 1px, transparent 12px)',
-            }}
-          >
-            <span className="font-mono text-xs uppercase px-2 py-1 bg-[var(--surface)] border border-[var(--ink)] text-[var(--ink)] font-semibold shadow-sm max-w-[90%] truncate">
-              {alt || 'Architectural Illustration'}
+          <div className="w-full h-full flex flex-col items-end justify-end p-3 select-none">
+            <span className="font-sans text-xs text-[var(--muted)]">
+              Illustration. Project photographs to follow.
             </span>
           </div>
         ) : (
@@ -50,8 +46,8 @@ export function ImageFrame({
       </div>
 
       {caption && (
-        <figcaption className="border-t border-[var(--line)] px-3 py-2 bg-[var(--surface)] font-mono text-[11px] text-[var(--muted)] tracking-wider uppercase flex items-center justify-between">
-          <span>{caption}</span>
+        <figcaption className="border-t border-[var(--line)] px-3 py-2 bg-[var(--surface)] font-sans text-xs text-[var(--muted)]">
+          {caption}
         </figcaption>
       )}
     </figure>

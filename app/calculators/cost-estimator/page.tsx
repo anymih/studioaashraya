@@ -111,7 +111,7 @@ export default function CostEstimatorPage() {
         <Breadcrumb items={breadcrumbItems} className="mb-6" />
 
         <Eyebrow text="Planning Tools" className="mb-3" />
-        <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold uppercase tracking-tight leading-[0.92] mb-4">
+        <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[0.92] mb-4">
           Construction Cost Estimator
         </h1>
         <p className="font-sans text-base md:text-lg text-[var(--muted)] max-w-2xl leading-relaxed mb-6">
@@ -131,13 +131,13 @@ export default function CostEstimatorPage() {
       <section className="py-12 md:py-16 border-y border-[var(--line)] bg-[var(--surface)]">
         <div className="wrap max-w-xl mx-auto">
           <div className="border-[1.5px] border-[var(--ink)] bg-[var(--bg)] p-6 sm:p-8 space-y-6">
-            <h2 className="font-display font-bold uppercase text-2xl text-[var(--ink)]">
+            <h2 className="font-display font-bold text-2xl text-[var(--ink)]">
               Estimate Your Build
             </h2>
 
             {/* Area input */}
             <div>
-              <label className="block font-mono text-xs uppercase tracking-wider text-[var(--muted)] mb-2">
+              <label className="block font-mono text-xs text-[var(--muted)] mb-2">
                 Built-up Area (sq ft)
               </label>
               <div className="relative">
@@ -153,7 +153,7 @@ export default function CostEstimatorPage() {
 
             {/* Quality dropdown */}
             <div>
-              <label className="block font-mono text-xs uppercase tracking-wider text-[var(--muted)] mb-2">
+              <label className="block font-mono text-xs text-[var(--muted)] mb-2">
                 Specification Standard
               </label>
               <select
@@ -171,7 +171,7 @@ export default function CostEstimatorPage() {
 
             {/* City dropdown */}
             <div>
-              <label className="block font-mono text-xs uppercase tracking-wider text-[var(--muted)] mb-2">
+              <label className="block font-mono text-xs text-[var(--muted)] mb-2">
                 Location / Region
               </label>
               <select
@@ -205,10 +205,10 @@ export default function CostEstimatorPage() {
           <div className="wrap max-w-xl mx-auto">
             {isNcr ? (
               <div className="border-[1.5px] border-[var(--accent)] bg-[var(--surface)] p-6 sm:p-8 space-y-4">
-                <span className="font-mono text-xs uppercase tracking-widest text-[var(--accent)] font-semibold block">
+                <span className="font-mono text-xs text-[var(--accent)] font-semibold block">
                   Delhi NCR Estimate
                 </span>
-                <h3 className="font-display font-extrabold uppercase text-3xl text-[var(--ink)]">
+                <h3 className="font-display font-extrabold text-3xl text-[var(--ink)]">
                   Indicative range on request
                 </h3>
                 <p className="font-sans text-base text-[var(--muted)] leading-relaxed">
@@ -217,7 +217,7 @@ export default function CostEstimatorPage() {
                 <div className="pt-2">
                   <Link
                     href="/book-a-call?src=tool-cost-result"
-                    className="inline-flex items-center gap-2 px-5 py-3 bg-[var(--accent)] text-[var(--on-accent)] font-mono text-xs uppercase tracking-wider font-semibold hover:bg-[var(--ink)] transition-colors"
+                    className="inline-flex items-center gap-2 px-5 py-3 bg-[var(--accent)] text-[var(--on-accent)] font-mono text-xs font-semibold hover:bg-[var(--ink)] transition-colors"
                   >
                     Get Indicative Quote &rarr;
                   </Link>
@@ -226,7 +226,7 @@ export default function CostEstimatorPage() {
             ) : result ? (
               <div className="border-[1.5px] border-[var(--ink)] bg-[var(--surface)] p-6 sm:p-8 space-y-6">
                 <div>
-                  <span className="font-mono text-xs uppercase tracking-widest text-[var(--muted)] font-semibold block mb-1">
+                  <span className="font-mono text-xs text-[var(--muted)] font-semibold block mb-1">
                     Market Rate Estimate ({city})
                   </span>
                   <div className="font-display font-extrabold text-3xl sm:text-4xl text-[var(--accent)]">
@@ -238,7 +238,7 @@ export default function CostEstimatorPage() {
                 </div>
 
                 <div className="border-t border-[var(--line)] pt-4">
-                  <span className="font-mono text-xs uppercase tracking-wider text-[var(--muted)] block mb-1">
+                  <span className="font-mono text-xs text-[var(--muted)] block mb-1">
                     Estimated Construction Timeline
                   </span>
                   <p className="font-sans font-semibold text-base text-[var(--ink)]">{result.timeline}</p>
@@ -256,7 +256,7 @@ export default function CostEstimatorPage() {
       {/* FAQ Section */}
       <section className="py-16 md:py-20 border-b border-[var(--line)] bg-[var(--surface)]">
         <div className="wrap max-w-xl mx-auto">
-          <h2 className="font-display font-extrabold uppercase text-2xl sm:text-3xl text-[var(--ink)] mb-6">
+          <h2 className="font-display font-extrabold text-2xl sm:text-3xl text-[var(--ink)] mb-6">
             Cost & Estimation FAQs
           </h2>
           <CostFAQ />

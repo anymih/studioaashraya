@@ -157,14 +157,14 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
       <section className="py-8 md:py-12 border-b border-[var(--line)] bg-[var(--bg)]">
         <div className="wrap space-y-4">
           <div className="flex flex-wrap items-center gap-3">
-            <span className="font-mono text-xs uppercase tracking-widest text-[var(--muted)]">
+            <span className="font-mono text-xs text-[var(--muted)]">
               {project.city}, {project.region} · {project.type}
             </span>
             <StatusBadge status={project.status} />
             {project.placeholder && <SampleTag kind="project" />}
           </div>
 
-          <h1 className="font-display font-extrabold uppercase text-4xl sm:text-5xl md:text-6xl tracking-tight leading-[0.92] text-[var(--ink)]">
+          <h1 className="font-display font-extrabold text-4xl sm:text-5xl md:text-6xl leading-[0.92] text-[var(--ink)]">
             {project.name}
           </h1>
           <p className="font-sans text-lg text-[var(--muted)] max-w-2xl leading-relaxed">
@@ -178,27 +178,27 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
         <div className="wrap py-0">
           <dl className="grid grid-cols-2 md:grid-cols-6 m-0 divide-y md:divide-y-0 md:divide-x divide-[var(--line)]">
             <div className="p-4 sm:p-5">
-              <dt className="font-mono text-[10px] uppercase tracking-[0.1em] text-[var(--muted)]">Site Area</dt>
+              <dt className="font-mono text-[10px] text-[var(--muted)]">Site Area</dt>
               <dd className="font-sans text-base font-semibold text-[var(--ink)] mt-1">{project.plotArea || '—'}</dd>
             </div>
             <div className="p-4 sm:p-5">
-              <dt className="font-mono text-[10px] uppercase tracking-[0.1em] text-[var(--muted)]">Built-up</dt>
+              <dt className="font-mono text-[10px] text-[var(--muted)]">Built-up</dt>
               <dd className="font-sans text-base font-semibold text-[var(--ink)] mt-1">{project.builtUp || '—'}</dd>
             </div>
             <div className="p-4 sm:p-5">
-              <dt className="font-mono text-[10px] uppercase tracking-[0.1em] text-[var(--muted)]">Floors</dt>
+              <dt className="font-mono text-[10px] text-[var(--muted)]">Floors</dt>
               <dd className="font-sans text-base font-semibold text-[var(--ink)] mt-1">{project.floors}</dd>
             </div>
             <div className="p-4 sm:p-5">
-              <dt className="font-mono text-[10px] uppercase tracking-[0.1em] text-[var(--muted)]">Climate Zone</dt>
+              <dt className="font-mono text-[10px] text-[var(--muted)]">Climate Zone</dt>
               <dd className="font-sans text-base font-semibold text-[var(--ink)] mt-1">{project.climateZone}</dd>
             </div>
             <div className="p-4 sm:p-5">
-              <dt className="font-mono text-[10px] uppercase tracking-[0.1em] text-[var(--muted)]">Year</dt>
+              <dt className="font-mono text-[10px] text-[var(--muted)]">Year</dt>
               <dd className="font-sans text-base font-semibold text-[var(--ink)] mt-1">{project.year || '—'}</dd>
             </div>
             <div className="p-4 sm:p-5 col-span-2 md:col-span-1">
-              <dt className="font-mono text-[10px] uppercase tracking-[0.1em] text-[var(--muted)]">Location</dt>
+              <dt className="font-mono text-[10px] text-[var(--muted)]">Location</dt>
               <dd className="font-sans text-base font-semibold text-[var(--ink)] mt-1">{project.city}</dd>
             </div>
           </dl>
@@ -217,10 +217,10 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
         <div className="wrap">
           <div className="max-w-3xl space-y-12">
             <div>
-              <span className="font-mono text-xs uppercase tracking-widest text-[var(--accent)] font-semibold block mb-2">
+              <span className="font-mono text-xs text-[var(--accent)] font-semibold block mb-2">
                 01 / The Challenge
               </span>
-              <h2 className="font-display font-extrabold uppercase text-2xl md:text-3xl text-[var(--ink)] mb-3">
+              <h2 className="font-display font-extrabold text-2xl md:text-3xl text-[var(--ink)] mb-3">
                 The Problem
               </h2>
               <p className="font-sans text-base md:text-lg leading-relaxed text-[var(--muted)]">
@@ -229,10 +229,10 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
             </div>
 
             <div className="border-t border-[var(--line)] pt-8">
-              <span className="font-mono text-xs uppercase tracking-widest text-[var(--accent)] font-semibold block mb-2">
+              <span className="font-mono text-xs text-[var(--accent)] font-semibold block mb-2">
                 02 / Architectural Response
               </span>
-              <h2 className="font-display font-extrabold uppercase text-2xl md:text-3xl text-[var(--ink)] mb-3">
+              <h2 className="font-display font-extrabold text-2xl md:text-3xl text-[var(--ink)] mb-3">
                 The Approach
               </h2>
               <p className="font-sans text-base md:text-lg leading-relaxed text-[var(--muted)]">
@@ -241,10 +241,10 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
             </div>
 
             <div className="border-t border-[var(--line)] pt-8">
-              <span className="font-mono text-xs uppercase tracking-widest text-[var(--accent)] font-semibold block mb-2">
+              <span className="font-mono text-xs text-[var(--accent)] font-semibold block mb-2">
                 03 / Delivered Reality
               </span>
-              <h2 className="font-display font-extrabold uppercase text-2xl md:text-3xl text-[var(--ink)] mb-3">
+              <h2 className="font-display font-extrabold text-2xl md:text-3xl text-[var(--ink)] mb-3">
                 The Solution
               </h2>
               <p className="font-sans text-base md:text-lg leading-relaxed text-[var(--muted)]">
@@ -262,10 +262,10 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
       <section className="py-16 md:py-20 border-b border-[var(--line)] bg-[var(--bg)]">
         <div className="wrap">
           <div className="max-w-3xl">
-            <span className="font-mono text-xs uppercase tracking-widest text-[var(--muted)] font-semibold block mb-2">
+            <span className="font-mono text-xs text-[var(--muted)] font-semibold block mb-2">
               Engineering Logic
             </span>
-            <h2 className="font-display font-extrabold uppercase text-3xl md:text-4xl text-[var(--ink)] mb-8">
+            <h2 className="font-display font-extrabold text-3xl md:text-4xl text-[var(--ink)] mb-8">
               Design & Construction Strategies
             </h2>
 
@@ -277,7 +277,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                       0{idx + 1}
                     </span>
                     <div>
-                      <h3 className="font-display font-bold uppercase text-xl text-[var(--ink)] mb-2">
+                      <h3 className="font-display font-bold text-xl text-[var(--ink)] mb-2">
                         {strat.name}
                       </h3>
                       <p className="font-sans text-base text-[var(--muted)] leading-relaxed">
@@ -297,10 +297,10 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
         <section className="py-16 md:py-20 border-b border-[var(--line)] bg-[var(--surface)]">
           <div className="wrap">
             <div className="max-w-3xl">
-              <span className="font-mono text-xs uppercase tracking-widest text-[var(--accent)] font-semibold block mb-2">
+              <span className="font-mono text-xs text-[var(--accent)] font-semibold block mb-2">
                 Verification Instruments
               </span>
-              <h2 className="font-display font-extrabold uppercase text-3xl md:text-4xl text-[var(--ink)] mb-4">
+              <h2 className="font-display font-extrabold text-3xl md:text-4xl text-[var(--ink)] mb-4">
                 Technology Used
               </h2>
               <p className="font-sans text-base text-[var(--muted)] mb-8">
@@ -311,7 +311,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                   <Link
                     key={techId}
                     href={`/technology#${techId}`}
-                    className="inline-flex items-center gap-2 px-4 py-2.5 border-[1.5px] border-[var(--ink)] bg-[var(--bg)] hover:bg-[var(--surface)] text-[var(--ink)] font-mono text-xs uppercase tracking-wider font-semibold transition-colors group"
+                    className="inline-flex items-center gap-2 px-4 py-2.5 border-[1.5px] border-[var(--ink)] bg-[var(--bg)] hover:bg-[var(--surface)] text-[var(--ink)] font-mono text-xs font-semibold transition-colors group"
                   >
                     <span>{TECH_TITLES[techId] || techId}</span>
                     <span className="text-[var(--accent)] group-hover:translate-x-0.5 transition-transform">&rarr;</span>
@@ -328,16 +328,16 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
         <section className="py-16 md:py-20 border-b border-[var(--line)] bg-[var(--bg)]">
           <div className="wrap">
             <div className="max-w-3xl">
-              <span className="font-mono text-xs uppercase tracking-widest text-[var(--accent)] font-semibold block mb-2">
+              <span className="font-mono text-xs text-[var(--accent)] font-semibold block mb-2">
                 Accountability
               </span>
-              <h2 className="font-display font-extrabold uppercase text-3xl md:text-4xl text-[var(--ink)] mb-8">
+              <h2 className="font-display font-extrabold text-3xl md:text-4xl text-[var(--ink)] mb-8">
                 Handover Record
               </h2>
               <div className="border-[1.5px] border-[var(--ink)] bg-[var(--surface)] p-6 sm:p-8">
                 <dl className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                   <div>
-                    <dt className="font-mono text-xs uppercase tracking-wider text-[var(--muted)] mb-1">
+                    <dt className="font-mono text-xs text-[var(--muted)] mb-1">
                       Agreed Handover Date
                     </dt>
                     <dd className="font-sans text-lg font-bold text-[var(--ink)]">
@@ -345,7 +345,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                     </dd>
                   </div>
                   <div>
-                    <dt className="font-mono text-xs uppercase tracking-wider text-[var(--muted)] mb-1">
+                    <dt className="font-mono text-xs text-[var(--muted)] mb-1">
                       Actual Handover Date
                     </dt>
                     <dd className="font-sans text-lg font-bold text-[var(--ink)]">
@@ -353,7 +353,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                     </dd>
                   </div>
                   <div>
-                    <dt className="font-mono text-xs uppercase tracking-wider text-[var(--muted)] mb-1">
+                    <dt className="font-mono text-xs text-[var(--muted)] mb-1">
                       Schedule Outcome
                     </dt>
                     <dd className="font-mono text-sm font-semibold text-[var(--accent)]">
@@ -372,12 +372,12 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
         <div className="wrap">
           <div className="max-w-3xl">
             <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-              <span className="font-mono text-xs uppercase tracking-widest text-[var(--accent)] font-semibold">
+              <span className="font-mono text-xs text-[var(--accent)] font-semibold">
                 Verified Metrics
               </span>
               {project.placeholder && <SampleTag kind="figure" />}
             </div>
-            <h2 className="font-display font-extrabold uppercase text-3xl md:text-4xl text-[var(--ink)] mb-8">
+            <h2 className="font-display font-extrabold text-3xl md:text-4xl text-[var(--ink)] mb-8">
               Performance Verification
             </h2>
 
@@ -385,10 +385,10 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
               {project.metrics.map((m, idx) => (
                 <div key={idx} className="p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                   <div>
-                    <span className="font-mono text-xs uppercase tracking-wider text-[var(--muted)] block mb-1">
+                    <span className="font-mono text-xs text-[var(--muted)] block mb-1">
                       {m.label}
                     </span>
-                    <span className="font-display font-extrabold uppercase text-3xl text-[var(--ink)]">
+                    <span className="font-display font-extrabold text-3xl text-[var(--ink)]">
                       {m.value}
                     </span>
                   </div>
@@ -411,17 +411,17 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
       <section className="py-16 md:py-20 border-b border-[var(--line)] bg-[var(--bg)]">
         <div className="wrap">
           <div className="max-w-3xl">
-            <span className="font-mono text-xs uppercase tracking-widest text-[var(--muted)] font-semibold block mb-2">
+            <span className="font-mono text-xs text-[var(--muted)] font-semibold block mb-2">
               Tactile Materials
             </span>
-            <h2 className="font-display font-extrabold uppercase text-3xl text-[var(--ink)] mb-6">
+            <h2 className="font-display font-extrabold text-3xl text-[var(--ink)] mb-6">
               Material Palette
             </h2>
             <div className="flex flex-wrap gap-2.5">
               {project.materials.map((mat, idx) => (
                 <span
                   key={idx}
-                  className="px-4 py-2 border-[1.5px] border-[var(--ink)] bg-[var(--surface)] font-mono text-xs uppercase tracking-wider text-[var(--ink)] font-semibold"
+                  className="px-4 py-2 border-[1.5px] border-[var(--ink)] bg-[var(--surface)] font-mono text-xs text-[var(--ink)] font-semibold"
                 >
                   {mat}
                 </span>
@@ -434,10 +434,10 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
       {/* 12. Gallery */}
       <section className="py-16 md:py-24 border-b border-[var(--line)] bg-[var(--surface)]">
         <div className="wrap">
-          <span className="font-mono text-xs uppercase tracking-widest text-[var(--muted)] font-semibold block mb-2">
+          <span className="font-mono text-xs text-[var(--muted)] font-semibold block mb-2">
             Visual Record
           </span>
-          <h2 className="font-display font-extrabold uppercase text-3xl md:text-4xl text-[var(--ink)] mb-4">
+          <h2 className="font-display font-extrabold text-3xl md:text-4xl text-[var(--ink)] mb-4">
             Site Gallery
           </h2>
           <p className="font-sans text-base text-[var(--muted)] mb-8 max-w-2xl">
@@ -459,10 +459,10 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
       {/* 13. Technical Plans sheet */}
       <section className="py-16 md:py-20 border-b border-[var(--line)] bg-[var(--bg)]">
         <div className="wrap">
-          <span className="font-mono text-xs uppercase tracking-widest text-[var(--muted)] font-semibold block mb-2">
+          <span className="font-mono text-xs text-[var(--muted)] font-semibold block mb-2">
             Architectural Drawings
           </span>
-          <h2 className="font-display font-extrabold uppercase text-3xl md:text-4xl text-[var(--ink)] mb-4">
+          <h2 className="font-display font-extrabold text-3xl md:text-4xl text-[var(--ink)] mb-4">
             Technical Plans
           </h2>
           <p className="font-sans text-base text-[var(--muted)] mb-8 max-w-2xl">
@@ -482,10 +482,10 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
               href={`/projects/${prevProject.slug}`}
               className="p-6 md:p-8 flex flex-col justify-between hover:bg-[var(--surface)] transition-colors group"
             >
-              <span className="font-mono text-[10px] uppercase tracking-widest text-[var(--muted)] mb-2">
+              <span className="font-mono text-[10px] text-[var(--muted)] mb-2">
                 &larr; Previous Project
               </span>
-              <span className="font-display font-extrabold text-2xl uppercase tracking-[0.01em] text-[var(--ink)] group-hover:text-[var(--accent)]">
+              <span className="font-display font-extrabold text-2xl text-[var(--ink)] group-hover:text-[var(--accent)]">
                 {prevProject.name}
               </span>
             </Link>
@@ -494,10 +494,10 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
               href={`/projects/${nextProject.slug}`}
               className="p-6 md:p-8 flex flex-col justify-between md:items-end hover:bg-[var(--surface)] transition-colors group text-left md:text-right"
             >
-              <span className="font-mono text-[10px] uppercase tracking-widest text-[var(--muted)] mb-2">
+              <span className="font-mono text-[10px] text-[var(--muted)] mb-2">
                 Next Project &rarr;
               </span>
-              <span className="font-display font-extrabold text-2xl uppercase tracking-[0.01em] text-[var(--ink)] group-hover:text-[var(--accent)]">
+              <span className="font-display font-extrabold text-2xl text-[var(--ink)] group-hover:text-[var(--accent)]">
                 {nextProject.name}
               </span>
             </Link>

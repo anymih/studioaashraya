@@ -14,7 +14,7 @@ export function SampleTag({ label, kind = 'project', className = '' }: SampleTag
 
   return (
     <span
-      className={`inline-flex items-center px-2 py-0.5 border border-[var(--accent)] font-mono text-[11px] uppercase tracking-wider text-[var(--accent)] bg-[var(--surface)] font-medium ${className}`}
+      className={`block font-sans text-xs text-[var(--muted)] mt-1 ${className}`}
     >
       {displayLabel}
     </span>

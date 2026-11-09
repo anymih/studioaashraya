@@ -42,7 +42,7 @@ export function Faq({
           key={idx}
           className="group border-b border-[var(--line)] transition-colors"
         >
-          <summary className="cursor-pointer list-none flex items-center justify-between gap-5 py-5 font-display font-extrabold text-[24px] leading-tight uppercase tracking-[0.01em] text-[var(--ink)] select-none [&::-webkit-details-marker]:hidden">
+          <summary className="cursor-pointer list-none flex items-center justify-between gap-5 py-5 font-display font-extrabold text-[24px] leading-tight text-[var(--ink)] select-none [&::-webkit-details-marker]:hidden">
             <span>{item.question}</span>
             <span
               className="font-mono text-2xl font-medium text-[var(--accent)] shrink-0 transition-transform duration-150"

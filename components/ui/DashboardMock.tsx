@@ -13,14 +13,14 @@ export function DashboardMock({ className = '' }: DashboardMockProps) {
       {/* Header with Title and "Sample data" tag */}
       <div className="flex items-center justify-between border-b border-[var(--line)] pb-4 mb-5">
         <div>
-          <span className="font-mono text-[10px] uppercase tracking-wider text-[var(--muted)] block">
+          <span className="font-mono text-[10px] text-[var(--muted)] block">
             Client Portal Live View
           </span>
-          <div className="font-display font-extrabold text-xl uppercase tracking-tight text-[var(--ink)]">
+          <div className="font-display font-extrabold text-xl text-[var(--ink)]">
             Project Dashboard
           </div>
         </div>
-        <span className="font-mono text-[11px] uppercase tracking-wider px-2 py-0.5 border border-[var(--accent)] text-[var(--accent)] bg-[var(--bg)] font-semibold">
+        <span className="font-mono text-[11px] px-2 py-0.5 border border-[var(--accent)] text-[var(--accent)] bg-[var(--bg)] font-semibold">
           Sample data
         </span>
       </div>
@@ -46,23 +46,23 @@ export function DashboardMock({ className = '' }: DashboardMockProps) {
       {/* Gate Status Chips */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-6">
         <div className="p-3 border border-[var(--line)] bg-[var(--bg)]">
-          <span className="font-mono text-[10px] text-[var(--muted)] block">GATE 01</span>
-          <span className="font-display font-bold text-sm uppercase text-[var(--ink)] block">Foundation</span>
-          <span className="font-mono text-[10px] text-[var(--accent)] font-semibold mt-1 block">PASSED (20 May)</span>
+          <span className="font-mono text-[10px] text-[var(--muted)] block">Gate 01</span>
+          <span className="font-display font-bold text-sm text-[var(--ink)] block">Foundation</span>
+          <span className="font-mono text-[10px] text-[var(--accent)] font-semibold mt-1 block">Passed (20 May)</span>
         </div>
         <div className="p-3 border border-[var(--accent)] bg-[var(--wash)]">
-          <span className="font-mono text-[10px] text-[var(--muted)] block">GATE 02</span>
-          <span className="font-display font-bold text-sm uppercase text-[var(--ink)] block">Structure</span>
-          <span className="font-mono text-[10px] text-[var(--accent)] font-semibold mt-1 block">INSPECTION DUE</span>
+          <span className="font-mono text-[10px] text-[var(--muted)] block">Gate 02</span>
+          <span className="font-display font-bold text-sm text-[var(--ink)] block">Structure</span>
+          <span className="font-mono text-[10px] text-[var(--accent)] font-semibold mt-1 block">Inspection due</span>
         </div>
         <div className="p-3 border border-[var(--line)] bg-[var(--bg)] opacity-60">
-          <span className="font-mono text-[10px] text-[var(--muted)] block">GATE 03</span>
-          <span className="font-display font-bold text-sm uppercase text-[var(--ink)] block">Services</span>
+          <span className="font-mono text-[10px] text-[var(--muted)] block">Gate 03</span>
+          <span className="font-display font-bold text-sm text-[var(--ink)] block">Services</span>
           <span className="font-mono text-[10px] text-[var(--muted)] mt-1 block">SCHEDULED</span>
         </div>
         <div className="p-3 border border-[var(--line)] bg-[var(--bg)] opacity-60">
-          <span className="font-mono text-[10px] text-[var(--muted)] block">GATE 04</span>
-          <span className="font-display font-bold text-sm uppercase text-[var(--ink)] block">Handover</span>
+          <span className="font-mono text-[10px] text-[var(--muted)] block">Gate 04</span>
+          <span className="font-display font-bold text-sm text-[var(--ink)] block">Handover</span>
           <span className="font-mono text-[10px] text-[var(--muted)] mt-1 block">SCHEDULED</span>
         </div>
       </div>

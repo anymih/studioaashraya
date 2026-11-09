@@ -26,16 +26,15 @@ export function EvidenceLabel({
   }
 
   const isMeasured = finalState === 'measured'
-  const text = isMeasured ? 'Measured' : 'Simulated at design stage'
+  const text = isMeasured ? '(measured)' : '(simulated)'
 
   return (
     <Link
       href={finalHref}
       title="View measurement and simulation methodology"
-      className={`inline-flex items-center gap-1 font-mono text-[10px] tracking-[0.08em] uppercase text-[var(--muted)] hover:text-[var(--ink)] hover:underline rounded-none ${className}`}
+      className={`font-sans text-xs text-[var(--muted)] hover:text-[var(--ink)] hover:underline ${className}`}
     >
-      <span className={`w-1.5 h-1.5 rounded-none ${isMeasured ? 'bg-[var(--ink)]' : 'bg-[var(--accent)]'}`} />
-      <span>{text}</span>
+      {text}
     </Link>
   )
 }

@@ -87,7 +87,7 @@ function BookCallContent() {
           {/* Page Heading & Promise Strip */}
           <div className="max-w-3xl mb-8">
             <Eyebrow text="Free Plot Check & Consultation" className="mb-2" />
-            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold uppercase tracking-tight leading-[0.92] mb-4">
+            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[0.92] mb-4">
               Send us your plot.
             </h1>
             <p className="font-sans text-lg text-[var(--muted)] leading-relaxed mb-6">
@@ -96,13 +96,13 @@ function BookCallContent() {
 
             {/* Promise Strip */}
             <div className="flex flex-wrap items-center gap-2">
-              <span className="font-mono text-xs uppercase px-2.5 py-1 bg-[var(--surface)] border border-[var(--line)] text-[var(--ink)] font-semibold">
+              <span className="font-mono text-xs px-2.5 py-1 bg-[var(--surface)] border border-[var(--line)] text-[var(--ink)] font-semibold">
                 On time, or 10% back
               </span>
-              <span className="font-mono text-xs uppercase px-2.5 py-1 bg-[var(--surface)] border border-[var(--line)] text-[var(--ink)] font-semibold">
+              <span className="font-mono text-xs px-2.5 py-1 bg-[var(--surface)] border border-[var(--line)] text-[var(--ink)] font-semibold">
                 15-year warranty
               </span>
-              <span className="font-mono text-xs uppercase px-2.5 py-1 bg-[var(--surface)] border border-[var(--line)] text-[var(--ink)] font-semibold">
+              <span className="font-mono text-xs px-2.5 py-1 bg-[var(--surface)] border border-[var(--line)] text-[var(--ink)] font-semibold">
                 IIT-led · COA-registered
               </span>
             </div>
@@ -113,10 +113,10 @@ function BookCallContent() {
             <div className="lg:col-span-5 space-y-8">
               {/* What to send */}
               <div className="p-6 border border-[var(--line)] bg-[var(--surface)]">
-                <span className="font-mono text-xs uppercase tracking-wider text-[var(--accent)] font-semibold block mb-3">
+                <span className="font-mono text-xs text-[var(--accent)] font-semibold block mb-3">
                   Reading List
                 </span>
-                <h2 className="font-display text-2xl font-bold uppercase mb-4">
+                <h2 className="font-display text-2xl font-bold mb-4">
                   What to send
                 </h2>
                 <ul className="space-y-2.5 font-sans text-sm text-[var(--muted)]">
@@ -145,10 +145,10 @@ function BookCallContent() {
 
               {/* What happens next */}
               <div className="p-6 border border-[var(--line)] bg-[var(--wash)]">
-                <span className="font-mono text-xs uppercase tracking-wider text-[var(--muted)] font-semibold block mb-3">
+                <span className="font-mono text-xs text-[var(--muted)] font-semibold block mb-3">
                   Process
                 </span>
-                <h3 className="font-display text-xl font-bold uppercase mb-4">
+                <h3 className="font-display text-xl font-bold mb-4">
                   What happens next
                 </h3>
                 <ol className="space-y-3 font-sans text-sm text-[var(--ink)] list-none p-0">
@@ -169,7 +169,7 @@ function BookCallContent() {
 
               {/* Direct Contact Card */}
               <div className="p-6 border border-[var(--line)] bg-[var(--surface)] space-y-3">
-                <span className="font-mono text-xs uppercase tracking-wider text-[var(--muted)] font-semibold block mb-2">
+                <span className="font-mono text-xs text-[var(--muted)] font-semibold block mb-2">
                   Prefer direct contact?
                 </span>
                 <div className="flex items-center gap-2">
@@ -190,9 +190,7 @@ function BookCallContent() {
                     rel="noopener noreferrer"
                     onClick={() => trackWhatsAppClick('/book-a-call', 'book_page_card')}
                     className="font-mono text-xs text-[var(--ink)] hover:text-[var(--accent)]"
-                  >
-                    WhatsApp the Architect
-                  </a>
+                  >WhatsApp the architect</a>
                 </div>
                 <div className="flex items-center gap-2">
                   <Mail className="w-4 h-4 text-[var(--accent)] shrink-0" />
@@ -209,9 +207,7 @@ function BookCallContent() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="block text-[var(--accent)] hover:underline mt-0.5"
-                    >
-                      Get directions ↗
-                    </a>
+                    >Get directions ↗</a>
                   </div>
                 </div>
               </div>
@@ -222,7 +218,7 @@ function BookCallContent() {
               {submitted ? (
                 <div className="border border-[var(--ink)] bg-[var(--band)] text-[var(--on-band)] p-8 sm:p-12 text-center flex flex-col items-center gap-4">
                   <CheckCircle2 className="w-16 h-16 text-[var(--accent)]" />
-                  <h2 className="font-display text-3xl font-bold uppercase">
+                  <h2 className="font-display text-3xl font-bold">
                     Plot details received
                   </h2>
                   <p className="font-sans text-base text-[var(--band-muted)] max-w-md leading-relaxed">
@@ -236,7 +232,7 @@ function BookCallContent() {
                   className="border border-[var(--line)] bg-[var(--surface)] p-6 sm:p-8 space-y-5"
                 >
                   <div className="border-b border-[var(--line)] pb-4 mb-4">
-                    <h2 className="font-display text-2xl font-bold uppercase text-[var(--ink)]">
+                    <h2 className="font-display text-2xl font-bold text-[var(--ink)]">
                       Plot Evaluation Request
                     </h2>
                     <p className="font-sans text-xs text-[var(--muted)] mt-1">
@@ -255,7 +251,7 @@ function BookCallContent() {
 
                   {/* Full Name */}
                   <div className="flex flex-col gap-1.5">
-                    <label className="font-mono text-xs uppercase tracking-wider text-[var(--ink)] font-medium">
+                    <label className="font-mono text-xs text-[var(--ink)] font-medium">
                       Full Name <span className="text-[var(--accent)]">*</span>
                     </label>
                     <input
@@ -269,7 +265,7 @@ function BookCallContent() {
 
                   {/* Phone */}
                   <div className="flex flex-col gap-1.5">
-                    <label className="font-mono text-xs uppercase tracking-wider text-[var(--ink)] font-medium">
+                    <label className="font-mono text-xs text-[var(--ink)] font-medium">
                       Phone Number (WhatsApp preferred) <span className="text-[var(--accent)]">*</span>
                     </label>
                     <input
@@ -285,7 +281,7 @@ function BookCallContent() {
 
                   {/* Email */}
                   <div className="flex flex-col gap-1.5">
-                    <label className="font-mono text-xs uppercase tracking-wider text-[var(--ink)] font-medium">
+                    <label className="font-mono text-xs text-[var(--ink)] font-medium">
                       Email Address <span className="text-[var(--accent)]">*</span>
                     </label>
                     <input
@@ -301,7 +297,7 @@ function BookCallContent() {
 
                   {/* City / Town (label fix only per Section 11) */}
                   <div className="flex flex-col gap-1.5">
-                    <label className="font-mono text-xs uppercase tracking-wider text-[var(--ink)] font-medium">
+                    <label className="font-mono text-xs text-[var(--ink)] font-medium">
                       City / Town
                     </label>
                     <input
@@ -314,7 +310,7 @@ function BookCallContent() {
 
                   {/* Project Typology */}
                   <div className="flex flex-col gap-1.5">
-                    <label className="font-mono text-xs uppercase tracking-wider text-[var(--ink)] font-medium">
+                    <label className="font-mono text-xs text-[var(--ink)] font-medium">
                       Project Typology <span className="text-[var(--accent)]">*</span>
                     </label>
                     <select
@@ -342,7 +338,7 @@ function BookCallContent() {
 
                   {/* Budget Range */}
                   <div className="flex flex-col gap-1.5">
-                    <label className="font-mono text-xs uppercase tracking-wider text-[var(--ink)] font-medium">
+                    <label className="font-mono text-xs text-[var(--ink)] font-medium">
                       Plot Size / Budget range <span className="text-[var(--accent)]">*</span>
                     </label>
                     <select
@@ -362,7 +358,7 @@ function BookCallContent() {
 
                   {/* Custom Notes / Message */}
                   <div className="flex flex-col gap-1.5">
-                    <label className="font-mono text-xs uppercase tracking-wider text-[var(--ink)] font-medium">
+                    <label className="font-mono text-xs text-[var(--ink)] font-medium">
                       Plot dimensions, locality or custom notes
                     </label>
                     <textarea
@@ -376,7 +372,7 @@ function BookCallContent() {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full py-4 bg-[var(--accent)] text-[var(--on-accent)] font-sans font-bold text-sm uppercase tracking-wider hover:opacity-95 transition-opacity disabled:opacity-50 select-none flex items-center justify-center gap-2"
+                    className="w-full py-4 bg-[var(--accent)] text-[var(--on-accent)] font-sans font-bold text-sm hover:opacity-95 transition-opacity disabled:opacity-50 select-none flex items-center justify-center gap-2"
                   >
                     <span>{loading ? 'Submitting...' : 'Get my free plot check'}</span>
                     <ArrowRight className="w-4 h-4" />
@@ -389,7 +385,7 @@ function BookCallContent() {
           {/* FAQs per Section 11 */}
           <div className="mt-16 pt-12 border-t border-[var(--line)]">
             <Eyebrow text="Common Questions" className="mb-2" />
-            <h2 className="font-display text-3xl font-bold uppercase mb-6">
+            <h2 className="font-display text-3xl font-bold mb-6">
               Frequently asked questions
             </h2>
             <Faq items={bookFaqs} />

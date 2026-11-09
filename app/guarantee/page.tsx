@@ -53,7 +53,7 @@ export default function GuaranteePage() {
           <Breadcrumb items={breadcrumbItems} className="mb-6" />
 
           <Eyebrow text="Guarantee & Warranty" className="mb-3" />
-          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold uppercase tracking-tight leading-[0.92] mb-6 max-w-4xl">
+          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[0.92] mb-6 max-w-4xl">
             On time, or 10% back.
           </h1>
           <p className="font-sans text-lg md:text-xl text-[var(--muted)] max-w-3xl leading-relaxed">
@@ -71,13 +71,13 @@ export default function GuaranteePage() {
             <div className="flex items-center gap-6">
               <div className="w-24 h-24 bg-[var(--accent)] text-[var(--on-accent)] font-display font-extrabold text-4xl flex flex-col items-center justify-center shrink-0">
                 <span>10%</span>
-                <span className="font-mono text-[10px] uppercase tracking-widest">Back</span>
+                <span className="font-mono text-[10px]">Back</span>
               </div>
               <div>
-                <span className="font-mono text-xs uppercase tracking-wider text-[var(--accent)] font-semibold block mb-1">
+                <span className="font-mono text-xs text-[var(--accent)] font-semibold block mb-1">
                   Track Record
                 </span>
-                <h2 className="font-display text-2xl md:text-3xl font-bold uppercase text-[var(--ink)] mb-2">
+                <h2 className="font-display text-2xl md:text-3xl font-bold text-[var(--ink)] mb-2">
                   Every home we have built has been handed over on time.
                 </h2>
                 <p className="font-sans text-sm md:text-base text-[var(--muted)]">
@@ -89,13 +89,13 @@ export default function GuaranteePage() {
 
           {/* How It Works (Numbered Sequence) */}
           <div className="mb-16">
-            <h2 className="font-display text-3xl font-bold uppercase mb-8">
+            <h2 className="font-display text-3xl font-bold mb-8">
               How the guarantee works
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="p-6 border border-[var(--line)] bg-[var(--surface)]">
                 <span className="font-mono text-sm font-bold text-[var(--accent)] block mb-3">01</span>
-                <h3 className="font-display text-xl font-bold uppercase mb-2">Fixed Handover Date</h3>
+                <h3 className="font-display text-xl font-bold mb-2">Fixed Handover Date</h3>
                 <p className="font-sans text-sm text-[var(--muted)] leading-relaxed">
                   The handover date is fixed in your agreement before ground is broken.
                 </p>
@@ -103,7 +103,7 @@ export default function GuaranteePage() {
 
               <div className="p-6 border border-[var(--line)] bg-[var(--surface)]">
                 <span className="font-mono text-sm font-bold text-[var(--accent)] block mb-3">02</span>
-                <h3 className="font-display text-xl font-bold uppercase mb-2">Weekly Reporting</h3>
+                <h3 className="font-display text-xl font-bold mb-2">Weekly Reporting</h3>
                 <p className="font-sans text-sm text-[var(--muted)] leading-relaxed">
                   We report progress against it every week on your live client dashboard.
                 </p>
@@ -111,13 +111,13 @@ export default function GuaranteePage() {
 
               <div className="p-6 border border-[var(--line)] bg-[var(--surface)]">
                 <span className="font-mono text-sm font-bold text-[var(--accent)] block mb-3">03</span>
-                <h3 className="font-display text-xl font-bold uppercase mb-2">10% Refund</h3>
+                <h3 className="font-display text-xl font-bold mb-2">10% Refund</h3>
                 <p className="font-sans text-sm text-[var(--muted)] leading-relaxed">
                   If the date passes, the refund is paid as set out in your agreement.
                 </p>
               </div>
             </div>
-            <p className="font-mono text-xs text-[var(--muted)] uppercase mt-4">
+            <p className="font-mono text-xs text-[var(--muted)] mt-4">
               What the agreement states: the handover date; the conditions that can move it, such as changes you request or delays by the authority; and how the refund is paid. Conditions are in your agreement.
             </p>
           </div>
@@ -128,7 +128,7 @@ export default function GuaranteePage() {
               <ShieldCheck className="w-8 h-8 text-[var(--accent)]" />
               <Eyebrow text="Protection" />
             </div>
-            <h2 className="font-display text-3xl md:text-4xl font-extrabold uppercase mb-4">
+            <h2 className="font-display text-3xl md:text-4xl font-extrabold mb-4">
               15-year warranty.
             </h2>
             <p className="font-sans text-base md:text-lg text-[var(--muted)] leading-relaxed mb-6 max-w-3xl">
@@ -138,7 +138,7 @@ export default function GuaranteePage() {
 
           {/* Why We Can Offer Both */}
           <div className="p-8 border border-[var(--line)] bg-[var(--wash)] mb-16">
-            <h3 className="font-display text-2xl font-bold uppercase mb-6">
+            <h3 className="font-display text-2xl font-bold mb-6">
               Why we can offer both
             </h3>
             <ul className="space-y-4 font-sans text-base text-[var(--ink)]">
@@ -163,7 +163,7 @@ export default function GuaranteePage() {
 
           {/* FAQ Section */}
           <div className="mb-12">
-            <h2 className="font-display text-3xl font-bold uppercase mb-6">
+            <h2 className="font-display text-3xl font-bold mb-6">
               Guarantee & Warranty Questions
             </h2>
             <Faq items={guaranteeFaqs} />

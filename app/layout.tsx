@@ -11,7 +11,7 @@ import { siteConfig } from '@/lib/site'
 
 const fontDisplay = Big_Shoulders({
   subsets: ['latin'],
-  weight: ['600', '800'],
+  weight: ['600', '700', '800'],
   variable: '--font-display',
   display: 'swap',
   fallback: ['Arial Narrow', 'Impact', 'sans-serif'],
@@ -141,7 +141,7 @@ export default function RootLayout({
       <body className="bg-[var(--bg)] text-[var(--ink)] font-sans antialiased selection:bg-[var(--accent)] selection:text-[var(--on-accent)]">
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:px-4 focus:py-2 focus:bg-[var(--ink)] focus:text-[var(--bg)] focus:font-mono focus:text-xs focus:uppercase focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:px-4 focus:py-2 focus:bg-[var(--ink)] focus:text-[var(--bg)] focus:font-mono focus:text-xs focus: focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
         >
           Skip to content
         </a>

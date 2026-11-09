@@ -80,13 +80,13 @@ export default function ProjectCard({
               className="object-cover transition-transform duration-200 group-hover:scale-[1.02]"
             />
           ) : (
-            <small className="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--muted)]">
+            <small className="font-mono text-[11px] text-[var(--muted)]">
               Drawing archive
             </small>
           )}
 
           {/* City Tag */}
-          <span className="absolute left-3 top-3 bg-[var(--ink)] text-[var(--bg)] font-mono font-medium text-[11px] uppercase tracking-[0.1em] px-2 py-1 select-none">
+          <span className="absolute left-3 top-3 bg-[var(--ink)] text-[var(--bg)] font-mono font-medium text-[11px] px-2 py-1 select-none">
             {displayCity}
           </span>
 
@@ -97,7 +97,7 @@ export default function ProjectCard({
 
           {/* Sample Project Chip (PRD S8 / Section 8.1) */}
           {isPlaceholder && (
-            <span className="absolute left-3 bottom-3 bg-[var(--bg)] border border-[var(--line)] text-[var(--ink)] font-mono text-[10px] uppercase tracking-wider px-2 py-0.5 select-none shadow-sm">
+            <span className="absolute left-3 bottom-3 bg-[var(--bg)] border border-[var(--line)] text-[var(--ink)] font-mono text-[10px] px-2 py-0.5 select-none shadow-sm">
               Sample project
             </span>
           )}
@@ -106,10 +106,10 @@ export default function ProjectCard({
 
       <dl className="grid grid-cols-2 border-t-[1.5px] border-[var(--ink)] m-0">
         <div className="col-span-2 p-2.5 sm:p-3 border-b border-[var(--line)] min-w-0">
-          <dt className="font-mono text-[10px] uppercase tracking-[0.1em] text-[var(--muted)]">
+          <dt className="font-mono text-[10px] text-[var(--muted)]">
             Project
           </dt>
-          <dd className="mt-1 font-display font-extrabold text-[22px] leading-tight uppercase tracking-[0.01em] text-[var(--ink)] truncate">
+          <dd className="mt-1 font-display font-extrabold text-[22px] leading-tight text-[var(--ink)] truncate">
             <Link href={`/projects/${finalSlug}`} className="hover:text-[var(--accent)] transition-colors">
               {displayName}
             </Link>
@@ -117,22 +117,22 @@ export default function ProjectCard({
         </div>
 
         <div className="p-2.5 sm:p-3 border-b sm:border-b-0 border-r border-[var(--line)] min-w-0">
-          <dt className="font-mono text-[10px] uppercase tracking-[0.1em] text-[var(--muted)]">Typology</dt>
+          <dt className="font-mono text-[10px] text-[var(--muted)]">Typology</dt>
           <dd className="mt-0.5 font-sans text-sm text-[var(--ink)] truncate">{displayType}</dd>
         </div>
 
         <div className="p-2.5 sm:p-3 border-b sm:border-b-0 min-w-0">
-          <dt className="font-mono text-[10px] uppercase tracking-[0.1em] text-[var(--muted)]">Plot Area</dt>
+          <dt className="font-mono text-[10px] text-[var(--muted)]">Plot Area</dt>
           <dd className="mt-0.5 font-sans text-sm text-[var(--ink)] truncate">{displayPlotArea}</dd>
         </div>
 
         <div className="p-2.5 sm:p-3 border-r border-[var(--line)] min-w-0">
-          <dt className="font-mono text-[10px] uppercase tracking-[0.1em] text-[var(--muted)]">Built-up</dt>
+          <dt className="font-mono text-[10px] text-[var(--muted)]">Built-up</dt>
           <dd className="mt-0.5 font-sans text-sm text-[var(--ink)] truncate">{displayBuiltUp}</dd>
         </div>
 
         <div className="p-2.5 sm:p-3 min-w-0">
-          <dt className="font-mono text-[10px] uppercase tracking-[0.1em] text-[var(--muted)]">Handed Over</dt>
+          <dt className="font-mono text-[10px] text-[var(--muted)]">Handed Over</dt>
           <dd className="mt-0.5 font-sans text-sm text-[var(--ink)] truncate">{displayYear}</dd>
         </div>
       </dl>

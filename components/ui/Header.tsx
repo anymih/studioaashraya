@@ -62,7 +62,7 @@ export default function Header() {
         {/* Brand wordmark with 12px accent square */}
         <Link
           href="/"
-          className="flex items-center gap-2.5 font-display font-extrabold text-[24px] sm:text-[26px] tracking-[0.07em] uppercase leading-none text-[var(--ink)] no-underline select-none shrink-0"
+          className="flex items-center gap-2.5 font-display font-extrabold text-[24px] sm:text-[26px] leading-none text-[var(--ink)] no-underline select-none shrink-0"
           aria-label="Studio Aashraya, home"
         >
           <i className="block w-3 h-3 bg-[var(--accent)] shrink-0 not-italic" aria-hidden="true" />
@@ -120,7 +120,7 @@ export default function Header() {
           <button
             type="button"
             onClick={toggleTheme}
-            className="font-mono font-medium text-[11px] tracking-[0.1em] uppercase px-2.5 py-2 border border-[var(--line)] bg-transparent text-[var(--muted)] hover:text-[var(--ink)] hover:border-[var(--ink)] transition-colors cursor-pointer select-none rounded-none"
+            className="font-mono font-medium text-[11px] px-2.5 py-2 border border-[var(--line)] bg-transparent text-[var(--muted)] hover:text-[var(--ink)] hover:border-[var(--ink)] transition-colors cursor-pointer select-none rounded-none"
             aria-label="Switch colour theme"
           >
             {theme === 'dark' ? 'Light' : 'Theme'}
@@ -130,7 +130,7 @@ export default function Header() {
           <Link
             href="/book-a-call?src=header"
             onClick={() => handleHeaderCta('header')}
-            className="hidden min-[900px]:inline-flex items-center justify-center gap-1.5 px-4 py-2.5 bg-[var(--accent)] text-[var(--on-accent)] font-sans font-semibold text-xs uppercase tracking-wider hover:bg-[var(--ink)] transition-colors select-none text-center"
+            className="hidden min-[900px]:inline-flex items-center justify-center gap-1.5 px-4 py-2.5 bg-[var(--accent)] text-[var(--on-accent)] font-sans font-semibold text-xs hover:bg-[var(--ink)] transition-colors select-none text-center"
           >
             <span>Book a consultation</span>
             <ArrowRight className="w-3.5 h-3.5" />

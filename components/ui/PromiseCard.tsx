@@ -17,21 +17,21 @@ export function PromiseCard({
 }: PromiseCardProps) {
   return (
     <div
-      className={`border-[1.5px] border-[var(--ink)] bg-[var(--surface)] p-6 sm:p-8 flex flex-col justify-between ${className}`}
+      className={`border border-[var(--line)] bg-[var(--surface)] p-6 sm:p-8 flex flex-col justify-between ${className}`}
     >
       <div>
-        <div className="font-display font-extrabold text-[clamp(72px,12vw,160px)] leading-[0.88] text-[var(--accent)] tracking-tight select-none mb-2">
+        <div className="stat-numeral text-[var(--ink)] select-none mb-3">
           {figure}
         </div>
-        <h3 className="font-display font-extrabold text-2xl sm:text-3xl uppercase tracking-wide text-[var(--ink)] mb-2">
+        <h3 className="font-sans font-semibold text-xl text-[var(--ink)] mb-2">
           {title}
         </h3>
-        <p className="font-sans text-sm sm:text-base text-[var(--muted)] leading-relaxed mb-4">
+        <p className="font-sans text-sm text-[var(--muted)] leading-relaxed mb-4">
           {description}
         </p>
       </div>
       {conditions && (
-        <span className="font-mono text-[11px] uppercase tracking-wider text-[var(--muted)] border-t border-[var(--line)] pt-3 block">
+        <span className="font-sans text-xs text-[var(--muted)] border-t border-[var(--line)] pt-3 block">
           {conditions}
         </span>
       )}

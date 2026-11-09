@@ -13,9 +13,7 @@ export function StatusBadge({
 
   if (norm === 'built') {
     return (
-      <span
-        className={`inline-block font-mono text-[11px] font-medium uppercase tracking-[0.1em] px-2 py-1 bg-[var(--ink)] text-[var(--bg)] border border-[var(--ink)] rounded-none ${className}`}
-      >
+      <span className={`font-sans text-xs text-[var(--ink)] ${className}`}>
         Built
       </span>
     )
@@ -23,18 +21,14 @@ export function StatusBadge({
 
   if (norm === 'under-construction' || norm === 'under construction') {
     return (
-      <span
-        className={`inline-block font-mono text-[11px] font-medium uppercase tracking-[0.1em] px-2 py-1 bg-transparent text-[var(--accent)] border border-[var(--accent)] rounded-none ${className}`}
-      >
+      <span className={`font-sans text-xs text-[var(--muted)] ${className}`}>
         Under construction
       </span>
     )
   }
 
   return (
-    <span
-      className={`inline-block font-mono text-[11px] font-medium uppercase tracking-[0.1em] px-2 py-1 bg-transparent text-[var(--muted)] border border-[var(--line)] rounded-none ${className}`}
-    >
+    <span className={`font-sans text-xs text-[var(--muted)] ${className}`}>
       Design stage
     </span>
   )

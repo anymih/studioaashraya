@@ -27,7 +27,7 @@ export function ThreeUp({
               : ''
           }`}
         >
-          <h3 className="font-display font-extrabold uppercase text-[28px] leading-tight text-[var(--ink)] mb-3">
+          <h3 className="font-display font-extrabold text-[28px] leading-tight text-[var(--ink)] mb-3">
             {item.title}
           </h3>
           <p className="font-sans text-base leading-relaxed text-[var(--muted)] max-w-[44ch]">

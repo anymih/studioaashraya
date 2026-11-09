@@ -9,7 +9,7 @@ export interface EyebrowProps {
 
 export function Eyebrow({ children, text, className = '', as: Component = 'p' }: EyebrowProps) {
   return (
-    <Component className={`font-mono text-[12px] tracking-[0.14em] uppercase text-[var(--muted)] ${className}`}>
+    <Component className={`font-mono text-[12px]   text-[var(--muted)] ${className}`}>
       {text ?? children}
     </Component>
   )

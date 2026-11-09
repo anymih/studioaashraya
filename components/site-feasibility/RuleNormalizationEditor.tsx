@@ -422,13 +422,13 @@ export default function RuleNormalizationEditor({
   const getStatusBadge = () => {
     switch (status) {
       case "approved":
-        return <span className="bg-green-100 text-green-800 border-green-200 border text-[10px] px-2 py-0.5 rounded-full font-bold uppercase">Approved &amp; Locked</span>;
+        return <span className="bg-green-100 text-green-800 border-green-200 border text-[10px] px-2 py-0.5 rounded-full font-bold">Approved &amp; Locked</span>;
       case "needs_review":
-        return <span className="bg-amber-100 text-amber-800 border-amber-200 border text-[10px] px-2 py-0.5 rounded-full font-bold uppercase">Needs Review</span>;
+        return <span className="bg-amber-100 text-amber-800 border-amber-200 border text-[10px] px-2 py-0.5 rounded-full font-bold">Needs Review</span>;
       case "superseded":
-        return <span className="bg-neutral-200 text-neutral-800 border-neutral-300 border text-[10px] px-2 py-0.5 rounded-full font-bold uppercase">Superseded</span>;
+        return <span className="bg-neutral-200 text-neutral-800 border-neutral-300 border text-[10px] px-2 py-0.5 rounded-full font-bold">Superseded</span>;
       default:
-        return <span className="bg-blue-100 text-blue-800 border-blue-200 border text-[10px] px-2 py-0.5 rounded-full font-bold uppercase">Draft</span>;
+        return <span className="bg-blue-100 text-blue-800 border-blue-200 border text-[10px] px-2 py-0.5 rounded-full font-bold">Draft</span>;
     }
   };
 
@@ -487,7 +487,7 @@ export default function RuleNormalizationEditor({
       <div className="flex flex-wrap items-center justify-between gap-3 bg-neutral-50 p-3 rounded-lg border border-neutral-200">
         <div className="flex items-center space-x-3">
           <div>
-            <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider block">
+            <label className="text-[10px] font-bold text-neutral-500 block">
               Occupancy Use Type
             </label>
             <select
@@ -592,7 +592,7 @@ export default function RuleNormalizationEditor({
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse text-[11px]">
               <thead>
-                <tr className="bg-neutral-50/50 text-neutral-600 border-b border-neutral-200 font-semibold uppercase tracking-wider text-[9px]">
+                <tr className="bg-neutral-50/50 text-neutral-600 border-b border-neutral-200 font-semibold text-[9px]">
                   <th className="px-3 py-2">Plot Min (m²)</th>
                   <th className="px-3 py-2">Plot Max (m²)</th>
                   <th className="px-3 py-2">Road Min (m)</th>
@@ -693,7 +693,7 @@ export default function RuleNormalizationEditor({
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse text-[11px]">
               <thead>
-                <tr className="bg-neutral-50/50 text-neutral-600 border-b border-neutral-200 font-semibold uppercase tracking-wider text-[9px]">
+                <tr className="bg-neutral-50/50 text-neutral-600 border-b border-neutral-200 font-semibold text-[9px]">
                   <th className="px-2 py-2">Plot range (m²)</th>
                   <th className="px-2 py-2">Road range (m)</th>
                   <th className="px-2 py-2">Front (m)</th>
@@ -825,7 +825,7 @@ export default function RuleNormalizationEditor({
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse text-[11px]">
               <thead>
-                <tr className="bg-neutral-50/50 text-neutral-600 border-b border-neutral-200 font-semibold uppercase tracking-wider text-[9px]">
+                <tr className="bg-neutral-50/50 text-neutral-600 border-b border-neutral-200 font-semibold text-[9px]">
                   <th className="px-3 py-2">Road Min Width (m)</th>
                   <th className="px-3 py-2">Max Height (m)</th>
                   <th className="px-3 py-2">Max Storeys (Storeys)</th>
@@ -887,7 +887,7 @@ export default function RuleNormalizationEditor({
 
         {/* General Notes Input */}
         <div className="space-y-1">
-          <label className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider block">
+          <label className="text-[10px] font-bold text-neutral-500 block">
             General Mapping Notes
           </label>
           <textarea
@@ -910,7 +910,7 @@ export default function RuleNormalizationEditor({
                 <span className="font-bold text-neutral-800 text-sm">Link Clause to Field</span>
                 <p className="text-[10px] text-neutral-500">
                   Select evidence from document to verify value for:{" "}
-                  <strong className="text-violet-700 uppercase">
+                  <strong className="text-violet-700">
                     {linkingTarget.type.replace("-", " ")} (Row #{linkingTarget.rowIndex + 1})
                   </strong>
                 </p>
@@ -979,7 +979,7 @@ export default function RuleNormalizationEditor({
             {/* Cross-Category Justification Input */}
             {selectedClauseIndex !== null && isCrossCategoryMapping() && (
               <div className="border-t border-neutral-200 p-3 bg-amber-50/50 space-y-1">
-                <div className="flex items-center space-x-1 text-[10px] text-amber-700 font-bold uppercase tracking-wider">
+                <div className="flex items-center space-x-1 text-[10px] text-amber-700 font-bold">
                   <AlertTriangle size={12} />
                   <span>Mandatory Cross-Category Justification</span>
                 </div>

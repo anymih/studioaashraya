@@ -20,7 +20,7 @@ export default function SpecificationsPage() {
     <div className="min-h-screen bg-[var(--bg)] text-[var(--ink)] pt-12 pb-16">
       <div className="max-w-5xl mx-auto px-4 md:px-6">
         <Eyebrow text="STANDARDS &amp; QUALITY" />
-        <h1 className="font-display text-4xl md:text-5xl font-light uppercase tracking-tight text-[var(--ink)] mt-2 mb-6">
+        <h1 className="font-display text-4xl md:text-5xl font-light text-[var(--ink)] mt-2 mb-6">
           Specifications Schedule
         </h1>
         <p className="text-[var(--ink-muted)] max-w-2xl text-base mb-8">
@@ -29,7 +29,7 @@ export default function SpecificationsPage() {
 
         <div className="overflow-x-auto border border-[var(--line)]">
           <table className="w-full text-left text-sm">
-            <thead className="bg-[var(--surface)] text-[var(--ink)] uppercase text-xs tracking-wider border-b border-[var(--line)]">
+            <thead className="bg-[var(--surface)] text-[var(--ink)] text-xs border-b border-[var(--line)]">
               <tr>
                 <th className="py-3 px-4 font-semibold">Element</th>
                 <th className="py-3 px-4 font-semibold">Specification</th>

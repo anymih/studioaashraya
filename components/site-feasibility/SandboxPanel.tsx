@@ -82,7 +82,7 @@ export default function SandboxPanel({
       <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
         {/* Left Side: Document List */}
         <div className="md:col-span-4 border border-neutral-200 rounded-lg overflow-hidden flex flex-col h-[580px]">
-          <div className="bg-neutral-50 border-b border-neutral-200 px-3 py-2.5 text-xs font-semibold text-neutral-600 uppercase tracking-wider">
+          <div className="bg-neutral-50 border-b border-neutral-200 px-3 py-2.5 text-xs font-semibold text-neutral-600">
             Ingested Documents ({records.length})
           </div>
           <div className="divide-y divide-neutral-100 overflow-y-auto flex-1 bg-white">
@@ -190,7 +190,7 @@ export default function SandboxPanel({
                     {/* Metadata */}
                     <div className="grid grid-cols-2 gap-3 bg-neutral-50 rounded border border-neutral-100 p-2.5">
                       <div>
-                        <span className="text-[10px] font-semibold text-neutral-500 uppercase tracking-wider block">
+                        <span className="text-[10px] font-semibold text-neutral-500 block">
                           Title
                         </span>
                         <span className="font-bold text-neutral-700">
@@ -198,7 +198,7 @@ export default function SandboxPanel({
                         </span>
                       </div>
                       <div>
-                        <span className="text-[10px] font-semibold text-neutral-500 uppercase tracking-wider block">
+                        <span className="text-[10px] font-semibold text-neutral-500 block">
                           Year / Jurisdiction
                         </span>
                         <span className="font-bold text-neutral-700">
@@ -206,7 +206,7 @@ export default function SandboxPanel({
                         </span>
                       </div>
                       <div>
-                        <span className="text-[10px] font-semibold text-neutral-500 uppercase tracking-wider block">
+                        <span className="text-[10px] font-semibold text-neutral-500 block">
                           Confidence Score
                         </span>
                         <span className={`font-bold ${
@@ -218,10 +218,10 @@ export default function SandboxPanel({
                         </span>
                       </div>
                       <div>
-                        <span className="text-[10px] font-semibold text-neutral-500 uppercase tracking-wider block">
+                        <span className="text-[10px] font-semibold text-neutral-500 block">
                           Extraction Method
                         </span>
-                        <span className="font-semibold text-neutral-700 uppercase">
+                        <span className="font-semibold text-neutral-700">
                           {selectedRecord.extractionMethod.replace("_", " ")}
                         </span>
                       </div>

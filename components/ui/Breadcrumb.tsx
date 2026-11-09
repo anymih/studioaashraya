@@ -14,7 +14,7 @@ export function Breadcrumb({
   className?: string
 }) {
   return (
-    <nav aria-label="Breadcrumb" className={`font-mono text-[12px] uppercase tracking-[0.08em] ${className}`}>
+    <nav aria-label="Breadcrumb" className={`font-mono text-[12px]   ${className}`}>
       <ol className="flex flex-wrap items-center gap-2 text-[var(--muted)]">
         <li>
           <Link href="/" className="hover:text-[var(--ink)] transition-colors">

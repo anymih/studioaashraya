@@ -50,7 +50,7 @@ export function FormField({
     <div className={`flex flex-col gap-1.5 ${className}`}>
       <label
         htmlFor={fieldId}
-        className="font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--muted)] flex items-center justify-between"
+        className="font-mono text-[11px] text-[var(--muted)] flex items-center justify-between"
       >
         <span>
           {label} {required && <span className="text-[var(--accent)]">*</span>}

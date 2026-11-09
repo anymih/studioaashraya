@@ -474,7 +474,7 @@ export default function PolygonEditor({
             title="Toggle Display Unit"
           >
             <Ruler size={13} />
-            <span className="uppercase">{unit}</span>
+            <span className="">{unit}</span>
           </button>
 
           <div className="h-4 w-px bg-neutral-300 mx-0.5" />
@@ -956,7 +956,7 @@ export default function PolygonEditor({
       {/* Vertices List */}
       {vertices.length > 0 && (
         <div className="px-4 py-2 border-t border-neutral-200 max-h-32 overflow-y-auto">
-          <div className="text-[11px] font-semibold text-neutral-500 uppercase tracking-wider mb-1 font-sans">
+          <div className="text-[11px] font-semibold text-neutral-500 mb-1 font-sans">
             Plot Nodes (Stored in Metric)
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">

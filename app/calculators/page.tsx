@@ -79,7 +79,7 @@ export default function CalculatorsPage() {
           <Breadcrumb items={breadcrumbItems} className="mb-6" />
 
           <Eyebrow text="Planning Tools" className="mb-3" />
-          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold uppercase tracking-tight leading-[0.92] mb-6 max-w-4xl">
+          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[0.92] mb-6 max-w-4xl">
             Tools
           </h1>
           <p className="font-sans text-lg md:text-xl text-[var(--muted)] max-w-3xl leading-relaxed">
@@ -104,7 +104,7 @@ export default function CalculatorsPage() {
                       <Icon className="w-6 h-6" />
                     </div>
 
-                    <h2 className="font-display text-2xl font-bold uppercase mb-3 text-[var(--ink)]">
+                    <h2 className="font-display text-2xl font-bold mb-3 text-[var(--ink)]">
                       {tool.title}
                     </h2>
 
@@ -119,7 +119,7 @@ export default function CalculatorsPage() {
 
                   <Link
                     href={tool.href}
-                    className="inline-flex items-center justify-between w-full px-5 py-3.5 bg-[var(--ink)] text-[var(--bg)] font-sans font-semibold text-xs uppercase tracking-wider hover:bg-[var(--accent)] hover:text-[var(--on-accent)] transition-colors select-none"
+                    className="inline-flex items-center justify-between w-full px-5 py-3.5 bg-[var(--ink)] text-[var(--bg)] font-sans font-semibold text-xs hover:bg-[var(--accent)] hover:text-[var(--on-accent)] transition-colors select-none"
                   >
                     <span>{tool.cta}</span>
                     <ArrowRight className="w-4 h-4" />

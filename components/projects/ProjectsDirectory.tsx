@@ -90,7 +90,7 @@ export function ProjectsDirectory({ initialProjects }: { initialProjects: Projec
       <div className="border-[1.5px] border-[var(--ink)] bg-[var(--surface)] p-6 md:p-8 space-y-6">
         {/* City Filter */}
         <div className="flex flex-col sm:flex-row sm:items-center gap-3 md:gap-6">
-          <span className="font-mono text-xs uppercase tracking-widest text-[var(--muted)] font-semibold w-24 shrink-0">
+          <span className="font-mono text-xs text-[var(--muted)] font-semibold w-24 shrink-0">
             Region:
           </span>
           <div className="flex flex-wrap items-center gap-2">
@@ -105,7 +105,7 @@ export function ProjectsDirectory({ initialProjects }: { initialProjects: Projec
                 type="button"
                 aria-pressed={cityFilter === c.id}
                 onClick={() => updateFilters(c.id, typeFilter, statusFilter)}
-                className={`font-mono text-xs uppercase tracking-wider px-3 py-1.5 border-[1.5px] transition-colors cursor-pointer rounded-none ${
+                className={`font-mono text-xs   px-3 py-1.5 border-[1.5px] transition-colors cursor-pointer rounded-none ${
                   cityFilter === c.id
                     ? 'border-[var(--ink)] bg-[var(--ink)] text-[var(--bg)] font-semibold'
                     : 'border-[var(--line)] bg-[var(--bg)] text-[var(--ink)] hover:border-[var(--ink)]'
@@ -119,7 +119,7 @@ export function ProjectsDirectory({ initialProjects }: { initialProjects: Projec
 
         {/* Type Filter */}
         <div className="flex flex-col sm:flex-row sm:items-center gap-3 md:gap-6 border-t border-[var(--line)] pt-4">
-          <span className="font-mono text-xs uppercase tracking-widest text-[var(--muted)] font-semibold w-24 shrink-0">
+          <span className="font-mono text-xs text-[var(--muted)] font-semibold w-24 shrink-0">
             Typology:
           </span>
           <div className="flex flex-wrap items-center gap-2">
@@ -134,7 +134,7 @@ export function ProjectsDirectory({ initialProjects }: { initialProjects: Projec
                 type="button"
                 aria-pressed={typeFilter === t.id}
                 onClick={() => updateFilters(cityFilter, t.id, statusFilter)}
-                className={`font-mono text-xs uppercase tracking-wider px-3 py-1.5 border-[1.5px] transition-colors cursor-pointer rounded-none ${
+                className={`font-mono text-xs   px-3 py-1.5 border-[1.5px] transition-colors cursor-pointer rounded-none ${
                   typeFilter === t.id
                     ? 'border-[var(--ink)] bg-[var(--ink)] text-[var(--bg)] font-semibold'
                     : 'border-[var(--line)] bg-[var(--bg)] text-[var(--ink)] hover:border-[var(--ink)]'
@@ -148,7 +148,7 @@ export function ProjectsDirectory({ initialProjects }: { initialProjects: Projec
 
         {/* Status Filter */}
         <div className="flex flex-col sm:flex-row sm:items-center gap-3 md:gap-6 border-t border-[var(--line)] pt-4">
-          <span className="font-mono text-xs uppercase tracking-widest text-[var(--muted)] font-semibold w-24 shrink-0">
+          <span className="font-mono text-xs text-[var(--muted)] font-semibold w-24 shrink-0">
             Status:
           </span>
           <div className="flex flex-wrap items-center gap-2">
@@ -163,7 +163,7 @@ export function ProjectsDirectory({ initialProjects }: { initialProjects: Projec
                 type="button"
                 aria-pressed={statusFilter === s.id}
                 onClick={() => updateFilters(cityFilter, typeFilter, s.id)}
-                className={`font-mono text-xs uppercase tracking-wider px-3 py-1.5 border-[1.5px] transition-colors cursor-pointer rounded-none ${
+                className={`font-mono text-xs   px-3 py-1.5 border-[1.5px] transition-colors cursor-pointer rounded-none ${
                   statusFilter === s.id
                     ? 'border-[var(--ink)] bg-[var(--ink)] text-[var(--bg)] font-semibold'
                     : 'border-[var(--line)] bg-[var(--bg)] text-[var(--ink)] hover:border-[var(--ink)]'
@@ -188,7 +188,7 @@ export function ProjectsDirectory({ initialProjects }: { initialProjects: Projec
         </div>
       ) : (
         <div className="border-[1.5px] border-[var(--ink)] p-12 bg-[var(--surface)] text-center space-y-4">
-          <h3 className="font-display font-extrabold uppercase text-2xl text-[var(--ink)]">
+          <h3 className="font-display font-extrabold text-2xl text-[var(--ink)]">
             No projects match these filters.
           </h3>
           <p className="font-sans text-base text-[var(--muted)] max-w-md mx-auto">

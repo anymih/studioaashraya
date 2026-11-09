@@ -10,7 +10,7 @@ export function ClaimNote({ source, sourceUrl, className = '' }: ClaimNoteProps)
   if (!source) return null
 
   return (
-    <p className={`font-mono text-[11px] text-[var(--muted)] tracking-wider mt-2 ${className}`}>
+    <p className={`font-mono text-[11px] text-[var(--muted)]  mt-2 ${className}`}>
       {sourceUrl ? (
         <a
           href={sourceUrl}

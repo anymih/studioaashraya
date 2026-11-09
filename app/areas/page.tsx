@@ -79,14 +79,14 @@ export default function AreasIndexPage() {
               >
                 <div>
                   <div className="flex items-center justify-between gap-4 mb-3">
-                    <span className="font-mono text-xs uppercase tracking-widest text-[var(--accent)] font-semibold">
+                    <span className="font-mono text-xs text-[var(--accent)] font-semibold">
                       {area.region}
                     </span>
-                    <span className="font-mono text-[10px] uppercase tracking-wider text-[var(--muted)]">
+                    <span className="font-mono text-[10px] text-[var(--muted)]">
                       {area.tier === 'primary' ? 'Primary Focus' : 'Established Work'}
                     </span>
                   </div>
-                  <h2 className="font-display font-extrabold uppercase text-2xl md:text-3xl text-[var(--ink)] mb-3">
+                  <h2 className="font-display font-extrabold text-2xl md:text-3xl text-[var(--ink)] mb-3">
                     {area.h1}
                   </h2>
                   <p className="font-sans text-base text-[var(--muted)] leading-relaxed mb-6">
@@ -97,13 +97,13 @@ export default function AreasIndexPage() {
                 <div className="pt-4 border-t border-[var(--line)] flex items-center justify-between">
                   <Link
                     href={`/areas/${area.slug}`}
-                    className="font-mono text-xs uppercase tracking-wider text-[var(--ink)] font-semibold hover:text-[var(--accent)]"
+                    className="font-mono text-xs text-[var(--ink)] font-semibold hover:text-[var(--accent)]"
                   >
                     View location details &rarr;
                   </Link>
                   <Link
                     href={`/book-a-call?src=areas_${area.slug}`}
-                    className="font-mono text-xs uppercase tracking-wider text-[var(--accent)] font-semibold hover:underline"
+                    className="font-mono text-xs text-[var(--accent)] font-semibold hover:underline"
                   >
                     Free plot check &rarr;
                   </Link>

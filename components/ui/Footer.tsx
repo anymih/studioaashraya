@@ -11,7 +11,7 @@ export default function Footer() {
         <div className="space-y-4">
           <Link
             href="/"
-            className="flex items-center gap-2.5 font-display font-extrabold text-[22px] tracking-[0.07em] uppercase leading-none text-[var(--ink)] no-underline select-none"
+            className="flex items-center gap-2.5 font-display font-extrabold text-[22px] leading-none text-[var(--ink)] no-underline select-none"
           >
             <i className="block w-3 h-3 bg-[var(--accent)] shrink-0 not-italic" aria-hidden="true" />
             <span>Studio Aashraya</span>
@@ -22,13 +22,13 @@ export default function Footer() {
           <div className="space-y-2 pt-2">
             <Link
               href="/guarantee"
-              className="block font-mono text-xs uppercase text-[var(--ink)] hover:text-[var(--accent)] transition-colors"
+              className="block font-mono text-xs text-[var(--ink)] hover:text-[var(--accent)] transition-colors"
             >
               → On-Time Guarantee & Warranty
             </Link>
             <Link
               href="/technology"
-              className="block font-mono text-xs uppercase text-[var(--ink)] hover:text-[var(--accent)] transition-colors"
+              className="block font-mono text-xs text-[var(--ink)] hover:text-[var(--accent)] transition-colors"
             >
               → Construction Technology
             </Link>
@@ -37,7 +37,7 @@ export default function Footer() {
 
         {/* Col 2: Services */}
         <div>
-          <span className="block font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--muted)] mb-4">
+          <span className="block font-mono text-[11px] text-[var(--muted)] mb-4">
             Services
           </span>
           <ul className="space-y-2.5 font-sans text-sm">
@@ -71,7 +71,7 @@ export default function Footer() {
 
         {/* Col 3: Areas & Tools */}
         <div>
-          <span className="block font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--muted)] mb-4">
+          <span className="block font-mono text-[11px] text-[var(--muted)] mb-4">
             Areas & Tools
           </span>
           <ul className="space-y-2.5 font-sans text-sm mb-6">
@@ -96,7 +96,7 @@ export default function Footer() {
               </Link>
             </li>
           </ul>
-          <span className="block font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--muted)] mb-2">
+          <span className="block font-mono text-[11px] text-[var(--muted)] mb-2">
             Client Tools
           </span>
           <ul className="space-y-2 font-sans text-sm">
@@ -115,7 +115,7 @@ export default function Footer() {
 
         {/* Col 4: Contact & Locations */}
         <div>
-          <span className="block font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--muted)] mb-4">
+          <span className="block font-mono text-[11px] text-[var(--muted)] mb-4">
             Contact
           </span>
           <div className="space-y-3 font-sans text-sm text-[var(--muted)] mb-4">
@@ -128,9 +128,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-mono text-xs text-[var(--accent)] hover:underline inline-block mt-0.5"
-                >
-                  Get directions ↗
-                </a>
+                >Get directions ↗</a>
               </div>
             </div>
 
@@ -148,9 +146,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[var(--ink)] hover:text-[var(--accent)]"
-              >
-                WhatsApp the Architect
-              </a>
+              >WhatsApp the architect</a>
             </div>
 
             <div className="flex items-center gap-2">

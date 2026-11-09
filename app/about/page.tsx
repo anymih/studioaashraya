@@ -60,19 +60,19 @@ export default function AboutPage() {
           <Breadcrumb items={breadcrumbItems} className="mb-6" />
 
           <Eyebrow text="About the Studio" className="mb-3" />
-          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold uppercase tracking-tight leading-[0.92] mb-6 max-w-4xl">
+          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[0.92] mb-6 max-w-4xl">
             The architect you deal with is the one who builds.
           </h1>
 
           {/* Promise Strip */}
           <div className="flex flex-wrap items-center gap-2 mb-8">
-            <span className="font-mono text-xs uppercase px-2.5 py-1 bg-[var(--surface)] border border-[var(--line)] text-[var(--ink)] font-semibold">
+            <span className="font-mono text-xs px-2.5 py-1 bg-[var(--surface)] border border-[var(--line)] text-[var(--ink)] font-semibold">
               On time, or 10% back
             </span>
-            <span className="font-mono text-xs uppercase px-2.5 py-1 bg-[var(--surface)] border border-[var(--line)] text-[var(--ink)] font-semibold">
+            <span className="font-mono text-xs px-2.5 py-1 bg-[var(--surface)] border border-[var(--line)] text-[var(--ink)] font-semibold">
               15-year warranty
             </span>
-            <span className="font-mono text-xs uppercase px-2.5 py-1 bg-[var(--surface)] border border-[var(--line)] text-[var(--ink)] font-semibold">
+            <span className="font-mono text-xs px-2.5 py-1 bg-[var(--surface)] border border-[var(--line)] text-[var(--ink)] font-semibold">
               IIT-led · COA-registered
             </span>
           </div>
@@ -96,29 +96,29 @@ export default function AboutPage() {
 
             {/* Fact Panel */}
             <div className="lg:col-span-5 border border-[var(--line)] bg-[var(--surface)] p-6 sm:p-8 space-y-6">
-              <span className="font-mono text-xs uppercase tracking-widest text-[var(--accent)] font-bold block">
+              <span className="font-mono text-xs text-[var(--accent)] font-bold block">
                 Studio Facts
               </span>
 
               <div className="divide-y divide-[var(--line)] font-sans text-sm">
                 <div className="py-3">
-                  <span className="font-mono text-xs uppercase text-[var(--muted)] block">Qualification</span>
+                  <span className="font-mono text-xs text-[var(--muted)] block">Qualification</span>
                   <span className="font-semibold text-[var(--ink)]">B.Arch, IIT BHU Varanasi (2024)</span>
                 </div>
                 <div className="py-3">
-                  <span className="font-mono text-xs uppercase text-[var(--muted)] block">Registration</span>
+                  <span className="font-mono text-xs text-[var(--muted)] block">Registration</span>
                   <span className="font-semibold text-[var(--ink)]">COA-registered architect</span>
                 </div>
                 <div className="py-3">
-                  <span className="font-mono text-xs uppercase text-[var(--muted)] block">Specialization</span>
+                  <span className="font-mono text-xs text-[var(--muted)] block">Specialization</span>
                   <span className="font-semibold text-[var(--ink)]">Data Science for AEC certificate</span>
                 </div>
                 <div className="py-3">
-                  <span className="font-mono text-xs uppercase text-[var(--muted)] block">Track Record</span>
+                  <span className="font-mono text-xs text-[var(--muted)] block">Track Record</span>
                   <span className="font-semibold text-[var(--ink)]">50+ projects designed · 30+ constructed</span>
                 </div>
                 <div className="py-3">
-                  <span className="font-mono text-xs uppercase text-[var(--muted)] block">Primary Office</span>
+                  <span className="font-mono text-xs text-[var(--muted)] block">Primary Office</span>
                   <span className="font-semibold text-[var(--ink)]">{siteConfig.address}</span>
                 </div>
               </div>
@@ -133,7 +133,7 @@ export default function AboutPage() {
         <section className="max-w-6xl mx-auto px-4 md:px-6 py-16 md:py-20">
           <div className="mb-10">
             <Eyebrow text="Principles" className="mb-2" />
-            <h2 className="font-display text-3xl md:text-4xl font-extrabold uppercase tracking-tight">
+            <h2 className="font-display text-3xl md:text-4xl font-extrabold">
               How we work
             </h2>
           </div>

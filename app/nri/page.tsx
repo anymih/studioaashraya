@@ -88,7 +88,7 @@ export default function NriPage() {
         <Breadcrumb items={breadcrumbItems} className="mb-6" />
         <div className="max-w-4xl">
           <Eyebrow text="For NRI families" className="mb-3" />
-          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold uppercase tracking-tight leading-[0.92] mb-6">
+          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[0.92] mb-6">
             Build in India without flying in for every decision.
           </h1>
           <p className="font-sans text-lg md:text-xl text-[var(--muted)] leading-relaxed">
@@ -105,7 +105,7 @@ export default function NriPage() {
         <div className="max-w-6xl mx-auto px-4 md:px-6">
           <div className="mb-10">
             <Eyebrow text="Reporting System" className="mb-2" />
-            <h2 className="font-display text-3xl md:text-4xl font-extrabold uppercase">
+            <h2 className="font-display text-3xl md:text-4xl font-extrabold">
               What you receive
             </h2>
           </div>
@@ -114,7 +114,7 @@ export default function NriPage() {
             <ol className="divide-y divide-[var(--line)] list-none p-0 m-0">
               {deliverables.map((item, idx) => (
                 <li key={idx} className="py-5 flex items-start gap-4">
-                  <span className="font-mono text-xs font-semibold text-[var(--accent)] tracking-widest pt-0.5 shrink-0">
+                  <span className="font-mono text-xs font-semibold text-[var(--accent)] pt-0.5 shrink-0">
                     0{idx + 1}
                   </span>
                   <span className="font-sans text-base md:text-lg font-medium text-[var(--ink)] leading-snug">
@@ -132,20 +132,20 @@ export default function NriPage() {
         <div className="max-w-6xl mx-auto px-4 md:px-6">
           <div className="mb-10">
             <Eyebrow text="Schedule" className="mb-2" />
-            <h2 className="font-display text-3xl md:text-4xl font-extrabold uppercase">
+            <h2 className="font-display text-3xl md:text-4xl font-extrabold">
               Reporting rhythm
             </h2>
           </div>
 
           <div className="border-[1.5px] border-[var(--ink)] bg-[var(--surface)] overflow-hidden">
-            <div className="grid grid-cols-1 md:grid-cols-12 border-b-[1.5px] border-[var(--ink)] bg-[var(--wash)] font-mono text-xs uppercase tracking-wider font-semibold text-[var(--muted)] p-4 sm:p-5">
+            <div className="grid grid-cols-1 md:grid-cols-12 border-b-[1.5px] border-[var(--ink)] bg-[var(--wash)] font-mono text-xs font-semibold text-[var(--muted)] p-4 sm:p-5">
               <div className="md:col-span-4">Cadence</div>
               <div className="md:col-span-8 mt-1 md:mt-0">Reporting Deliverable</div>
             </div>
             <div className="divide-y divide-[var(--line)]">
               {rhythms.map((row, idx) => (
                 <div key={idx} className="grid grid-cols-1 md:grid-cols-12 p-4 sm:p-5 items-baseline">
-                  <div className="md:col-span-4 font-display font-extrabold text-xl uppercase tracking-[0.01em] text-[var(--ink)]">
+                  <div className="md:col-span-4 font-display font-extrabold text-xl text-[var(--ink)]">
                     {row.cadence}
                   </div>
                   <div className="md:col-span-8 font-sans text-base text-[var(--muted)] leading-relaxed mt-1 md:mt-0">
@@ -167,7 +167,7 @@ export default function NriPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-16">
             <div className="lg:col-span-7">
               <Eyebrow text="Prerequisites" className="mb-2" />
-              <h2 className="font-display text-3xl font-extrabold uppercase mb-4">
+              <h2 className="font-display text-3xl font-extrabold mb-4">
                 Before you start
               </h2>
               <ul className="space-y-4 border-t-[1.5px] border-[var(--ink)] pt-6 list-none p-0">
@@ -184,7 +184,7 @@ export default function NriPage() {
 
             <div className="lg:col-span-5 p-8 border border-[var(--line)] bg-[var(--band)] text-[var(--on-band)]">
               <ShieldCheck className="w-8 h-8 text-[var(--accent)] mb-3" />
-              <h3 className="font-display text-2xl font-bold uppercase mb-2">
+              <h3 className="font-display text-2xl font-bold mb-2">
                 Backed by the guarantee
               </h3>
               <p className="font-sans text-sm text-[var(--band-muted)] leading-relaxed mb-4">
@@ -192,7 +192,7 @@ export default function NriPage() {
               </p>
               <Link
                 href="/guarantee"
-                className="font-mono text-xs uppercase tracking-wider text-[var(--accent)] hover:underline inline-block font-semibold"
+                className="font-mono text-xs text-[var(--accent)] hover:underline inline-block font-semibold"
               >
                 Read guarantee details →
               </Link>
@@ -203,7 +203,7 @@ export default function NriPage() {
           <div>
             <div className="mb-8">
               <Eyebrow text="Questions" className="mb-2" />
-              <h2 className="font-display text-3xl font-bold uppercase">
+              <h2 className="font-display text-3xl font-bold">
                 Frequently asked questions
               </h2>
             </div>

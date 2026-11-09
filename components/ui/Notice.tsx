@@ -24,7 +24,7 @@ export function Notice({
     >
       <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-3">
         <div>
-          <span className="block font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--muted)] mb-1">
+          <span className="block font-mono text-[11px] text-[var(--muted)] mb-1">
             {label}
           </span>
           <p className="font-sans text-sm text-[var(--ink)] leading-relaxed">{children}</p>
@@ -32,7 +32,7 @@ export function Notice({
         {actionText && actionHref && (
           <Link
             href={actionHref}
-            className="inline-flex items-center gap-1 font-mono text-xs uppercase tracking-[0.08em] text-[var(--accent)] hover:text-[var(--accent-hi)] font-semibold shrink-0 underline underline-offset-4"
+            className="inline-flex items-center gap-1 font-mono text-xs text-[var(--accent)] hover:text-[var(--accent-hi)] font-semibold shrink-0 underline underline-offset-4"
           >
             {actionText} &rarr;
           </Link>

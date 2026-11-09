@@ -104,7 +104,7 @@ export function CtaBand({
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-6 md:gap-12">
         <div className="max-w-2xl">
           <h2
-            className={`font-display text-3xl md:text-4xl font-bold tracking-tight uppercase leading-[0.95] mb-3 ${
+            className={`font-display text-3xl md:text-4xl font-bold   leading-[0.95] mb-3 ${
               dark ? 'text-[var(--on-band)]' : 'text-[var(--ink)]'
             }`}
           >
@@ -123,7 +123,7 @@ export function CtaBand({
           <Link
             href={`/book-a-call?src=${encodeURIComponent(finalId)}`}
             onClick={handlePrimaryClick}
-            className="inline-flex items-center justify-center gap-2 px-6 py-4 bg-[var(--accent)] text-[var(--on-accent)] font-sans font-semibold text-[15px] leading-none uppercase tracking-wider hover:opacity-95 transition-opacity min-h-[48px] select-none text-center"
+            className="inline-flex items-center justify-center gap-2 px-6 py-4 bg-[var(--accent)] text-[var(--on-accent)] font-sans font-semibold text-[15px] leading-none hover:opacity-95 transition-opacity min-h-[48px] select-none text-center"
           >
             <span>{finalButtonText}</span>
             <ArrowRight className="w-4 h-4" />

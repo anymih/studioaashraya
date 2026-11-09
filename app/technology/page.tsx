@@ -144,7 +144,7 @@ export default function TechnologyPage() {
           <Breadcrumb items={breadcrumbItems} className="mb-6" />
 
           <Eyebrow text="Technology" className="mb-3" />
-          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold uppercase tracking-tight leading-[0.92] mb-6 max-w-4xl">
+          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[0.92] mb-6 max-w-4xl">
             Built with instruments, not opinions.
           </h1>
           <p className="font-sans text-lg md:text-xl text-[var(--muted)] max-w-3xl leading-relaxed">
@@ -178,10 +178,10 @@ export default function TechnologyPage() {
 
           {/* Scheduling Note */}
           <div className="p-8 border border-[var(--line)] bg-[var(--surface)] mb-12">
-            <span className="block font-mono text-xs uppercase tracking-widest text-[var(--accent)] mb-2">
+            <span className="block font-mono text-xs text-[var(--accent)] mb-2">
               Critical Path Scheduling
             </span>
-            <h3 className="font-display text-2xl font-bold uppercase mb-3">
+            <h3 className="font-display text-2xl font-bold mb-3">
               We plan the build on a critical path schedule.
             </h3>
             <p className="font-sans text-base text-[var(--muted)] leading-relaxed">
@@ -191,10 +191,10 @@ export default function TechnologyPage() {
 
           {/* Measurement Section */}
           <div id="measurement" className="p-8 border border-[var(--line)] bg-[var(--surface)] mb-12 scroll-mt-24">
-            <span className="block font-mono text-xs uppercase tracking-widest text-[var(--accent)] mb-2">
+            <span className="block font-mono text-xs text-[var(--accent)] mb-2">
               Measured Performance
             </span>
-            <h3 className="font-display text-2xl font-bold uppercase mb-3">
+            <h3 className="font-display text-2xl font-bold mb-3">
               Thermal and Energy Verification
             </h3>
             <p className="font-sans text-base text-[var(--muted)] leading-relaxed mb-6">
@@ -203,7 +203,7 @@ export default function TechnologyPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="p-4 border border-[var(--line)] bg-[var(--bg)]">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="font-mono text-xs uppercase text-[var(--muted)]">Thermal envelope</span>
+                  <span className="font-mono text-xs text-[var(--muted)]">Thermal envelope</span>
                   <EvidenceLabel type="measured" methodLink="/technology#measurement" />
                 </div>
                 <div className="font-display text-2xl font-bold text-[var(--ink)]">
@@ -216,7 +216,7 @@ export default function TechnologyPage() {
 
               <div className="p-4 border border-[var(--line)] bg-[var(--bg)]">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="font-mono text-xs uppercase text-[var(--muted)]">Energy consumption</span>
+                  <span className="font-mono text-xs text-[var(--muted)]">Energy consumption</span>
                   <EvidenceLabel type="measured" methodLink="/technology#measurement" />
                 </div>
                 <div className="font-display text-2xl font-bold text-[var(--ink)]">
@@ -231,10 +231,10 @@ export default function TechnologyPage() {
 
           {/* Structure and Soil Note */}
           <div className="p-8 border border-[var(--line)] bg-[var(--surface)]">
-            <span className="block font-mono text-xs uppercase tracking-widest text-[var(--accent)] mb-2">
+            <span className="block font-mono text-xs text-[var(--accent)] mb-2">
               Structure & Seismic Safety
             </span>
-            <h3 className="font-display text-2xl font-bold uppercase mb-3">
+            <h3 className="font-display text-2xl font-bold mb-3">
               Seismic Zone IV & Soil Investigation
             </h3>
             <p className="font-sans text-base text-[var(--muted)] leading-relaxed">

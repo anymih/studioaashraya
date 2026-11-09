@@ -34,7 +34,7 @@ export function OgImage({
             fontSize: '28px',
             fontWeight: 800,
             letterSpacing: '0.08em',
-            textTransform: 'uppercase',
+            textTransform: '',
           }}
         >
           Studio Aashraya
@@ -47,7 +47,7 @@ export function OgImage({
           style={{
             fontSize: '64px',
             fontWeight: 800,
-            textTransform: 'uppercase',
+            textTransform: '',
             lineHeight: 1.05,
             margin: 0,
             letterSpacing: '0.02em',
@@ -78,7 +78,7 @@ export function OgImage({
           fontSize: '14px',
           fontWeight: 600,
           letterSpacing: '0.1em',
-          textTransform: 'uppercase',
+          textTransform: '',
           color: '#141A17',
         }}
       >

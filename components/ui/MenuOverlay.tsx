@@ -88,7 +88,7 @@ export function MenuOverlay({ isOpen, onClose, navLinks }: MenuOverlayProps) {
             trackCTAClick('menu-sheet', pathname, 'menu_sheet')
             onClose()
           }}
-          className="w-full h-[52px] bg-[var(--accent)] text-[var(--on-accent)] font-sans font-semibold text-sm uppercase tracking-wider flex items-center justify-center gap-2 select-none active:bg-[var(--ink)]"
+          className="w-full h-[52px] bg-[var(--accent)] text-[var(--on-accent)] font-sans font-semibold text-sm flex items-center justify-center gap-2 select-none active:bg-[var(--ink)]"
         >
           <span>Start your project</span>
           <ArrowRight className="w-4 h-4" />
@@ -101,7 +101,7 @@ export function MenuOverlay({ isOpen, onClose, navLinks }: MenuOverlayProps) {
               trackPhoneClick(pathname, 'menu_sheet')
               onClose()
             }}
-            className="h-[48px] border border-[var(--line)] flex items-center justify-center gap-2 font-mono text-xs uppercase text-[var(--ink)] select-none hover:bg-[var(--wash)]"
+            className="h-[48px] border border-[var(--line)] flex items-center justify-center gap-2 font-mono text-xs text-[var(--ink)] select-none hover:bg-[var(--wash)]"
           >
             <Phone className="w-4 h-4 text-[var(--accent)]" />
             <span>Call</span>
@@ -115,7 +115,7 @@ export function MenuOverlay({ isOpen, onClose, navLinks }: MenuOverlayProps) {
               trackWhatsAppClick(pathname, 'menu_sheet')
               onClose()
             }}
-            className="h-[48px] border border-[var(--line)] flex items-center justify-center gap-2 font-mono text-xs uppercase text-[var(--ink)] select-none hover:bg-[var(--wash)]"
+            className="h-[48px] border border-[var(--line)] flex items-center justify-center gap-2 font-mono text-xs text-[var(--ink)] select-none hover:bg-[var(--wash)]"
           >
             <MessageSquare className="w-4 h-4 text-[#25D366]" />
             <span>WhatsApp</span>

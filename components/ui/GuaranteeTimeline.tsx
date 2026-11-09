@@ -17,7 +17,7 @@ export function GuaranteeTimeline({ className = '' }: GuaranteeTimelineProps) {
       className={`border-[1.5px] border-[var(--ink)] bg-[var(--surface)] p-6 sm:p-8 ${className}`}
       aria-label="Guarantee and warranty milestone timeline"
     >
-      <div className="font-mono text-xs uppercase tracking-wider text-[var(--muted)] mb-6">
+      <div className="font-mono text-xs text-[var(--muted)] mb-6">
         Agreement Milestone Timeline
       </div>
 
@@ -39,7 +39,7 @@ export function GuaranteeTimeline({ className = '' }: GuaranteeTimelineProps) {
                   }`}
                   aria-hidden="true"
                 />
-                <span className="font-display font-bold text-lg uppercase tracking-tight text-[var(--ink)] block mb-1">
+                <span className="font-display font-bold text-lg text-[var(--ink)] block mb-1">
                   {step.label}
                 </span>
                 <span className="font-mono text-[11px] text-[var(--muted)] max-w-[160px] leading-tight block">
@@ -63,7 +63,7 @@ export function GuaranteeTimeline({ className = '' }: GuaranteeTimelineProps) {
               }`}
               aria-hidden="true"
             />
-            <div className="font-display font-bold text-lg uppercase tracking-tight text-[var(--ink)] mb-0.5">
+            <div className="font-display font-bold text-lg text-[var(--ink)] mb-0.5">
               {step.label}
             </div>
             <div className="font-mono text-xs text-[var(--muted)]">

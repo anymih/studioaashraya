@@ -59,15 +59,15 @@ export function SectionSheet({ className = '' }: { className?: string }) {
       </svg>
       <figcaption className="grid grid-cols-1 sm:grid-cols-3 border-t-[1.5px] border-[var(--ink)]">
         <div className="p-2.5 sm:p-3 border-b sm:border-b-0 sm:border-r border-[var(--line)] min-w-0">
-          <span className="block font-mono text-[10px] uppercase tracking-wider text-[var(--muted)]">Studio</span>
+          <span className="block font-mono text-[10px] text-[var(--muted)]">Studio</span>
           <b className="block font-sans font-medium text-[13px] text-[var(--ink)] mt-0.5">Aashraya</b>
         </div>
         <div className="p-2.5 sm:p-3 border-b sm:border-b-0 sm:border-r border-[var(--line)] min-w-0">
-          <span className="block font-mono text-[10px] uppercase tracking-wider text-[var(--muted)]">Drawing</span>
+          <span className="block font-mono text-[10px] text-[var(--muted)]">Drawing</span>
           <b className="block font-sans font-medium text-[13px] text-[var(--ink)] mt-0.5">Typical section, not to scale</b>
         </div>
         <div className="p-2.5 sm:p-3 min-w-0">
-          <span className="block font-mono text-[10px] uppercase tracking-wider text-[var(--muted)]">Rule</span>
+          <span className="block font-mono text-[10px] text-[var(--muted)]">Rule</span>
           <b className="block font-sans font-medium text-[13px] text-[var(--ink)] mt-0.5">Check first, then pour</b>
         </div>
       </figcaption>

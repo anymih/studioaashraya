@@ -31,10 +31,10 @@ export function StartBand({
     >
       <div className="max-w-[1200px] mx-auto px-4 md:px-6">
         <div className="max-w-3xl">
-          <h2 className="font-display font-extrabold text-[clamp(36px,6vw,72px)] leading-[0.92] uppercase tracking-tight text-[var(--on-accent)] mb-3">
+          <h2 className="font-display font-extrabold text-[clamp(36px,6vw,72px)] leading-[0.92] text-[var(--on-accent)] mb-3">
             {headline}
           </h2>
-          <p className="font-mono text-xs sm:text-sm uppercase tracking-widest text-[var(--on-accent)]/90 mb-8">
+          <p className="font-mono text-xs sm:text-sm text-[var(--on-accent)]/90 mb-8">
             {promiseLine}
           </p>
         </div>
@@ -43,7 +43,7 @@ export function StartBand({
           <Link
             href={`/book-a-call?src=${encodeURIComponent(ctaId)}`}
             onClick={() => trackCTAClick(ctaId, pathname, 'start_band')}
-            className="inline-flex items-center justify-center gap-2 px-7 py-4 bg-[var(--on-accent)] text-[var(--accent)] font-sans font-bold text-sm sm:text-base uppercase tracking-wider hover:bg-[var(--ink)] hover:text-[var(--bg)] transition-colors select-none text-center min-h-[48px]"
+            className="inline-flex items-center justify-center gap-2 px-7 py-4 bg-[var(--on-accent)] text-[var(--accent)] font-sans font-bold text-sm sm:text-base hover:bg-[var(--ink)] hover:text-[var(--bg)] transition-colors select-none text-center min-h-[48px]"
           >
             <span>{buttonText}</span>
             <ArrowRight className="w-4 h-4" />
@@ -54,7 +54,7 @@ export function StartBand({
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => trackWhatsAppClick(pathname, ctaId)}
-            className="inline-flex items-center justify-center gap-2 px-6 py-4 border-[1.5px] border-[var(--on-accent)] bg-transparent text-[var(--on-accent)] font-mono text-xs uppercase tracking-wider hover:bg-[var(--on-accent)]/10 transition-colors select-none min-h-[48px]"
+            className="inline-flex items-center justify-center gap-2 px-6 py-4 border-[1.5px] border-[var(--on-accent)] bg-transparent text-[var(--on-accent)] font-mono text-xs hover:bg-[var(--on-accent)]/10 transition-colors select-none min-h-[48px]"
           >
             <MessageSquare className="w-4 h-4 text-[var(--on-accent)]" />
             <span>WhatsApp</span>
@@ -63,7 +63,7 @@ export function StartBand({
           <a
             href={`tel:${siteConfig.phone}`}
             onClick={() => trackPhoneClick(pathname, ctaId)}
-            className="inline-flex items-center justify-center gap-2 px-6 py-4 border-[1.5px] border-[var(--on-accent)] bg-transparent text-[var(--on-accent)] font-mono text-xs uppercase tracking-wider hover:bg-[var(--on-accent)]/10 transition-colors select-none min-h-[48px]"
+            className="inline-flex items-center justify-center gap-2 px-6 py-4 border-[1.5px] border-[var(--on-accent)] bg-transparent text-[var(--on-accent)] font-mono text-xs hover:bg-[var(--on-accent)]/10 transition-colors select-none min-h-[48px]"
           >
             <Phone className="w-4 h-4 text-[var(--on-accent)]" />
             <span>Call {siteConfig.phoneDisplay}</span>

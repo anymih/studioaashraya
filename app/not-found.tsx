@@ -12,13 +12,13 @@ export default function NotFound() {
   return (
     <main className="w-full min-h-[70vh] flex flex-col items-center justify-center px-4 py-20 text-center bg-[var(--bg)] text-[var(--ink)]">
       <div className="max-w-md border border-[var(--ink)] bg-[var(--surface)] p-8 sm:p-12">
-        <span className="font-mono text-xs uppercase tracking-widest text-[var(--accent)] block mb-2">
+        <span className="font-mono text-xs text-[var(--accent)] block mb-2">
           Error 404
         </span>
-        <h1 className="font-display text-6xl sm:text-7xl font-extrabold uppercase tracking-tight leading-none text-[var(--ink)] mb-4">
+        <h1 className="font-display text-6xl sm:text-7xl font-extrabold leading-none text-[var(--ink)] mb-4">
           404
         </h1>
-        <h2 className="font-display text-2xl font-bold uppercase text-[var(--ink)] mb-3">
+        <h2 className="font-display text-2xl font-bold text-[var(--ink)] mb-3">
           Drawing Not Found
         </h2>
         <p className="font-sans text-sm text-[var(--muted)] leading-relaxed mb-8">

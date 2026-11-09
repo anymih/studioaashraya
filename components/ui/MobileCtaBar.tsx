@@ -53,7 +53,7 @@ export function MobileCtaBar() {
       <a
         href={`tel:${siteConfig.phone}`}
         onClick={() => trackPhoneClick(pathname, 'mobile_cta_bar')}
-        className={`${isBookPage ? 'w-1/2' : 'w-[25%]'} flex items-center justify-center gap-1.5 border-r border-[var(--line)] font-mono text-xs uppercase tracking-wider text-[var(--ink)] active:bg-[var(--wash)] select-none min-h-[48px]`}
+        className={`${isBookPage ? 'w-1/2' : 'w-[25%]'} flex items-center justify-center gap-1.5 border-r border-[var(--line)] font-mono text-xs   text-[var(--ink)] active:bg-[var(--wash)] select-none min-h-[48px]`}
       >
         <Phone className="w-4 h-4 text-[var(--accent)]" />
         <span>Call</span>
@@ -65,7 +65,7 @@ export function MobileCtaBar() {
         target="_blank"
         rel="noopener noreferrer"
         onClick={() => trackWhatsAppClick(pathname, 'mobile_cta_bar')}
-        className={`${isBookPage ? 'w-1/2' : 'w-[25%]'} flex items-center justify-center gap-1.5 ${!isBookPage ? 'border-r border-[var(--line)]' : ''} font-mono text-xs uppercase tracking-wider text-[var(--ink)] active:bg-[var(--wash)] select-none min-h-[48px]`}
+        className={`${isBookPage ? 'w-1/2' : 'w-[25%]'} flex items-center justify-center gap-1.5 ${!isBookPage ? 'border-r border-[var(--line)]' : ''} font-mono text-xs   text-[var(--ink)] active:bg-[var(--wash)] select-none min-h-[48px]`}
       >
         <MessageSquare className="w-4 h-4 text-[#25D366]" />
         <span>WhatsApp</span>
@@ -76,7 +76,7 @@ export function MobileCtaBar() {
         <Link
           href="/book-a-call?src=bar-start"
           onClick={() => trackCTAClick('bar-start', pathname, 'mobile_cta_bar')}
-          className="w-[50%] flex items-center justify-center px-2 bg-[var(--accent)] text-[var(--on-accent)] font-sans font-semibold text-xs sm:text-sm uppercase tracking-wider active:bg-[var(--ink)] select-none text-center min-h-[48px]"
+          className="w-[50%] flex items-center justify-center px-2 bg-[var(--accent)] text-[var(--on-accent)] font-sans font-semibold text-xs sm:text-sm active:bg-[var(--ink)] select-none text-center min-h-[48px]"
         >
           <span>Start your project</span>
         </Link>

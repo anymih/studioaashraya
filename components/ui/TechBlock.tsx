@@ -49,7 +49,7 @@ export function TechBlock({
         aria-expanded={isOpen}
         className="md:hidden w-full min-h-[48px] p-5 flex items-center justify-between text-left border-b border-[var(--line)] bg-[var(--wash)]/50"
       >
-        <span className="font-display font-extrabold text-xl uppercase tracking-tight text-[var(--ink)]">
+        <span className="font-display font-extrabold text-xl text-[var(--ink)]">
           {title}
         </span>
         <span className="font-mono text-sm text-[var(--accent)] shrink-0 ml-3">
@@ -70,41 +70,41 @@ export function TechBlock({
           {/* Facts grid */}
           <div className={imageComponent ? 'lg:col-span-7 space-y-5' : 'lg:col-span-12 space-y-5'}>
             <div className="hidden md:block border-b border-[var(--line)] pb-3 mb-2">
-              <span className="font-mono text-xs uppercase tracking-wider text-[var(--accent)] font-semibold block mb-1">
+              <span className="font-mono text-xs text-[var(--accent)] font-semibold block mb-1">
                 Instrument
               </span>
-              <h3 className="font-display font-extrabold text-3xl uppercase tracking-tight text-[var(--ink)]">
+              <h3 className="font-display font-extrabold text-3xl text-[var(--ink)]">
                 {title}
               </h3>
             </div>
 
             <div className="space-y-4 font-sans text-sm sm:text-base leading-relaxed">
               <div>
-                <span className="font-mono text-xs uppercase tracking-wider text-[var(--muted)] font-semibold block mb-1">
+                <span className="font-mono text-xs text-[var(--muted)] font-semibold block mb-1">
                   What it is
                 </span>
                 <p className="text-[var(--ink)]">{whatItIs}</p>
               </div>
 
               <div>
-                <span className="font-mono text-xs uppercase tracking-wider text-[var(--accent)] font-semibold block mb-1">
+                <span className="font-mono text-xs text-[var(--accent)] font-semibold block mb-1">
                   What it catches
                 </span>
                 <p className="text-[var(--ink)] font-medium">{whatItCatches}</p>
               </div>
 
               <div>
-                <span className="font-mono text-xs uppercase tracking-wider text-[var(--muted)] font-semibold block mb-1">
+                <span className="font-mono text-xs text-[var(--muted)] font-semibold block mb-1">
                   What you receive
                 </span>
                 <p className="text-[var(--ink)]">{whatYouReceive}</p>
               </div>
 
               <div>
-                <span className="font-mono text-xs uppercase tracking-wider text-[var(--muted)] font-semibold block mb-1">
+                <span className="font-mono text-xs text-[var(--muted)] font-semibold block mb-1">
                   Used at
                 </span>
-                <span className="font-mono text-xs uppercase px-2 py-1 bg-[var(--wash)] border border-[var(--line)] text-[var(--ink)] font-semibold inline-block">
+                <span className="font-mono text-xs px-2 py-1 bg-[var(--wash)] border border-[var(--line)] text-[var(--ink)] font-semibold inline-block">
                   {usedAt}
                 </span>
               </div>

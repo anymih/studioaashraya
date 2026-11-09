@@ -125,10 +125,10 @@ export default async function AreaDetailPage({ params }: AreaPageProps) {
         <div className="wrap">
           <Breadcrumb items={breadcrumbItems} className="mb-8" />
           <div className="max-w-3xl">
-            <span className="font-mono text-xs uppercase tracking-widest text-[var(--accent)] font-semibold block mb-3">
+            <span className="font-mono text-xs text-[var(--accent)] font-semibold block mb-3">
               Regional Studio · {area.region}
             </span>
-            <h1 className="font-display font-extrabold uppercase text-[clamp(36px,5vw,72px)] leading-[0.95] text-[var(--ink)] mb-6 text-balance">
+            <h1 className="font-display font-extrabold text-[clamp(36px,5vw,72px)] leading-[0.95] text-[var(--ink)] mb-6 text-balance">
               {area.h1}
             </h1>
             <p className="font-sans text-lg md:text-xl leading-relaxed text-[var(--muted)]">
@@ -146,24 +146,22 @@ export default async function AreaDetailPage({ params }: AreaPageProps) {
         <section className="py-12 border-b border-[var(--line)] bg-[var(--wash)]">
           <div className="wrap">
             <div className="border-[1.5px] border-[var(--ink)] bg-[var(--surface)] p-6 sm:p-8 max-w-2xl">
-              <span className="font-mono text-xs uppercase tracking-widest text-[var(--accent)] font-semibold block mb-2">
+              <span className="font-mono text-xs text-[var(--accent)] font-semibold block mb-2">
                 Gurugram Office
               </span>
-              <h2 className="font-display font-extrabold uppercase text-2xl text-[var(--ink)] mb-4">
+              <h2 className="font-display font-extrabold text-2xl text-[var(--ink)] mb-4">
                 Studio Aashraya Gurugram
               </h2>
               <address className="not-italic font-sans text-base text-[var(--muted)] mb-4 leading-relaxed">
                 {siteConfig.address}
               </address>
-              <div className="flex flex-wrap items-center gap-4 pt-2 font-mono text-xs uppercase tracking-wider">
+              <div className="flex flex-wrap items-center gap-4 pt-2 font-mono text-xs">
                 <a
                   href={siteConfig.mapsLink}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-4 py-2 border border-[var(--ink)] bg-[var(--ink)] text-[var(--bg)] font-semibold hover:bg-[var(--accent)] hover:border-[var(--accent)] transition-colors"
-                >
-                  Get directions &rarr;
-                </a>
+                >Get directions &rarr;</a>
                 <a
                   href={`tel:${siteConfig.phone}`}
                   className="text-[var(--ink)] font-semibold hover:text-[var(--accent)] underline"
@@ -182,10 +180,10 @@ export default async function AreaDetailPage({ params }: AreaPageProps) {
           <div className="max-w-3xl space-y-12">
             {area.sections.map((sec, idx) => (
               <div key={idx} className={idx > 0 ? 'border-t border-[var(--line)] pt-10' : ''}>
-                <span className="font-mono text-xs uppercase tracking-widest text-[var(--accent)] font-semibold block mb-2">
+                <span className="font-mono text-xs text-[var(--accent)] font-semibold block mb-2">
                   0{idx + 1} / Regional Context
                 </span>
-                <h2 className="font-display font-extrabold uppercase text-2xl md:text-3xl text-[var(--ink)] mb-3">
+                <h2 className="font-display font-extrabold text-2xl md:text-3xl text-[var(--ink)] mb-3">
                   {sec.title}
                 </h2>
                 <p className="font-sans text-base md:text-lg leading-relaxed text-[var(--muted)]">
@@ -199,8 +197,8 @@ export default async function AreaDetailPage({ params }: AreaPageProps) {
                       href="/calculators/site-feasibility"
                       className="p-4 border border-[var(--line)] bg-[var(--bg)] hover:border-[var(--ink)] transition-colors group"
                     >
-                      <span className="font-mono text-[10px] uppercase tracking-wider text-[var(--muted)] block mb-1">Tool 01</span>
-                      <span className="font-display font-extrabold text-sm uppercase text-[var(--ink)] group-hover:text-[var(--accent)]">
+                      <span className="font-mono text-[10px] text-[var(--muted)] block mb-1">Tool 01</span>
+                      <span className="font-display font-extrabold text-sm text-[var(--ink)] group-hover:text-[var(--accent)]">
                         Site Feasibility &rarr;
                       </span>
                     </Link>
@@ -208,8 +206,8 @@ export default async function AreaDetailPage({ params }: AreaPageProps) {
                       href="/calculators/far-checker"
                       className="p-4 border border-[var(--line)] bg-[var(--bg)] hover:border-[var(--ink)] transition-colors group"
                     >
-                      <span className="font-mono text-[10px] uppercase tracking-wider text-[var(--muted)] block mb-1">Tool 02</span>
-                      <span className="font-display font-extrabold text-sm uppercase text-[var(--ink)] group-hover:text-[var(--accent)]">
+                      <span className="font-mono text-[10px] text-[var(--muted)] block mb-1">Tool 02</span>
+                      <span className="font-display font-extrabold text-sm text-[var(--ink)] group-hover:text-[var(--accent)]">
                         FAR Checker &rarr;
                       </span>
                     </Link>
@@ -217,8 +215,8 @@ export default async function AreaDetailPage({ params }: AreaPageProps) {
                       href="/calculators/cost-estimator"
                       className="p-4 border border-[var(--line)] bg-[var(--bg)] hover:border-[var(--ink)] transition-colors group"
                     >
-                      <span className="font-mono text-[10px] uppercase tracking-wider text-[var(--muted)] block mb-1">Tool 03</span>
-                      <span className="font-display font-extrabold text-sm uppercase text-[var(--ink)] group-hover:text-[var(--accent)]">
+                      <span className="font-mono text-[10px] text-[var(--muted)] block mb-1">Tool 03</span>
+                      <span className="font-display font-extrabold text-sm text-[var(--ink)] group-hover:text-[var(--accent)]">
                         Cost Estimator &rarr;
                       </span>
                     </Link>

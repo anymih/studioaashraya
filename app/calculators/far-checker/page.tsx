@@ -98,7 +98,7 @@ export default function FARCheckerPage() {
         <Breadcrumb items={breadcrumbItems} className="mb-6" />
 
         <Eyebrow text="Planning Tools" className="mb-3" />
-        <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold uppercase tracking-tight leading-[0.92] mb-4">
+        <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[0.92] mb-4">
           FAR & Setback Checker
         </h1>
         <p className="font-sans text-base md:text-lg text-[var(--muted)] max-w-2xl leading-relaxed mb-6">
@@ -122,13 +122,13 @@ export default function FARCheckerPage() {
       <section className="py-12 md:py-16 border-y border-[var(--line)] bg-[var(--surface)]">
         <div className="wrap max-w-xl mx-auto">
           <div className="border-[1.5px] border-[var(--ink)] bg-[var(--bg)] p-6 sm:p-8 space-y-6">
-            <h2 className="font-display font-bold uppercase text-2xl text-[var(--ink)]">
+            <h2 className="font-display font-bold text-2xl text-[var(--ink)]">
               Calculate Maximum Permissible Area
             </h2>
 
             {/* Plot Area */}
             <div>
-              <label className="block font-mono text-xs uppercase tracking-wider text-[var(--muted)] mb-2">
+              <label className="block font-mono text-xs text-[var(--muted)] mb-2">
                 Plot Area (sq ft)
               </label>
               <div className="relative">
@@ -144,7 +144,7 @@ export default function FARCheckerPage() {
 
             {/* Road width */}
             <div>
-              <label className="block font-mono text-xs uppercase tracking-wider text-[var(--muted)] mb-3">
+              <label className="block font-mono text-xs text-[var(--muted)] mb-3">
                 Road Width / Frontage Category
               </label>
               <div className="space-y-3">
@@ -192,7 +192,7 @@ export default function FARCheckerPage() {
           <div className="wrap max-w-xl mx-auto">
             <div className="border-[1.5px] border-[var(--ink)] bg-[var(--surface)] p-6 sm:p-8 space-y-6">
               <div>
-                <span className="font-mono text-xs uppercase tracking-widest text-[var(--muted)] font-semibold block mb-1">
+                <span className="font-mono text-xs text-[var(--muted)] font-semibold block mb-1">
                   Permissible Built-up Area
                 </span>
                 <div className="font-display font-extrabold text-4xl text-[var(--accent)]">
@@ -205,7 +205,7 @@ export default function FARCheckerPage() {
 
               <div className="grid grid-cols-2 gap-4 border-t border-[var(--line)] pt-4">
                 <div>
-                  <span className="font-mono text-xs uppercase tracking-wider text-[var(--muted)] block mb-1">
+                  <span className="font-mono text-xs text-[var(--muted)] block mb-1">
                     Max Ground Footprint
                   </span>
                   <p className="font-sans font-bold text-lg text-[var(--ink)]">
@@ -214,7 +214,7 @@ export default function FARCheckerPage() {
                   <span className="font-mono text-[11px] text-[var(--muted)]">({(result.coverage * 100).toFixed(0)}% coverage)</span>
                 </div>
                 <div>
-                  <span className="font-mono text-xs uppercase tracking-wider text-[var(--muted)] block mb-1">
+                  <span className="font-mono text-xs text-[var(--muted)] block mb-1">
                     Potential Height
                   </span>
                   <p className="font-sans font-bold text-lg text-[var(--ink)]">
@@ -235,7 +235,7 @@ export default function FARCheckerPage() {
       {/* FAQ Section */}
       <section className="py-16 md:py-20 border-b border-[var(--line)] bg-[var(--surface)]">
         <div className="wrap max-w-xl mx-auto">
-          <h2 className="font-display font-extrabold uppercase text-2xl sm:text-3xl text-[var(--ink)] mb-6">
+          <h2 className="font-display font-extrabold text-2xl sm:text-3xl text-[var(--ink)] mb-6">
             FAR & Setback FAQs
           </h2>
           <FarFAQ />

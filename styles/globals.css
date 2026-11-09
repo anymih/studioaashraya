@@ -100,8 +100,8 @@ body {
   background-color: var(--bg);
   color: var(--ink);
   font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
-  font-size: 16px;
-  line-height: 1.6;
+  font-size: 1.0625rem;
+  line-height: 1.65;
   -webkit-text-size-adjust: 100%;
   margin: 0;
   padding: 0;
@@ -134,43 +134,93 @@ body::before {
 
 /* Container */
 .wrap {
-  max-width: 1200px;
+  max-width: 1120px;
   margin-inline: auto;
-  padding-left: max(clamp(16px, 4vw, 40px), env(safe-area-inset-left, 0px));
-  padding-right: max(clamp(16px, 4vw, 40px), env(safe-area-inset-right, 0px));
+  padding-left: max(24px, env(safe-area-inset-left, 0px));
+  padding-right: max(24px, env(safe-area-inset-right, 0px));
 }
 
-/* Headings & typography utilities */
+@media (max-width: 639px) {
+  .wrap {
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+}
+
+/* Typography scale (F6 strict scale) */
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-display), 'Arial Narrow', Impact, sans-serif;
-  font-weight: 800;
-  text-transform: uppercase;
+  text-transform: none;
   text-wrap: balance;
-  letter-spacing: 0.005em;
+  text-align: left;
   margin: 0;
 }
 
 h1 {
-  font-size: clamp(48px, 7.2vw, 104px);
-  line-height: 0.9;
+  font-family: var(--font-display), 'Arial Narrow', Impact, sans-serif;
+  font-weight: 700;
+  font-size: clamp(2.25rem, 4.2vw, 3.5rem);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
 }
 
 h2 {
-  font-size: clamp(36px, 5.4vw, 68px);
-  line-height: 0.95;
+  font-family: var(--font-display), 'Arial Narrow', Impact, sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
 }
 
 h3 {
-  font-size: 28px;
-  line-height: 1;
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  font-weight: 600;
+  font-size: 1.25rem;
+  line-height: 1.35;
 }
 
-p, ul, ol, dl, dd, figure {
+h4, h5, h6 {
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  font-weight: 600;
+  font-size: 1.125rem;
+  line-height: 1.4;
+}
+
+p, dd {
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  font-weight: 400;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: color-mix(in srgb, var(--ink) 85%, transparent);
+  max-width: 68ch;
+  text-align: left;
   margin: 0;
 }
 
-ul, ol {
+small, caption, .text-caption {
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.45;
+  text-align: left;
+}
+
+.text-mono-figure, table td.mono, table th.mono {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.8125rem;
+}
+
+.stat-numeral {
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  font-weight: 600;
+  font-size: 2.5rem;
+  line-height: 1;
+}
+
+ul, ol, dl, figure {
+  margin: 0;
   padding: 0;
+}
+
+ul, ol {
   list-style: none;
 }
 
@@ -178,33 +228,24 @@ ul, ol {
   font-variant-numeric: tabular-nums;
 }
 
-/* Hero background grid pattern (48px) */
-.hero-grid {
-  background-image: linear-gradient(var(--grid) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-  background-size: 48px 48px;
+/* Hairline rule */
+.hairline {
+  border: 0;
+  border-top: 1px solid var(--line);
 }
 
-/* Hatched placeholder pattern */
-.hatched-pattern {
-  background-image: repeating-linear-gradient(135deg, var(--line) 0 1px, transparent 1px 12px);
-  background-color: var(--wash);
+/* Card pattern: 1px border, 24px padding, square corners, no shadow */
+.card-standard {
+  border: 1px solid var(--line);
+  padding: 24px;
+  background-color: var(--surface);
+  border-radius: 0;
+  transition: border-color 0.15s ease;
 }
 
-/* Architectural Drawing Sheet & SVG Styles */
-.s-ln { stroke: var(--ink); stroke-width: 1.5; fill: none; }
-.s-solid { fill: var(--ink); }
-.s-pad { fill: var(--surface); stroke: var(--ink); stroke-width: 1.5; }
-.s-room { fill: var(--wash); }
-.s-win { fill: var(--surface); stroke: var(--ink); stroke-width: 1.2; }
-.s-hl { stroke: var(--line); stroke-width: 1; }
-.s-dim { stroke: var(--muted); stroke-width: 1; fill: none; }
-.s-ext { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 3 3; fill: none; }
-.s-t { font-family: var(--font-mono), ui-monospace, monospace; font-weight: 500; font-size: 11px; fill: var(--muted); letter-spacing: 0.06em; }
-.s-ldr { stroke: var(--accent); stroke-width: 1.4; fill: none; }
-.s-gate { fill: var(--accent); }
-.s-gn { font-family: var(--font-mono), ui-monospace, monospace; font-weight: 600; font-size: 12px; fill: var(--on-accent); text-anchor: middle; }
-.s-gl { font-family: var(--font-mono), ui-monospace, monospace; font-weight: 500; font-size: 10.5px; fill: var(--ink); letter-spacing: 0.08em; }
+.card-standard:hover {
+  border-color: var(--ink);
+}
 
 /* Print Stylesheet */
 @media print {
