@@ -92,7 +92,7 @@ HNI and NRI buyers and their advisors check claims. One unprovable figure damage
 | 30% lower energy bills (old site) | Owner, design measures | pending | Hidden until a measured comparison exists |
 | 100% bye-law approval rate (old site) | Owner | pending | Hidden until owner confirms the wording and the denominator |
 | Indoor AQI under 25 year-round | Research 02 | removed | No evidence, no stated system |
-| 78% of luxury homes miss deadlines or suffer seepage | Research 02 | removed | Invented statistic |
+| Previous unsourced claim on luxury homes | Research 02 | removed | Invented statistic |
 | 50-year dry lifecycle waterproofing | Research 02 | removed | Not supportable |
 | Zero delays, zero compromise, zero seepage | Research 02 | removed | Absolute claims |
 | 5D BIM | Research 02 | removed | Not offered |

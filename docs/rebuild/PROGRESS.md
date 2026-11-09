@@ -3,11 +3,28 @@
 **Branch:** `rebuild/v2`  
 **Target:** `anymih/studioaashraya`  
 **Started:** 2 November 2026  
-**Latest Update:** 3 November 2026  
+**Latest Update:** 9 November 2026  
 
 ---
 
-## 1. Implementation Steps Table
+## 1. v2.2 Correction Pass (F1 to F10)
+
+| Task | Status | Commit | Verification Command | Evidence |
+|---|---|---|---|---|
+| F1 Domain and contact | done | `90f825a` | `git grep "studioaashraya\.com"`<br>`git grep "https://studioaashraya"` | 0 occurrences of `.com`; `https://studioaashraya.site` defined solely in `lib/site.ts`; contact email `studioaashraya@gmail.com` across header, footer, book-a-call, and schema. |
+| F2 SEO layouts | done | `aa915ef` | `npm run routes:check`<br>`npm run build` | Deleted stale v1 layouts; canonical URLs derived from `siteConfig.siteUrl + path`; removed obsolete keywords arrays, FAQ 24-hr claims, and hardcoded OG JPG URLs. |
+| F3 Area pages project mapping | done | `d54b398` | `npm run projects:check` | All 4 areas (Gurugram, Delhi, Patna, Almora) dynamically mapped to matching sample projects; empty area sections hidden; `projects:check` enforces validation. |
+| F4 The market figure (62% delay) | done | `9793318` | `npm run ledger:check` | Removed legacy claim; added Liases Foras 2017 62% delay claim `c.delay62` with linked source; `ClaimNote` renders source only as external link; updated home section copy. |
+| F5 Strengthen launch & ledger check | done | `ccd671d` | `npm run launch:check`<br>`npm run ledger:check` | Robust claim extraction using regex; checks fail on empty sources for owner claims and banned tokens ("Owner directed", "to be added", "lorem", banned claims); confirms failure when source emptied. |
+| F6 Strict type scale and tone | done | `759bbfb` | `git grep -rn "uppercase" app components` | Defined strict type scale (H1 Big Shoulders Display 700 sentence case; stat numerals max 2.5rem); removed all `uppercase` & `tracking-*` classes; left-aligned layout; restrained copy tone. |
+| F7 Remove eyebrows & decoration | done | `9fcaf17` | `git grep -rn "Eyebrow" app components` | Deleted `Eyebrow.tsx`, `HeroOverlay.tsx`, `SectionSheet.tsx`; badges/chips/pills converted to plain sentence-case text; flat `--surface` illustration containers; no hatch patterns. |
+| F8 Layout harmony & CTA pruning | done | `716cdd2` | `npm run cta:check` | Standardized 1120px container; home page structured into exact 10 sections; CTA links pruned to strictly min 2, max 4 per page with `?src=` query parameters. |
+| F9 Automated Playwright UI tests | done | `c2a52c1` | `npm run test:ui` | 122/122 Playwright tests passing (100% green) across all 28 routes, 2 viewports (375px mobile, 1440px desktop), 2 themes (light, dark), and stories S1–S10; 129 screenshots generated. |
+| F10 Documentation & progress log | done | `03cab91` | `npm run verify` | Updated `01_PRD.md`, `02_PAGE_SPECS.md`, `03_DESIGN_SYSTEM.md`, and `PROGRESS.md` with v2.2 decisions and truthful test counts; updated B-table (B1, B2, B13). |
+
+---
+
+## 2. Implementation Steps Table (v2.0 / v2.1 Baseline)
 
 | Step | Status | Commit | Date | Notes |
 |---|---|---|---|---|
@@ -190,6 +207,28 @@ PASS: S10 - Feasibility has coverage notice (Bihar Building Bye-laws 2014)
 Test Matrix Summary: 13/13 passed.
 ```
 
+### `npm run test:ui` (Playwright Automated UI & Story Matrix Suite)
+```text
+Running 122 tests using 8 workers
+  122 passed (100% green, 0 failed)
+
+Suite Summary:
+- Viewports: 375px (mobile) and 1440px (desktop)
+- Themes: Light and Dark
+- Routes: All 28 static and SSG routes verified (HTTP 200, no horizontal scroll, no sub-12px text, strict H1/H2 hierarchy, sentence-case)
+- Story Matrix S1–S10: 10/10 verified through automated browser interactions
+- Screenshots: 129 full-page screenshots generated in docs/rebuild/screenshots/
+```
+
+### ESLint Audit Status
+```text
+✖ 5 problems (0 errors, 5 warnings)
+  - components/site-feasibility/RuleNormalizationEditor.tsx: 1 warning (react-hooks/exhaustive-deps)
+  - lib/site-feasibility/geometry.ts: 3 warnings (unused imports/vars: PlotEdge, metersToUnit, originalArea)
+  - lib/site-feasibility/logger.ts: 1 warning (unused type: LogPayload)
+  (All 5 warnings are localized to legacy site-feasibility helper files; 0 errors across entire codebase)
+```
+
 ---
 
 ## 3. Banned Tokens and Competitor Audit
@@ -218,7 +257,7 @@ Ran regex scan across all source code (`.ts`, `.tsx`, `.css`, `.json`) excluding
 | **B10** | Founder photograph | Generated architectural drawing placeholder `about-studio` | `lib/images.tsx`, `app/about/page.tsx` |
 | **B11** | Reply time for free plot check | "2 working days" | `app/book-a-call/page.tsx`, `Notice.tsx` |
 | **B12** | Postal code 122001 | Omitted from schema graph until confirmed by owner | `app/layout.tsx` schema graph |
-| **B13** | Market figure | Replaced with Liases Foras 62% survey (2017) | lib/ledger.tsx, app/page.tsx |
+| **B13** | Market figure | Replaced with Liases Foras 62% delay survey (2017) | `lib/ledger.tsx`, `app/page.tsx` |
 | **B14** | Measurement method note | "Measured data is available on request." | `lib/measurement-note.ts`, `app/projects/[slug]/page.tsx` |
 
 ---

@@ -1,6 +1,22 @@
 # Studio Aashraya Website v2: Design System
 
-Version 2.1 · 2 November 2026
+Version 2.2 · November 2026 · Owner: Anumeh Prakhar, Principal Architect
+
+## v2.2 Corrections Pass
+- **Strict typography scale:**
+  - H1: Big Shoulders Display 700, sentence case, `clamp(2.25rem, 4.2vw, 3.5rem)`, line-height 1.1, letter-spacing -0.01em.
+  - H2: Big Shoulders Display 700, sentence case, `clamp(1.75rem, 3vw, 2.5rem)`, line-height 1.15.
+  - H3: IBM Plex Sans 600, 1.25rem.
+  - Body: IBM Plex Sans 400, 1.0625rem/1.65, colour `--ink` at 85% or muted token, max-width 68ch.
+  - Small / caption: IBM Plex Sans 0.875rem. Mono only for figures in tables, specs, and form hints, never above 0.8125rem and never below 0.75rem (12px).
+  - Stat numerals: max 2.5rem, IBM Plex Sans 600 (`.stat-numeral`).
+  - Zero `uppercase` classes, zero `tracking-wider` or `tracking-widest` across headings, paragraphs, buttons, cards, and labels. Sentence case everywhere. Left-aligned layout.
+- **Decoration purged:**
+  - Zero Eyebrow components/kicking labels across all pages.
+  - Zero decorative badges, chips, or pills. Disclosures render as plain sentence-case text (e.g. `SampleTag` is plain caption `Sample project`, `EvidenceLabel` is plain text `(simulated)` or `(measured)`).
+  - Zero decorative graphics: `SectionSheet`, `HeroOverlay`, hatch patterns, corner marks, and sheet stamps deleted. Functional diagrams (`GuaranteeTimeline`, `DashboardMock` labelled "Illustration") remain.
+  - Cards: 1px border, 24px padding, square corners, no shadow, no hover animation beyond border-colour change.
+- **CTA limits:** Min 2, max 4 `/book-a-call?src=<id>` links per page.
 
 The approved look is the mockup in `docs/rebuild/reference/studio-aashraya.html`. Port it exactly. Where this document and the mockup differ, this document is the refinement and wins.
 
@@ -70,13 +86,13 @@ Provide fallbacks: display `'Arial Narrow', Impact, sans-serif`; body `system-ui
 
 | Style | Spec |
 |---|---|
-| H1 | display 800, uppercase, `clamp(44px,8vw,112px)`, line-height .9, balance wrap. On a 375 px screen the home H1 sets in no more than five lines. |
-| H2 | display 800, uppercase, `clamp(36px,5.4vw,68px)`, line-height .95 |
-| H3 | display 800, uppercase, 28px, line-height 1 |
-| Body | sans 400, 16px, line-height 1.6, measure 60 to 65 characters |
+| H1 | display 700, sentence case, `clamp(2.25rem, 4.2vw, 3.5rem)`, line-height 1.1, letter-spacing -0.01em |
+| H2 | display 700, sentence case, `clamp(1.75rem, 3vw, 2.5rem)`, line-height 1.15 |
+| H3 | sans 600, 1.25rem (20px), line-height 1.3 |
+| Body | sans 400, 1.0625rem (17px), line-height 1.65, measure max 68 characters |
 | Lead | sans 400, `clamp(17px,1.5vw,19px)`, muted |
-| Eyebrow | mono 12px, .14em tracking, uppercase, muted |
-| Label | mono 10 to 12px, .1em tracking, uppercase |
+| Caption / Small | sans 400, 0.875rem (14px), muted |
+| Mono figures & hints | mono 400, 0.75rem to 0.8125rem (12px to 13px), tabular-nums, never uppercase |
 | Numerals in tables and stat blocks | `font-variant-numeric: tabular-nums` |
 
 ## 3. Layout
@@ -104,27 +120,27 @@ Provide fallbacks: display `'Arial Narrow', Impact, sans-serif`; body `system-ui
 | `Footer` | Promise strip (15-year warranty, on-time guarantee) with a book button; four columns per `02_PAGE_SPECS.md` section 1 (Footer); address, phone, WhatsApp and email as tappable links. Mono 12 px labels. |
 | `MobileCtaBar` (under 900 px) | Replaces the old bottom navigation. Fixed to the bottom, 56 px plus `env(safe-area-inset-bottom)`, `--bg` background, 1.5 px ink top border. Three buttons: Call (25%), WhatsApp (25%), Start your project (50%, accent fill). Min height 48 px. Behaviour in `02_PAGE_SPECS.md` section 1 (`MobileCtaBar`). Delete `components/ui/BottomNav.tsx`. |
 | `Button` | Square, 1.5 px border, 14 px 22 px padding, 15 px Plex Sans 600. Primary: accent fill with `--on-accent` text; hover turns it ink. Alt: transparent with ink border; hover fills ink. Focus: 2 px accent outline, 3 px offset. Min touch height 48 px on phones. Full width on phones when it is the only button in its block. |
-| `SectionHead` | Eyebrow, H2, optional lead. |
+| `SectionHead` | H2, optional lead (Eyebrow removed in v2.2). |
 | `CredStrip` | Four cells, display-font value at `clamp(38px,4vw,52px)`, 14 px muted label, 1 px dividers. |
 | `ThreeUp` | Top rule 1.5 px ink, three columns with 1 px dividers, H3 and short paragraph. |
 | `StageList` | Ordered list on the dark band; display numeral from a CSS counter; gate pill in `--accent-hi` with dark text. |
 | `GateRecord` | Sheet-style panel with title-block fields: Project, Gate, Date, Checked by, Items, Result. Used on Method with values shown as "—" and the caption "Sample format". |
-| `Sheet` | Figure with 1.5 px ink border, SVG body and a three-cell title block. The hero section drawing is the reference; port the SVG from the mockup into `components/sheet/SectionSheet.tsx` using token classes. |
-| `ProjectCard` | Photo 4:3 with city chip (ink fill) and status badge; below it a title-block `dl`: project (display font), type, plot, built-up, handed over. Evidence-labelled metric rows appear beneath on detail pages. |
-| `StatusBadge` | Mono 11 px chip: Built (ink fill), Under construction (accent outline), Design stage (line outline). |
-| `EvidenceLabel` | Mono 10 px tag beside a figure: "Measured" or "Simulated at design stage", with a link to the method note. |
+| `Sheet` | Figure with 1.5 px ink border, flat `--surface` illustration (SectionSheet decorative SVG removed in v2.2). |
+| `ProjectCard` | Photo 4:3 with city chip and status badge; below it a title-block `dl`: project (display font), type, plot, built-up, handed over. Flat `--surface` illustration fallback. |
+| `StatusBadge` | Plain sentence-case text: Built, Under construction, Design stage. No pill/border. |
+| `EvidenceLabel` | Plain sentence-case suffix: "(measured)" or "(simulated)" with link to method note. No pill/border. |
 | `Faq` | `details` elements, display-font question, `+` and `−` in accent mono, FAQPage JSON-LD generated from the same data. |
-| `FormField` | Label above (mono 11 px), 1.5 px ink border, 14 px padding, error text under the field in accent with an icon-free `Error:` prefix. |
-| `Notice` | 1 px line border on `--surface`, mono label, used for tool coverage notices. |
-| `Breadcrumb` | Mono 12 px, uppercase, slash separators, matches BreadcrumbList data. |
+| `FormField` | Label above (12px), 1.5 px ink border, 14 px padding, error text under the field in accent with an icon-free `Error:` prefix. |
+| `Notice` | 1 px line border on `--surface`, sentence-case label, used for tool coverage notices. |
+| `Breadcrumb` | Mono 12 px, sentence-case, slash separators, matches BreadcrumbList data. |
 | `CtaRow` | Inline prompt in display type (24 px) and one primary button. Phones: the button spans the width. CTA map in `02_PAGE_SPECS.md` section 1. |
 | `StartBand` | Full-width band filled with `--accent`, text in `--on-accent`. Headline in display type `clamp(36px,6vw,72px)`, the promise line in mono, then three buttons: book (`--on-accent` fill, `--accent` text), WhatsApp and Call (transparent, `--on-accent` border and text). Phones: buttons stack, full width. |
 | `StartPaths` | Three bordered cards, each a situation (`I own a plot`, `I live abroad`, `I have an old house`), one line, one button. Phones: stacked. The whole card is the tap target. |
 | `PromiseCard` | 1.5 px ink border on `--surface`. Large figure (`10%`, `15`) in display type `clamp(72px,12vw,160px)` in `--accent`, a title, one sentence, a mono conditions line. |
 | `GuaranteeTimeline` | SVG hairline timeline with four marks: Agreement signed, Completion date, Handover, Year 15. Orange marker at the completion date and at year 15. Vertical under 640 px. |
-| `DashboardMock` | Illustration of the client dashboard: schedule bars, four gate chips, a photo strip and a payments list, built in React from sample data, labelled `Sample data`. Square corners, token colours. |
-| `HeroOverlay` | SVG over the hero image: hairline dimension line, three numbered gate markers, mono caption. `aria-hidden`. |
-| `SampleTag` | Mono 11 px chip with an accent outline: `Sample project` or `Sample figure`. Shown in development, preview and whenever `NEXT_PUBLIC_SHOW_SAMPLE_BANNER` is `true`. |
+| `DashboardMock` | Illustration of the client dashboard: schedule bars, four gate chips, a photo strip and a payments list, built in React from sample data, labelled `Illustration`. Square corners, token colours. |
+| `HeroOverlay` | [Removed in v2.2 — decorative overlay removed]. |
+| `SampleTag` | Caption `Sample project` or `Sample figure` under title, muted body-small, no border, sentence case. Shown in development, preview and whenever `NEXT_PUBLIC_SHOW_SAMPLE_BANNER` is `true`. |
 | `SampleBanner` | Slim accent strip under the header: `Sample projects. Replace before launch.` Same flag as `SampleTag`. |
 | `CtaBand` | Logical name used in `02_PAGE_SPECS.md` for a call-to-action block: headline, one line of body copy, one button, plus Call and WhatsApp links. Renders as `CtaRow` when placed mid-page and as `StartBand` when it closes the page. Variants and copy are in `02_PAGE_SPECS.md` section 1. |
 | `ProofBar` | Ink band (`--ink` fill, `--bg` text) with five figures in display type: 30+ homes built, 50+ designed, every home on time, 15-year warranty, 10% back if late. Phones: two columns, the fifth cell spans both. Figures come from the ledger. |

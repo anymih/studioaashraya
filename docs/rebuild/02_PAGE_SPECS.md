@@ -1,5 +1,16 @@
 # Studio Aashraya Website v2: Page Specifications (Revision 2)
 
+Version 2.2 · November 2026 · Owner: Anumeh Prakhar, Principal Architect
+
+## v2.2 Corrections Pass
+- **Canonical domain:** `https://studioaashraya.site` (never .com).
+- **Contact email:** `studioaashraya@gmail.com`.
+- **Market figure:** Previous unsourced claim completely removed; replaced by Liases Foras survey, 2017 ("62% of under-construction housing projects across 50 Indian cities were delayed") through ledger claim `c.delay62`.
+- **Decoration:** All Eyebrows, decorative badges, chips, and pills are deleted across all pages. Disclosures are rendered as plain sentence-case text (e.g., SampleTag is a muted caption `Sample project`, EvidenceLabel is plain text `(simulated)` or `(measured)`).
+- **Strict type scale:** H1 Big Shoulders Display 700 sentence case; stat numerals max 2.5rem font-sans font-semibold; zero uppercase classes across the site. Left-aligned layout.
+- **CTA policy:** Minimum 2, maximum 4 `/book-a-call` CTA links per page; every CTA preserves its `?src=<id>` query parameter.
+- **Home page 10-section structure:** Exactly 10 sections in strict order: Hero, Proof strip, Problem (62% delay), How we build (8 stages, sign-off gates), Technology (10 capabilities), Guarantee, Projects (6 sample projects), NRI clients (1 paragraph, 8 deliverables), Where we work (4 regions), FAQ + final CTA band.
+
 Every string is final copy unless marked `[DATA]`. Components come from `03_DESIGN_SYSTEM.md`. Claims, guarantees and capabilities render through `lib/ledger.ts`. Contact details come from `lib/site.ts`. Image ids are defined in `05_IMAGE_BRIEFS.md`. Sample projects are defined in `06_SAMPLE_PROJECTS.ts`.
 
 `lib/site.ts` constants:
@@ -60,7 +71,6 @@ Every string is final copy unless marked `[DATA]`. Components come from `03_DESI
 **Job:** get a mobile visitor to the form. Order of persuasion: promise, proof, entry doors, the problem, the guarantee, the instruments, the method, the work, the offer.
 
 **2.1 Hero**
-- Eyebrow: `Architect and builder · Gurugram, Delhi NCR`
 - H1: `Build a home that is beautiful, <em>engineered</em>, and built to last.`
 - Lead: `IIT-led architecture and construction in Gurugram and Delhi NCR. Every home handed over on time. A 15-year warranty. If we ever miss your handover date, we pay you back 10% of the construction amount.`
 - Promise chips (3): `On time, or 10% back` · `15-year warranty` · `IIT-led · COA-registered`
@@ -71,7 +81,7 @@ Every string is final copy unless marked `[DATA]`. Components come from `03_DESI
 **2.2 Proof bar** (ink band; mobile 2 by 2 plus one full-width cell)
 `30+` homes built · `50+` projects designed · `Every home` handed over on time · `15 years` warranty · `10%` back if we are late.
 
-**2.3 Start here (three doors).** Eyebrow `Start here`. H2 `Where are you starting from?`
+**2.3 Start here (three doors).** H2 `Where are you starting from?`
 - Door 1 `svc-buildability`: `I own a plot.` `Find out what it can hold and what it will cost to build well.` Button `Check my plot` (`door-plot`).
 - Door 2 `nri-hero`: `I live abroad.` `Build in India with weekly video, scans and a live dashboard.` Button `Plan from abroad` (`door-abroad`).
 - Door 3 `svc-redevelopment`: `I have an old house.` `We survey it, then price retain, strengthen and rebuild.` Button `Survey my house` (`door-old`).
@@ -100,7 +110,7 @@ Every string is final copy unless marked `[DATA]`. Components come from `03_DESI
 - Coded graphic: `GuaranteeTimeline`.
 
 **2.6 Technology wall**
-- Eyebrow `Technology`; H2 `Built with instruments, not opinions.`
+- H2 `Built with instruments, not opinions.`
 - Lead: `Most of what goes wrong in a house is hidden behind plaster by the time anyone looks. We measure it before it is covered.`
 - Eight `TechTile`s (title, one line, mono tag with the stage where it is used), linking to `/technology#<id>`:
   1. BIM clash detection: `Structure, ducts and pipes checked against each other before the pour.`
@@ -156,7 +166,7 @@ Every string is final copy unless marked `[DATA]`. Components come from `03_DESI
 
 ## 3. Method `/method`
 
-- Eyebrow `Method`; H1 `Eight stages. Four gates.` Lead: `A gate is a written check by the architect, with instruments. Work on the next stage does not start until the gate record is signed. Clients abroad receive each gate record with photographs, a 360° scan and a walkthrough.`
+- H1 `Eight stages. Four gates.` Lead: `A gate is a written check by the architect, with instruments. Work on the next stage does not start until the gate record is signed. Clients abroad receive each gate record with photographs, a 360° scan and a walkthrough.`
 - `SectionSheet` drawing, with the gate images `gate-foundation`, `gate-structure`, `gate-waterproofing` and `gate-finishes` beside gates 1 to 4. CtaBand `method-top`.
 - Stage list on the dark band. Each stage expands to **What we do / What you receive / Checks and instruments**. `method_stage_open` fires.
 
@@ -180,7 +190,7 @@ Every string is final copy unless marked `[DATA]`. Components come from `03_DESI
 
 ## 4. Technology `/technology`
 
-- Eyebrow `Technology`; H1 `Built with instruments, not opinions.`
+- H1 `Built with instruments, not opinions.`
 - Lead: `Every technology below has a job: catch a specific failure before it is covered. The instruments for your project are listed in your agreement.`
 - CtaBand `tech-top`.
 - Each block (id for anchors, expandable on mobile): title, `What it is`, `What it catches`, `What you receive`, `Used at`. Image or graphic per block. `tech_block_open` fires.
@@ -208,7 +218,7 @@ Every string is final copy unless marked `[DATA]`. Components come from `03_DESI
 
 ## 5. Guarantee and warranty `/guarantee`
 
-- Eyebrow `Guarantee`; H1 `On time, or 10% back.` Lead: `Before work starts, your agreement fixes a handover date. If we miss it, we refund 10% of the total construction amount.`
+- H1 `On time, or 10% back.` Lead: `Before work starts, your agreement fixes a handover date. If we miss it, we refund 10% of the total construction amount.`
 - `PromiseCard` (10% and 15 years) and `GuaranteeTimeline`. CtaBand `guarantee-top`.
 - **Track record:** `Every home we have built has been handed over on time. This refund has never been needed.`
 - **How it works** (numbered, true sequence): 1. The handover date is fixed in your agreement. 2. We report progress against it every week on the dashboard. 3. If the date passes, the refund is paid as set out in the agreement.
@@ -223,7 +233,7 @@ Every string is final copy unless marked `[DATA]`. Components come from `03_DESI
 
 ## 6. NRI `/nri`
 
-- Eyebrow `For NRI families`; H1 `Build in India without flying in for every decision.` Lead: `You should be able to see your house from wherever you are. This is how.`
+- H1 `Build in India without flying in for every decision.` Lead: `You should be able to see your house from wherever you are. This is how.`
 - Image `nri-hero`. CtaBand `nri-top` (`nri`).
 - **What you receive:**
   1. A named architect as your single point of contact.
@@ -308,7 +318,7 @@ Schema: `HomeAndConstructionBusiness` with `areaServed`; BreadcrumbList.
 
 ## 10. About `/about`
 
-- Eyebrow `About`; H1 `The architect you deal with is the one who builds.`
+- H1 `The architect you deal with is the one who builds.`
 - Body 1: `Anumeh Prakhar is a COA-registered architect with a B.Arch from IIT BHU Varanasi. The studio has designed more than 50 projects and built more than 30.`
 - Body 2: `Earlier work includes private homes in Patna and Almora, port and harbour projects, and site-quality training for engineers across more than 30 sites. A certificate in data science for architecture, engineering and construction shapes how the studio measures, records and reports.`
 - Body 3: `The studio grew out of climate-responsive homes in Bihar: courtyards, shaded verandas, brick screens and thermal mass. That thinking now informs homes in Delhi NCR, where summers are hotter and winters carry smog.`

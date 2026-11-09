@@ -1,11 +1,16 @@
 # Studio Aashraya Website v2: Product Requirements Document (Revision 2)
 
-Version 2.1 · 2 November 2026 · Owner: Anumeh Prakhar, Principal Architect
+Version 2.2 · November 2026 · Owner: Anumeh Prakhar, Principal Architect
 Repository: `anymih/studioaashraya` (Next.js 16 App Router, React 19, TypeScript, Tailwind v4)
 
-Read order for the build agent: `01_PRD.md`, `03_DESIGN_SYSTEM.md`, `02_PAGE_SPECS.md`, `05_IMAGE_BRIEFS.md`, `06_SAMPLE_PROJECTS.ts`, `04_IMPLEMENTATION_PLAN.md`. Reference implementation of the approved look: `docs/rebuild/reference/studio-aashraya.html`.
-
-Revision 2 applies the owner's instructions of 2 November 2026. Where this revision and an earlier note disagree, this revision wins.
+## v2.2 Corrections Pass
+- **Canonical domain:** `https://studioaashraya.site` (never .com).
+- **Contact email:** `studioaashraya@gmail.com`.
+- **Market figure:** The previous unsourced market claim is removed everywhere; replaced by Liases Foras survey, 2017 ("62% of under-construction housing projects across 50 Indian cities were delayed").
+- **Decoration:** Eyebrows, decorative badges, chips and pills are deleted; disclosures are rendered as plain sentence-case text.
+- **Strict type scale:** H1 Big Shoulders Display 700 sentence case, clamp(2.25rem, 4.2vw, 3.5rem); stat numerals max 2.5rem font-sans font-semibold; all uppercase utilities removed across site.
+- **CTA policy:** Minimum 2, maximum 4 `/book-a-call` CTA links per page; every CTA preserves its `?src=<id>` query parameter.
+- **Home page 10-section structure:** Exactly 10 sections in strict order: Hero, Proof strip, Problem (62% delay), How we build (8 stages, sign-off gates), Technology (10 capabilities), Guarantee, Projects (6 sample projects), NRI clients (1 paragraph, 8 deliverables), Where we work (4 regions), FAQ + final CTA band.
 
 ---
 
@@ -22,7 +27,7 @@ Revision 2 applies the owner's instructions of 2 November 2026. Where this revis
 | D7 | Every home has been handed over on time (owner-attested). On-time guarantee: if the handover date written in the agreement is missed, the studio refunds 10% of the total construction amount. Conditions are in the agreement. | Owner |
 | D8 | Warranty is 15 years from handover. Scope, exclusions and claim process are in the contract. The site does not compare the warranty to any named or unnamed competitor. | Owner, with editorial wording |
 | D9 | The studio's technologies are declared live by the owner and are shown explicitly: BIM clash detection, simulation, 360° LiDAR scans, drone audits, lab-tested concrete, pulse-velocity testing, rebar scanning, flood-tested waterproofing, live dashboard. The site never says "first", "only" or "never seen before". | Owner, with editorial wording |
-| D10 | The market figure "62% of under-construction housing projects in 50 Indian cities are delayed" (Liases Foras survey, 2017) renders through ledger claim c.delay62 with its linked source. The earlier 78% claim is removed. | Owner |
+| D10 | The market figure "62% of under-construction housing projects in 50 Indian cities are delayed" (Liases Foras survey, 2017) renders through ledger claim c.delay62 with its linked source. The earlier claim is removed. | Owner |
 | D11 | Contact: **+91 94730 31016** · **C93, Old DLF Colony, Sector 14, Gurugram**. | Owner |
 | D12 | The booking form is intact. Same endpoint, fields, field names, validation, success behavior and analytics events. Restyle only, plus one label fix (section 7, R14). | Owner |
 | D13 | Calls to action appear on every page and all lead to the booking form on `/book-a-call`. | Owner |
