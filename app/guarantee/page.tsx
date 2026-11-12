@@ -2,6 +2,7 @@ import React from 'react'
 import type { Metadata } from 'next'
 import { siteConfig } from '@/lib/site'
 import { CtaBand } from '@/components/ui/CtaBand'
+import { SectionHead } from '@/components/ui/SectionHead'
 import { Breadcrumb } from '@/components/ui/Breadcrumb'
 import { Faq } from '@/components/ui/Faq'
 import { guaranteeFaqs, generateFaqSchema } from '@/lib/faq-data'
@@ -68,14 +69,13 @@ export default function GuaranteePage() {
                 <span>10%</span>
                 <span className="font-mono text-xs">Back</span>
               </div>
-              <div>
-                <h2 className="font-display text-2xl md:text-3xl font-bold text-[var(--ink)] mb-2">
-                  Every home we have built has been handed over on time.
-                </h2>
-                <p className="font-sans text-sm md:text-base text-[var(--muted)]">
-                  This refund has never been needed. It is there so you do not have to take our word for it.
-                </p>
-              </div>
+              <SectionHead
+                title="Every home we have built has been handed over on time."
+                lead="This refund has never been needed. It is there so you do not have to take our word for it."
+                titleClassName="font-display text-2xl md:text-3xl font-bold"
+                leadClassName="font-sans text-sm md:text-base"
+                className="mb-0"
+              />
             </div>
           </div>
 
@@ -119,12 +119,13 @@ export default function GuaranteePage() {
             <div className="flex items-center gap-3 mb-4">
               <ShieldCheck className="w-8 h-8 text-[var(--accent-text)]" />
                           </div>
-            <h2 className="font-display text-3xl md:text-4xl font-extrabold mb-4">
-              15-year warranty.
-            </h2>
-            <p className="font-sans text-base md:text-lg text-[var(--muted)] leading-relaxed mb-6 max-w-3xl">
-              Your home comes with a 15-year warranty from handover. Scope, exclusions and how to make a claim are written into your agreement before you sign. Ask us about the terms in your consultation.
-            </p>
+            <SectionHead
+              title="15-year warranty."
+              lead="Your home comes with a 15-year warranty from handover. Scope, exclusions and how to make a claim are written into your agreement before you sign. Ask us about the terms in your consultation."
+              titleClassName="font-display text-3xl md:text-4xl font-extrabold"
+              leadClassName="font-sans text-base md:text-lg leading-relaxed max-w-3xl"
+              className="mb-0"
+            />
           </div>
 
           {/* Why We Can Offer Both */}

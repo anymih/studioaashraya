@@ -20,7 +20,7 @@ export function SectionHead({
   const isBand = theme === 'band'
 
   return (
-    <div className={`mb-10 ${className}`}>
+    <div className={`mb-[var(--space-intro-content)] ${className}`}>
       <h2
         className={`${
           isBand ? 'text-[var(--on-band)]' : 'text-[var(--ink)]'
@@ -30,7 +30,7 @@ export function SectionHead({
       </h2>
       {lead && (
         <p
-          className={`mt-4 ${
+          className={`mt-[var(--space-h2-intro)] ${
             isBand ? 'text-[var(--band-muted)]' : 'text-[var(--muted)]'
           } ${leadClassName}`}
         >

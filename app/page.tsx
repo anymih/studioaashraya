@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 import { StageList } from '@/components/ui/StageList'
+import { SectionHead } from '@/components/ui/SectionHead'
 import ProjectCard from '@/components/ui/ProjectCard'
 import { Faq } from '@/components/ui/Faq'
 import { CtaBand } from '@/components/ui/CtaBand'
@@ -72,10 +73,10 @@ export default function HomePage() {
         <section className="wrap pt-10 pb-16 md:pt-14 md:pb-24">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             <div className="lg:col-span-7">
-              <h1 className="text-[var(--ink)] mb-4">
+              <h1 className="text-[var(--ink)] mb-[var(--space-h1-intro)]">
                 Build a home that is beautiful, engineered, and built to last.
               </h1>
-              <p className="text-[var(--muted)] mb-8">
+              <p className="text-[var(--muted)] mb-[var(--space-p-cta)]">
                 Architect and builder in Gurugram and Delhi NCR, led by an IIT-trained architect. Every home handed over on time, backed by a 10% refund clause and a 15-year warranty.
               </p>
 
@@ -141,14 +142,13 @@ export default function HomePage() {
         </section>
 
         {/* Section 3: Problem (62% delay figure) */}
-        <section className="wrap py-16 md:py-24">
-          <div className="max-w-3xl mb-8">
-            <h2 className="mb-4">
-              62% of under-construction housing projects in 50 Indian cities are delayed.
-            </h2>
-            <p className="mb-3">
-              We commit to the handover date in writing. If we miss it, we refund 10% of the total construction amount. Conditions, scope and exclusions are in your agreement.
-            </p>
+        <section className="wrap section-pad">
+          <div className="max-w-3xl">
+            <SectionHead
+              title="62% of under-construction housing projects in 50 Indian cities are delayed."
+              lead="We commit to the handover date in writing. If we miss it, we refund 10% of the total construction amount. Conditions, scope and exclusions are in your agreement."
+              className="mb-4"
+            />
             <ClaimNote
               source={CLAIMS['c.delay62'].source}
               sourceUrl={CLAIMS['c.delay62'].sourceUrl}
@@ -157,15 +157,15 @@ export default function HomePage() {
         </section>
 
         {/* Section 4: How we build (8 stages, sign-off gates) */}
-        <section className="w-full bg-[var(--band)] text-[var(--on-band)] border-y border-[var(--band-line)] py-16 md:py-24">
+        <section className="w-full bg-[var(--band)] text-[var(--on-band)] border-y border-[var(--band-line)] section-pad">
           <div className="wrap">
-            <div className="max-w-3xl mb-10">
-              <h2 className="text-[var(--on-band)] mb-3">
-                How we build
-              </h2>
-              <p className="text-[var(--band-muted)] mb-4">
-                Work on the next stage does not start until the architect signs off the current gate.
-              </p>
+            <div className="max-w-3xl mb-[var(--space-intro-content)]">
+              <SectionHead
+                title="How we build"
+                lead="Work on the next stage does not start until the architect signs off the current gate."
+                theme="band"
+                className="mb-[var(--space-p-cta)]"
+              />
               <Link
                 href="/method"
                 className="font-sans text-sm text-[var(--on-band)] underline underline-offset-4 inline-block"
@@ -179,12 +179,13 @@ export default function HomePage() {
         </section>
 
         {/* Section 5: Technology (10 capabilities) */}
-        <section className="wrap py-16 md:py-24">
-          <div className="max-w-3xl mb-10">
-            <h2 className="mb-3">Built with instruments, not opinions.</h2>
-            <p className="mb-4">
-              Most of what goes wrong in a house is hidden behind plaster by the time anyone looks. We measure it before it is covered.
-            </p>
+        <section className="wrap section-pad">
+          <div className="max-w-3xl mb-[var(--space-intro-content)]">
+            <SectionHead
+              title="Built with instruments, not opinions."
+              lead="Most of what goes wrong in a house is hidden behind plaster by the time anyone looks. We measure it before it is covered."
+              className="mb-[var(--space-p-cta)]"
+            />
             <Link
               href="/technology"
               className="font-sans text-sm text-[var(--accent-text)] font-semibold hover:underline inline-block"
@@ -206,14 +207,15 @@ export default function HomePage() {
         </section>
 
         {/* Section 6: Guarantee */}
-        <section className="w-full bg-[var(--surface)] border-y border-[var(--line)] py-16 md:py-24">
+        <section className="w-full bg-[var(--surface)] border-y border-[var(--line)] section-pad">
           <div className="wrap">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mb-10">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               <div className="lg:col-span-8">
-                <h2 className="mb-4">On time, or 10% back.</h2>
-                <p className="mb-6">
-                  Before work starts, your agreement fixes a handover date. If we miss it, we refund 10% of the total construction amount. Your home also comes with a 15-year structural warranty.
-                </p>
+                <SectionHead
+                  title="On time, or 10% back."
+                  lead="Before work starts, your agreement fixes a handover date. If we miss it, we refund 10% of the total construction amount. Your home also comes with a 15-year structural warranty."
+                  className="mb-[var(--space-p-cta)]"
+                />
                 <Link
                   href="/guarantee"
                   className="font-sans text-sm text-[var(--accent-text)] font-semibold hover:underline"
@@ -234,14 +236,14 @@ export default function HomePage() {
         </section>
 
         {/* Section 7: Projects (6 sample projects in simple grid) */}
-        <section className="wrap py-16 md:py-24">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
-            <div>
-              <h2 className="mb-2">Sample projects</h2>
-              <p className="font-sans text-sm text-[var(--muted)]">
-                Representative designs and built homes across Delhi NCR, Patna and Almora.
-              </p>
-            </div>
+        <section className="wrap section-pad">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-[var(--space-intro-content)]">
+            <SectionHead
+              title="Sample projects"
+              lead="Representative designs and built homes across Delhi NCR, Patna and Almora."
+              leadClassName="font-sans text-sm"
+              className="mb-0"
+            />
             <Link
               href="/projects"
               className="inline-flex items-center gap-2 font-sans text-sm text-[var(--ink)] hover:text-[var(--accent-text)] shrink-0"
@@ -259,13 +261,14 @@ export default function HomePage() {
         </section>
 
         {/* Section 8: NRI clients */}
-        <section className="w-full bg-[var(--surface)] border-y border-[var(--line)] py-16 md:py-24">
+        <section className="w-full bg-[var(--surface)] border-y border-[var(--line)] section-pad">
           <div className="wrap">
-            <div className="max-w-3xl mb-8">
-              <h2 className="mb-3">Build in India without flying in for every decision.</h2>
-              <p className="mb-4">
-                For families living abroad who want a home built in India with complete transparency and weekly documentation.
-              </p>
+            <div className="max-w-3xl mb-[var(--space-intro-content)]">
+              <SectionHead
+                title="Build in India without flying in for every decision."
+                lead="For families living abroad who want a home built in India with complete transparency and weekly documentation."
+                className="mb-[var(--space-p-cta)]"
+              />
               <Link
                 href="/nri"
                 className="font-sans text-sm text-[var(--accent-text)] font-semibold hover:underline inline-block"
@@ -286,13 +289,13 @@ export default function HomePage() {
         </section>
 
         {/* Section 9: Where we work */}
-        <section className="wrap py-16 md:py-24">
-          <div className="max-w-3xl mb-10">
-            <h2 className="mb-2">Regions we design and build in</h2>
-            <p className="font-sans text-sm text-[var(--muted)]">
-              Studio Aashraya designs and builds private homes from our office in Gurugram and regional project desks.
-            </p>
-          </div>
+        <section className="wrap section-pad">
+          <SectionHead
+            title="Regions we design and build in"
+            lead="Studio Aashraya designs and builds private homes from our office in Gurugram and regional project desks."
+            leadClassName="font-sans text-sm"
+            className="max-w-3xl"
+          />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             <Link
@@ -350,10 +353,8 @@ export default function HomePage() {
         </section>
 
         {/* Section 10: FAQ + final CTA band */}
-        <section className="wrap py-16 md:py-24 border-t border-[var(--line)]">
-          <div className="mb-10">
-            <h2>Frequently asked questions</h2>
-          </div>
+        <section className="wrap section-pad border-t border-[var(--line)]">
+          <SectionHead title="Frequently asked questions" />
 
           <Faq items={homeFaqs} className="mb-16" />
 

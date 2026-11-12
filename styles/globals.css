@@ -16,6 +16,12 @@
   --on-band: #EAEEF1;
   --band-muted: #9FB1C2;
   --band-line: #2D4258;
+  --space-h1-intro: 24px;
+  --space-h2-intro: 16px;
+  --space-intro-content: 40px;
+  --space-p-cta: 32px;
+  --space-section-mobile: 64px;
+  --space-section-desktop: 96px;
   color-scheme: light;
 }
 
@@ -148,6 +154,16 @@ body::before {
   .wrap {
     padding-left: max(16px, env(safe-area-inset-left, 0px));
     padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+}
+
+.section-pad {
+  padding-block: var(--space-section-mobile);
+}
+
+@media (min-width: 768px) {
+  .section-pad {
+    padding-block: var(--space-section-desktop);
   }
 }
 

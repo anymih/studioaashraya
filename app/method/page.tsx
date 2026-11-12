@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { Breadcrumb } from '@/components/ui/Breadcrumb'
 import { GateRecord } from '@/components/ui/GateRecord'
 import { CtaBand } from '@/components/ui/CtaBand'
+import { SectionHead } from '@/components/ui/SectionHead'
 import { MethodStageSection } from '@/components/method/MethodStageSection'
 import { verifiableArtifacts } from '@/lib/method-data'
 import { siteConfig } from '@/lib/site'
@@ -87,14 +88,13 @@ export default function MethodPage() {
         <div className="max-w-6xl mx-auto px-4 md:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             <div className="lg:col-span-5 space-y-6">
-              <div>
-                                <h2 className="font-display text-3xl md:text-4xl font-extrabold mb-3">
-                  What you can verify
-                </h2>
-                <p className="font-sans text-base text-[var(--muted)] leading-relaxed mb-6">
-                  Every stage leaves concrete, permanent records that remain in your project archive.
-                </p>
-              </div>
+              <SectionHead
+                title="What you can verify"
+                lead="Every stage leaves concrete, permanent records that remain in your project archive."
+                titleClassName="font-display text-3xl md:text-4xl font-extrabold"
+                leadClassName="font-sans text-base leading-relaxed"
+                className="mb-6"
+              />
 
               <ul className="border-t-[1.5px] border-[var(--ink)] divide-y divide-[var(--line)] list-none p-0 m-0">
                 {verifiableArtifacts.map((item, idx) => (
