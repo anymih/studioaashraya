@@ -408,7 +408,7 @@ export default function SiteFeasibilityPage() {
                 value={jurisdictionQuery}
                 onChange={(e) => setJurisdictionQuery(e.target.value)}
                 placeholder="e.g. Patna, Bengaluru, Bihar…"
-                className="w-full px-3 py-2 text-sm border border-neutral-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-300 focus:border-violet-400 transition"
+                className="w-full px-3 py-2 text-sm bg-white text-neutral-900 border border-neutral-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-300 focus:border-violet-400 transition"
               />
             </div>
 
@@ -651,7 +651,7 @@ export default function SiteFeasibilityPage() {
                       <span className="text-base font-bold text-green-800">
                         {isBuildableValid ? `${buildableAreaM2.toFixed(1)} m²` : "0.0 m²"}
                       </span>
-                      <span className="text-xs text-green-600">
+                      <span className="text-xs text-green-800">
                         {isBuildableValid ? `${buildableSqFt.toFixed(0)} sq ft` : "0 sq ft"}
                       </span>
                       <span className="text-xs text-green-700 font-medium mt-0.5">
@@ -876,8 +876,8 @@ export default function SiteFeasibilityPage() {
               {vertices.length === 0 && (
                 <div className="flex flex-col items-center justify-center p-6 text-center border border-dashed border-neutral-200 rounded">
                   <Ruler className="text-neutral-300 mb-2" size={24} />
-                  <span className="text-xs font-medium text-neutral-500">No boundaries drawn yet</span>
-                  <span className="text-xs text-neutral-400">Click in the left editor panel to begin defining coordinates.</span>
+                  <span className="text-xs font-medium text-neutral-600">No boundaries drawn yet</span>
+                  <span className="text-xs text-neutral-600">Click in the left editor panel to begin defining coordinates.</span>
                 </div>
               )}
             </div>

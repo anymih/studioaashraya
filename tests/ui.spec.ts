@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import AxeBuilder from '@axe-core/playwright';
 import path from 'path';
 import fs from 'fs';
 
@@ -158,6 +159,22 @@ test.describe('Automated UI Matrix & Visual Audits', () => {
             const cards = await page.locator('article, [data-project-card]').all();
             expect(cards.length, `Expected >= 1 project card on ${route}`).toBeGreaterThanOrEqual(1);
           }
+
+          // 10. Assertion: axe color-contrast check (zero violations)
+          const axeResults = await new AxeBuilder({ page })
+            .withRules(['color-contrast'])
+            .analyze();
+          expect(
+            axeResults.violations,
+            `Color contrast violations on ${route} (${vp.width}px ${theme}): ${JSON.stringify(
+              axeResults.violations.map((v) => ({
+                id: v.id,
+                nodes: v.nodes.map((n) => ({ html: n.html, failureSummary: n.failureSummary })),
+              })),
+              null,
+              2
+            )}`
+          ).toEqual([]);
         });
       }
     }
