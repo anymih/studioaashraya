@@ -50,3 +50,7 @@ next-env.d.ts
 # agents and skills
 .agents/
 
+# generated screenshots
+docs/rebuild/screenshots/
+
+

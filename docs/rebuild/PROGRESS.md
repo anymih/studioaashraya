@@ -277,3 +277,56 @@ All 54 image briefs from `05_IMAGE_BRIEFS.md` are registered in `lib/images.tsx`
 2. **Postal Code (B12):** Add `122001` to `app/layout.tsx` when confirmed.
 3. **Real Photography & Case Studies (B3):** Replace sample projects by setting `placeholder: false` and providing photography in `public/images/`.
 4. **Git Protocol:** All changes are preserved on branch `rebuild/v2`.
+
+---
+
+## 7. H1–H8 Correction Pass Verification (2026-11-12)
+
+### `npm run verify`
+```text
+> studio-aashraya@0.1.0 verify
+> tsc --noEmit && npm run lint && npm run ledger:check && npm run form:check && npm run projects:check && npm run build && npm run routes:check && npm run images:check && npm run cta:check
+
+✖ 7 problems (0 errors, 7 warnings)
+✅ [Ledger Check Passed] Scanned app, components, lib: 0 violations found.
+✅ Form check PASSED: All frozen form attributes and endpoints verified.
+✅ [Projects Check Passed] All 6 projects (jali-house, basement-villa, south-delhi-redevelopment, hillside-house-almora, courtyard-home-patna, nri-farmhouse-sohna) verified across areas and services.
+✓ Compiled successfully in 3.2s
+✓ Generating static pages using 15 workers (38/38) in 1602.4ms
+✅ [Routes Check Passed] All 19 baseline routes verified in build output.
+✅ [Images Check Passed] All 54 images in registry verified for alt text and caption rules.
+✅ [CTA Check Passed] Verified CTA count (min 2, max 4 per page), parameters, and MobileCtaBar across 29 pages.
+```
+
+### `ALLOW_SAMPLE_CONTENT=true npm run launch:check`
+```text
+> studio-aashraya@0.1.0 launch:check
+> node scripts/launch-check.mjs
+
+⚠️  [Launch Check Warnings]:
+   - NEXT_PUBLIC_SITE_URL is not set in environment (falling back to default https://studioaashraya.site).
+   - Sample projects with placeholder: true exist (permitted by ALLOW_SAMPLE_CONTENT=true).
+   - 30 project images have kind: "generated" (permitted by ALLOW_SAMPLE_CONTENT=true).
+
+✅ [Launch Check Succeeded] (with expected warnings)
+```
+
+### `npm run form:check`
+```text
+> studio-aashraya@0.1.0 form:check
+> node scripts/form-check.mjs
+
+✅ Form check PASSED: All frozen form attributes and endpoints verified.
+```
+
+### `npm run test:ui`
+```text
+> studio-aashraya@0.1.0 test:ui
+> playwright test
+
+Running 123 tests using 1 worker
+  123 passed (3.4m)
+- Automated UI Matrix & Visual Audits: 112/112 passed (28 routes x 375px/1440px x light/dark), including axe color-contrast (0 exclusions, 0 violations) and structural eyebrow checks.
+- Story Matrix (S1–S11): 11/11 passed.
+```
+
