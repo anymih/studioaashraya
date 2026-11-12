@@ -1,7 +1,6 @@
 import React from 'react'
 
 export interface SectionHeadProps {
-  eyebrow?: string
   title: string | React.ReactNode
   lead?: string | React.ReactNode
   className?: string
@@ -11,7 +10,6 @@ export interface SectionHeadProps {
 }
 
 export function SectionHead({
-  eyebrow,
   title,
   lead,
   className = '',
@@ -23,11 +21,6 @@ export function SectionHead({
 
   return (
     <div className={`mb-10 ${className}`}>
-      {eyebrow && (
-        <p className={`font-sans text-sm mb-3 ${isBand ? 'text-[var(--band-muted)]' : 'text-[var(--muted)]'}`}>
-          {eyebrow}
-        </p>
-      )}
       <h2
         className={`${
           isBand ? 'text-[var(--on-band)]' : 'text-[var(--ink)]'

@@ -62,14 +62,6 @@ export default function ServicesPage() {
               className="card-standard p-8 bg-[var(--surface)] flex flex-col justify-between"
             >
               <div>
-                <div className="flex items-center justify-between gap-4 mb-3">
-                  <span className="font-sans text-xs text-[var(--accent-text)] font-semibold">
-                    Service 0{idx + 1}
-                  </span>
-                  <span className="font-sans text-xs text-[var(--muted)]">
-                    Turnkey
-                  </span>
-                </div>
                 <h2 className="mb-3">
                   {service.title}
                 </h2>

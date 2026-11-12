@@ -72,19 +72,14 @@ export default function AreasIndexPage() {
                 className="card-standard p-8 bg-[var(--bg)] flex flex-col justify-between"
               >
                 <div>
-                  <div className="flex items-center justify-between gap-4 mb-3">
-                    <span className="font-sans text-xs text-[var(--accent-text)] font-semibold">
-                      {area.region}
-                    </span>
-                    <span className="font-sans text-xs text-[var(--muted)]">
-                      {area.tier === 'primary' ? 'Primary Focus' : 'Established Work'}
-                    </span>
-                  </div>
                   <h2 className="mb-3">
                     {area.h1}
                   </h2>
-                  <p className="font-sans text-base text-[var(--muted)] leading-relaxed mb-6">
+                  <p className="font-sans text-base text-[var(--muted)] leading-relaxed mb-2">
                     {area.lead}
+                  </p>
+                  <p className="font-sans text-xs text-[var(--muted)] mb-6">
+                    {area.region} · {area.tier === 'primary' ? 'Primary Focus' : 'Established Work'}
                   </p>
                 </div>
 

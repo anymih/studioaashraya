@@ -69,9 +69,6 @@ export default function GuaranteePage() {
                 <span className="font-mono text-xs">Back</span>
               </div>
               <div>
-                <span className="font-mono text-xs text-[var(--accent-text)] font-semibold block mb-1">
-                  Track Record
-                </span>
                 <h2 className="font-display text-2xl md:text-3xl font-bold text-[var(--ink)] mb-2">
                   Every home we have built has been handed over on time.
                 </h2>

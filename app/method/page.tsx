@@ -66,9 +66,6 @@ export default function MethodPage() {
         <div className="max-w-6xl mx-auto px-4 md:px-6">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
             <div>
-              <span className="font-mono text-xs text-[var(--band-muted)] font-semibold block mb-2">
-                Construction Sequence
-              </span>
               <h2 className="font-display font-extrabold text-3xl md:text-5xl text-[var(--on-band)]">
                 The Eight Stages
               </h2>

@@ -72,12 +72,11 @@ export default function HomePage() {
         <section className="wrap pt-10 pb-16 md:pt-14 md:pb-24">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             <div className="lg:col-span-7">
-              <p className="font-sans text-sm text-[var(--muted)] mb-3">Architect and builder · Gurugram, Delhi NCR</p>
               <h1 className="text-[var(--ink)] mb-4">
                 Build a home that is beautiful, engineered, and built to last.
               </h1>
               <p className="text-[var(--muted)] mb-8">
-                IIT-led architecture and construction in Gurugram and Delhi NCR. Every home handed over on time, backed by a 10% refund clause and a 15-year warranty.
+                Architect and builder in Gurugram and Delhi NCR, led by an IIT-trained architect. Every home handed over on time, backed by a 10% refund clause and a 15-year warranty.
               </p>
 
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
@@ -211,7 +210,6 @@ export default function HomePage() {
           <div className="wrap">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mb-10">
               <div className="lg:col-span-8">
-                <p className="font-sans text-xs text-[var(--muted)] mb-2">Contractual commitment</p>
                 <h2 className="mb-4">On time, or 10% back.</h2>
                 <p className="mb-6">
                   Before work starts, your agreement fixes a handover date. If we miss it, we refund 10% of the total construction amount. Your home also comes with a 15-year structural warranty.

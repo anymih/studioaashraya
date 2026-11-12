@@ -125,9 +125,6 @@ export default async function AreaDetailPage({ params }: AreaPageProps) {
         <div className="wrap">
           <Breadcrumb items={breadcrumbItems} className="mb-8" />
           <div className="max-w-3xl">
-            <span className="font-mono text-xs text-[var(--accent-text)] font-semibold block mb-3">
-              Regional Studio · {area.region}
-            </span>
             <h1 className="font-display font-extrabold text-[clamp(36px,5vw,72px)] leading-[0.95] text-[var(--ink)] mb-6 text-balance">
               {area.h1}
             </h1>
@@ -146,9 +143,6 @@ export default async function AreaDetailPage({ params }: AreaPageProps) {
         <section className="py-12 border-b border-[var(--line)] bg-[var(--wash)]">
           <div className="wrap">
             <div className="border-[1.5px] border-[var(--ink)] bg-[var(--surface)] p-6 sm:p-8 max-w-2xl">
-              <span className="font-mono text-xs text-[var(--accent-text)] font-semibold block mb-2">
-                Gurugram Office
-              </span>
               <h2 className="font-display font-extrabold text-2xl text-[var(--ink)] mb-4">
                 Studio Aashraya Gurugram
               </h2>
@@ -180,9 +174,6 @@ export default async function AreaDetailPage({ params }: AreaPageProps) {
           <div className="max-w-3xl space-y-12">
             {area.sections.map((sec, idx) => (
               <div key={idx} className={idx > 0 ? 'border-t border-[var(--line)] pt-10' : ''}>
-                <span className="font-mono text-xs text-[var(--accent-text)] font-semibold block mb-2">
-                  0{idx + 1} / Regional Context
-                </span>
                 <h2 className="font-display font-extrabold text-2xl md:text-3xl text-[var(--ink)] mb-3">
                   {sec.title}
                 </h2>
@@ -233,7 +224,6 @@ export default async function AreaDetailPage({ params }: AreaPageProps) {
         <section className="py-16 md:py-24 border-b border-[var(--line)] bg-[var(--bg)]">
           <div className="wrap">
             <SectionHead
-              eyebrow="Delivered work"
               title="Work to see."
               lead={`Projects completed or in progress representing our work in ${area.name}.`}
             />
@@ -255,7 +245,6 @@ export default async function AreaDetailPage({ params }: AreaPageProps) {
         <section className="py-16 md:py-24 border-b border-[var(--line)] bg-[var(--surface)]">
           <div className="wrap">
             <SectionHead
-              eyebrow="Questions"
               title="Frequently asked questions."
               lead={`Common questions from plot owners and clients building in ${area.name}.`}
             />

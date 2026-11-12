@@ -103,9 +103,6 @@ function BookCallContent() {
             <div className="lg:col-span-5 space-y-8">
               {/* What to send */}
               <div className="p-6 border border-[var(--line)] bg-[var(--surface)]">
-                <span className="font-mono text-xs text-[var(--accent-text)] font-semibold block mb-3">
-                  Reading List
-                </span>
                 <h2 className="font-display text-2xl font-bold mb-4">
                   What to send
                 </h2>

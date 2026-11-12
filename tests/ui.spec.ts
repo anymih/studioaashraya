@@ -175,6 +175,28 @@ test.describe('Automated UI Matrix & Visual Audits', () => {
               2
             )}`
           ).toEqual([]);
+
+          // 11. Assertion: No eyebrow (<8 word non-heading previous sibling) before h1 or h2, apart from nav and breadcrumbs
+          const eyebrowViolations = await page.evaluate(() => {
+            const headings = document.querySelectorAll('h1, h2');
+            const found: string[] = [];
+            for (const h of headings) {
+              const prev = h.previousElementSibling;
+              if (!prev) continue;
+              const tag = prev.tagName.toUpperCase();
+              if (['H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'NAV', 'SCRIPT', 'STYLE'].includes(tag)) continue;
+              if (prev.getAttribute('aria-label')?.toLowerCase().includes('breadcrumb')) continue;
+              if (prev.closest('nav')) continue;
+              const text = (prev.textContent || '').trim();
+              if (!text) continue;
+              const wordCount = text.split(/\s+/).filter(Boolean).length;
+              if (wordCount > 0 && wordCount < 8) {
+                found.push(`${h.tagName} ("${(h.textContent || '').trim().slice(0, 30)}") preceded by ${tag} ("${text}")`);
+              }
+            }
+            return found;
+          });
+          expect(eyebrowViolations, `Eyebrow elements found on ${route}: ${eyebrowViolations.join('; ')}`).toEqual([]);
         });
       }
     }

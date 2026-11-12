@@ -156,20 +156,19 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
       {/* 2. Header: H1, StatusBadge, sample chip */}
       <section className="py-8 md:py-12 border-b border-[var(--line)] bg-[var(--bg)]">
         <div className="wrap space-y-4">
-          <div className="flex flex-wrap items-center gap-3">
-            <span className="font-mono text-xs text-[var(--muted)]">
-              {project.city}, {project.region} · {project.type}
-            </span>
-            <StatusBadge status={project.status} />
-            {project.placeholder && <SampleTag kind="project" />}
-          </div>
-
           <h1 className="font-display font-extrabold text-4xl sm:text-5xl md:text-6xl leading-[0.92] text-[var(--ink)]">
             {project.name}
           </h1>
           <p className="font-sans text-lg text-[var(--muted)] max-w-2xl leading-relaxed">
             {project.headline}
           </p>
+          <div className="flex flex-wrap items-center gap-3 pt-1">
+            <span className="font-mono text-xs text-[var(--muted)]">
+              {project.city}, {project.region} · {project.type}
+            </span>
+            <StatusBadge status={project.status} />
+            {project.placeholder && <SampleTag kind="project" />}
+          </div>
         </div>
       </section>
 
@@ -217,9 +216,6 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
         <div className="wrap">
           <div className="max-w-3xl space-y-12">
             <div>
-              <span className="font-mono text-xs text-[var(--accent-text)] font-semibold block mb-2">
-                01 / The Challenge
-              </span>
               <h2 className="font-display font-extrabold text-2xl md:text-3xl text-[var(--ink)] mb-3">
                 The Problem
               </h2>
@@ -229,9 +225,6 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
             </div>
 
             <div className="border-t border-[var(--line)] pt-8">
-              <span className="font-mono text-xs text-[var(--accent-text)] font-semibold block mb-2">
-                02 / Architectural Response
-              </span>
               <h2 className="font-display font-extrabold text-2xl md:text-3xl text-[var(--ink)] mb-3">
                 The Approach
               </h2>
@@ -241,9 +234,6 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
             </div>
 
             <div className="border-t border-[var(--line)] pt-8">
-              <span className="font-mono text-xs text-[var(--accent-text)] font-semibold block mb-2">
-                03 / Delivered Reality
-              </span>
               <h2 className="font-display font-extrabold text-2xl md:text-3xl text-[var(--ink)] mb-3">
                 The Solution
               </h2>
@@ -262,9 +252,6 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
       <section className="py-16 md:py-20 border-b border-[var(--line)] bg-[var(--bg)]">
         <div className="wrap">
           <div className="max-w-3xl">
-            <span className="font-mono text-xs text-[var(--muted)] font-semibold block mb-2">
-              Engineering Logic
-            </span>
             <h2 className="font-display font-extrabold text-3xl md:text-4xl text-[var(--ink)] mb-8">
               Design & Construction Strategies
             </h2>
@@ -297,9 +284,6 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
         <section className="py-16 md:py-20 border-b border-[var(--line)] bg-[var(--surface)]">
           <div className="wrap">
             <div className="max-w-3xl">
-              <span className="font-mono text-xs text-[var(--accent-text)] font-semibold block mb-2">
-                Verification Instruments
-              </span>
               <h2 className="font-display font-extrabold text-3xl md:text-4xl text-[var(--ink)] mb-4">
                 Technology Used
               </h2>
@@ -328,9 +312,6 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
         <section className="py-16 md:py-20 border-b border-[var(--line)] bg-[var(--bg)]">
           <div className="wrap">
             <div className="max-w-3xl">
-              <span className="font-mono text-xs text-[var(--accent-text)] font-semibold block mb-2">
-                Accountability
-              </span>
               <h2 className="font-display font-extrabold text-3xl md:text-4xl text-[var(--ink)] mb-8">
                 Handover Record
               </h2>
@@ -371,15 +352,12 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
       <section className="py-16 md:py-20 border-b border-[var(--line)] bg-[var(--surface)]">
         <div className="wrap">
           <div className="max-w-3xl">
-            <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-              <span className="font-mono text-xs text-[var(--accent-text)] font-semibold">
-                Verified Metrics
-              </span>
+            <div className="flex flex-wrap items-baseline justify-between gap-2 mb-8">
+              <h2 className="font-display font-extrabold text-3xl md:text-4xl text-[var(--ink)]">
+                Performance Verification
+              </h2>
               {project.placeholder && <SampleTag kind="figure" />}
             </div>
-            <h2 className="font-display font-extrabold text-3xl md:text-4xl text-[var(--ink)] mb-8">
-              Performance Verification
-            </h2>
 
             <div className="border-[1.5px] border-[var(--ink)] bg-[var(--bg)] divide-y divide-[var(--line)]">
               {project.metrics.map((m, idx) => (
@@ -411,9 +389,6 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
       <section className="py-16 md:py-20 border-b border-[var(--line)] bg-[var(--bg)]">
         <div className="wrap">
           <div className="max-w-3xl">
-            <span className="font-mono text-xs text-[var(--muted)] font-semibold block mb-2">
-              Tactile Materials
-            </span>
             <h2 className="font-display font-extrabold text-3xl text-[var(--ink)] mb-6">
               Material Palette
             </h2>
@@ -434,9 +409,6 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
       {/* 12. Gallery */}
       <section className="py-16 md:py-24 border-b border-[var(--line)] bg-[var(--surface)]">
         <div className="wrap">
-          <span className="font-mono text-xs text-[var(--muted)] font-semibold block mb-2">
-            Visual Record
-          </span>
           <h2 className="font-display font-extrabold text-3xl md:text-4xl text-[var(--ink)] mb-4">
             Site Gallery
           </h2>
@@ -459,9 +431,6 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
       {/* 13. Technical Plans sheet */}
       <section className="py-16 md:py-20 border-b border-[var(--line)] bg-[var(--bg)]">
         <div className="wrap">
-          <span className="font-mono text-xs text-[var(--muted)] font-semibold block mb-2">
-            Architectural Drawings
-          </span>
           <h2 className="font-display font-extrabold text-3xl md:text-4xl text-[var(--ink)] mb-4">
             Technical Plans
           </h2>
