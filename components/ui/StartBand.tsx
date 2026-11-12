@@ -43,7 +43,7 @@ export function StartBand({
           <Link
             href={`/book-a-call?src=${encodeURIComponent(ctaId)}`}
             onClick={() => trackCTAClick(ctaId, pathname, 'start_band')}
-            className="inline-flex items-center justify-center gap-2 px-7 py-4 bg-[var(--on-accent)] text-[var(--accent)] font-sans font-bold text-sm sm:text-base hover:bg-[var(--ink)] hover:text-[var(--bg)] transition-colors select-none text-center min-h-[48px]"
+            className="inline-flex items-center justify-center gap-2 px-7 py-4 bg-[var(--on-accent)] text-[var(--accent-text)] font-sans font-bold text-sm sm:text-base hover:bg-[var(--ink)] hover:text-[var(--bg)] transition-colors select-none text-center min-h-[48px]"
           >
             <span>{buttonText}</span>
             <ArrowRight className="w-4 h-4" />

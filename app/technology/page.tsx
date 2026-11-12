@@ -173,7 +173,7 @@ export default function TechnologyPage() {
 
           {/* Scheduling Note */}
           <div className="p-8 border border-[var(--line)] bg-[var(--surface)] mb-12">
-            <span className="block font-mono text-xs text-[var(--accent)] mb-2">
+            <span className="block font-mono text-xs text-[var(--accent-text)] mb-2">
               Critical Path Scheduling
             </span>
             <h3 className="font-display text-2xl font-bold mb-3">
@@ -186,7 +186,7 @@ export default function TechnologyPage() {
 
           {/* Measurement Section */}
           <div id="measurement" className="p-8 border border-[var(--line)] bg-[var(--surface)] mb-12 scroll-mt-24">
-            <span className="block font-mono text-xs text-[var(--accent)] mb-2">
+            <span className="block font-mono text-xs text-[var(--accent-text)] mb-2">
               Measured Performance
             </span>
             <h3 className="font-display text-2xl font-bold mb-3">
@@ -226,7 +226,7 @@ export default function TechnologyPage() {
 
           {/* Structure and Soil Note */}
           <div className="p-8 border border-[var(--line)] bg-[var(--surface)]">
-            <span className="block font-mono text-xs text-[var(--accent)] mb-2">
+            <span className="block font-mono text-xs text-[var(--accent-text)] mb-2">
               Structure & Seismic Safety
             </span>
             <h3 className="font-display text-2xl font-bold mb-3">

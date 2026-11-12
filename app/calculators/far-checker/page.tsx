@@ -27,7 +27,7 @@ function FarFAQ() {
             className="w-full flex justify-between items-center py-4 text-left gap-3 bg-transparent border-0 cursor-pointer"
           >
             <span className="font-sans text-sm font-semibold text-[var(--ink)] leading-snug">{faq.q}</span>
-            <span className="text-lg font-mono text-[var(--accent)] shrink-0 transition-transform">
+            <span className="text-lg font-mono text-[var(--accent-text)] shrink-0 transition-transform">
               {openIdx === i ? '−' : '+'}
             </span>
           </button>
@@ -190,7 +190,7 @@ export default function FARCheckerPage() {
                 <span className="font-mono text-xs text-[var(--muted)] font-semibold block mb-1">
                   Permissible Built-up Area
                 </span>
-                <div className="font-display font-extrabold text-4xl text-[var(--accent)]">
+                <div className="font-display font-extrabold text-4xl text-[var(--accent-text)]">
                   {result.maxBuiltUp.toLocaleString()} <span className="text-xl font-sans font-normal text-[var(--ink)]">sq ft</span>
                 </div>
                 <p className="font-mono text-xs text-[var(--muted)] mt-1">

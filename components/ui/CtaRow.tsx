@@ -50,7 +50,7 @@ export function CtaRow({
               className="inline-flex items-center justify-center gap-1.5 px-3 py-2.5 border border-[var(--line)] bg-transparent text-[var(--ink)] font-mono text-xs hover:bg-[var(--wash)] transition-colors min-h-[48px]"
               aria-label="Call Studio Aashraya"
             >
-              <Phone className="w-3.5 h-3.5 text-[var(--accent)]" />
+              <Phone className="w-3.5 h-3.5 text-[var(--accent-text)]" />
               <span>Call</span>
             </a>
             <a

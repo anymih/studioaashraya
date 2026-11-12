@@ -38,7 +38,7 @@ export function DashboardMock({ className = '' }: DashboardMockProps) {
         </div>
         <div className="flex justify-between font-mono text-xs text-[var(--muted)] mt-1.5">
           <span>Start: May 2025</span>
-          <span className="text-[var(--accent)] font-semibold">Current: Gate 2 (Pour 3)</span>
+          <span className="text-[var(--accent-text)] font-semibold">Current: Gate 2 (Pour 3)</span>
           <span>Target Handover: Feb 2026</span>
         </div>
       </div>
@@ -48,12 +48,12 @@ export function DashboardMock({ className = '' }: DashboardMockProps) {
         <div className="p-3 border border-[var(--line)] bg-[var(--bg)]">
           <span className="font-mono text-xs text-[var(--muted)] block">Gate 01</span>
           <span className="font-display font-bold text-sm text-[var(--ink)] block">Foundation</span>
-          <span className="font-mono text-xs text-[var(--accent)] font-semibold mt-1 block">Passed (20 May)</span>
+          <span className="font-mono text-xs text-[var(--accent-text)] font-semibold mt-1 block">Passed (20 May)</span>
         </div>
         <div className="p-3 border border-[var(--accent)] bg-[var(--wash)]">
           <span className="font-mono text-xs text-[var(--muted)] block">Gate 02</span>
           <span className="font-display font-bold text-sm text-[var(--ink)] block">Structure</span>
-          <span className="font-mono text-xs text-[var(--accent)] font-semibold mt-1 block">Inspection due</span>
+          <span className="font-mono text-xs text-[var(--accent-text)] font-semibold mt-1 block">Inspection due</span>
         </div>
         <div className="p-3 border border-[var(--line)] bg-[var(--bg)] opacity-60">
           <span className="font-mono text-xs text-[var(--muted)] block">Gate 03</span>
@@ -99,7 +99,7 @@ export function DashboardMock({ className = '' }: DashboardMockProps) {
           </div>
           <div className="flex justify-between py-1">
             <span>Milestone 2: Gate 2 Passed (Structure)</span>
-            <span className="text-[var(--accent)] font-semibold">Pending Gate Sign-off</span>
+            <span className="text-[var(--accent-text)] font-semibold">Pending Gate Sign-off</span>
           </div>
         </div>
       </div>

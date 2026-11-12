@@ -69,7 +69,7 @@ export default function GuaranteePage() {
                 <span className="font-mono text-xs">Back</span>
               </div>
               <div>
-                <span className="font-mono text-xs text-[var(--accent)] font-semibold block mb-1">
+                <span className="font-mono text-xs text-[var(--accent-text)] font-semibold block mb-1">
                   Track Record
                 </span>
                 <h2 className="font-display text-2xl md:text-3xl font-bold text-[var(--ink)] mb-2">
@@ -89,7 +89,7 @@ export default function GuaranteePage() {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="p-6 border border-[var(--line)] bg-[var(--surface)]">
-                <span className="font-mono text-sm font-bold text-[var(--accent)] block mb-3">01</span>
+                <span className="font-mono text-sm font-bold text-[var(--accent-text)] block mb-3">01</span>
                 <h3 className="font-display text-xl font-bold mb-2">Fixed Handover Date</h3>
                 <p className="font-sans text-sm text-[var(--muted)] leading-relaxed">
                   The handover date is fixed in your agreement before ground is broken.
@@ -97,7 +97,7 @@ export default function GuaranteePage() {
               </div>
 
               <div className="p-6 border border-[var(--line)] bg-[var(--surface)]">
-                <span className="font-mono text-sm font-bold text-[var(--accent)] block mb-3">02</span>
+                <span className="font-mono text-sm font-bold text-[var(--accent-text)] block mb-3">02</span>
                 <h3 className="font-display text-xl font-bold mb-2">Weekly Reporting</h3>
                 <p className="font-sans text-sm text-[var(--muted)] leading-relaxed">
                   We report progress against it every week on your live client dashboard.
@@ -105,7 +105,7 @@ export default function GuaranteePage() {
               </div>
 
               <div className="p-6 border border-[var(--line)] bg-[var(--surface)]">
-                <span className="font-mono text-sm font-bold text-[var(--accent)] block mb-3">03</span>
+                <span className="font-mono text-sm font-bold text-[var(--accent-text)] block mb-3">03</span>
                 <h3 className="font-display text-xl font-bold mb-2">10% Refund</h3>
                 <p className="font-sans text-sm text-[var(--muted)] leading-relaxed">
                   If the date passes, the refund is paid as set out in your agreement.
@@ -120,7 +120,7 @@ export default function GuaranteePage() {
           {/* 15-Year Warranty Section */}
           <div id="warranty" className="p-8 md:p-12 border border-[var(--line)] bg-[var(--surface)] mb-16 scroll-mt-24">
             <div className="flex items-center gap-3 mb-4">
-              <ShieldCheck className="w-8 h-8 text-[var(--accent)]" />
+              <ShieldCheck className="w-8 h-8 text-[var(--accent-text)]" />
                           </div>
             <h2 className="font-display text-3xl md:text-4xl font-extrabold mb-4">
               15-year warranty.
@@ -137,19 +137,19 @@ export default function GuaranteePage() {
             </h3>
             <ul className="space-y-4 font-sans text-base text-[var(--ink)]">
               <li className="flex items-start gap-3">
-                <CheckCircle2 className="w-5 h-5 text-[var(--accent)] shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-5 h-5 text-[var(--accent-text)] shrink-0 mt-0.5" />
                 <span><strong>One accountable team:</strong> The architect who designs the home also constructs it.</span>
               </li>
               <li className="flex items-start gap-3">
-                <CheckCircle2 className="w-5 h-5 text-[var(--accent)] shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-5 h-5 text-[var(--accent-text)] shrink-0 mt-0.5" />
                 <span><strong>Gate records at four stages:</strong> Nothing is poured, closed or covered without written inspection records.</span>
               </li>
               <li className="flex items-start gap-3">
-                <CheckCircle2 className="w-5 h-5 text-[var(--accent)] shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-5 h-5 text-[var(--accent-text)] shrink-0 mt-0.5" />
                 <span><strong>Instruments that measure:</strong> Concrete lab tests, pulse velocity, rebar scans and flood-tested waterproofing.</span>
               </li>
               <li className="flex items-start gap-3">
-                <CheckCircle2 className="w-5 h-5 text-[var(--accent)] shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-5 h-5 text-[var(--accent-text)] shrink-0 mt-0.5" />
                 <span><strong>A transparent dashboard:</strong> Reports schedule and cost directly against the contract handover date.</span>
               </li>
             </ul>

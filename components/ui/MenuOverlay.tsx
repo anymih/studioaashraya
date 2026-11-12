@@ -58,8 +58,8 @@ export function MenuOverlay({ isOpen, onClose, navLinks }: MenuOverlayProps) {
                 onClick={onClose}
                 className={`w-full flex items-center justify-between font-sans text-base ${
                   isActive
-                    ? 'text-[var(--accent)] font-bold'
-                    : 'text-[var(--ink)] hover:text-[var(--accent)]'
+                    ? 'text-[var(--accent-text)] font-bold'
+                    : 'text-[var(--ink)] hover:text-[var(--accent-text)]'
                 }`}
               >
                 <span>{link.label}</span>
@@ -103,7 +103,7 @@ export function MenuOverlay({ isOpen, onClose, navLinks }: MenuOverlayProps) {
             }}
             className="h-[48px] border border-[var(--line)] flex items-center justify-center gap-2 font-mono text-xs text-[var(--ink)] select-none hover:bg-[var(--wash)]"
           >
-            <Phone className="w-4 h-4 text-[var(--accent)]" />
+            <Phone className="w-4 h-4 text-[var(--accent-text)]" />
             <span>Call</span>
           </a>
 

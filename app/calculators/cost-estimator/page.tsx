@@ -28,7 +28,7 @@ function CostFAQ() {
             className="w-full flex justify-between items-center py-4 text-left gap-3 bg-transparent border-0 cursor-pointer"
           >
             <span className="font-sans text-sm font-semibold text-[var(--ink)] leading-snug">{faq.q}</span>
-            <span className="text-lg font-mono text-[var(--accent)] shrink-0 transition-transform">
+            <span className="text-lg font-mono text-[var(--accent-text)] shrink-0 transition-transform">
               {openIdx === i ? '−' : '+'}
             </span>
           </button>
@@ -203,7 +203,7 @@ export default function CostEstimatorPage() {
           <div className="wrap max-w-xl mx-auto">
             {isNcr ? (
               <div className="border-[1.5px] border-[var(--accent)] bg-[var(--surface)] p-6 sm:p-8 space-y-4">
-                <span className="font-mono text-xs text-[var(--accent)] font-semibold block">
+                <span className="font-mono text-xs text-[var(--accent-text)] font-semibold block">
                   Delhi NCR Estimate
                 </span>
                 <h3 className="font-display font-extrabold text-3xl text-[var(--ink)]">
@@ -227,7 +227,7 @@ export default function CostEstimatorPage() {
                   <span className="font-mono text-xs text-[var(--muted)] font-semibold block mb-1">
                     Market Rate Estimate ({city})
                   </span>
-                  <div className="font-display font-extrabold text-3xl sm:text-4xl text-[var(--accent)]">
+                  <div className="font-display font-extrabold text-3xl sm:text-4xl text-[var(--accent-text)]">
                     {formatLakhs(result.min)} – {formatLakhs(result.max)}
                   </div>
                   <p className="font-mono text-xs text-[var(--muted)] mt-1">

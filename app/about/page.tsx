@@ -94,7 +94,7 @@ export default function AboutPage() {
 
             {/* Fact Panel */}
             <div className="lg:col-span-5 border border-[var(--line)] bg-[var(--surface)] p-6 sm:p-8 space-y-6">
-              <span className="font-mono text-xs text-[var(--accent)] font-bold block">
+              <span className="font-mono text-xs text-[var(--accent-text)] font-bold block">
                 Studio Facts
               </span>
 

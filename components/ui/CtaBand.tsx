@@ -140,7 +140,7 @@ export function CtaBand({
               }`}
               title="Call Studio Aashraya"
             >
-              <Phone className="w-4 h-4 text-[var(--accent)]" />
+              <Phone className="w-4 h-4 text-[var(--accent-text)]" />
               <span>Call</span>
             </a>
 

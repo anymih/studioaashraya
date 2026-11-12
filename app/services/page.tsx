@@ -63,7 +63,7 @@ export default function ServicesPage() {
             >
               <div>
                 <div className="flex items-center justify-between gap-4 mb-3">
-                  <span className="font-sans text-xs text-[var(--accent)] font-semibold">
+                  <span className="font-sans text-xs text-[var(--accent-text)] font-semibold">
                     Service 0{idx + 1}
                   </span>
                   <span className="font-sans text-xs text-[var(--muted)]">
@@ -95,7 +95,7 @@ export default function ServicesPage() {
               <div className="pt-4 border-t border-[var(--line)] flex items-center justify-between">
                 <Link
                   href={`/services/${service.slug}`}
-                  className="font-sans text-sm text-[var(--ink)] font-semibold hover:text-[var(--accent)] flex items-center gap-1"
+                  className="font-sans text-sm text-[var(--ink)] font-semibold hover:text-[var(--accent-text)] flex items-center gap-1"
                 >
                   <span>View service details</span>
                   <ArrowRight className="w-3.5 h-3.5" />

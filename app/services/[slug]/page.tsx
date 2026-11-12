@@ -168,7 +168,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
           <div className="border border-[var(--line)] bg-[var(--surface)] divide-y divide-[var(--line)]">
             {service.steps.map((step, idx) => (
               <div key={idx} className="p-6 md:p-8 flex items-start gap-4 md:gap-6">
-                <span className="font-mono text-sm md:text-base font-semibold text-[var(--accent)] shrink-0 pt-0.5">
+                <span className="font-mono text-sm md:text-base font-semibold text-[var(--accent-text)] shrink-0 pt-0.5">
                   0{idx + 1}
                 </span>
                 <p className="font-sans text-base md:text-lg text-[var(--ink)] leading-relaxed">

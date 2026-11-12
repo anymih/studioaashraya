@@ -35,14 +35,14 @@ export function TechTile({
       <div className="flex justify-between items-start mb-4">
         <span
           className={`font-mono text-xs sm:text-xs   font-semibold ${
-            onBand ? 'text-[var(--accent-hi)]' : 'text-[var(--accent)]'
+            onBand ? 'text-[var(--accent-hi)]' : 'text-[var(--accent-text)]'
           }`}
         >
           {usedAt}
         </span>
         <ArrowRight
           className={`w-4 h-4 transition-transform group-hover:translate-x-1 ${
-            onBand ? 'text-[var(--accent-hi)]' : 'text-[var(--accent)]'
+            onBand ? 'text-[var(--accent-hi)]' : 'text-[var(--accent-text)]'
           }`}
         />
       </div>

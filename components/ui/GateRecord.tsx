@@ -30,7 +30,7 @@ export function GateRecord({
     <figure className={`border-[1.5px] border-[var(--ink)] bg-[var(--surface)] rounded-none ${className}`}>
       <div className="p-4 sm:p-6 border-b border-[var(--line)]">
         <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
-          <span className="font-mono text-xs text-[var(--accent)] font-semibold">
+          <span className="font-mono text-xs text-[var(--accent-text)] font-semibold">
             Quality Gate Record
           </span>
           <span className="font-mono text-xs text-[var(--muted)]">

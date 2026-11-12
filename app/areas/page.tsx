@@ -73,7 +73,7 @@ export default function AreasIndexPage() {
               >
                 <div>
                   <div className="flex items-center justify-between gap-4 mb-3">
-                    <span className="font-sans text-xs text-[var(--accent)] font-semibold">
+                    <span className="font-sans text-xs text-[var(--accent-text)] font-semibold">
                       {area.region}
                     </span>
                     <span className="font-sans text-xs text-[var(--muted)]">
@@ -91,7 +91,7 @@ export default function AreasIndexPage() {
                 <div className="pt-4 border-t border-[var(--line)] flex items-center justify-between">
                   <Link
                     href={`/areas/${area.slug}`}
-                    className="font-sans text-sm text-[var(--ink)] font-semibold hover:text-[var(--accent)]"
+                    className="font-sans text-sm text-[var(--ink)] font-semibold hover:text-[var(--accent-text)]"
                   >
                     View location details &rarr;
                   </Link>

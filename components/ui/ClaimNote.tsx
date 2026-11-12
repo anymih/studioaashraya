@@ -16,7 +16,7 @@ export function ClaimNote({ source, sourceUrl, className = '' }: ClaimNoteProps)
           href={sourceUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="hover:text-[var(--accent)] underline underline-offset-2"
+          className="hover:text-[var(--accent-text)] underline underline-offset-2"
         >
           Source: {source}
         </a>

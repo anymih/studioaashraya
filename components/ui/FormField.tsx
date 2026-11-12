@@ -53,7 +53,7 @@ export function FormField({
         className="font-mono text-xs text-[var(--muted)] flex items-center justify-between"
       >
         <span>
-          {label} {required && <span className="text-[var(--accent)]">*</span>}
+          {label} {required && <span className="text-[var(--accent-text)]">*</span>}
         </span>
         {maxLength && value !== undefined && (
           <span className="text-xs tabular-nums">
@@ -116,7 +116,7 @@ export function FormField({
       )}
 
       {error && (
-        <span id={`${fieldId}_error`} className="font-sans text-xs text-[var(--accent)] font-medium mt-0.5">
+        <span id={`${fieldId}_error`} className="font-sans text-xs text-[var(--accent-text)] font-medium mt-0.5">
           Error: {error}
         </span>
       )}

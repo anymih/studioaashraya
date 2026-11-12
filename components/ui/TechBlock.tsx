@@ -52,7 +52,7 @@ export function TechBlock({
         <span className="font-display font-extrabold text-xl text-[var(--ink)]">
           {title}
         </span>
-        <span className="font-mono text-sm text-[var(--accent)] shrink-0 ml-3">
+        <span className="font-mono text-sm text-[var(--accent-text)] shrink-0 ml-3">
           {isOpen ? <Minus className="w-5 h-5" /> : <Plus className="w-5 h-5" />}
         </span>
       </button>
@@ -70,7 +70,7 @@ export function TechBlock({
           {/* Facts grid */}
           <div className={imageComponent ? 'lg:col-span-7 space-y-5' : 'lg:col-span-12 space-y-5'}>
             <div className="hidden md:block border-b border-[var(--line)] pb-3 mb-2">
-              <span className="font-mono text-xs text-[var(--accent)] font-semibold block mb-1">
+              <span className="font-mono text-xs text-[var(--accent-text)] font-semibold block mb-1">
                 Instrument
               </span>
               <h3 className="font-display font-extrabold text-3xl text-[var(--ink)]">
@@ -87,7 +87,7 @@ export function TechBlock({
               </div>
 
               <div>
-                <span className="font-mono text-xs text-[var(--accent)] font-semibold block mb-1">
+                <span className="font-mono text-xs text-[var(--accent-text)] font-semibold block mb-1">
                   What it catches
                 </span>
                 <p className="text-[var(--ink)] font-medium">{whatItCatches}</p>

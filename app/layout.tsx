@@ -4,7 +4,6 @@ import '@/styles/globals.css'
 import Header from '@/components/ui/Header'
 import Footer from '@/components/ui/Footer'
 import MobileCtaBar from '@/components/ui/MobileCtaBar'
-import SampleBanner from '@/components/ui/SampleBanner'
 import { GoogleAnalytics } from '@next/third-parties/google'
 import { ScrollTracker } from '@/components/ui/ScrollTracker'
 import { siteConfig } from '@/lib/site'
@@ -147,7 +146,6 @@ export default function RootLayout({
         </a>
         <ScrollTracker />
         <Header />
-        <SampleBanner />
         <main id="main-content" className="w-full pb-20 md:pb-0">
           {children}
         </main>

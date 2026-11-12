@@ -22,13 +22,13 @@ export default function Footer() {
           <div className="space-y-2 pt-2">
             <Link
               href="/guarantee"
-              className="block font-mono text-xs text-[var(--ink)] hover:text-[var(--accent)] transition-colors"
+              className="block font-mono text-xs text-[var(--ink)] hover:text-[var(--accent-text)] transition-colors"
             >
               → On-Time Guarantee & Warranty
             </Link>
             <Link
               href="/technology"
-              className="block font-mono text-xs text-[var(--ink)] hover:text-[var(--accent)] transition-colors"
+              className="block font-mono text-xs text-[var(--ink)] hover:text-[var(--accent-text)] transition-colors"
             >
               → Construction Technology
             </Link>
@@ -120,21 +120,21 @@ export default function Footer() {
           </span>
           <div className="space-y-3 font-sans text-sm text-[var(--muted)] mb-4">
             <div className="flex items-start gap-2 text-[var(--ink)]">
-              <MapPin className="w-4 h-4 text-[var(--accent)] shrink-0 mt-0.5" />
+              <MapPin className="w-4 h-4 text-[var(--accent-text)] shrink-0 mt-0.5" />
               <div>
                 <p className="font-medium">{siteConfig.address}</p>
                 <a
                   href={siteConfig.mapsLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-mono text-xs text-[var(--accent)] hover:underline inline-block mt-0.5"
+                  className="font-mono text-xs text-[var(--accent-text)] hover:underline inline-block mt-0.5"
                 >Get directions ↗</a>
               </div>
             </div>
 
             <div className="flex items-center gap-2">
-              <Phone className="w-4 h-4 text-[var(--accent)] shrink-0" />
-              <a href={`tel:${siteConfig.phone}`} className="text-[var(--ink)] hover:text-[var(--accent)]">
+              <Phone className="w-4 h-4 text-[var(--accent-text)] shrink-0" />
+              <a href={`tel:${siteConfig.phone}`} className="text-[var(--ink)] hover:text-[var(--accent-text)]">
                 {siteConfig.phoneDisplay}
               </a>
             </div>
@@ -145,13 +145,13 @@ export default function Footer() {
                 href={siteConfig.whatsappLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[var(--ink)] hover:text-[var(--accent)]"
+                className="text-[var(--ink)] hover:text-[var(--accent-text)]"
               >WhatsApp the architect</a>
             </div>
 
             <div className="flex items-center gap-2">
-              <Mail className="w-4 h-4 text-[var(--accent)] shrink-0" />
-              <a href={`mailto:${siteConfig.email}`} className="text-[var(--ink)] hover:text-[var(--accent)]">
+              <Mail className="w-4 h-4 text-[var(--accent-text)] shrink-0" />
+              <a href={`mailto:${siteConfig.email}`} className="text-[var(--ink)] hover:text-[var(--accent-text)]">
                 {siteConfig.email}
               </a>
             </div>

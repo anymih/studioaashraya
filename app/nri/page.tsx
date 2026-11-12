@@ -108,7 +108,7 @@ export default function NriPage() {
             <ol className="divide-y divide-[var(--line)] list-none p-0 m-0">
               {deliverables.map((item, idx) => (
                 <li key={idx} className="py-5 flex items-start gap-4">
-                  <span className="font-mono text-xs font-semibold text-[var(--accent)] pt-0.5 shrink-0">
+                  <span className="font-mono text-xs font-semibold text-[var(--accent-text)] pt-0.5 shrink-0">
                     0{idx + 1}
                   </span>
                   <span className="font-sans text-base md:text-lg font-medium text-[var(--ink)] leading-snug">
@@ -175,7 +175,7 @@ export default function NriPage() {
             </div>
 
             <div className="lg:col-span-5 p-8 border border-[var(--line)] bg-[var(--band)] text-[var(--on-band)]">
-              <ShieldCheck className="w-8 h-8 text-[var(--accent)] mb-3" />
+              <ShieldCheck className="w-8 h-8 text-[var(--accent-text)] mb-3" />
               <h3 className="font-display text-2xl font-bold mb-2">
                 Backed by the guarantee
               </h3>
@@ -184,7 +184,7 @@ export default function NriPage() {
               </p>
               <Link
                 href="/guarantee"
-                className="font-mono text-xs text-[var(--accent)] hover:underline inline-block font-semibold"
+                className="font-sans text-sm text-[var(--on-band)] underline underline-offset-4 inline-block font-semibold"
               >
                 Read guarantee details →
               </Link>

@@ -1,6 +1,7 @@
 import React from 'react'
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import Image from 'next/image'
 
 import { StageList } from '@/components/ui/StageList'
 import ProjectCard from '@/components/ui/ProjectCard'
@@ -92,15 +93,25 @@ export default function HomePage() {
                   href={`tel:${siteConfig.phone}`}
                   className="inline-flex items-center justify-center gap-2 px-5 py-4 border border-[var(--line)] bg-[var(--surface)] text-[var(--ink)] font-sans text-xs hover:bg-[var(--wash)] transition-colors min-h-[48px] select-none"
                 >
-                  <Phone className="w-4 h-4 text-[var(--accent)]" />
+                  <Phone className="w-4 h-4 text-[var(--accent-text)]" />
                   <span>Call {siteConfig.phoneDisplay}</span>
                 </a>
               </div>
             </div>
 
             <div className="lg:col-span-5">
-              <div className="border border-[var(--line)] bg-[var(--surface)] aspect-[4/3] flex items-end justify-end p-4">
-                <span className="font-sans text-xs text-[var(--muted)]">Illustration. Project photographs to follow.</span>
+              <div className="relative border border-[var(--line)] bg-[var(--surface)] aspect-[4/3] overflow-hidden">
+                <Image
+                  src="/images/home/hero-home.jpg"
+                  alt="Three-storey sandstone and brick-jali home in Gurugram at sunset."
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 40vw"
+                  className="object-cover"
+                />
+                <span className="absolute bottom-3 right-3 font-sans text-xs text-[var(--muted)] bg-[var(--surface)] px-2 py-0.5 border border-[var(--line)] select-none">
+                  Illustration
+                </span>
               </div>
             </div>
           </div>
@@ -158,7 +169,7 @@ export default function HomePage() {
               </p>
               <Link
                 href="/method"
-                className="font-sans text-sm text-[var(--accent)] hover:underline inline-block"
+                className="font-sans text-sm text-[var(--on-band)] underline underline-offset-4 inline-block"
               >
                 Read the full method (8 stages, 4 gates) →
               </Link>
@@ -177,7 +188,7 @@ export default function HomePage() {
             </p>
             <Link
               href="/technology"
-              className="font-sans text-sm text-[var(--accent)] font-semibold hover:underline inline-block"
+              className="font-sans text-sm text-[var(--accent-text)] font-semibold hover:underline inline-block"
             >
               See all technology details →
             </Link>
@@ -207,7 +218,7 @@ export default function HomePage() {
                 </p>
                 <Link
                   href="/guarantee"
-                  className="font-sans text-sm text-[var(--accent)] font-semibold hover:underline"
+                  className="font-sans text-sm text-[var(--accent-text)] font-semibold hover:underline"
                 >
                   Read the full guarantee →
                 </Link>
@@ -215,7 +226,7 @@ export default function HomePage() {
 
               <div className="lg:col-span-4">
                 <div className="border border-[var(--line)] bg-[var(--bg)] p-6">
-                  <ShieldCheck className="w-10 h-10 text-[var(--accent)] mb-3" />
+                  <ShieldCheck className="w-10 h-10 text-[var(--accent-text)] mb-3" />
                   <div className="stat-numeral text-[var(--ink)] mb-1">10%</div>
                   <span className="font-sans text-xs text-[var(--muted)]">Refund clause in writing</span>
                 </div>
@@ -235,7 +246,7 @@ export default function HomePage() {
             </div>
             <Link
               href="/projects"
-              className="inline-flex items-center gap-2 font-sans text-sm text-[var(--ink)] hover:text-[var(--accent)] shrink-0"
+              className="inline-flex items-center gap-2 font-sans text-sm text-[var(--ink)] hover:text-[var(--accent-text)] shrink-0"
             >
               <span>See all projects</span>
               <ArrowRight className="w-4 h-4" />
@@ -259,7 +270,7 @@ export default function HomePage() {
               </p>
               <Link
                 href="/nri"
-                className="font-sans text-sm text-[var(--accent)] font-semibold hover:underline inline-block"
+                className="font-sans text-sm text-[var(--accent-text)] font-semibold hover:underline inline-block"
               >
                 Explore NRI build management →
               </Link>
@@ -268,7 +279,7 @@ export default function HomePage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {nriDeliverables.map((item, idx) => (
                 <div key={idx} className="card-standard p-5 flex items-start gap-3 bg-[var(--bg)]">
-                  <CheckCircle2 className="w-4 h-4 text-[var(--accent)] shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-4 h-4 text-[var(--accent-text)] shrink-0 mt-0.5" />
                   <span className="font-sans text-xs text-[var(--ink)]">{item}</span>
                 </div>
               ))}
@@ -291,7 +302,7 @@ export default function HomePage() {
               className="card-standard hover:border-[var(--ink)] transition-colors group block"
             >
               <p className="font-sans text-xs text-[var(--muted)] mb-2">Focus area</p>
-              <h3 className="mb-2 text-base font-semibold group-hover:text-[var(--accent)] transition-colors">
+              <h3 className="mb-2 text-base font-semibold group-hover:text-[var(--accent-text)] transition-colors">
                 Gurugram
               </h3>
               <p className="font-sans text-xs text-[var(--muted)] leading-relaxed">
@@ -304,7 +315,7 @@ export default function HomePage() {
               className="card-standard hover:border-[var(--ink)] transition-colors group block"
             >
               <p className="font-sans text-xs text-[var(--muted)] mb-2">Capital region</p>
-              <h3 className="mb-2 text-base font-semibold group-hover:text-[var(--accent)] transition-colors">
+              <h3 className="mb-2 text-base font-semibold group-hover:text-[var(--accent-text)] transition-colors">
                 Delhi
               </h3>
               <p className="font-sans text-xs text-[var(--muted)] leading-relaxed">
@@ -317,7 +328,7 @@ export default function HomePage() {
               className="card-standard hover:border-[var(--ink)] transition-colors group block"
             >
               <p className="font-sans text-xs text-[var(--muted)] mb-2">Regional studio</p>
-              <h3 className="mb-2 text-base font-semibold group-hover:text-[var(--accent)] transition-colors">
+              <h3 className="mb-2 text-base font-semibold group-hover:text-[var(--accent-text)] transition-colors">
                 Patna
               </h3>
               <p className="font-sans text-xs text-[var(--muted)] leading-relaxed">
@@ -330,7 +341,7 @@ export default function HomePage() {
               className="card-standard hover:border-[var(--ink)] transition-colors group block"
             >
               <p className="font-sans text-xs text-[var(--muted)] mb-2">Regional desk</p>
-              <h3 className="mb-2 text-base font-semibold group-hover:text-[var(--accent)] transition-colors">
+              <h3 className="mb-2 text-base font-semibold group-hover:text-[var(--accent-text)] transition-colors">
                 Almora
               </h3>
               <p className="font-sans text-xs text-[var(--muted)] leading-relaxed">

@@ -73,7 +73,7 @@ export function StageList({
 
               <div className="flex items-center gap-2 justify-self-start md:justify-self-end mt-1 md:mt-0">
                 {stage.gate && (
-                  <span className="inline-block font-mono text-xs font-medium px-2 py-1.5 bg-[var(--accent-hi)] text-[#1A0F08] whitespace-nowrap rounded-none">
+                  <span className="font-sans text-sm font-semibold text-[var(--on-band)] whitespace-nowrap">
                     {stage.gate}
                   </span>
                 )}

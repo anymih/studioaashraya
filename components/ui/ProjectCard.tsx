@@ -76,6 +76,7 @@ export default function ProjectCard({
               src={imageSrc}
               alt={imageAlt}
               fill
+              loading="eager"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               className="object-cover transition-transform duration-200 group-hover:scale-[1.02]"
             />
@@ -110,7 +111,7 @@ export default function ProjectCard({
             Project
           </dt>
           <dd className="mt-1 font-display font-extrabold text-[22px] leading-tight text-[var(--ink)] truncate">
-            <Link href={`/projects/${finalSlug}`} className="hover:text-[var(--accent)] transition-colors">
+            <Link href={`/projects/${finalSlug}`} className="hover:text-[var(--accent-text)] transition-colors">
               {displayName}
             </Link>
           </dd>

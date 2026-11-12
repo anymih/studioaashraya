@@ -9,6 +9,7 @@
   --line: #C4C8BF;
   --grid: #DEE0D9;
   --accent: #C2410C;
+  --accent-text: #9A3412;
   --on-accent: #FFFFFF;
   --accent-hi: #FF8A4C;
   --band: #16283A;
@@ -28,6 +29,7 @@
     --line: #2B3430;
     --grid: #161D1A;
     --accent: #FF8A4C;
+    --accent-text: #FF8A4C;
     --on-accent: #1A0F08;
     --band: #0A1721;
     --on-band: #E6EBEF;
@@ -46,6 +48,7 @@
   --line: #2B3430;
   --grid: #161D1A;
   --accent: #FF8A4C;
+  --accent-text: #FF8A4C;
   --on-accent: #1A0F08;
   --band: #0A1721;
   --on-band: #E6EBEF;
@@ -63,6 +66,7 @@
   --color-line: var(--line);
   --color-grid: var(--grid);
   --color-accent: var(--accent);
+  --color-accent-text: var(--accent-text);
   --color-on-accent: var(--on-accent);
   --color-accent-hi: var(--accent-hi);
   --color-band: var(--band);
@@ -147,81 +151,83 @@ body::before {
   }
 }
 
-/* Typography scale (F6 strict scale) */
-h1, h2, h3, h4, h5, h6 {
-  text-transform: none;
-  text-wrap: balance;
-  text-align: left;
-  margin: 0;
-}
+@layer base {
+  /* Typography scale (F6 strict scale) */
+  h1, h2, h3, h4, h5, h6 {
+    text-transform: none;
+    text-wrap: balance;
+    text-align: left;
+    margin: 0;
+  }
 
-h1 {
-  font-family: var(--font-display), 'Arial Narrow', Impact, sans-serif;
-  font-weight: 700;
-  font-size: clamp(2.25rem, 4.2vw, 3.5rem);
-  line-height: 1.1;
-  letter-spacing: -0.01em;
-}
+  h1 {
+    font-family: var(--font-display), 'Arial Narrow', Impact, sans-serif;
+    font-weight: 700;
+    font-size: clamp(2.25rem, 4.2vw, 3.5rem);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
 
-h2 {
-  font-family: var(--font-display), 'Arial Narrow', Impact, sans-serif;
-  font-weight: 700;
-  font-size: clamp(1.75rem, 3vw, 2.5rem);
-  line-height: 1.15;
-  letter-spacing: -0.01em;
-}
+  h2 {
+    font-family: var(--font-display), 'Arial Narrow', Impact, sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
 
-h3 {
-  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
-  font-weight: 600;
-  font-size: 1.25rem;
-  line-height: 1.35;
-}
+  h3 {
+    font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+    font-weight: 600;
+    font-size: 1.25rem;
+    line-height: 1.35;
+  }
 
-h4, h5, h6 {
-  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
-  font-weight: 600;
-  font-size: 1.125rem;
-  line-height: 1.4;
-}
+  h4, h5, h6 {
+    font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+    font-weight: 600;
+    font-size: 1.125rem;
+    line-height: 1.4;
+  }
 
-p, dd {
-  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
-  font-weight: 400;
-  font-size: 1.0625rem;
-  line-height: 1.65;
-  color: color-mix(in srgb, var(--ink) 85%, transparent);
-  max-width: 68ch;
-  text-align: left;
-  margin: 0;
-}
+  p, dd {
+    font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+    font-weight: 400;
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    color: inherit;
+    max-width: 68ch;
+    text-align: left;
+    margin: 0;
+  }
 
-small, caption, .text-caption {
-  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
-  font-size: 0.875rem;
-  line-height: 1.45;
-  text-align: left;
-}
+  small, caption, .text-caption {
+    font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+    font-size: 0.875rem;
+    line-height: 1.45;
+    text-align: left;
+  }
 
-.text-mono-figure, table td.mono, table th.mono {
-  font-family: var(--font-mono), monospace;
-  font-size: 0.8125rem;
-}
+  .text-mono-figure, table td.mono, table th.mono {
+    font-family: var(--font-mono), monospace;
+    font-size: 0.8125rem;
+  }
 
-.stat-numeral {
-  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
-  font-weight: 600;
-  font-size: 2.5rem;
-  line-height: 1;
-}
+  .stat-numeral {
+    font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+    font-weight: 600;
+    font-size: 2.5rem;
+    line-height: 1;
+  }
 
-ul, ol, dl, figure {
-  margin: 0;
-  padding: 0;
-}
+  ul, ol, dl, figure {
+    margin: 0;
+    padding: 0;
+  }
 
-ul, ol {
-  list-style: none;
+  ul, ol {
+    list-style: none;
+  }
 }
 
 .font-tabular {

@@ -32,7 +32,7 @@ export function Notice({
         {actionText && actionHref && (
           <Link
             href={actionHref}
-            className="inline-flex items-center gap-1 font-mono text-xs text-[var(--accent)] hover:text-[var(--accent-hi)] font-semibold shrink-0 underline underline-offset-4"
+            className="inline-flex items-center gap-1 font-mono text-xs text-[var(--accent-text)] hover:text-[var(--accent-hi)] font-semibold shrink-0 underline underline-offset-4"
           >
             {actionText} &rarr;
           </Link>

@@ -112,7 +112,7 @@ export default function Header() {
             onClick={() => trackPhoneClick(pathname, 'header_phone')}
             className="hidden xl:flex items-center gap-1.5 font-mono text-xs text-[var(--muted)] hover:text-[var(--ink)] transition-colors mr-1"
           >
-            <Phone className="w-3.5 h-3.5 text-[var(--accent)]" />
+            <Phone className="w-3.5 h-3.5 text-[var(--accent-text)]" />
             <span>{siteConfig.phoneDisplay}</span>
           </a>
 

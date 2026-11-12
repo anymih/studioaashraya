@@ -103,7 +103,7 @@ export default function MethodPage() {
                 {verifiableArtifacts.map((item, idx) => (
                   <li key={idx} className="py-3.5 flex items-center justify-between text-base font-sans font-medium text-[var(--ink)]">
                     <span>{item}</span>
-                    <span className="font-mono text-xs text-[var(--accent)] font-semibold">0{idx + 1}</span>
+                    <span className="font-mono text-xs text-[var(--accent-text)] font-semibold">0{idx + 1}</span>
                   </li>
                 ))}
               </ul>

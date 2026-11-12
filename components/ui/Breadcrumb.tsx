@@ -25,7 +25,7 @@ export function Breadcrumb({
           const isLast = idx === items.length - 1
           return (
             <React.Fragment key={idx}>
-              <li aria-hidden="true" className="select-none text-[var(--line)]">
+              <li aria-hidden="true" className="select-none text-[var(--muted)]">
                 /
               </li>
               <li>

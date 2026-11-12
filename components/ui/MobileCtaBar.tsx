@@ -56,7 +56,7 @@ export function MobileCtaBar() {
         onClick={() => trackPhoneClick(pathname, 'mobile_cta_bar')}
         className={`${isBookPage ? 'w-1/2' : 'w-[25%]'} flex items-center justify-center gap-1.5 border-r border-[var(--line)] font-mono text-xs   text-[var(--ink)] active:bg-[var(--wash)] select-none min-h-[48px]`}
       >
-        <Phone className="w-4 h-4 text-[var(--accent)]" />
+        <Phone className="w-4 h-4 text-[var(--accent-text)]" />
         <span>Call</span>
       </a>
 

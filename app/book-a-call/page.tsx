@@ -103,7 +103,7 @@ function BookCallContent() {
             <div className="lg:col-span-5 space-y-8">
               {/* What to send */}
               <div className="p-6 border border-[var(--line)] bg-[var(--surface)]">
-                <span className="font-mono text-xs text-[var(--accent)] font-semibold block mb-3">
+                <span className="font-mono text-xs text-[var(--accent-text)] font-semibold block mb-3">
                   Reading List
                 </span>
                 <h2 className="font-display text-2xl font-bold mb-4">
@@ -143,15 +143,15 @@ function BookCallContent() {
                 </h3>
                 <ol className="space-y-3 font-sans text-sm text-[var(--ink)] list-none p-0">
                   <li className="flex items-start gap-3">
-                    <span className="font-mono text-xs font-bold text-[var(--accent)] pt-0.5">01</span>
+                    <span className="font-mono text-xs font-bold text-[var(--accent-text)] pt-0.5">01</span>
                     <span><strong>We read your details:</strong> The architect examines plot orientation and municipal bye-laws.</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="font-mono text-xs font-bold text-[var(--accent)] pt-0.5">02</span>
+                    <span className="font-mono text-xs font-bold text-[var(--accent-text)] pt-0.5">02</span>
                     <span><strong>We call or message you:</strong> A structured 20-minute conversation about your brief and timeline.</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="font-mono text-xs font-bold text-[var(--accent)] pt-0.5">03</span>
+                    <span className="font-mono text-xs font-bold text-[var(--accent-text)] pt-0.5">03</span>
                     <span><strong>You get the written plot check:</strong> Setbacks, permissible FAR, ground coverage, and key risks in writing.</span>
                   </li>
                 </ol>
@@ -163,11 +163,11 @@ function BookCallContent() {
                   Prefer direct contact?
                 </span>
                 <div className="flex items-center gap-2">
-                  <Phone className="w-4 h-4 text-[var(--accent)] shrink-0" />
+                  <Phone className="w-4 h-4 text-[var(--accent-text)] shrink-0" />
                   <a
                     href={`tel:${siteConfig.phone}`}
                     onClick={() => trackPhoneClick('/book-a-call', 'book_page_card')}
-                    className="font-mono text-xs text-[var(--ink)] hover:text-[var(--accent)]"
+                    className="font-mono text-xs text-[var(--ink)] hover:text-[var(--accent-text)]"
                   >
                     {siteConfig.phoneDisplay}
                   </a>
@@ -179,24 +179,24 @@ function BookCallContent() {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => trackWhatsAppClick('/book-a-call', 'book_page_card')}
-                    className="font-mono text-xs text-[var(--ink)] hover:text-[var(--accent)]"
+                    className="font-mono text-xs text-[var(--ink)] hover:text-[var(--accent-text)]"
                   >WhatsApp the architect</a>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Mail className="w-4 h-4 text-[var(--accent)] shrink-0" />
-                  <a href={`mailto:${siteConfig.email}`} className="font-mono text-xs text-[var(--ink)] hover:text-[var(--accent)]">
+                  <Mail className="w-4 h-4 text-[var(--accent-text)] shrink-0" />
+                  <a href={`mailto:${siteConfig.email}`} className="font-mono text-xs text-[var(--ink)] hover:text-[var(--accent-text)]">
                     {siteConfig.email}
                   </a>
                 </div>
                 <div className="flex items-start gap-2 pt-2 border-t border-[var(--line)] text-xs text-[var(--muted)]">
-                  <MapPin className="w-4 h-4 text-[var(--accent)] shrink-0 mt-0.5" />
+                  <MapPin className="w-4 h-4 text-[var(--accent-text)] shrink-0 mt-0.5" />
                   <div>
                     <span>{siteConfig.address}</span>
                     <a
                       href={siteConfig.mapsLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="block text-[var(--accent)] hover:underline mt-0.5"
+                      className="block text-[var(--accent-text)] hover:underline mt-0.5"
                     >Get directions ↗</a>
                   </div>
                 </div>
@@ -207,7 +207,7 @@ function BookCallContent() {
             <div className="lg:col-span-7">
               {submitted ? (
                 <div className="border border-[var(--ink)] bg-[var(--band)] text-[var(--on-band)] p-8 sm:p-12 text-center flex flex-col items-center gap-4">
-                  <CheckCircle2 className="w-16 h-16 text-[var(--accent)]" />
+                  <CheckCircle2 className="w-16 h-16 text-[var(--accent-text)]" />
                   <h2 className="font-display text-3xl font-bold">
                     Plot details received
                   </h2>
@@ -231,7 +231,7 @@ function BookCallContent() {
                   </div>
 
                   {error && (
-                    <div className="p-3 border border-[var(--accent)] bg-[var(--wash)] text-[var(--accent)] text-xs font-mono">
+                    <div className="p-3 border border-[var(--accent)] bg-[var(--wash)] text-[var(--accent-text)] text-xs font-mono">
                       {error}
                     </div>
                   )}
@@ -242,7 +242,7 @@ function BookCallContent() {
                   {/* Full Name */}
                   <div className="flex flex-col gap-1.5">
                     <label className="font-mono text-xs text-[var(--ink)] font-medium">
-                      Full Name <span className="text-[var(--accent)]">*</span>
+                      Full Name <span className="text-[var(--accent-text)]">*</span>
                     </label>
                     <input
                       type="text"
@@ -256,7 +256,7 @@ function BookCallContent() {
                   {/* Phone */}
                   <div className="flex flex-col gap-1.5">
                     <label className="font-mono text-xs text-[var(--ink)] font-medium">
-                      Phone Number (WhatsApp preferred) <span className="text-[var(--accent)]">*</span>
+                      Phone Number (WhatsApp preferred) <span className="text-[var(--accent-text)]">*</span>
                     </label>
                     <input
                       type="tel"
@@ -272,7 +272,7 @@ function BookCallContent() {
                   {/* Email */}
                   <div className="flex flex-col gap-1.5">
                     <label className="font-mono text-xs text-[var(--ink)] font-medium">
-                      Email Address <span className="text-[var(--accent)]">*</span>
+                      Email Address <span className="text-[var(--accent-text)]">*</span>
                     </label>
                     <input
                       type="email"
@@ -301,7 +301,7 @@ function BookCallContent() {
                   {/* Project Typology */}
                   <div className="flex flex-col gap-1.5">
                     <label className="font-mono text-xs text-[var(--ink)] font-medium">
-                      Project Typology <span className="text-[var(--accent)]">*</span>
+                      Project Typology <span className="text-[var(--accent-text)]">*</span>
                     </label>
                     <select
                       name="projectType"
@@ -329,7 +329,7 @@ function BookCallContent() {
                   {/* Budget Range */}
                   <div className="flex flex-col gap-1.5">
                     <label className="font-mono text-xs text-[var(--ink)] font-medium">
-                      Plot Size / Budget range <span className="text-[var(--accent)]">*</span>
+                      Plot Size / Budget range <span className="text-[var(--accent-text)]">*</span>
                     </label>
                     <select
                       name="budget"

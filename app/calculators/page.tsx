@@ -98,7 +98,7 @@ export default function CalculatorsPage() {
                   className="p-8 border border-[var(--line)] bg-[var(--surface)] flex flex-col justify-between"
                 >
                   <div>
-                    <div className="w-12 h-12 bg-[var(--bg)] border border-[var(--line)] flex items-center justify-center text-[var(--accent)] mb-6">
+                    <div className="w-12 h-12 bg-[var(--bg)] border border-[var(--line)] flex items-center justify-center text-[var(--accent-text)] mb-6">
                       <Icon className="w-6 h-6" />
                     </div>
 
