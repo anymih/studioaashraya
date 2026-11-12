@@ -1,5 +1,6 @@
 import fs from 'node:fs'
 import path from 'node:path'
+import { execSync } from 'node:child_process'
 
 let imagesPath = path.resolve(process.cwd(), 'lib', 'images.tsx')
 if (!fs.existsSync(imagesPath)) {
@@ -43,6 +44,28 @@ while ((match = entryRegex.exec(content)) !== null) {
 
 if (count < 54) {
   errors.push(`Expected 54 registered images, parsed ${count}`)
+}
+
+// Verify every registered local src exists on disk and is tracked by git
+const trackedSet = new Set(
+  execSync('git ls-files public/images/', { encoding: 'utf8' })
+    .split(/\r?\n/)
+    .map((s) => s.trim().replace(/\\/g, '/'))
+    .filter(Boolean)
+)
+
+const srcRegex = /src:\s*'([^']+)'/g
+let srcMatch
+while ((srcMatch = srcRegex.exec(content)) !== null) {
+  const srcVal = srcMatch[1]
+  if (!srcVal.startsWith('/')) continue
+  const relPath = `public${srcVal}`
+  const diskPath = path.resolve(process.cwd(), relPath)
+  if (!fs.existsSync(diskPath)) {
+    errors.push(`Registered image src "${srcVal}" does not exist on disk at ${relPath}`)
+  } else if (!trackedSet.has(relPath)) {
+    errors.push(`Registered image src "${srcVal}" is not tracked by git (${relPath})`)
+  }
 }
 
 if (errors.length > 0) {

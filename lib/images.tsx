@@ -29,6 +29,7 @@ export const IMAGE_REGISTRY: Record<string, ImageRegistryEntry> = {
     alt: 'Three-storey sandstone and brick-jali home in Gurugram at sunset.',
     caption: 'Illustration',
     kind: 'generated',
+    src: '/images/home/hero-home.jpg',
     priority: true,
   },
   'home-problem': {
@@ -40,6 +41,7 @@ export const IMAGE_REGISTRY: Record<string, ImageRegistryEntry> = {
     alt: 'Damp stains and peeling paint on a wall below a terrace slab.',
     caption: 'Illustration',
     kind: 'generated',
+    src: '/images/home/home-problem.jpg',
   },
   'tech-bim': {
     id: 'tech-bim',
@@ -250,6 +252,7 @@ export const IMAGE_REGISTRY: Record<string, ImageRegistryEntry> = {
     alt: "Architect's desk with plans, a study model and a laptop.",
     caption: 'Illustration',
     kind: 'generated',
+    src: '/images/about-me.webp',
   },
   'book-plot': {
     id: 'book-plot',
@@ -260,6 +263,7 @@ export const IMAGE_REGISTRY: Record<string, ImageRegistryEntry> = {
     alt: 'Folded plan on a parapet overlooking an empty plot at sunset.',
     caption: 'Illustration',
     kind: 'generated',
+    src: '/images/book-call.jpg',
   },
 
   // Project 1: jali (Jali House, Gurugram)
@@ -272,6 +276,7 @@ export const IMAGE_REGISTRY: Record<string, ImageRegistryEntry> = {
     alt: 'Jali House exterior with brick screen and sandstone façade.',
     caption: 'Illustration',
     kind: 'generated',
+    src: '/images/projects/proj-jali-cover.webp',
   },
   'proj-jali-g1': {
     id: 'proj-jali-g1',
@@ -282,6 +287,7 @@ export const IMAGE_REGISTRY: Record<string, ImageRegistryEntry> = {
     alt: 'Double-height courtyard with skylight slot in Jali House.',
     caption: 'Illustration',
     kind: 'generated',
+    src: '/images/projects/proj-jali-g1.webp',
   },
   'proj-jali-g2': {
     id: 'proj-jali-g2',
@@ -292,6 +298,7 @@ export const IMAGE_REGISTRY: Record<string, ImageRegistryEntry> = {
     alt: 'Jali screen and cavity wall detail with SS clamps.',
     caption: 'Illustration',
     kind: 'generated',
+    src: '/images/projects/proj-jali-g2.webp',
   },
   'proj-jali-g3': {
     id: 'proj-jali-g3',
@@ -302,6 +309,7 @@ export const IMAGE_REGISTRY: Record<string, ImageRegistryEntry> = {
     alt: 'Courtyard looking up through neem tree to sky slot.',
     caption: 'Illustration',
     kind: 'generated',
+    src: '/images/projects/proj-jali-g3.webp',
   },
   'proj-jali-plan': {
     id: 'proj-jali-plan',
@@ -312,6 +320,7 @@ export const IMAGE_REGISTRY: Record<string, ImageRegistryEntry> = {
     alt: 'Ground and first floor architectural plan for Jali House.',
     caption: 'Sample drawing',
     kind: 'generated',
+    src: '/images/projects/proj-jali-plan.png',
   },
 
   // Project 2: basement (Basement Villa, Gurugram)
@@ -324,6 +333,7 @@ export const IMAGE_REGISTRY: Record<string, ImageRegistryEntry> = {
     alt: 'Basement Villa concrete frame at second-slab stage from street.',
     caption: 'Illustration',
     kind: 'generated',
+    src: '/images/projects/proj-basement-cover.webp',
   },
   'proj-basement-g1': {
     id: 'proj-basement-g1',
@@ -334,6 +344,7 @@ export const IMAGE_REGISTRY: Record<string, ImageRegistryEntry> = {
     alt: 'Basement retaining wall with waterproofing membrane and protection board.',
     caption: 'Illustration',
     kind: 'generated',
+    src: '/images/projects/proj-basement-g1.webp',
   },
   'proj-basement-g2': {
     id: 'proj-basement-g2',
@@ -344,6 +355,7 @@ export const IMAGE_REGISTRY: Record<string, ImageRegistryEntry> = {
     alt: 'Slab pour in progress with pump boom and vibrator pokers.',
     caption: 'Illustration',
     kind: 'generated',
+    src: '/images/projects/proj-basement-g2.webp',
   },
   'proj-basement-g3': {
     id: 'proj-basement-g3',
@@ -354,6 +366,7 @@ export const IMAGE_REGISTRY: Record<string, ImageRegistryEntry> = {
     alt: 'Neatly stacked reinforcement bars by diameter on site.',
     caption: 'Illustration',
     kind: 'generated',
+    src: '/images/projects/proj-basement-g3.webp',
   },
   'proj-basement-plan': {
     id: 'proj-basement-plan',
@@ -364,6 +377,7 @@ export const IMAGE_REGISTRY: Record<string, ImageRegistryEntry> = {
     alt: 'Basement layout and coordinated services sleeve plan.',
     caption: 'Sample drawing',
     kind: 'generated',
+    src: '/images/projects/proj-basement-plan.png',
   },
 
   // Project 3: delhi (South Delhi Redevelopment, Delhi)
@@ -376,6 +390,7 @@ export const IMAGE_REGISTRY: Record<string, ImageRegistryEntry> = {
     alt: 'Redeveloped South Delhi house with lime-plaster off-white façade.',
     caption: 'Illustration',
     kind: 'generated',
+    src: '/images/projects/proj-delhi-cover.webp',
   },
   'proj-delhi-g1': {
     id: 'proj-delhi-g1',
@@ -386,6 +401,7 @@ export const IMAGE_REGISTRY: Record<string, ImageRegistryEntry> = {
     alt: 'Restored ground-floor living room with original arches.',
     caption: 'Illustration',
     kind: 'generated',
+    src: '/images/projects/proj-delhi-g1.webp',
   },
   'proj-delhi-g2': {
     id: 'proj-delhi-g2',
@@ -396,6 +412,7 @@ export const IMAGE_REGISTRY: Record<string, ImageRegistryEntry> = {
     alt: 'Lime plaster wall, brass hardware, and restored oxide floor.',
     caption: 'Illustration',
     kind: 'generated',
+    src: '/images/projects/proj-delhi-g2.webp',
   },
   'proj-delhi-g3': {
     id: 'proj-delhi-g3',
@@ -406,6 +423,7 @@ export const IMAGE_REGISTRY: Record<string, ImageRegistryEntry> = {
     alt: 'Staircase before and after restoration.',
     caption: 'Illustration',
     kind: 'generated',
+    src: '/images/projects/proj-delhi-g3.webp',
   },
   'proj-delhi-plan': {
     id: 'proj-delhi-plan',
@@ -416,6 +434,7 @@ export const IMAGE_REGISTRY: Record<string, ImageRegistryEntry> = {
     alt: 'Plan showing retained walls and strengthened column positions.',
     caption: 'Sample drawing',
     kind: 'generated',
+    src: '/images/projects/proj-delhi-plan.png',
   },
 
   // Project 4: almora (Hillside House, Almora)
@@ -428,6 +447,7 @@ export const IMAGE_REGISTRY: Record<string, ImageRegistryEntry> = {
     alt: 'Stepped stone and slate home on a terraced Almora slope.',
     caption: 'Illustration',
     kind: 'generated',
+    src: '/images/projects/proj-almora-cover.webp',
   },
   'proj-almora-g1': {
     id: 'proj-almora-g1',
@@ -438,6 +458,7 @@ export const IMAGE_REGISTRY: Record<string, ImageRegistryEntry> = {
     alt: 'Living area with local stone wall and deodar timber rafters.',
     caption: 'Illustration',
     kind: 'generated',
+    src: '/images/projects/proj-almora-g1.webp',
   },
   'proj-almora-g2': {
     id: 'proj-almora-g2',
@@ -448,6 +469,7 @@ export const IMAGE_REGISTRY: Record<string, ImageRegistryEntry> = {
     alt: 'Dry-stone masonry junction with slate roof overhang.',
     caption: 'Illustration',
     kind: 'generated',
+    src: '/images/projects/proj-almora-g2.webp',
   },
   'proj-almora-g3': {
     id: 'proj-almora-g3',
@@ -458,6 +480,7 @@ export const IMAGE_REGISTRY: Record<string, ImageRegistryEntry> = {
     alt: 'Stepped dry-stone retaining wall with drainage channel.',
     caption: 'Illustration',
     kind: 'generated',
+    src: '/images/projects/proj-almora-g3.webp',
   },
   'proj-almora-plan': {
     id: 'proj-almora-plan',
@@ -468,6 +491,7 @@ export const IMAGE_REGISTRY: Record<string, ImageRegistryEntry> = {
     alt: 'Contour-following stepped plan and rainwater tank layout.',
     caption: 'Sample drawing',
     kind: 'generated',
+    src: '/images/projects/proj-almora-plan.png',
   },
 
   // Project 5: patna (Courtyard Home, Patna)
@@ -480,6 +504,7 @@ export const IMAGE_REGISTRY: Record<string, ImageRegistryEntry> = {
     alt: 'Exposed brick courtyard home in Patna with deep veranda.',
     caption: 'Illustration',
     kind: 'generated',
+    src: '/images/projects/proj-patna-cover.webp',
   },
   'proj-patna-g1': {
     id: 'proj-patna-g1',
@@ -490,6 +515,7 @@ export const IMAGE_REGISTRY: Record<string, ImageRegistryEntry> = {
     alt: 'Central courtyard with lush monsoon planting and stone drain.',
     caption: 'Illustration',
     kind: 'generated',
+    src: '/images/projects/proj-patna-g1.webp',
   },
   'proj-patna-g2': {
     id: 'proj-patna-g2',
@@ -500,6 +526,7 @@ export const IMAGE_REGISTRY: Record<string, ImageRegistryEntry> = {
     alt: 'Jali opening in exposed brick for cross-ventilation.',
     caption: 'Illustration',
     kind: 'generated',
+    src: '/images/projects/proj-patna-g2.webp',
   },
   'proj-patna-g3': {
     id: 'proj-patna-g3',
@@ -510,6 +537,7 @@ export const IMAGE_REGISTRY: Record<string, ImageRegistryEntry> = {
     alt: 'Deep shaded veranda with rain falling onto perimeter drain.',
     caption: 'Illustration',
     kind: 'generated',
+    src: '/images/projects/proj-patna-g3.webp',
   },
   'proj-patna-plan': {
     id: 'proj-patna-plan',
@@ -520,6 +548,7 @@ export const IMAGE_REGISTRY: Record<string, ImageRegistryEntry> = {
     alt: 'Courtyard-centred ground floor plan with cross-breeze arrows.',
     caption: 'Sample drawing',
     kind: 'generated',
+    src: '/images/projects/proj-patna-plan.png',
   },
 
   // Project 6: farm (NRI Farmhouse, Sohna)
@@ -532,6 +561,7 @@ export const IMAGE_REGISTRY: Record<string, ImageRegistryEntry> = {
     alt: 'Rammed-earth farmhouse with stone plinth and deep verandas in Sohna.',
     caption: 'Design render',
     kind: 'generated',
+    src: '/images/projects/proj-farm-cover.webp',
   },
   'proj-farm-g1': {
     id: 'proj-farm-g1',
@@ -542,6 +572,7 @@ export const IMAGE_REGISTRY: Record<string, ImageRegistryEntry> = {
     alt: 'Living pavilion looking out onto orchard and water channel.',
     caption: 'Design render',
     kind: 'generated',
+    src: '/images/projects/proj-farm-g1.webp',
   },
   'proj-farm-g2': {
     id: 'proj-farm-g2',
@@ -552,6 +583,7 @@ export const IMAGE_REGISTRY: Record<string, ImageRegistryEntry> = {
     alt: 'Rammed-earth wall texture and timber post junction.',
     caption: 'Design render',
     kind: 'generated',
+    src: '/images/projects/proj-farm-g2.webp',
   },
   'proj-farm-g3': {
     id: 'proj-farm-g3',
@@ -562,6 +594,7 @@ export const IMAGE_REGISTRY: Record<string, ImageRegistryEntry> = {
     alt: 'Aerial view of house, water channel, and orchard grid.',
     caption: 'Design render',
     kind: 'generated',
+    src: '/images/projects/proj-farm-g3.webp',
   },
   'proj-farm-plan': {
     id: 'proj-farm-plan',
@@ -572,6 +605,7 @@ export const IMAGE_REGISTRY: Record<string, ImageRegistryEntry> = {
     alt: 'Master site plan showing house, verandas, channel, and orchard.',
     caption: 'Sample drawing',
     kind: 'generated',
+    src: '/images/projects/proj-farm-plan.png',
   },
 }
 
@@ -580,9 +614,10 @@ export interface ImgProps {
   className?: string
   priority?: boolean
   sizes?: string
+  loading?: 'eager' | 'lazy'
 }
 
-export function Img({ id, className = '', priority, sizes }: ImgProps) {
+export function Img({ id, className = '', priority, sizes, loading }: ImgProps) {
   const entry = IMAGE_REGISTRY[id]
 
   if (!entry) {
@@ -625,6 +660,7 @@ export function Img({ id, className = '', priority, sizes }: ImgProps) {
         width={entry.width}
         height={entry.height}
         priority={priority ?? entry.priority}
+        loading={priority ? undefined : (loading ?? 'eager')}
         sizes={sizes || '(max-width: 900px) 100vw, 50vw'}
         className="w-full h-full object-cover"
       />
