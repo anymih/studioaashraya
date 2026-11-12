@@ -100,19 +100,21 @@ export default function HomePage() {
             </div>
 
             <div className="lg:col-span-5">
-              <div className="relative border border-[var(--line)] bg-[var(--surface)] aspect-[4/3] overflow-hidden">
-                <Image
-                  src="/images/home/hero-home.jpg"
-                  alt="Three-storey sandstone and brick-jali home in Gurugram at sunset."
-                  fill
-                  priority
-                  sizes="(max-width: 1024px) 100vw, 40vw"
-                  className="object-cover"
-                />
-                <span className="absolute bottom-3 right-3 font-sans text-xs text-[var(--muted)] bg-[var(--surface)] px-2 py-0.5 border border-[var(--line)] select-none">
+              <figure className="m-0">
+                <div className="relative bg-[var(--surface)] aspect-[4/3] overflow-hidden">
+                  <Image
+                    src="/images/home/hero-home.jpg"
+                    alt="Three-storey sandstone and brick-jali home in Gurugram at sunset."
+                    fill
+                    priority
+                    sizes="(max-width: 1024px) 100vw, 40vw"
+                    className="object-cover"
+                  />
+                </div>
+                <figcaption className="mt-2 font-sans text-xs text-[var(--muted)]">
                   Illustration
-                </span>
-              </div>
+                </figcaption>
+              </figure>
             </div>
           </div>
         </section>

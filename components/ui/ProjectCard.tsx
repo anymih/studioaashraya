@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { StatusBadge, ProjectStatus } from './StatusBadge'
+import type { ProjectStatus } from './StatusBadge'
 import type { Project } from '@/lib/projects-data'
 
 export interface ProjectCardProps {
@@ -66,6 +66,13 @@ export default function ProjectCard({
   const displayPlotArea = plotArea || p.plotArea || '—'
   const displayYear = year ? String(year) : p.year ? String(p.year) : '—'
   const isPlaceholder = placeholder ?? p.placeholder ?? true
+  const normStatus = String(displayStatus).toLowerCase()
+  const statusLabel =
+    normStatus === 'built'
+      ? 'Built'
+      : normStatus === 'under-construction' || normStatus === 'under construction'
+        ? 'Under construction'
+        : 'Design stage'
 
   return (
     <article className={`card-standard min-w-0 flex flex-col justify-between p-0 overflow-hidden ${className}`}>
@@ -85,55 +92,43 @@ export default function ProjectCard({
               Illustration. Project photographs to follow.
             </span>
           )}
-
-          {/* City */}
-          <span className="absolute left-3 top-3 font-sans text-xs text-[var(--muted)] bg-[var(--surface)] px-2 py-0.5 border border-[var(--line)] select-none">
-            {displayCity}
-          </span>
-
-          {/* Status */}
-          <div className="absolute right-3 top-3">
-            <StatusBadge status={displayStatus} />
-          </div>
-
-          {/* Sample project caption */}
-          {isPlaceholder && (
-            <span className="absolute left-3 bottom-3 font-sans text-xs text-[var(--muted)] bg-[var(--surface)] px-2 py-0.5 border border-[var(--line)] select-none">
-              Sample project
-            </span>
-          )}
         </div>
       </Link>
 
-      <dl className="grid grid-cols-2 border-t border-[var(--line)] m-0">
-        <div className="col-span-2 p-2.5 sm:p-3 border-b border-[var(--line)] min-w-0">
-          <dt className="font-mono text-xs text-[var(--muted)]">
-            Project
-          </dt>
-          <dd className="mt-1 font-display font-extrabold text-[22px] leading-tight text-[var(--ink)] truncate">
-            <Link href={`/projects/${finalSlug}`} className="hover:text-[var(--accent-text)] transition-colors">
-              {displayName}
-            </Link>
-          </dd>
-        </div>
+      <div className="p-3 sm:p-4 border-b border-[var(--line)] min-w-0">
+        <p className="font-sans text-xs text-[var(--muted)] mb-1">
+          {displayCity} · {statusLabel}
+        </p>
+        <h3 className="font-display font-extrabold text-[22px] leading-tight text-[var(--ink)] truncate">
+          <Link href={`/projects/${finalSlug}`} className="hover:text-[var(--accent-text)] transition-colors">
+            {displayName}
+          </Link>
+        </h3>
+        {isPlaceholder && (
+          <p className="mt-1 font-sans text-xs text-[var(--muted)]">
+            Sample project
+          </p>
+        )}
+      </div>
 
-        <div className="p-2.5 sm:p-3 border-b sm:border-b-0 border-r border-[var(--line)] min-w-0">
-          <dt className="font-mono text-xs text-[var(--muted)]">Typology</dt>
+      <dl className="grid grid-cols-2 m-0">
+        <div className="p-2.5 sm:p-3 border-b border-r border-[var(--line)] min-w-0">
+          <dt className="font-sans text-sm text-[var(--muted)]">Typology</dt>
           <dd className="mt-0.5 font-sans text-sm text-[var(--ink)] truncate">{displayType}</dd>
         </div>
 
-        <div className="p-2.5 sm:p-3 border-b sm:border-b-0 min-w-0">
-          <dt className="font-mono text-xs text-[var(--muted)]">Plot Area</dt>
+        <div className="p-2.5 sm:p-3 border-b border-[var(--line)] min-w-0">
+          <dt className="font-sans text-sm text-[var(--muted)]">Plot area</dt>
           <dd className="mt-0.5 font-sans text-sm text-[var(--ink)] truncate">{displayPlotArea}</dd>
         </div>
 
         <div className="p-2.5 sm:p-3 border-r border-[var(--line)] min-w-0">
-          <dt className="font-mono text-xs text-[var(--muted)]">Built-up</dt>
+          <dt className="font-sans text-sm text-[var(--muted)]">Built-up</dt>
           <dd className="mt-0.5 font-sans text-sm text-[var(--ink)] truncate">{displayBuiltUp}</dd>
         </div>
 
         <div className="p-2.5 sm:p-3 min-w-0">
-          <dt className="font-mono text-xs text-[var(--muted)]">Handed Over</dt>
+          <dt className="font-sans text-sm text-[var(--muted)]">Handed over</dt>
           <dd className="mt-0.5 font-sans text-sm text-[var(--ink)] truncate">{displayYear}</dd>
         </div>
       </dl>
