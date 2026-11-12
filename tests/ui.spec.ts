@@ -146,6 +146,7 @@ test.describe('Automated UI Matrix & Visual Audits', () => {
           for (const token of bannedTokens) {
             expect(bodyText, `Page ${route} contains banned token: "${token}"`).not.toContain(token);
           }
+          expect(bodyText, `Page ${route} contains banned 62% present-tense claim`).not.toMatch(/62% of .* are delayed/i);
 
           // 8. Assertion: Number of /book-a-call CTA links is between 2 and 4 (excluding /book-a-call page)
           if (route !== '/book-a-call') {
@@ -326,6 +327,18 @@ test.describe('Story Matrix (S1 - S10)', () => {
     expect(text).toContain('free plot check');
 
     console.log('✅ Story S10 passed: Tools coverage statement verified');
+  });
+
+  test('S11: Sample projects banner is absent when NEXT_PUBLIC_PREVIEW is unset', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto('/', { waitUntil: 'networkidle' });
+
+    const bodyText = await page.locator('body').innerText();
+    if (process.env.NEXT_PUBLIC_PREVIEW !== 'true') {
+      expect(bodyText).not.toContain('Sample projects. Replace before launch.');
+    }
+
+    console.log('✅ Story S11 passed: SampleBanner gate verified');
   });
 });
 

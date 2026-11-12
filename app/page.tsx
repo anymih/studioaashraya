@@ -147,7 +147,7 @@ export default function HomePage() {
         <section className="wrap section-pad">
           <div className="max-w-3xl">
             <SectionHead
-              title="62% of under-construction housing projects in 50 Indian cities are delayed."
+              title="In 2017, 62% of under-construction housing projects across 50 Indian cities were delayed."
               lead="We commit to the handover date in writing. If we miss it, we refund 10% of the total construction amount. Conditions, scope and exclusions are in your agreement."
               className="mb-4"
             />

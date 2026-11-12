@@ -94,7 +94,7 @@ export const CLAIMS: Record<string, Claim> = {
   },
   'c.delay62': {
     id: 'c.delay62',
-    text: '62% of under-construction housing projects across 50 Indian cities were delayed',
+    text: 'In 2017, 62% of under-construction housing projects across 50 Indian cities were delayed',
     source: 'Liases Foras survey, 2017',
     sourceUrl:
       'https://mas360.moneylife.in/article/delay-in-62-percentage-of-housing-projects-in-50-indian-cities-finds-liases-foras-survey/2477.html',

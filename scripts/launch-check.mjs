@@ -104,6 +104,7 @@ const BANNED_PHRASES = [
   /no source supplied/i,
   /to be added/i,
   /\blorem\b/i,
+  /62% of .* are delayed/i,
 ];
 
 function scanFilesForBannedPhrases(dir) {
